@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+<link href="../common/style/bootstrap.css" rel="stylesheet">
+<link href="../common/style/style.css" rel="stylesheet">
+
+<!--[onshow;block=head;when [visible.foo] == bar;comm]-->
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+</head>
+<!--HEAD - ONLOAD-->
+<!--[onload;file=../common/common.head.html;getbody;comm]-->
+<!--HEAD - ONLOAD-->
+<body>
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=../common/common.javascript.html;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=common_include_debug;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=common.header.html;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!-- Main content starts -->
+<style>
+#rens_div,#vask_div,.checkout,#editproductbtn{display:none;}
+</style>
+<div class="content"> 
+  <!-- Main bar -->
+  <div class="mainbar"> 
+    <!-- Matter -->
+    <div class="matter">
+      <div class="container white-bg">
+        <div class="row header">
+          <div class="col-md-8"> 
+            <!--TOP-LEFT - ONLOAD --> 
+            <!--[onload;file=common.top.left.html;getbody;comm]--> 
+            <!--TOP-LEFT - ONLOAD --> 
+            <!--MENU - ONLOAD --> 
+            <!--[onload;file=common.index.menu.html;getbody;comm]--> 
+            <!--MENU - ONLOAD -->
+            <div class="search-product" style="display:none">
+              <div id="Exp-serach" class="Exp-serach">
+                <form>
+                  <input class="ExpInput " onkeyup="buttonUp();" placeholder="Søk produkt..." onblur="monkey();" type="search" value="" name="search" id="search">
+                  <input class="Expbtn" type="submit"  value="">
+                  <span class="ExpIcon"><i class="fa fa-search"></i></span>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+             <!--TOP-RIGHT - ONLOAD -->
+            <!--[onload;file=common.top.right.html;getbody;comm]-->
+             <!--TOP-RIGHT - ONLOAD -->
+            <div class="clearfix"></div>
+           <!-- <div class="text-center kasse">Kasse (<span class="cart_total">[vars.cart_total]</span>)</div>
+            <div class="voucher"> <a data-toggle="modal" href="#addNew"><img src="img/voucher.png" title="Voucher" alt="Voucher"/></a></div>--> 
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8  no-padd scroll-pane">
+              
+              <div class="clearfix"></div>
+           <div class="finished_orders order-black">
+                <div class="orderlisting row" style="background:#d8d8d8">
+					  <div class="col-md-2 black-text bold">Ordre nr. </div>
+                      <div class="orderlisting row" id="order_[orders.order;block=div;]">
+ 						<div class="col-md-12">
+                        [orders.order]
+                      </div>
+                      </div>
+          </div>
+            <div class="clearfix"></div>
+          </div>
+		
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Matter ends --> 
+</div>
+<!-- Mainbar ends -->
+<div class="clearfix"></div>
+<!--PRODUCT - EDIT - MODAL --> 
+<!--[onload;file=utlevering.edit.modal.html;getbody;comm]--> 
+<!--PRODUCT - EDIT - MODAL -->
+
+
+<!-- styles needed by jScrollPane -->
+<link type="text/css" href="style/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+<!-- the mousewheel plugin - optional to provide mousewheel support --> 
+<script type="text/javascript" src="js/jquery.mousewheel.js"></script> 
+<!-- the jScrollPane script --> 
+<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script> 
+</body>
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+<link href="../common/style/bootstrap.css" rel="stylesheet">
+<link href="../common/style/style.css" rel="stylesheet">
+<link href="../common/style/custom.css" rel="stylesheet">
+<!--[onshow;block=head;when [visible.foo] == bar;comm]-->
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+</head>
+<!--HEAD - ONLOAD-->
+<!--[onload;file=../common/common.head.html;getbody;comm]-->
+<!--HEAD - ONLOAD-->
+<body >
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=../common/common.javascript.html;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=common_include_debug;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=common.header.html;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!-- Main content starts -->
+<div class="content"> 
+  <!-- Main bar -->
+  <div class="mainbar"> 
+    <!-- Matter -->
+    <div class="matter">
+      <div class="container customer-bg">
+        <div class="row header">
+          <div class="col-md-8"> 
+            <!--TOP-LEFT - ONLOAD --> 
+            <!--[onload;file=common.top.left.html;getbody;comm]--> 
+            <!--TOP-LEFT - ONLOAD --> 
+            <!--MENU - ONLOAD --> 
+            <!--[onload;file=common.index.menu.html;getbody;comm]--> 
+            <!--MENU - ONLOAD -->
+            <div class="search-product" style="display:none">
+              <div id="Exp-serach" class="Exp-serach">
+                <form>
+                  <input class="ExpInput " onkeyup="buttonUp();" placeholder="Søk produkt..." onblur="monkey();" type="search" value="" name="search" id="search">
+                  <input class="Expbtn" type="submit"  value="">
+                  <span class="ExpIcon"><i class="fa fa-search"></i></span>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4"> 
+            <!--TOP-RIGHT - ONLOAD --> 
+            <!--[onload;file=common.top.right.html;getbody;comm]--> 
+            <!--TOP-RIGHT - ONLOAD -->
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        <div class="row receipt">
+          <div class="col-md-4  no-padd scroll-pane">
+            <div class="row">
+              <div class="col-md-12 no-padd"> 
+                <!--SETTINGS-MENU - ONLOAD --> 
+                <!--[onload;file=common.settings.faktura.html;getbody;comm]--> 
+                <!--SETTINGS-MENU - ONLOAD --> 
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8 scroll-pane">
+         <div class="row">
+              <div class="col-md-12"> 
+          <div class="widget wtabs">
+              <div class="widget-content">
+           <div class="col-md-3 no-padd">
+           		<h2 class="title">Faktura</h2>
+           </div>
+           <div class="clearfix"></div>
+           <div class="col-md-12 mt-sm">
+           <form class="saldoFrm" action="[conf.site_url;noerr]/admin/settings/faktura/search-faktura-log" method="post">
+           
+            <input type="hidden" name="status" value="[vars.status]" id="status"/>
+          	 <div class="row">
+                <div class="form-group col-md-4 no-padd">
+                
+                <input type="hidden" name="branch_id" value="[vars.branch]" id="branch_id"/>
+                
+                <select id="branch-list" data-placeholder="[lang.lang_branch_name]" name="branch" class="select-list" style="width: 100%!important;height: 32px!important">
+                  <option value="">-- Velg --</option>
+                  <!--[lists.all_branch_id;noerr;htmlconv=no;protect=no;comm]-->
+                </select>
+                  </div>
+                               
+                  <div class="form-group col-md-3">
+                    <input type="text" class="form-control-small form-control pickadate" id="from" name="from" value="[vars.from]" placeholder="Fra">
+                  </div>
+                  <div class="form-group col-md-3">
+                    <input type="text" class="form-control-small form-control pickadate" id="to" name="to" value="[vars.to]" placeholder="Til">
+                   </div>
+                  <div class="form-group col-md-2 no-padd">
+                    <button type="submit" class="btn btn-primary pull-right" style="padding:6px 12px">Search</button>
+                  </div>
+              </div>
+            </form>
+            </div>
+            <div class="clearfix"></div>
+
+           <div class="finished_orders order-black">
+                <div class="orderlisting row" style="background:#d8d8d8">
+					  <div class="col-md-1 black-text  bold">ID </div>
+					  <div class="col-md-6 black-text bold text-left">Navn </div>
+                      <div class="col-md-1 no-padd  black-text bold">Mobil</div>
+					  <div class="col-md-2 black-text no-padd text-right bold">Totalt</div>
+					  <div class="col-md-2 text-center black-text bold">Satus</div>
+					</div>
+              <div id="accountlog">      
+                <!--[lists.faktura_log;noerr;htmlconv=no;protect=no;comm]-->
+              </div>  
+          </div>
+          <div class="row">
+          <div class="col-md-12">
+          <!--[onshow;block=div;when [visible.btn_all] == 1;comm]-->
+         <!-- <input type="submit" value="Send to all" style="font-size: 18px!important;
+    color: #fff!important;" class="btn green  pull-right mb-xlg" data-loading-text="Loading...">
+   		<a href="javascript:void(0);" id="downbtn" onclick="reportDownload();" class="btn red btn button-link "><i class="fa fa-download" aria-hidden="true"></i> Skriv ut</a>
+-->           </div> 
+           </div>         
+               </div>
+           </div> 
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Matter ends --> 
+</div>
+<!-- Mainbar ends -->
+<div class="clearfix"></div>
+<!--WI_IFRAME_MODAL-->
+<div class="row">
+  <div id="modalIframe" class="modal fade reload-parent-on-close" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header back-color">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+          <h4 class="modal-title text-center" id="modal-iframe-title"></h4>
+        </div>
+        <div class="modal-body login">
+          <iframe frameborder="0" class="slimScrollBarModal----"></iframe>
+        </div>
+        <div class="modal-footer" style="display:none">
+          <button type="button" class="btn btn-default close-btn" data-dismiss="modal" aria-hidden="true">[lang.lang_close]</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--WI_IFRAME_MODAL--> 
+
+<!-- styles needed by jScrollPane -->
+<link type="text/css" href="style/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+<!-- the mousewheel plugin - optional to provide mousewheel support --> 
+<script type="text/javascript" src="js/jquery.mousewheel.js"></script> 
+<!-- the jScrollPane script --> 
+<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script> 
+<script type="text/javascript">
+
+/*function reportDownload()
+{
+	var fromdate = $("#from").val();
+	var todate = $("#to").val();
+	var status = $("#status").val();
+
+	window.location="[conf.site_url;noerr]/admin/download/faktura/"+fromdate+"/"+todate+"/"+status;
+	return false;
+}
+*/
+
+	var branch_preselected = ($("#branch_id").val()!='') ? $("#branch_id").val():"";
+	document.getElementById("branch-list").value = branch_preselected;
+
+
+$(document).ready(function(){
+ 
+	if($(window).height() < 760){
+		$('.scroll-pane').jScrollPane({
+			autoReinitialise: true
+		});  //scrollpane
+	}
+	else{
+		$('.scroll-pane').css({"height": "auto"}); 
+	}
+	
+
+});
+//update invoice id
+function updateInvoiceID(id)
+{
+	$('#inid').val(id);
+}
+//update invoice id
+function updateInvoiceStatus(id)
+{
+	$('#oid').val(id);
+}
+
+//update sent status to invoices
+function sentInvoice()
+{	
+	 var invoiceid = 	$('#inid').val();
+	 var invoicestatus = 	$('#instatus').val();
+	 var parent = $("a#"+invoiceid).parent().parent();
+	 var processing = true;
+	 if(processing){
+		 processing = false;
+		 $.ajax({
+			type: "POST",
+			url: "[conf.site_url;noerr]/admin/settings/faktura/update-invoice-status",
+			data: {
+				inid: invoiceid,
+				instatus : invoicestatus
+			},
+		   beforeSend: function(){
+		   },
+		   complete: function(){
+				processing2 = false;
+		   },
+		   dataType: "json",
+		   success: function (data) {
+				if(data.error == 'success'){
+					parent.slideUp(300, function() {
+						parent.remove();
+					});
+					if(data.order != ''){
+						window.location="[conf.site_url;noerr]/admin/settings/faktura/kunden-receipt/"+data.order;
+					}
+					if(data.saldo != ''){
+						window.location="[conf.site_url;noerr]/admin/settings/faktura/saldo-receipt/"+data.saldo;
+					}
+		
+					noty({
+						text: data.message,
+						layout: 'bottomRight',
+						type: 'information',
+						timeout: [settings_general.notifications_display_duration;noerr]
+					});
+					
+				}
+				else{
+					noty({
+						text: data.message,
+						layout: 'bottomRight',
+						type: 'warning',
+						timeout: [settings_general.notifications_display_duration;noerr]
+					});
+					
+				}
+		   }
+		});
+	 }
+	 else{
+			noty({
+				text: '[lang.lang_process_goingon]',
+				layout: 'bottomRight',
+				type: 'warning',
+				timeout: [settings_general.notifications_display_duration;noerr]
+			});
+	 }
+
+}
+
+
+//update sent order status to invoices
+function sentOrderInvoice()
+{	
+	 var oid = 	$('#oid').val();
+	 var invoicestatus = 	$('#olinstatus').val();
+	 
+	 var parent = $("a#"+oid).parent().parent();
+	 var processing = true;
+	 if(processing){
+		 processing = false;
+		 $.ajax({
+			type: "POST",
+			url: "[conf.site_url;noerr]/admin/settings/faktura/update-order-invoice-status",
+			data: {
+				orderid: oid,
+				instatus : invoicestatus
+			},
+		   beforeSend: function(){
+		   },
+		   complete: function(){
+				processing = false;
+		   },
+		   dataType: "json",
+		   success: function (data) {
+				if(data.error == 'success'){
+					parent.slideUp(300, function() {
+						parent.remove();
+					});
+					if(data.order != ''){
+						window.location="[conf.site_url;noerr]/admin/settings/faktura/kunden-receipt/"+data.order;
+					}
+		
+					noty({
+						text: data.message,
+						layout: 'bottomRight',
+						type: 'information',
+						timeout: [settings_general.notifications_display_duration;noerr]
+					});
+					
+				}
+				else{
+					noty({
+						text: data.message,
+						layout: 'bottomRight',
+						type: 'warning',
+						timeout: [settings_general.notifications_display_duration;noerr]
+					});
+					
+				}
+		   }
+		});
+	 }
+	 else{
+			noty({
+				text: '[lang.lang_process_goingon]',
+				layout: 'bottomRight',
+				type: 'warning',
+				timeout: [settings_general.notifications_display_duration;noerr]
+			});
+	 }
+
+}
+</script>
+
+<div id="sendInvoiceModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog " style="max-width: 450px; margin-top:150px">
+<div class="modal-content widget ">
+<div class="padd"><h4 class="text-center">Are you sure want to continue ?</h4></div>
+<div class="modal-footer">
+<input type="hidden" name="inid" value="" id="inid"/>
+<input type="hidden" name="instatus" value="sent" id="instatus"/>
+<button type="button" onclick="sentInvoice()" data-dismiss="modal" class="btn green" >[lang.lang_yes]</button>
+<button type="button" data-dismiss="modal" class="btn red">[lang.lang_no]</button>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="sendOrderInvoiceModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog " style="max-width: 450px; margin-top:150px">
+<div class="modal-content widget ">
+<div class="padd"><h4 class="text-center">Are you sure want to continue ?</h4></div>
+<div class="modal-footer">
+<input type="hidden" name="oid" value="" id="oid"/>
+<input type="hidden" name="olinstatus" value="waiting" id="olinstatus"/>
+<button type="button" onclick="sentOrderInvoice()" data-dismiss="modal" class="btn green" >[lang.lang_yes]</button>
+<button type="button" data-dismiss="modal" class="btn red">[lang.lang_no]</button>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<!--------------------COMMON FOOTER JAVASCRIPT----------------------------> 
+<!--[onload;file=../common/common.footer.javascript.html;getbody;comm]--> 
+<!--------------------COMMON FOOTER JAVASCRIPT---------------------------->
+</body>
+</html>

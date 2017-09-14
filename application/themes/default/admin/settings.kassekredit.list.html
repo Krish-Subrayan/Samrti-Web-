@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+<link href="../common/style/bootstrap.css" rel="stylesheet">
+<link href="../common/style/style.css" rel="stylesheet">
+<link href="../common/style/custom.css" rel="stylesheet">
+<!--[onshow;block=head;when [visible.foo] == bar;comm]-->
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+</head>
+<!--HEAD - ONLOAD-->
+<!--[onload;file=../common/common.head.html;getbody;comm]-->
+<!--HEAD - ONLOAD-->
+<body >
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=../common/common.javascript.html;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=common_include_debug;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=common.header.html;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!-- Main content starts -->
+<div class="content"> 
+  <!-- Main bar -->
+  <div class="mainbar"> 
+    <!-- Matter -->
+    <div class="matter">
+      <div class="container " style="background:#fff">
+        <div class="row header">
+          <div class="col-md-8"> 
+            <!--TOP-LEFT - ONLOAD --> 
+            <!--[onload;file=common.top.left.html;getbody;comm]--> 
+            <!--TOP-LEFT - ONLOAD --> 
+            <!--MENU - ONLOAD --> 
+            <!--[onload;file=common.index.menu.html;getbody;comm]--> 
+            <!--MENU - ONLOAD -->
+            <div class="search-product" style="display:none">
+              <div id="Exp-serach" class="Exp-serach">
+                <form>
+                  <input class="ExpInput " onkeyup="buttonUp();" placeholder="Søk produkt..." onblur="monkey();" type="search" value="" name="search" id="search">
+                  <input class="Expbtn" type="submit"  value="">
+                  <span class="ExpIcon"><i class="fa fa-search"></i></span>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4"> 
+            <!--TOP-RIGHT - ONLOAD --> 
+            <!--[onload;file=common.top.right.html;getbody;comm]--> 
+            <!--TOP-RIGHT - ONLOAD -->
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        <div class="row receipt">
+          <div class="col-md-12 scroll-pane">
+          <div class="row">
+              <div class="col-md-12"> 
+
+          <div class="widget wtabs">
+              <div class="widget-content">
+           <div class="col-md-3 no-padd">
+           		<h2 class="title">Liste</h2>
+           </div>
+           <div class="col-md-9 mt-sm">
+           <form class="saldoFrm" action="[conf.site_url;noerr]/admin/settings/kassekredit/search-complaint-list-log" method="post">
+          	 <div class="row">
+                <div class="form-group col-md-6">
+                <input type="hidden" name="month_id" value="[vars.month]" id="month_id"/>
+                <select name="month" class="select-list" id="month-list" style="width: 100%!important;height: 32px!important">
+                    <option value="">---Select---</option>
+                    <option value="01">January</option>
+                    <option value="02">February</option>
+                    <option value="03">March</option>
+                    <option value="04">April</option>
+                    <option value="05">May</option>
+                    <option value="06">June</option>
+                    <option value="07">July</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+                
+                  </div>
+                <div class="form-group col-md-4">
+               	<input type="text" name="year" id="year"  class="form-control-small form-control" placeholder="Year" value="[vars.year]"/>
+ 				</div>                  
+                  
+                  <div class="form-group col-md-2 no-padd">
+                    <button type="submit" class="btn btn-primary pull-right" style="padding:6px 12px">Search</button>
+                  </div>
+              </div>
+            </form>
+            </div>
+            <div class="clearfix"></div>
+            
+
+            <div class="row">
+            <!--[onshow;block=div;when [visible.complaint_list] == 0;comm]-->
+                  <div class="col-md-12 text-center mt-lg mb-lg"><h2 style="color:#555555">Ingen resultat.</h2></div> 
+           </div>            
+
+           <div class="finished_orders order-black">
+           <!--[onshow;block=div;when [visible.complaint_list] == 1;comm]-->
+                  <div class="orderlisting row" style="background:#d8d8d8">
+                  <div class="col-md-1 black-text  bold">ID</div>
+                  <div class="col-md-1 black-text  bold no-padd">Date</div>
+                  <div class="col-md-4 black-text bold text-left">Navn  </div>
+                  <div class="col-md-1 no-padd  black-text bold">Mobile</div>
+                  <div class="col-md-3 black-text no-padd text-left bold">Reason</div>
+                  <div class="col-md-2 black-text text-right bold">Totalt</div>
+			</div>
+              <div id="accountlog">      
+               <div class="orderlisting row <!--[complaint.id;block=div]-->">
+               	  <div class="col-md-1 black-text ">#<!--[complaint.partner_branch;comm;]--></div>
+                  <div class="col-md-1 black-text no-padd"><!--[complaint.date;comm;]--></div>
+                  <div class="col-md-4 black-text text-left"><!--[complaint.name;comm;]-->  </div>
+                  <div class="col-md-1 no-padd  black-text "><!--[complaint.number;comm;]--></div>
+                  <div class="col-md-3 no-padd  black-text "><!--[complaint.complaint_reason;comm;]--></div>
+                  <div class="col-md-2 black-text text-right "><!--[complaint.amount;comm;]--></div>
+				</div>
+              </div>  
+          </div>
+          <div class="row">
+            <!--[onshow;block=div;when [visible.complaint_list] == 1;comm]-->
+          <div class="col-md-12 text-right">
+   		<a href="javascript:void(0);" id="downbtn" onclick="reportDownload();" class="btn red btn button-link "><i class="fa fa-download" aria-hidden="true"></i> Lagre som PDF</a>
+          </div> 
+           </div>         
+               </div>
+           </div>   
+          </div>
+        </div>
+               
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Matter ends --> 
+</div>
+<!-- Mainbar ends -->
+<div class="clearfix"></div>
+<!--WI_IFRAME_MODAL-->
+<div class="row">
+  <div id="modalIframe" class="modal fade reload-parent-on-close" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header back-color">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+          <h4 class="modal-title text-center" id="modal-iframe-title"></h4>
+        </div>
+        <div class="modal-body login">
+          <iframe frameborder="0" class="slimScrollBarModal----"></iframe>
+        </div>
+        <div class="modal-footer" style="display:none">
+          <button type="button" class="btn btn-default close-btn" data-dismiss="modal" aria-hidden="true">[lang.lang_close]</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--WI_IFRAME_MODAL--> 
+
+<!-- styles needed by jScrollPane -->
+<link type="text/css" href="style/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+<!-- the mousewheel plugin - optional to provide mousewheel support --> 
+<script type="text/javascript" src="js/jquery.mousewheel.js"></script> 
+<!-- the jScrollPane script --> 
+<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script> 
+<script type="text/javascript">
+
+function reportDownload()
+{
+	var month = $("#month_id").val();
+	var year = $("#year").val();
+
+	window.location="[conf.site_url;noerr]/admin/download/kassaekredit/"+month+"/"+year;
+	return false;
+}
+
+
+
+var month_preselected = ($("#month_id").val()!='') ? $("#month_id").val():"";
+document.getElementById("month-list").value = month_preselected;
+
+
+$(document).ready(function(){
+ 
+	if($(window).height() < 760){
+		$('.scroll-pane').jScrollPane({
+			autoReinitialise: true
+		});  //scrollpane
+	}
+	else{
+		$('.scroll-pane').css({"height": "auto"}); 
+	}
+	
+
+});
+
+</script>
+
+
+
+
+
+<!--------------------COMMON FOOTER JAVASCRIPT----------------------------> 
+<!--[onload;file=../common/common.footer.javascript.html;getbody;comm]--> 
+<!--------------------COMMON FOOTER JAVASCRIPT---------------------------->
+</body>
+</html>

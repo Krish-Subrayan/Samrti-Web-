@@ -1,0 +1,414 @@
+<!--WI_EDIT_PRODUCT_MODAL-->
+<div class="row">
+  <div id="editProductModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog addProduct">
+    	<div class="modal-content">
+        	<div class="modal-header back-color">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h4 class="modal-title text-center" id="edit-product-title"></h4>
+
+             </div>
+             <div class="modal-body login">
+            <div class="form-login-wrapper view-product">
+            <form action="" id="editProduct" method="post">
+                <div class="product-buttons group-pos">
+                  <div class="clearfix">
+                    <div class="btn-group">
+                      <button id="edit-antall" type="button" data-switch-set="#add_product" data-switch-value="qty" class="btn btn-default">Antall</button>
+                      <button id="edit-pris" type="button" data-switch-set="#add_product" data-switch-value="pris" class="btn btn-default">Pris</button>
+                      <button id="edit-fritekst" type="button" data-switch-set="#add_product" data-switch-value="des" class="btn btn-default">Fritekst</button>
+                      <button id="edit-reklamasjon" type="button" data-switch-set="#add_product" data-switch-value="extra" class="btn btn-default">Reklamasjon</button>
+                    </div>
+                    <input type="hidden" name="add_product" id="add_product" value="">
+                  </div>
+                </div>            
+                <div class="des-wrapper">
+                    <div class="pull-left col-md-12">
+                      <p class="fs-16 green-text">Fritekst</p>
+                      <textarea name="spl_instruction" id="edit_spl_instruction"></textarea>
+                    </div>              
+                 </div>
+                <div class="extra-wrapper">
+                  <div class="col-md-6 fs-16" id="complain_div">
+                    <input type="checkbox" class="" value="" name="complain" id="edit_complain">
+                    Reklamasjon
+                  </div>
+                   <div class="col-md-6 fs-16"  id="house_div">
+                    <input type="checkbox" class="" value="" name="in_house" id="edit_in_house">
+                    Renses på huset
+                  </div>
+			  </div>
+              
+                <div class="pris-wrapper"> 
+                  <div class="input-wrapper">
+                    <div class="row">
+                      <div class="col-xs-12">
+                        <input type="text" name="product[0][pris]" placeholder="0" id="edit_pris" value="[row.pris;noerr]" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="pris-numeric-wrapper">
+                    <div class="clearfix">
+                    <div class="col-xs-4">
+                        <div class="num">7</div></div>
+                      <div class="col-xs-4">
+                        <div class="num">8</div></div>
+                      <div class="col-xs-4">
+                        <div class="num">9</div></div>
+                  </div>
+                  <div class="clearfix">
+                    <div class="col-xs-4">
+                        <div class="num">4</div></div>
+                      <div class="col-xs-4">
+                        <div class="num">5</div></div>
+                      <div class="col-xs-4">
+                        <div class="num">6</div></div>
+                  </div>
+                  <div class="clearfix">
+                        <div class="col-xs-4">
+                            <div class="num">1</div></div>
+                        <div class="col-xs-4">
+                            <div class="num">2</div></div>
+                        <div class="col-xs-4">
+                            <div class="num">3</div></div>
+                  </div>
+                    <div class="clearfix">
+                  <div class="col-xs-4">
+                    <div class="dot">.</div>
+                  </div>
+                  <div class="col-xs-4">
+                    <div class="num">0</div>
+                  </div>
+                  <div class="col-xs-4 blue">
+                    <div class="clear fs-10 red-clear">Fjern</div>
+                  </div>
+                </div>
+                 </div>
+             </div>              
+              
+              <div class="qty-wrapper"> 
+                  <div class="input-wrapper">
+                    <div class="row">
+                      <div class="col-xs-12">
+                        <input type="text" name="product[0][quantity]" placeholder="0" id="edit_quantity" value="[row.qty;noerr]" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="numeric-wrapper">
+                    <div class="clearfix">
+                    <div class="col-xs-4">
+                        <div class="num">7</div></div>
+                      <div class="col-xs-4">
+                        <div class="num">8</div></div>
+                      <div class="col-xs-4">
+                        <div class="num">9</div></div>
+                  </div>
+                  <div class="clearfix">
+                    <div class="col-xs-4">
+                        <div class="num">4</div></div>
+                      <div class="col-xs-4">
+                        <div class="num">5</div></div>
+                      <div class="col-xs-4">
+                        <div class="num">6</div></div>
+                  </div>
+                  <div class="clearfix">
+                        <div class="col-xs-4">
+                            <div class="num">1</div></div>
+                        <div class="col-xs-4">
+                            <div class="num">2</div></div>
+                        <div class="col-xs-4">
+                            <div class="num">3</div></div>
+                  </div>
+                    <div class="clearfix">
+                  <div class="col-xs-4">
+                    <div class="dot">.</div>
+                  </div>
+                  <div class="col-xs-4">
+                    <div class="num">0</div>
+                  </div>
+                  <div class="col-xs-4 blue">
+                    <div class="clear fs-10 red-clear">Fjern</div>
+                  </div>
+                </div>
+                 </div>
+             </div>
+        <div class="numeric-wrapper">
+                <div class="col-xs-6">
+                    <input  type="submit" id="editsubmit" class="" value="OK">
+                </div>
+                <div class="col-xs-6">
+                    <input  type="reset" onclick="setDelete();" class="red reset" value="[lang.lang_delete]">
+                </div>
+                <div class="clearfix"></div>
+             </div>                          
+            </form>
+        </div>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--WI_EDIT_PRODUCT_MODAL-->
+
+
+<script type='text/javascript'>
+$(document).ready(function(){
+
+	$(".numeric-wrapper .clear").click(function(){  
+		$('#edit_quantity').val('');
+		
+	});
+	
+	$(".pris-numeric-wrapper .clear").click(function(){  
+		$('#edit_pris').val('');
+		
+	});
+	
+	
+	/* group pos ends */
+	$('.product-buttons .btn-group .btn:first').trigger('click');
+
+	$('.des-wrapper').hide();
+	$('.extra-wrapper').hide();
+	$('.pris-wrapper').hide();
+
+	$('.product-buttons .btn').on("click", function() {
+		tab_val = $(this).data('switch-value');
+		
+		if(tab_val == 'qty') {
+			$('.des-wrapper').hide();
+			$('.extra-wrapper').hide();
+			$('.qty-wrapper').show();
+			$('.pris-wrapper').hide();
+		}else if(tab_val == 'extra'){
+			$('.des-wrapper').hide();
+			$('.extra-wrapper').show();
+			$('.qty-wrapper').hide();
+			$('.pris-wrapper').hide();
+		}else if(tab_val == 'des'){
+			$('.des-wrapper').show();
+			$('.extra-wrapper').hide();
+			$('.qty-wrapper').hide();
+			$('.pris-wrapper').hide();
+		}else if(tab_val == 'pris'){
+			$('.pris-wrapper').show();
+			$('.des-wrapper').hide();
+			$('.extra-wrapper').hide();
+			$('.qty-wrapper').hide();
+		}
+		
+		
+	});
+		
+	$('#editProduct .pris-numeric-wrapper .num').on("click",function(){
+		var new_val = $('#edit_pris').val();
+		$('#edit_pris').val(new_val + $(this).html());
+	});
+	
+	$('#editProduct .pris-numeric-wrapper .dot').on("click",function(){
+		var str = $('#edit_pris').val();
+		//$('#quantity').val(new_val + $(this).html());
+		n = str.indexOf('.');
+		if(n == -1){
+			prefix = ($('#edit_pris').val() == '') ? '0' : $('#edit_pris').val();
+			$('#edit_pris').val(prefix + $(this).html());
+			$('#edit_pris').focus();
+		}			
+	});
+
+	$('#editProduct .numeric-wrapper .num').on("click",function(){
+		//var new_val = $('#edit_quantity').val();
+		//$('#edit_quantity').val(new_val + $(this).html());
+			var prostatus=$("#product_edit_status").val();
+			if(prostatus == 1)
+			{
+				var new_val = $('#edit_quantity').val();
+				$('#edit_quantity').val($(this).html());
+			}
+			else
+			{
+				var new_val = $('#edit_quantity').val();
+				$('#edit_quantity').val(new_val + $(this).html());
+			}
+			$("#product_edit_status").val(0);
+		
+		
+	});
+	
+	$('#editProduct .numeric-wrapper .dot').on("click",function(){
+		var str = $('#edit_quantity').val();
+		//$('#quantity').val(new_val + $(this).html());
+		n = str.indexOf('.');
+		if(n == -1){
+			prefix = ($('#edit_quantity').val() == '') ? '0' : $('#edit_quantity').val();
+			$('#edit_quantity').val(prefix + $(this).html());
+			$('#edit_quantity').focus();
+		}			
+	});
+
+		var date = new Date();
+		date.setDate(date.getDate());
+		
+
+		var $picker = $(".datepicker");
+		$picker.datepicker({autoclose:true,format: 'dd.mm.yyyy',startDate: date,weekStart: 1});
+		var pickerObject = $picker.data('datepicker');
+		$picker.on('changeDate', function(ev){
+				$(this).datepicker('hide');
+		});
+		$(".datepicker").on('hide', function(ev){
+			   dpclosefire($(this))
+		});
+
+});	
+
+
+/*delete an item*/
+function setDelete()
+{
+	$('#edit_quantity').val(0);
+	$('#edit_complain').prop('checked', false); 
+	$( "#editsubmit").trigger( "click" );
+}
+
+
+function dpclosefire(dpobj)
+{
+			 var oid = $('#eorder_id').val();
+			 var id = dpobj.attr('id');
+             var utlevering = dpobj.val();
+			 //alert(id);
+			 //alert(utlevering);
+			 var gtype =  dpobj.parent().parent().parent().parent().attr('class');
+			 //alert(gtype);
+			var processing2 = false;
+			if(processing2 == false){
+				processing2 = true;
+				 $.ajax({
+					type: "POST",
+					url: "[conf.site_url;noerr]/admin/orders/update-utlevering-date",
+					data: {
+						olid: id,
+						utlevering: utlevering,
+						oid : oid
+					},
+				   beforeSend: function(){
+					   	 $('#editProductModal').modal('hide');
+						 $("#ajax-loader-"+gtype).show();
+						 $("."+gtype).hide();
+				   },
+				   complete: function(){
+						processing = false;
+						$("#ajax-loader-"+gtype).hide();
+						$("."+gtype).show();
+				   },
+				   dataType: "json",
+				   success: function (data) {
+					    //alert(data.error);
+					    //alert(data.order_list);
+						$(".rens").html(data.order_list_rens);
+						$(".vask").html(data.order_list_vask);
+						
+						
+						//subtotal of a cart
+						/*$('#delsum').val(data.delsum);
+						$('.delsum').html('kr '+data.delsum_currency+'');
+						
+						//total of a cart
+						$('#total').val(data.delsum);
+						$('.total').html('kr '+data.delsum_currency+'');
+						
+						$('.mva').html('kr '+data.mva_currency+'');
+						$('.cart_total').html(data.count);*/
+
+
+
+						$('a.editprod').click(function(){  
+						
+							//$('.product-buttons .btn-group .btn:first').trigger('click');
+	
+							var title = $(this).data('title');
+							$("h4#edit-product-title").html(title);		
+						
+							var stuff = $(this).attr('data-stuff').split('@');
+								
+							 id = stuff[0];
+							 name = stuff[1];
+							 price = stuff[2];
+							 img = stuff[3];
+							 desp = stuff[4];
+							 qty = stuff[5];
+							 gtype = stuff[6];
+							 complain = stuff[7];
+							 in_house =  stuff[8];
+							 oprice =  stuff[9];
+							 
+							 prdid = stuff[10];
+							 
+							 
+							$('#edit_spl_instruction').val(desp);
+							$('#edit_quantity').val(qty);
+							//$('#edit_pris').val(oprice);
+							 
+							
+							if(parseInt(price) == 0){
+								$('#edit_pris').val(oprice);
+							}
+							else{
+								
+								price = parseInt(price);
+								$('#edit_pris').val(price);
+							}
+							 
+							 
+							if(stuff[10] == 143)
+							{
+								$('.pris-wrapper').show();
+								$('.qty-wrapper,.product-buttons .btn-group .btn:first').hide();
+								$('#edit-pris').addClass('highlight');
+								$("#edit-pris").css({"border-bottom-left-radius": "5px", "border-top-left-radius": "5px"});
+							}
+							else{
+								$('.product-buttons .btn-group .btn:first,.qty-wrapper').show();
+								$('.product-buttons .btn-group .btn:first').trigger('click');
+								$("#edit-pris").css({"border-bottom-left-radius": "0px", "border-top-left-radius": "0px"});
+							}
+							 
+			 
+							
+							
+							if(in_house == 1){
+								//alert("inhouse" + in_house);
+								//$('input:checkbox[name=in_house]').attr('checked',true);
+								
+								$('#house_div').html('<input type="checkbox" checked="checked" value="" name="in_house" id="edit_in_house"> Renses på huset');
+							  
+							}
+							else{
+								//$('input:checkbox[name=in_house]').attr('checked',false);
+								
+								$('#house_div').html('<input type="checkbox"  value="" name="in_house" id="edit_in_house"> Renses på huset');
+								
+							}
+							
+							if(complain == 1){
+							//alert("inhouse" + complain);
+								//$('input:checkbox[name=complain]').attr('checked',true);
+								$('#complain_div').html('<input type="checkbox" checked="checked" value="" name="complain" id="edit_complain">Reklamasjon');
+							}
+							else{
+								$('#complain_div').html('<input type="checkbox" value="" name="complain" id="edit_complain">Reklamasjon');
+							}
+						
+					   });
+
+					}
+				});
+			}
+			else {
+				alert('[lang.lang_process_goingon]');
+			}
+			return false;
+}
+</script> 
+<input type="hidden" name="product_edit_status" id="product_edit_status" value="0" />

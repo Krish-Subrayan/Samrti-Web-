@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+<link href="../common/style/bootstrap.css" rel="stylesheet">
+<link href="../common/style/style.css" rel="stylesheet">
+<link href="../common/style/custom.css" rel="stylesheet">
+<!--[onshow;block=head;when [visible.foo] == bar;comm]-->
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+</head>
+<!--HEAD - ONLOAD-->
+<!--[onload;file=../common/common.head.html;getbody;comm]-->
+<!--HEAD - ONLOAD-->
+<body>
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=../common/common.javascript.html;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=common_include_debug;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=common.header.html;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!-- Main content starts -->
+<div class="content"> 
+  <!-- Main bar -->
+  <div class="mainbar"> 
+    <!-- Matter -->
+    <div class="matter">
+      <div class="container customer-bg">
+        <div class="row header">
+          <div class="col-md-4"> 
+            <!--TOP-LEFT - ONLOAD --> 
+            <!--[onload;file=common.top.left.html;getbody;comm]--> 
+            <!--TOP-LEFT - ONLOAD -->
+            <div class="text-center kasse pull-left">[lang.lang_settings]</div>
+            <div class="search-product" style="display:none">
+              <div id="Exp-serach" class="Exp-serach">
+                <form action="" name="searchFrm" id="searchFrm" method="post">
+                  <input class="ExpInput " onkeyup="buttonUp();" placeholder="Søk ordere..." onblur="monkey();" type="search" value="" name="search" id="search">
+                  <input class="Expbtn" type="submit"  value="">
+                  <span class="ExpIcon"><i class="fa fa-search"></i></span>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8"> 
+            <!--TOP-RIGHT - ONLOAD --> 
+            <!--[onload;file=common.top.right.html;getbody;comm]--> 
+            <!--TOP-RIGHT - ONLOAD -->
+            <div class="clearfix"></div>
+            <div class="text-center kasse">In file</div>
+          </div>
+        </div>
+        <div class="row receipt">
+          <div class="col-md-4  no-padd scroll-pane">
+            <div class="row">
+              <div class="col-md-12 no-padd"> 
+                <!--SETTINGS-MENU - ONLOAD --> 
+                <!--[onload;file=common.settings.sidebar.html;getbody;comm]--> 
+                <!--SETTINGS-MENU - ONLOAD --> 
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8  scroll-pane no-padd">
+          	
+          
+            <div class="row">
+              <div class="col-md-12">
+                <form id="reportFrm" action="" method="post">
+                <div class="widget wtabs">
+                  <div class="widget-content col-md-12">
+                      <!--<div class="row">
+                       <div class="form-group col-md-2">Dato </div>
+                        <div class="form-group col-md-5">
+                           <input type="text" id="from" class="form-control-small form-control pickadate" name="from" value="[vars.from]" placeholder="Start">
+                        </div>
+                        <div class="form-group col-md-5">
+                          <input type="text" id="to" class="form-control-small form-control pickadate" name="to" value="[vars.to]" placeholder="Avslutt">
+                        </div>
+                        
+                      </div>-->
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 mt-sm text-center">
+                    <button type="button" onClick="downloadInFile()" class="btn-lg red btn button-link"><i class="fa fa-download" aria-hidden="true"></i> Download In File</a></button>
+					
+					</div>
+                    
+                  </div>
+                </div>
+                </form>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-12">
+                 <form class="" action="[conf.site_url;noerr]/admin/settings/infile/create-infile" method="post" id="invoiceFrm">
+                  <div class="widget wtabs">
+                    <div class="widget-content col-md-12">
+                     
+						<h2 class="title"><i class="icon-file"></i> In File Generator</h2>                        
+                        <div class="col-md-4">
+                        <input type="text" name="oid" id="oid"  class="form-control-small form-control" placeholder="Ordrenr." value=""/>
+                        </div>	               
+        
+                       <div class="col-md-4">
+                        <select name="download_type" class="select-list" style="width: 100%!important;height: 32px!important">
+                            <option value="1">Create</option>
+                            <option value="0">Delete</option>
+                        </select>               
+                       </div> 
+                       <div class="col-md-3">
+                        <button type="submit" class="btn btn-primary pull-right" style="padding:6px 12px">[lang.lang_download]</button>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    
+                  </div>
+                </form>
+                  </div>
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Matter ends --> 
+</div>
+<!-- Mainbar ends -->
+<div class="clearfix"></div>
+<!--WI_IFRAME_MODAL-->
+<div class="row">
+  <div id="modalIframe" class="modal fade reload-parent-on-close" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header back-color">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+          <h4 class="modal-title text-center" id="modal-iframe-title"></h4>
+        </div>
+        <div class="modal-body login">
+          <iframe frameborder="0" class="slimScrollBarModal----"></iframe>
+        </div>
+        <div class="modal-footer" style="display:none">
+          <button type="button" class="btn btn-default close-btn" data-dismiss="modal" aria-hidden="true">[lang.lang_close]</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--WI_IFRAME_MODAL--> 
+
+<script type="text/javascript">
+
+function downloadInFile(){
+
+var url="[conf.site_url;noerr]/admin/settings/infile/download-in-file";
+window.location=url;
+//window.open(url,'_blank');
+
+}
+</script>
+<!--------------------COMMON FOOTER JAVASCRIPT----------------------------> 
+<!--[onload;file=../common/common.footer.javascript.html;getbody;comm]--> 
+<!--------------------COMMON FOOTER JAVASCRIPT---------------------------->
+</body>
+</html>

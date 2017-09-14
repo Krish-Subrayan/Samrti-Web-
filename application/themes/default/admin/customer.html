@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+<link href="../common/style/bootstrap.css" rel="stylesheet">
+<link href="../common/style/style.css" rel="stylesheet">
+<link href="../common/style/custom.css" rel="stylesheet">
+<!--[onshow;block=head;when [visible.foo] == bar;comm]-->
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+</head>
+<!--HEAD - ONLOAD-->
+<!--[onload;file=../common/common.head.html;getbody;comm]-->
+<!--HEAD - ONLOAD-->
+<body>
+<!--HEADER SECTION - ONLOAD-->
+<!--[onload;file=../common/common.javascript.html;getbody;comm]-->
+<!--HEADER SECTION - ONLOAD-->
+<!--HEADER SECTION - ONLOAD-->
+<!--[onload;file=common_include_debug;getbody;comm]-->
+<!--HEADER SECTION - ONLOAD-->
+<!--HEADER SECTION - ONLOAD-->
+<!--[onload;file=common.header.html;getbody;comm]-->
+<!--HEADER SECTION - ONLOAD-->
+<!-- Main content starts -->
+<div class="content">
+  <!-- Main bar -->
+  <div class="mainbar">
+    <!-- Matter -->
+    <div class="matter">
+      <div class="container customer-bg">
+        <div class="row header">
+        	<div class="col-md-4">
+             <!--TOP-LEFT - ONLOAD -->
+            <!--[onload;file=common.top.left.html;getbody;comm]-->
+             <!--TOP-LEFT - ONLOAD -->
+             <div class="text-center kasse pull-left">[lang.lang_all_customer]</div>
+             <div class="search-product" style="display:none">
+               <div id="Exp-serach" class="Exp-serach">
+                    <form>
+                        <input class="ExpInput " onkeyup="buttonUp();" placeholder="Søk kunde..." onblur="monkey();" type="search" value="" name="search" id="search">
+                        <input class="Expbtn" type="submit"  value="">
+                        <span class="ExpIcon"><i class="fa fa-search"></i></span>
+                    </form>
+                </div>
+             </div>             
+            </div>
+        	<div class="col-md-8">
+             <!--TOP-RIGHT - ONLOAD -->
+            <!--[onload;file=common.top.right.html;getbody;comm]-->
+             <!--TOP-RIGHT - ONLOAD -->
+            <div class="clearfix"></div>
+             <!--<div class="text-center kasse">[lang.lang_add_customer]</div>
+             <div class="print"><a href="[conf.site_url]/admin/customer"><i class="fa fa-plus" aria-hidden="true"></i></a></div>-->
+            </div>
+        </div>
+        <div class="row receipt">
+          <div class="col-md-4  no-padd"> 
+            <!--[onshow;block=div;when [visible.wi_customers] == 0;comm]-->
+            <div class="col-md-12 mt-sm"><p class="black-text">Ingen resultat.</p></div>
+          </div>
+          <div class="col-md-4  no-padd scroll-pane">
+             	 <!--[onshow;block=div;when [visible.wi_customers] == 1;comm]-->
+                <!--[lists.customers;noerr;htmlconv=no;protect=no;comm]--> 
+          </div>
+          <div class="col-md-8  scroll-pane no-padd">
+            <div class="row">
+                    <div class="col-md-12">
+					[errormsg;noerr;if [val]!='';then '<br>
+                <div class="alert alert-danger"><i class="fa fa-warning"></i> [val]</div>
+                ';][successmsg;noerr;if [val]!='';then '<br>
+                <div class="alert alert-success"><i class="fa fa-thumbs-o-up"></i> [val]</div>
+                ';]
+                      <form class="form-horizontal" action=""  id="customerFrm">
+                        <div class="widget wtabs">
+                          <div class="widget-content col-md-12">
+                          <h2 class="green-text"> Legg til ny kunde</h2>
+                            <table class="table table-forms">
+                              <tbody>
+                                <tr>
+								
+								
+                                  <td class="col-md-3 border-none">[lang.lang_fname]</td>
+                                  <td class="border-none"><div class="col-sm-12 no-padding-both">
+                                      <input type="text"  value="[sessiondata.customer.firstname]"   maxlength="100" class="form-control" name="firstname" id="firstname" required>
+                                    </div></td>
+                                </tr>
+                                <tr>
+                                  <td>[lang.lang_lname]</td>
+                                  <td><div class="col-sm-12  no-padding-both">
+                                     <input type="text"  value="[sessiondata.customer.lastname]"   maxlength="100" class="form-control" name="lastname" id="lastname" required>
+                                    </div></td>
+                                </tr>
+								
+                                <!--[lists.email_field;noerr;htmlconv=no;protect=no;comm]-->
+								
+                                <tr>
+                                  <td>[lang.lang_mobile]</td>
+                                  <td><div class="col-sm-12 no-padding-both">
+                                       <input type="text"  value="[sessiondata.customer.mobile]"  maxlength="100" class="form-control" name="mobile" id="mobile" required>
+                                    </div></td>
+                                </tr>                                
+                                <tr>
+                                  <td>Adresse</td>
+                                  <td><div class="col-sm-12 no-padding-both">
+                                       <input type="text"  value="[sessiondata.customer.street_line_1]"   maxlength="100" class="form-control" name="street_line_1" id="street_line_1" >
+                                    </div></td>
+                                </tr>
+<!--                                <tr>
+                                  <td>[lang.lang_street_line_2]</td>
+                                  <td><div class="col-sm-12 no-padding-both">
+                                       <input type="text"  value="[sessiondata.customer.street_line_2]"   maxlength="100" class="form-control" name="street_line_2" id="street_line_2" >
+                                    </div></td>
+                                </tr>
+-->                                <tr>
+                                  <td> Etg.</td>
+                                  <td><div class="col-sm-3 no-padding-both">
+                                      <input type="text"  value="[sessiondata.customer.floor]"   maxlength="100" class="form-control" name="floor" id="floor" >
+                                     </div> 
+                                     <div class="col-sm-3" style="line-height: 35px;"> Ringeklokke</div>
+                                      
+                                      <div class="col-sm-6 no-padding-both">
+                                     <input type="text"  value="[sessiondata.customer.calling_bell]"   maxlength="100" class="form-control" name="calling_bell" id="calling_bell" >
+                                    
+                                    </div></td>
+                                </tr>
+                                <tr>
+                                  <td>Postnummer</td>
+                                  <td><div class="col-sm-12 no-padding-both">
+                                     <input type="text"  value="[sessiondata.customer.zip]"   maxlength="100" class="form-control" name="zip" id="zip" >
+                                    </div></td>
+                                </tr>
+                                <tr id="abonnement_tr">
+                                  <td>Abonnement kunde</td>
+                                  <td><div class="col-sm-12 no-padding-both" style="padding-top: 7px;">
+								    <!--[lists.subscription;noerr;htmlconv=no;protect=no;comm]-->
+                                    </div>
+                                    </td>
+                                </tr>  
+                                  <tr id="faktura_tr">
+                                  <td>Ønsker faktura</td>
+                                  <td><div class="col-sm-5 no-padding-both" style="padding-top:5px">
+								  
+								    <!--[lists.subscription_faktura;noerr;htmlconv=no;protect=no;comm]-->
+                                
+								</div>
+                                   <div id="autofil_faktura" class="col-sm-3 no-padding-both" style="line-height:35px">
+                                           Autofil faktura
+                                   </div> 
+                                    <div  id="autofil_faktura_val" class="col-sm-2 no-padding-both" style="padding-top: 4px; padding-left:10px!important">
+                                     <select name="autofil_faktura_sel" onchange="checkFakturaValue(this.value);" id="autofil_faktura_sel">
+                                     	<option  value="Ja">Ja</option>
+                                     	<option selected value="Nei" >Nei</option>
+                                     </select>
+                                    </div>
+                                    <div  id="autofil_faktura_div" class="col-sm-2 no-padding-both">
+                                          <input name="autofil_faktura_value" id="autofil_faktura_value" type="text"  value="2600" maxlength="100" class="form-control" name="" id="" >
+                                     </div>                                   
+                                    
+                                    </td>
+                                </tr>                                                                
+                                                                
+                               </tbody>
+                            </table>
+                          </div>
+                          <div class="row  mt-sm">
+                            <div id="registration_fail" class="response_error alert alert-danger" style="display: none;">Registrering mislyktes, vennligst prøv igjen.</div> <div id="registration_success" class="response_success  alert alert-success" style="display: none;"></div>
+                          </div>
+                          
+                          <div class="row">
+                          <div class="col-md-10">
+                          </div>
+                   		 <div class="col-md-4  pull-right">
+						 
+							 <button type="button"  onclick="userRegister()"  class="btn-lg green  pull-right mb-xlg" data-loading-text="Registrerer ...."> Registrer</button>
+						  </div>
+  						  </div>
+                       
+
+ 
+ 
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+          </div>                                         
+        </div>        
+      </div>
+    </div>
+  </div>
+  <!-- Matter ends -->
+</div>
+<!-- Mainbar ends -->
+<div class="clearfix"></div>
+<!--WI_IFRAME_MODAL-->
+<div class="row">
+  <div id="modalIframe" class="modal fade reload-parent-on-close" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+    	<div class="modal-content">
+        	<div class="modal-header back-color">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                 <h4 class="modal-title text-center" id="modal-iframe-title"></h4>
+             </div>
+             <div class="modal-body login">
+             <iframe frameborder="0" class="slimScrollBarModal----"></iframe>
+        </div>
+        <div class="modal-footer" style="display:none">
+          <button type="button" class="btn btn-default close-btn" data-dismiss="modal" aria-hidden="true">[lang.lang_close]</button>
+        </div>        
+      </div>
+    </div>
+  </div>
+</div>
+<!--WI_IFRAME_MODAL-->
+<!-- styles needed by jScrollPane -->
+<link type="text/css" href="style/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+<!-- the mousewheel plugin - optional to provide mousewheel support -->
+<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+<!-- the jScrollPane script -->
+<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript">
+function checkAbonnement()
+{
+	 var subscribe = $("input[name='subscribe']:checked").val();
+	 if(subscribe == 'Ja')
+	 {
+		$('#faktura_tr').show();
+		checkFakturaValue();
+		
+	 }
+	 else
+	 {
+		$('#faktura_tr').hide();
+	 }
+	
+}
+
+function checkfaktura()
+{
+	var subscribe1 = $("input[name='subscribe1']:checked").val();
+	if(subscribe1 == 'Ja')
+	 {
+		$('#autofil_faktura').show();
+		$('#autofil_faktura_val').show();
+		$('#autofil_faktura_div').show();
+		checkFakturaValue();
+	 }
+	 else
+	 {
+		$('#autofil_faktura').hide();
+		$('#autofil_faktura_val').hide();
+		$('#autofil_faktura_div').hide();
+	 }
+}
+function checkFakturaValue()
+{
+	var subscribe2 = $("#autofil_faktura_sel").val();
+	
+	//var autofil_faktura_value = $("#autofil_faktura_value").val();
+	if(subscribe2 == 'Ja')
+	{
+		//$('#autofil_faktura_val').show();
+		$('#autofil_faktura_div').show();
+		
+	}
+	else
+	{
+		//$('#autofil_faktura_val').hide();
+		$('#autofil_faktura_div').hide();
+	}
+	
+}
+$(document).ready(function(){
+	
+	checkAbonnement();
+	checkfaktura();
+	checkFakturaValue();
+	//$('#faktura_tr').hide();
+	//$('#autofil_faktura').hide();
+	//$('#autofil_faktura_val').hide();
+	//$('#autofil_faktura_value').hide();
+		
+	/*validation*/
+    /*$("#customerFrm").validate({
+        rules: {
+            //fixed fields - each form field that needs to be validated
+            firstname: "required",
+            lastname: "required",
+			email: {
+			  required: true,
+			  email: true
+			},
+			confirm_email: {
+			  equalTo: "#email"
+			},
+			mobile: "required"
+        },
+        messages: {
+            firstname: "[lang.lang_field_is_required;noerr]",
+            lastname: "[lang.lang_field_is_required;noerr]",
+			email: "[lang.lang_field_is_required;noerr]" ,
+			mobile: "[lang.lang_confirm_email;noerr]" 
+			
+        },
+        submitHandler: function(form){
+            form.submit();
+        }
+    });*/
+	
+	
+	if($(window).height() < 760){
+		$('.scroll-pane,.orderline-block').jScrollPane({
+			autoReinitialise: true
+		});  //scrollpane
+	}
+	else{
+		$('.scroll-pane,.orderline-block').css({"height": "auto"}); 
+	}
+	
+	/*search box*/	
+	function buttonUp(){
+		 var valux = $('.ExpInput').val();
+			valux = $.trim(valux).length;
+			if(valux !== 0){
+				$('.Expbtn').css('z-index','99');
+			} else{
+				$('.ExpInput').val(''); 
+				$('.Expbtn').css('z-index','-999');
+			}
+	}
+});
+/*search box*/	
+$(document).ready(function(){
+		var submitIcon = $('.ExpIcon');
+		var submitInput = $('.ExpInput');
+		var searchBox = $('.Exp-serach');
+		var isOpen = false;
+		
+		$(document).mouseup(function(){
+			if(isOpen == true){
+			submitInput.val('');
+			$('.Expbtn').css('z-index','-999');
+			submitIcon.click();
+			}
+		});
+		
+		submitIcon.mouseup(function(){
+			return false;
+		});
+		
+		searchBox.mouseup(function(){
+			return false;
+		});
+				
+		submitIcon.click(function(){
+			if(isOpen == false){
+				searchBox.addClass('Exp-serach-open');
+				isOpen = true;
+			} else {
+				searchBox.removeClass('Exp-serach-open');
+				isOpen = false;
+			}
+	});
+	
+	
+});
+
+	
+							
+
+function userRegister()
+{
+	var firstname=$('#firstname').val();
+	var lastname=$('#lastname').val();
+	var email=$('#email').val();
+	var confirmemail=$('#confirm_email').val();
+	var mobile=$('#mobile').val();
+	var street_line_1=$('#street_line_1').val();
+	//var street_line_2=$('#street_line_2').val();
+	var floornr=$('#floor').val();
+	var calling_bell=$('#calling_bell').val();
+	var zip=$('#zip').val();
+	var subscribe = $("input[name='subscribe']:checked").val();
+	
+	if(mobile == '')
+	{	
+		$('#registration_fail').show();
+		$('#registration_fail').html('<i class="fa fa-warning"></i> Tast inn ditt mobilnummer');
+		$('#mobile').focus();
+		return false;
+	}
+	
+	if(email != '')
+	{	
+		/*if(email != confirmemail)
+		{
+			$('#registration_fail').show();
+			$('#registration_fail').html('<i class="fa fa-warning"></i> Samsvarer ikke over e-postadresse');
+			$('#confirm_email').focus();
+			return false;
+		}*/
+		
+		
+	}
+	
+	/*if(zip == '')
+	{	
+		$('#registration_fail').show();
+		$('#registration_fail').html('<i class="fa fa-warning"></i> Skriv inn postnummer');
+		$('#zip').focus();
+		return false;
+	}*/
+	
+	if(mobile.length != '8')
+	{
+		$('#registration_fail').show();
+		$('#registration_fail').html('<i class="fa fa-warning"></i> Dette tallet er ikke et Norge nummer..');
+		
+		$('#mobile_fail').show();
+		$('#mobile_fail').html('<i class="fa fa-warning"></i> Dette tallet er ikke et Norge nummer..');
+	}
+	
+	
+	$('#confirm_firstname').html(firstname);
+	$('#confirm_lastname').html(lastname);
+	$('#confirm_email').html(email);
+	$('#confirm_mobile').html(mobile);
+	$('#confirm_street_line_1').html(street_line_1);
+	//$('#confirm_street_line_2').html(street_line_2);
+	$('#confirm_floornr').html(floornr);
+	$('#confirm_calling_bell').html(calling_bell);
+	$('#confirm_zip').html(zip);
+	$('#confirm_subscribe').html(subscribe);
+	$('#confirm_subscribe_tr').hide();
+	var subscribe1 = $("input[name='subscribe1']:checked").val();
+	var subscribe2 = $("#autofil_faktura_sel").val();
+	
+	var autofil_faktura_value = $("#autofil_faktura_value").val();
+
+$('#confirm_subscribe_tr').hide();
+$('#confirm_autofil_faktura_tr').hide();
+$('#autofil_faktura_value_tr').hide();
+
+	if(subscribe == 'Ja')
+	{	
+		
+		$('#confirm_subscribe1').html(subscribe1);
+		$('#confirm_subscribe_tr').show();
+		
+		if(subscribe1 == 'Ja')
+		{
+				
+			
+			$('#confirm_autofil_faktura').html(subscribe2);
+			$('#confirm_autofil_faktura_tr').show();
+			
+			if(subscribe2 == 'Ja')
+			{
+				var autofil_faktura_value = $("#autofil_faktura_value").val();
+				$('#confirm_autofil_faktura_value').html(autofil_faktura_value);
+				$('#autofil_faktura_value_tr').show();
+				
+							
+			}
+			else
+			{
+				$('#autofil_faktura_value_tr').hide();
+			}
+			
+		}
+		else
+		{	$('#confirm_autofil_faktura_tr').hide();
+			$('#confirm_autofil_faktura_tr').hide();
+		}
+		
+	}
+	
+	
+	
+	$("#customerinfobtn").trigger('click');
+
+
+
+
+	
+	
+	
+	
+}
+
+
+function customerRegister()
+{
+	var firstname=$('#firstname').val();
+	var lastname=$('#lastname').val();
+	var email=$('#email').val();
+	var confirmemail=$('#confirm_email').val();
+	var mobile=$('#mobile').val();
+	var customerid=$('#customer_id').val();
+	
+			
+	var street_line_1=$('#street_line_1').val();
+	//var street_line_2=$('#street_line_2').val();
+	var floornr=$('#floor').val();
+	var calling_bell=$('#calling_bell').val();
+	var zip=$('#zip').val();
+	var subscribe = $("input[name='subscribe']:checked").val();
+	
+	var subscribe1 = $("input[name='subscribe1']:checked").val();
+	var subscribe2 = $("#autofil_faktura_sel").val();
+	var faktura_value = $("#autofil_faktura_value").val();
+
+
+	
+	
+			
+	
+	if(mobile == '')
+	{	
+		$('#registration_fail').show();
+		$('#registration_fail').html('<i class="fa fa-warning"></i> Tast inn ditt mobilnummer');
+		$('#mobile').focus();
+		return false;
+	}
+	
+	if(email != '')
+	{	
+		/*if(email != confirmemail)
+		{
+			$('#registration_fail').show();
+			$('#registration_fail').html('<i class="fa fa-warning"></i> Samsvarer ikke over e-postadresse');
+			$('#confirm_email').focus();
+			return false;
+		}*/
+		
+		
+	}
+	
+	/*if(zip == '')
+	{	
+		$('#registration_fail').show();
+		$('#registration_fail').html('<i class="fa fa-warning"></i> Skriv inn postnummer');
+		$('#zip').focus();
+		return false;
+	}*/
+	/*$('#register_btn').html('Registrerer ....');*/
+	
+			var base = '<!--[conf.site_url;comm;]-->'; 
+			var url = base + '/admin/customer/register';
+			//$.getJSON( url, function( data ) {
+			//alert(data);
+			//});
+			 var sendInfo = {
+			 firstname: firstname,
+			 lastname: lastname,
+			 email: email,
+			  mobile: mobile,
+			 street_line_1: street_line_1,
+			 //street_line_2: street_line_2,
+			  floornr: floornr,
+			   calling_bell: calling_bell,
+			    zip: zip,
+				subscribe: subscribe,
+				customer: customerid,
+				subscribe1: subscribe1,
+				subscribe2: subscribe2,
+				fakturavalue: faktura_value
+				};
+			$.ajax({
+			type: 'POST',
+			url: url,
+			data: sendInfo,
+			dataType: 'json'
+		}).done(function(data) {
+			$('#registration_fail').show();
+			$('#register_btn').html('Register');
+			
+			
+			//return false;
+			
+			if(data.response == 'success')
+			{
+			
+				//customer
+				var purl = base + '/admin/products';
+				window.location=purl;
+			
+			}
+			else
+			{
+				$('#registration_success').hide();
+				$('#registration_fail').html('<i class="fa fa-warning"></i> '+data.response);
+			}
+		
+		});
+				
+										
+		}
+	
+	
+	
+</script>
+<script>
+	    $(document).ready(function(){
+	    	$("#firstname").keyup(function(e){
+					if(e.keyCode == 13)
+					{
+					  userRegister();
+					}
+			 });
+			$("#lastname").keyup(function(e){
+					if(e.keyCode == 13)
+					{
+					  userRegister();
+					}
+			});
+			 $("#email").keyup(function(e){
+					if(e.keyCode == 13)
+					{
+					  userRegister();
+					}
+			});
+			$("#mobile").keyup(function(e){
+					if(e.keyCode == 13)
+					{
+					  userRegister();
+					}
+			});
+			 $("#street_line_1").keyup(function(e){
+					if(e.keyCode == 13)
+					{
+					  userRegister();
+					}
+			 });
+			/* $("#street_line_2").keyup(function(e){
+					if(e.keyCode == 13)
+					{
+					  userRegister();
+					}
+			});*/
+			$("#floor").keyup(function(e){
+					if(e.keyCode == 13)
+					{
+					  userRegister();
+					}
+			});
+			 $("#calling_bell").keyup(function(e){
+					if(e.keyCode == 13)
+					{
+					  userRegister();
+					}
+			});
+			$("#zip").keyup(function(e){
+				if(e.keyCode == 13)
+				{
+					userRegister();
+				}
+			});
+			
+	});	</script>
+<!--------------------COMMON FOOTER JAVASCRIPT---------------------------->
+<!--[onload;file=../common/common.footer.javascript.html;getbody;comm]-->
+<!--------------------COMMON FOOTER JAVASCRIPT---------------------------->
+
+</body>
+</html>
+
+<button class="btn-xlg btn-info full-width" style="display:none;" id="customerinfobtn" data-toggle="modal" href="#customerinfo">Click</button>
+
+<div class="row">
+  <div id="customerinfo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="max-width:40%;">
+      <form name="radioForm" id="radioForm">
+        <div class="modal-content">
+          <div class="modal-header back-color">
+            <button type="button" id="staff_close" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+           
+            <h4 class="modal-title login-title">New Customer Registration Confirmation</h4>
+          </div>
+          <div class="modal-body login">
+        <div class="form-login-wrapper">		
+            <div class="pw-wrapper" style="background:none;">
+                <div class="row">
+              <div id="mobile_fail" class="response_error alert alert-danger" style="display:none;"></div>
+			    <table class="table table-forms">
+                              <tbody>
+                                <tr>
+                                  <td class="col-md-3 border-none">Fornavn</td>
+                                  <td class="border-none">
+								  <div id="confirm_firstname" class="col-sm-12 no-padding-both">
+                                  </div>
+								   </td>
+                                </tr>
+                                <tr>
+                                  <td>Etternavn</td>
+                                  <td><div id="confirm_lastname" class="col-sm-12 no-padding-both">
+                                  </div></td>
+                                </tr>
+								
+                                <tr>
+                               <td>E-post</td>
+                               <td><div id="confirm_email" class="col-sm-12 no-padding-both">
+                                  </div></td>
+                                </tr>
+								 <tr>
+                                  <td>Mobil</td>
+                                  <td><div id="confirm_mobile" class="col-sm-12 no-padding-both">
+                                  </div></td>
+                                </tr>                                
+                                <tr>
+                                  <td>Adresse</td>
+                                  <td>
+								<div id="confirm_street_line_1" class="col-sm-12 no-padding-both">
+                                  </div>
+									</td>
+                                </tr>
+                                <!--<tr>
+                                  <td>Gate linje 2</td>
+                                  <td>
+                                    <div id="confirm_street_line_2" class="col-sm-12 no-padding-both"></div>
+									</td>
+                                </tr>-->
+                                <tr>
+                                  <td>Floor</td>
+                                  <td>
+                                    <div id="confirm_floor" class="col-sm-12 no-padding-both"></div>		
+									</td>
+                                </tr>
+                                <tr>
+                                  <td>Calling Bell</td>
+                                  <td>
+								  <div class="col-sm-12 no-padding-both">
+                                <div id="confirm_calling_bell" class="col-sm-12 no-padding-both"></div>
+                                </div></td>
+                                </tr>
+                                <tr>
+                                  <td>Zip</td>
+                                  <td><div id="confirm_zip" class="col-sm-12 no-padding-both"></div></td>
+                                </tr> 
+                                <tr>
+                                  <td>Abonnement kunde</td>
+                                  <td><div id="confirm_subscribe" class="col-sm-12 no-padding-both"></div></td>
+                                </tr>
+								
+								 <tr id="confirm_subscribe_tr">
+                                  <td>Ønsker faktura</td>
+                                  <td><div id="confirm_subscribe1" class="col-sm-12 no-padding-both"></div></td>
+                                </tr>
+								
+								 <tr id="confirm_autofil_faktura_tr">
+                                  <td>Autofil faktura</td>
+                                  <td><div id="confirm_autofil_faktura" class="col-sm-12 no-padding-both"></div></td>
+                                </tr>
+								
+								<tr id="autofil_faktura_value_tr">
+                                  <td>faktura Value</td>
+                                  <td><div id="confirm_autofil_faktura_value" class="col-sm-12 no-padding-both"></div></td>
+                                </tr>
+								
+								
+
+ </tbody>
+                            </table>
+			  
+                </div>
+            </div>
+            
+            
+         		   </div>
+             </div>
+             
+                <div class="modal-footer mb-lg">
+                     <button type="button"  onclick="customerRegister();" id="register_btn" class="btn green " data-loading-text="Registrerer ...."> OK </button>
+						 <button type="button" data-dismiss="modal" aria-hidden="true"  class="btn red" >Cancel</button>
+                   		
+                                        </div>             
+             </div>
+           </form>
+        </div>
+      </div>
+</div>
+
+
+

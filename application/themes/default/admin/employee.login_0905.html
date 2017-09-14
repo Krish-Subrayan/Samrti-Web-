@@ -1,0 +1,2030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+<link href="../common/style/bootstrap.css" rel="stylesheet">
+<link href="../common/style/style.css" rel="stylesheet">
+<style>
+.mainbar {
+	margin: 0px;
+}
+.sidebar {
+	display: none;
+}
+.round {
+    background: #ececec none repeat scroll 0 0;
+    border-radius: 50%;
+    height: 120px;
+    overflow: hidden;
+    position: relative;
+    width: 120px;
+}
+input:invalid {
+    box-shadow: none;
+}
+</style>
+<!--[onshow;block=head;when [visible.foo] == bar;comm]-->
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+</head>
+<!--HEAD - ONLOAD-->
+<!--[onload;file=../common/common.head.html;getbody;comm]-->
+<!--HEAD - ONLOAD-->
+
+<body onload="scantab();">
+
+
+
+
+<!--JS SECTION - ONLOAD-->
+<!--[onload;file=../common/common.javascript.html;getbody;comm]-->
+<!--JS SECTION - ONLOAD-->
+<!--DEBUG SECTION - ONLOAD-->
+<!--[onload;file=../common/include.debug.html;getbody;comm]-->
+<!--DEBUG SECTION - ONLOAD-->
+<!--HEADER SECTION - ONLOAD-->
+<!--[onload;file=common.header.html;getbody;comm]-->
+<!--HEADER SECTION - ONLOAD-->
+<!-- Main content starts -->
+<div class="content">
+  <!-- Main bar -->
+  <div class="mainbar">
+    <!-- Matter -->
+    <div class="matter">
+      <div class="container white-bg">
+        <div class="row header">
+          <div class="col-md-8"> 
+         <p class="topbar">[sessiondata.partner_branch_name;noerr;] </p>
+         <div class="pull-left"><a href="[conf.site_url]/admin/"><i class="fa fa-home" aria-hidden="true"></i></a></div>            <!--MENU - ONLOAD --> 
+            <!--[onload;file=common.index.menu.html;getbody;comm]--> 
+            <!--MENU - ONLOAD -->
+            <div class="search-product" style="display:none">
+              <div id="Exp-serach" class="Exp-serach">
+                <form>
+                  <input class="ExpInput " onkeyup="buttonUp();" placeholder="Søk produkt..." onblur="monkey();" type="search" value="" name="search" id="search">
+                  <input class="Expbtn" type="submit"  value="">
+                  <span class="ExpIcon"><i class="fa fa-search"></i></span>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+             <!--TOP-RIGHT - ONLOAD -->
+            <!--[onload;file=common.top.right.html;getbody;comm]-->
+             <!--TOP-RIGHT - ONLOAD -->
+            <div class="clearfix"></div>
+          </div>
+        </div>      
+      
+       
+        <!----------------------COMMON NOTICES--------------------------------->
+        <!--[onload;file=../common/common.notices.html;getbody;comm]-->
+        <!----------------------COMMON NOTICES--------------------------------->
+        <!--Dashboard-->
+        <div class="row fullscreen-mode">
+           <div class="col-md-8 text-left emplogin">
+          <div class="col-md-8 no-padd">  
+         	<p><span>Ansatt som benytter kasse:</span></p>
+            </div>
+          <div class="col-md-4 pull-right">
+               	<button onclick="byttansatt();" class="btn-xlg byttansatt btn-info full-width" data-toggle="modal" href="#newAnsatt">Bytt ansatt</button>
+           </div>
+         <div class="clearfix"></div> 
+         <div class="block">
+         <div class="col-md-12 no-padd">
+          <div id="employee-profile" class="employee-profile">
+            <!--[lists.staffprofile;noerr;htmlconv=no;protect=no;comm]-->
+          </div>
+         </div>
+          
+          <!--<div class="col-md-4 pull-right">
+               	<button onclick="byttansatt();" class="btn-xlg byttansatt btn-info full-width" data-toggle="modal" href="#newAnsatt">Bytt ansatt</button>
+           </div>-->
+           <div class="clearfix"></div> 
+          </div> 
+           
+          </div>
+          
+          <div class="col-md-4 no-padd">
+              <div class="emplogin emplist"> 
+                  <p style=" margin-left:15px"><span>Pålogget ansatte:</span></p>
+                  <div id="emp_list" class="ansattlist">          
+                     <!--[lists.employee_list;noerr;htmlconv=no;protect=no;comm]-->
+                  </div>
+              </div>
+          
+          <div class="today_info"  style="display:none">
+          	<p>Total Ansatt : <span id="ansatt">[lists.ansatt]</span></p>
+            <p>Total Ordre : [lists.order]</p>
+          </div>  
+          
+         </div> 
+          
+          <div class="clearfix"></div> 
+          <div class="col-md-8">
+            <div class="search-tab clearfix group-pos">
+              <div class="velg-block clearfix">
+                <div class="row">
+                     <!--[onshow;block=div;when [vars.search_mobile] == 1;comm]-->
+                 <div class="velg col-md-2 fs-16">Velg</div>
+                 <div class="col-md-10  no-padd">
+                  <div class="btn-group pull-left">
+                      <button type="button" id="search_navn" data-target="#frm_navn" data-switch-value="Navn" class="btn btn-default">Navn</button>
+                      <button type="button" id="search_mobile" data-target="#frm_mobil" data-switch-value="Mobil" class="btn btn-default">Mobil</button>
+                      <button type="button" id="barcode_scan" data-target="#frm_ordre" data-switch-value="Ordre" class="btn btn-default">Ordre</button>
+                      <button type="button" id="heatseal_scan" data-target="#frm_heatseal" data-switch-value="Heatseal" class="btn btn-default">Heatseal</button>
+					  
+					  <button type="button" id="plasstildeling_scan" data-target="#frm_plasstildeling" data-switch-value="Plass tildeling" class="btn btn-default">Plass tildeling</button>
+                      
+                      <!--<button type="button" data-target="#frm_bag" data-switch-value="Bag" class="btn btn-default">Bag</button>-->
+                  </div>
+                </div>
+                 </div>
+                <div class="row">
+                     <!--[onshow;block=div;when [vars.search_mobile] == 0;comm]-->
+                 <div class="velg col-md-2 fs-16">Velg</div>
+                 <div class="col-md-10  no-padd">
+                  <div class="btn-group pull-left">
+                      <button type="button" id="search_navn" data-target="#frm_navn" data-switch-value="Navn" class="btn btn-default">Bedrift</button>
+					  <button type="button" id="search_mobile" data-target="#frm_mobil" data-switch-value="Mobil" class="btn btn-default">Mobil</button>
+                      <button type="button" id="barcode_scan" data-target="#frm_ordre" data-switch-value="Ordre" class="btn btn-default">Ordre</button>
+                      <button type="button" id="heatseal_scan" data-target="#frm_heatseal" data-switch-value="Heatseal" class="btn btn-default">Heatseal</button>
+                      <button type="button" data-target="#frm_bag" data-switch-value="Bag" class="btn btn-default">Bag</button>
+                  </div>
+                </div>
+                 </div>                 
+              </div>
+                 <div style="display:none;" class="frm_wrapper clearfix">
+                  <input type="hidden" id="access" name="access" value="[vars.access]"/>
+                  <input type="hidden" id="hvitsnip" name="hvitsnip" value="[vars.hvitsnip]"/>
+
+                    <form action="[conf.site_url;noerr]/admin/customer/[vars.hvitsnip]" method="post" name="frm_navn" id="frm_navn">
+                        <div class="clearfix">
+                            <div class="col-xs-1">
+                                <i class="fa fa-user-o"></i>
+                            </div>
+							
+							
+                            <div class="col-xs-8 no-padd">
+                                <input type="text" onkeyup="checkNavnMoble();" class="fs-16 navn" id="bedrift_navn" name="navn" placeholder="Navn">
+								 <input type="hidden" class="fs-16 navn" id="navn_mobile" name="mobile" placeholder="Navn">
+								  <input type="hidden" class="fs-16 navn" id="navn_id" name="navn_id" placeholder="Navn">
+								   <input type="hidden" class="fs-16 navn" id="navn_branch" name="navn_branch" placeholder="Navn">
+                            </div>
+                            <div class="col-xs-3">
+                                <input type="button" onclick="companypopup();" value="Søk" class="highlight btn btn-default pull-right">
+                            </div>
+                        </div>
+                    </form>
+					
+					
+					 
+                    <form action="[conf.site_url;noerr]/admin/customer/[vars.hvitsnip]" method="post" name="frm_mobil" id="frm_mobil">
+                        <div class="clearfix">
+						 <!--[onshow;block=div;when [vars.hvitsnip] == company;comm]-->
+                            <div class="col-xs-1">
+                                <i class="fa fa-mobile" style="font-size:45px"></i>
+                            </div>
+                            <div class="col-xs-8 no-padd">
+                                <input type="text" required="required" onkeypress="return isNumber(event)" name="mobile" id="mobile" class="fs-16" placeholder="Mobil">
+                            </div>
+                            <div class="col-xs-3">
+                                <input type="button" onclick="getMobiledetails();" value="Søk" class="highlight btn btn-default pull-right">
+                            </div>
+                        </div>
+						
+						 <div class="clearfix">
+						 <!--[onshow;block=div;when [vars.hvitsnip] == '';comm]-->
+                            <div class="col-xs-1">
+                                <i class="fa fa-mobile" style="font-size:45px"></i>
+                            </div>
+                            <div class="col-xs-8 no-padd">
+                                <input type="text" onkeypress="return isNumber(event)" name="mobile" id="mobile" required="required" class="fs-16" placeholder="Mobil">
+                            </div>
+                            <div class="col-xs-3">
+                                <input type="submit" value="Søk" class="highlight btn btn-default pull-right">
+                            </div>
+                        </div>
+                    </form>
+					
+					
+					
+                    <form action="[conf.site_url;noerr]/admin/orders" method="post" name="orderbarcode" id="frm_ordre">
+                        <div class="clearfix">
+                            <div class="col-xs-1">
+                                <i class="icon-barcode"></i>
+                            </div>
+                            <div class="col-xs-8 no-padd">
+                                <input type="text" required="required" onkeypress="return isNumber(event)" id="barcode" name="barcode" class=" fs-16" placeholder="Ordre">
+                            </div>
+                            <div class="col-xs-3">
+                                <input type="submit" value="Søk" class="highlight btn btn-default pull-right">
+                            </div>
+                        </div>
+                    </form>
+                
+				<form action="[conf.site_url;noerr]/admin/heatseal" method="post" name="hseal" id="frm_heatseal">
+                        <div class="clearfix">
+                            <div class="col-xs-1">
+                                <i class="icon-barcode"></i>
+                            </div>
+                            <div class="col-xs-8 no-padd">
+                                <input type="text" required="required" onkeypress="return isNumber(event)" id="heatseal" name="heatseal" class=" fs-16" placeholder="Heatseal">
+                            </div>
+                            <div class="col-xs-3">
+                                <input type="button" onclick="getHeatsealdetails();" value="Søk" class="highlight btn btn-default pull-right">
+                            </div>
+                        </div>
+                    </form> 
+					
+                    <form action="[conf.site_url;noerr]/admin/customer/company" name="frm_bedrift" method="post" id="frm_bedrift">
+                        <div class="clearfix">
+                            <div class="col-xs-1">
+                                <i class="icon-barcode"></i>
+                            </div>
+                            <div class="col-xs-8 no-padd">
+                              <input type="text" required="required" onkeypress="return isNumber(event)" name="bedrift" id="bedrift" class="fs-16" placeholder="Bag">
+							</div>
+                            <div class="col-xs-3">
+                                <input type="submit" value="Søk" class="highlight btn btn-default pull-right">
+                            </div>
+                        </div>
+                    </form>
+					 
+					
+					 <form action="[conf.site_url;noerr]/admin/customer/company" name="frm_bag" method="post" id="frm_bag">
+                        <div class="clearfix">
+                            <div class="col-xs-1">
+                                <i class="icon-barcode"></i>
+                            </div>
+                            <div class="col-xs-8 no-padd">
+                              <input type="text" onkeypress="return isNumber(event)" name="bagbarcode" id="bagbarcode" class="fs-16" placeholder="Bag">
+							</div>
+                            <div class="col-xs-3">
+                                <input type="button" onclick="bagConfirm();" value="Søk" class="highlight btn btn-default pull-right">
+                            </div>
+                        </div>
+                    </form>
+					
+					
+					 <form action="[conf.site_url;noerr]/admin/heatseal/plass-tildeling" method="post" name="plasstildeling" id="frm_plasstildeling">
+                        <div class="clearfix">
+                            <div class="col-xs-1">
+                                <i class="icon-barcode"></i>
+                            </div>
+                            <div class="col-xs-8 no-padd">
+                                <input type="text" required="required" onkeypress="return isNumber(event)" id="orderid" name="orderid" class=" fs-16" placeholder="Ordre">
+                            </div>
+                            <div class="col-xs-3">
+                                <input type="submit" value="Søk" class="highlight btn btn-default pull-right">
+                            </div>
+                        </div>
+                    </form>
+                
+					
+                </div>
+            </div>
+            
+          </div>
+          <div class="col-md-4 no-padd">
+            <!--MENU - ONLOAD --> 
+            <!--[onload;file=common.message.html;getbody;comm]--> 
+            <!--MENU - ONLOAD -->          
+          </div>
+          <div class="clearfix"></div>
+            <div id="timmer" style="display:none"> 
+             <div class="col-md-12 no-padd">
+			 <div class="clearfix"></div>
+             <div class="col-md-4 no-padd">
+              </div>
+            <div class="col-md-4 no-padd">
+              <div class="text-center">
+              <a  class="btn-xlg red btn-info full-width" style="padding:3px 25px 5px !important"  href="[conf.site_url;noerr]/admin/login/logout">  <img src="img/ic_directions_run_white.png" alt="" title=""/> <span>STENG BUTIKK</span></a>
+              </div>
+            </div>
+             <div class="col-md-4 no-padd">  
+               
+               <div class="clearfix"></div>
+             </div>
+           </div>
+            <div class="clearfix"></div>
+                
+            </div>
+        </div>
+        <!--Dashboard-->
+        <!--WI_NOTIFICATION-->
+        <div class="row">
+          <!--[onshow;block=div;when [visible.wi_notification] == 1;comm]-->
+          <div class="col-md-12">
+            <div class="widget">
+              <div class="widget-content widget-big-box">[vars.notification;noerr]</div>
+            </div>
+          </div>
+        </div>
+        <!--WI_NOTIFICATION-->
+      </div>
+      <!-- Matter ends -->
+    </div>
+    <!-- Mainbar ends -->
+  </div>
+  <div class="clearfix"></div>
+</div>
+<!-- Content ends -->
+<!--WI_IFRAME_MODAL-->
+<div class="row">
+  <div id="modalIframe" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+          <!--full screen icon - custom.js-->
+          <button type="button" class="full-screen-modal close" aria-hidden="true"><i class="icon-fullscreen"></i></button>
+          <!--full screen icon - custom.js-->
+          <h4 class="modal-title" id="modal-iframe-title"> [lang.lang_edit]</h4>
+          <div class="clearfix"></div>
+        </div>
+        <div class="modal-body">
+          <iframe frameborder="0" class="slimScrollBarModal----"></iframe>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true">[lang.lang_close]</button>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--WI_IFRAME_MODAL-->
+<!--WI_REPORT_NEW_BUG_MODAL-->
+<div class="row">
+  <div id="newAnsatt" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:400px">
+      <form class="form-horizontal" action="[conf.site_url]/admin/employee" method="post" id="employeelogin">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" id="staff_close" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+            <!--full screen icon - custom.js-->
+            <!--<button type="button" class="full-screen-modal close" aria-hidden="true"><i class="icon-fullscreen"></i></button>-->
+            <!--full screen icon - custom.js-->
+            <h4 class="modal-title login-title"> Tast inn ansatt nummer</h4>
+          </div>
+          <div class="modal-body login">
+        <div class="form-login-wrapper">		
+            <div class="pw-wrapper">
+                <div class="row">
+                	<div class="col-xs-3">
+                	  <input type="password" id="pw1" name="pw1" required size="1" maxlength="1"></div>
+                    <div class="col-xs-3"> 
+                      <input type="password" id="pw2" name="pw2" required size="1" maxlength="1"></div>
+                    <div class="col-xs-3">
+                      <input type="password" id="pw3" name="pw3" required size="1" maxlength="1"></div>
+                    <div class="col-xs-3">
+                      <input type="password" id="pw4" name="pw4" required size="1" maxlength="1"></div>
+                </div>
+            </div>
+            
+            <div class="numeric-wrapper">
+            	<div class="clearfix">
+                	<div class="col-xs-4">
+                    	<div class="num">7</div></div>
+                    <div class="col-xs-4">
+                    	<div class="num">8</div></div>
+                    <div class="col-xs-4">
+                    	<div class="num">9</div></div>
+                 </div>
+                <div class="clearfix">
+                	<div class="col-xs-4">
+                    	<div class="num">4</div></div>
+                    <div class="col-xs-4">
+                    	<div class="num">5</div></div>
+                    <div class="col-xs-4">
+                    	<div class="num">6</div></div>
+                 </div>
+                <div class="clearfix">
+                	<div class="col-xs-4">
+                    	<div class="num">1</div></div>
+                    <div class="col-xs-4">
+                    	<div class="num">2</div></div>
+                    <div class="col-xs-4">
+                    	<div class="num">3</div></div>
+                 </div>
+                <div class="clearfix">
+                	<div class="col-xs-4">
+                    	<div class="clear fs-10 red-text">Fjern</div></div>
+                    <div class="col-xs-4">
+                    	<div class="num">0</div></div>
+                    <div class="col-xs-4">
+                    	<div><input type="submit" id="staff" name="staff" value="OK" style="font-size:25px!important"></div></div>
+                </div>
+             </div>
+         		   </div>
+             </div>
+             </div>
+           </form>
+        </div>
+      </div>
+</div>
+
+<!-- styles needed by jScrollPane -->
+<link type="text/css" href="style/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+<!-- the mousewheel plugin - optional to provide mousewheel support -->
+<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+<!-- the jScrollPane script -->
+<script type="text/javascript" src="js/easytimer.min.js"></script>
+<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
+
+<script type="text/javascript" src="[conf.site_url_themes_common;noerr]/js/jquery-code-scanner3.js"></script>
+
+<script type="text/javascript" src="[conf.site_url_themes_common;noerr]/js/jquery-code-scanner2.js"></script>
+<script type="text/javascript" src="[conf.site_url_themes_common;noerr]/js/jquery-code-scanner.js"></script>
+<script type="text/javascript" src="js/typeahead.js"></script>
+
+<div id="scriptsdiv">
+</div>
+
+<script type="text/javascript">
+
+function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+}
+function delete_cookie(name) {
+	document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+}
+
+
+$(document).ready(function() {
+
+delete_cookie('navn_id');
+	/*for name search*/
+	function changeTypeahead(obj, datum) {
+			$('input#navn_mobile').val(datum.phone);
+			$('input#navn_id').val(datum.label);
+			$('input#navn_branch').val(datum.branch);
+		    createCookie('navn_id', datum.label, '');
+			
+		   if(datum.branch == 14 || datum.branch == 28)
+		   {	
+				$('#searchCompanyCustomerFrm').modal({ backdrop: 'static', keyboard: false });
+				$( "#search_cmobile" ).trigger( "click" );
+				$( "#company_mobile" ).focus();
+				$('input#bedrift_navn').typeahead('destroy');
+		   }
+		   
+		   
+           // $('input#customer-name').val(datum.value);
+		  
+    };
+	
+	
+	
+	
+	
+	$("form#frm_ordre").submit(function(){
+		var nbarcode = $('#barcode').val();
+		$.ajax({
+			type: "POST",
+			url: "[conf.site_url;noerr]/admin/employee/get-order-status",
+			data: {
+				nbarcode: nbarcode
+			},
+			dataType: "json",
+			success: function (data) {
+				if(parseInt(data.response) >= 9)
+				{
+					var utlurl = "[conf.site_url;noerr]/admin/orders/utlevering/"+nbarcode;
+					window.location=utlurl;
+				}
+				else
+				{
+				 $('#scanconfirm').modal({ backdrop: 'static', keyboard: false });
+				}
+		   }
+		});		
+		return false;
+	});
+	
+	 $('input#bedrift_navn').typeahead({
+			name: 'navn',
+			display: 'value',
+			remote: '[conf.site_url;noerr]/admin/employee/search-customer?query=%QUERY'
+
+	  }).bind('typeahead:selected', function(obj, datum) {
+        changeTypeahead(obj, datum);
+    }).bind('typeahead:autocompleted', function(obj, datum) {
+        changeTypeahead(obj, datum);
+    });
+	
+	
+	/*for mobile search*/
+	function changeTypeaheadmoble(obj, datum) {
+	
+          $('input#mobile').val(datum.value);
+		  
+		  
+    };
+	
+	 $('input#mobile').typeahead({
+			mobile: 'mobile',
+			display: 'value',
+			remote: '[conf.site_url;noerr]/admin/employee/search-mobile?query=%QUERY'
+
+	  }).bind('typeahead:selected', function(obj, datum) {
+        changeTypeaheadmoble(obj, datum);
+    }).bind('typeahead:autocompleted', function(obj, datum) {
+        changeTypeaheadmoble(obj, datum);
+    });
+	
+	
+	/*for company name search*/
+	function changeTypeaheadcompanyname(obj, datum) {
+		  alert("ffff");
+          $('input#cnavn_cmobile').val(datum.phone);
+           // $('input#customer-name').val(datum.value);
+		  // alert(datum.phone);
+    };
+	
+	/*$('input#company_mobile').typeahead({
+			name: 'navn',
+			display: 'value',
+			remote: '[conf.site_url;noerr]/admin/employee/search-company-customer?query=%QUERY'
+
+	  }).bind('typeahead:selected', function(obj, datum) {
+        changeTypeaheadcompanyname(obj, datum);
+    }).bind('typeahead:autocompleted', function(obj, datum) {
+        changeTypeaheadcompanyname(obj, datum);
+    });
+	*/
+
+
+	/*for company mobile search*/
+	function changeTypeaheadcompanymoble(obj, datum) {
+          $('input#cmobile').val(datum.value);
+    };
+	
+	 $('input#cmobile').typeahead({
+			mobile: 'mobile',
+			display: 'value',
+			remote: '[conf.site_url;noerr]/admin/employee/search-company-mobile?query=%QUERY'
+
+	  }).bind('typeahead:selected', function(obj, datum) {
+        changeTypeaheadcompanymoble(obj, datum);
+    }).bind('typeahead:autocompleted', function(obj, datum) {
+        changeTypeaheadcompanymoble(obj, datum);
+    });
+	
+	
+	
+	/*for bedrift search*/
+	function changeTypeaheadbedrift(obj, datum) {
+          $('input#bedrift').val(datum.value);
+          
+    };
+	$('input#bedrift').typeahead({
+			mobile: 'mobile',
+			display: 'value',
+			remote: '[conf.site_url;noerr]/admin/employee/search-mobile?query=%QUERY'
+	}).bind('typeahead:selected', function(obj, datum) {
+        changeTypeaheadbedrift(obj, datum);
+    }).bind('typeahead:autocompleted', function(obj, datum) {
+        changeTypeaheadbedrift(obj, datum);
+    });
+	
+	
+	
+	
+	/*for mobile search*/
+	function changeTypeaheadcompanymobile(obj, datum) {
+           $('input#cnavn_cmobile').val(datum.phone);
+    };
+	
+	 $('input#company_mobile').typeahead({
+			mobile: 'mobile',
+			display: 'value',
+			remote: '[conf.site_url;noerr]/admin/employee/search-company-mobile?query=%QUERY'
+
+	  }).bind('typeahead:selected', function(obj, datum) {
+        changeTypeaheadcompanymobile(obj, datum);
+    }).bind('typeahead:autocompleted', function(obj, datum) {
+        changeTypeaheadcompanymobile(obj, datum);
+    });
+	
+	
+//	function changeTypeaheadcompanymobileheat(obj, datum) {
+//           $('input#cnavn_cmobile_heatseal').val(datum.phone);
+//    };
+//	
+//	
+//	 $('input#company_mobile_heatseal').typeahead({
+//			mobile: 'mobile',
+//			display: 'value',
+//			remote: '[conf.site_url;noerr]/admin/employee/search-company-mobile?query=%QUERY'
+//
+//	  }).bind('typeahead:selected', function(obj, datum) {
+//        changeTypeaheadcompanymobileheat(obj, datum);
+//    }).bind('typeahead:autocompleted', function(obj, datum) {
+//        changeTypeaheadcompanymobileheat(obj, datum);
+//    });
+	
+	
+	
+	
+	/*for compnay user name search*/
+	function changeTypeaheadcompanyname(obj, datum) {
+           $('input#cnavn_cmobile').val(datum.phone);
+    };
+	
+	 $('input#cnavn').typeahead({
+			mobile: 'mobile',
+			display: 'value',
+			remote: '[conf.site_url;noerr]/admin/employee/search-company-customer?query=%QUERY'
+
+	  }).bind('typeahead:selected', function(obj, datum) {
+        changeTypeaheadcompanyname(obj, datum);
+    }).bind('typeahead:autocompleted', function(obj, datum) {
+        changeTypeaheadcompanyname(obj, datum);
+    });
+	
+	
+//	function changeTypeaheadcompanynameheatseal(obj, datum) {
+//           $('input#cnavn_cmobile_heatseal').val(datum.phone);
+//    };
+//	
+//	 $('input#cnavn_heatseal').typeahead({
+//			mobile: 'mobile',
+//			display: 'value',
+//			remote: '[conf.site_url;noerr]/admin/employee/search-company-customer?query=%QUERY'
+//
+//	  }).bind('typeahead:selected', function(obj, datum) {
+//        changeTypeaheadcompanynameheatseal(obj, datum);
+//    }).bind('typeahead:autocompleted', function(obj, datum) {
+//        changeTypeaheadcompanynameheatseal(obj, datum);
+//    });
+//	
+	
+	
+	$('#bagbarcode').codeScanner3();
+
+	$('#barcode').codeScanner();
+	
+	 $('#heatseal').codeScanner1();
+	
+	$('.ansattlist,.message').jScrollPane({
+		autoReinitialise: true
+	});  //scrollpane
+	
+	
+	 /*check if the employee logged in before search any forms*/
+	 $(".frm_wrapper form").submit(function(){
+
+		if(($('#current_staff').val() != '')){
+			
+			var fid = $(this).attr('id');
+			if(fid == 'frm_bedrift'){
+				$('#utlevering').hide(); 
+				noty({
+					text: "Access Denied.",
+					layout: 'bottomRight',
+					type: 'warning',
+					timeout: [settings_general.notifications_display_duration;noerr]
+				});
+				return false;
+			}
+			
+			
+			if(($('#basicUsage').is(':empty'))){
+
+				noty({
+					text: '[lang.lang_please_start_timmer]',
+					layout: 'bottomRight',
+					type: 'warning',
+					timeout: [settings_general.notifications_display_duration;noerr]
+				});
+				return false;
+				
+			}
+			else{
+				var fid = $(this).attr('id');
+				if(($('#access').val() == 0)){
+					if(fid == 'frm_navn' ||  fid == 'frm_bedrift'){
+						$('#utlevering').hide(); 
+						noty({
+							text: "Access Denied.",
+							layout: 'bottomRight',
+							type: 'warning',
+							timeout: [settings_general.notifications_display_duration;noerr]
+						});
+						return false;
+					}
+				}
+				
+				return true;
+			}
+		}
+		else
+		{
+			noty({
+				text: '[lang.lang_please_login]',
+				layout: 'bottomRight',
+				type: 'warning',
+				timeout: [settings_general.notifications_display_duration;noerr]
+			});
+			return false;
+		}
+		
+		return false;
+	 });
+	
+	
+	
+   
+    var pw= [{name:"#pw1", status:0},{name:"#pw2", status:0},{name:"#pw3", status:0},{name:"#pw4", status:0}];
+	$(".num").click(function(){
+     for (i = 0; i < pw.length; i++) {
+       if(pw[i]['status'] == 0 &&  $(pw[i]['name']).val() == ''){
+	 
+          $(pw[i]['name']).val($(this).html());
+          pw[i]['status'] = 1;
+		  
+			if(3 > i)
+			{
+				var j=parseInt(i)+1;
+				$(pw[j]['name']).focus();
+			}
+			
+          break;
+       }
+     } 	
+	 	
+	});
+	
+	
+	$(".clear").click(function(){    
+      for (i = 0; i < pw.length; i++) {
+          $(pw[i]['name']).val('');
+          pw[i]['status'] = 0;
+     }
+	 //byttansattfocus();
+  });
+  
+	$('.group-pos .btn-group > .btn').on("click", function() {
+		$('.group-pos .btn-group > .btn').removeClass('highlight');
+		$(this).addClass('highlight');	
+	});
+ 	$('.frm_wrapper form').hide();
+	
+	$('.search-tab .velg-block .btn').on("click", function() {
+		$('.frm_wrapper form').hide();
+		$('.frm_wrapper form').find('input[type=text]').val('');
+		$($(this).data('target')).show();
+		$($(this).data('target')).find('input.fs-16').focus();
+	});
+	
+	$('.company-search-tab .velg-block .btn').on("click", function() {
+		$('.company_frm_wrapper form').hide();
+		$('.company_frm_wrapper form').find('input[type=text]').val('');
+		$($(this).data('target')).show();
+		$($(this).data('target')).find('input.fs-16').focus();
+	});
+	
+
+	$("form#employeelogin").submit(function(){
+			
+		var pw1=$('#pw1').val();
+		var pw2=$('#pw2').val();
+		var pw3=$('#pw3').val();
+		var pw4=$('#pw4').val();
+		if($( "#current_staff" ).val() != '')
+		{
+			clientStop();
+		}
+		var empid=pw1+pw2+pw3+pw4;
+			$.ajax({
+						type: "POST",
+						url: "[conf.site_url;noerr]/admin/employee",
+						data: {
+							staff: empid
+						},
+					    dataType: "json",
+					    success: function (data) {
+						
+						if(data.response == 'success')
+						{
+							noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'information',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+							 
+							 $( "#employee-profile" ).html( data.profile );
+							 $( "#employee-profile" ).show();
+							 $( "#staff_close" ).trigger( "click" );
+							 $( "#current_staff" ).val( data.staff );
+							  for (i = 0; i < pw.length; i++) {
+								  $(pw[i]['name']).val('');
+								  pw[i]['status'] = 0;
+							 }
+							 
+							 getEmplist();
+													 
+							// if(data.start_status == 1)
+							 //{
+								//startLogin(data.staff);
+							// }
+							 
+							
+						}
+						else
+						{
+							$( "#employee-profile" ).hide();
+							$( "#staff_close" ).trigger( "click" );
+							$(".clear").trigger( "click" );
+							
+							
+							noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+						}
+						
+						  
+						}
+					});
+					
+		return false;
+	});
+});
+function getBagdetails()
+{
+	var barcode=$('#barcode').val();
+	if(barcode == '')
+	{
+		//alert("Invalid Barcode");
+		//$('#barcode').val('')
+		return false;
+	}
+	else
+	{
+		var barlength=barcode.toString().length;
+		if(barlength != 8)
+		{
+			/*noty({
+								text: 'ugyldig strekkode',
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+			return false;*/
+		}
+		else
+		{
+			//document.orderbarcode.submit();
+			$('#scanconfirm').modal({ backdrop: 'static', keyboard: false });
+		}
+		
+	}
+	  
+}
+
+function getMobiledetails()
+{
+	var mobile=$('#mobile').val();
+	
+	if(mobile == '')
+	{
+		
+		return false;
+	}
+	else
+	{
+			$.ajax({
+						type: "POST",
+						url: "[conf.site_url;noerr]/admin/customer/mobileDetails",
+						data: {
+							mobile: mobile
+						},
+					    dataType: "json",
+					    success: function (data) {
+						
+						if(data.status == 'success')
+						{
+							if(data.data == '')
+							{
+								$('#mobileinfo').html('');
+								document.frm_mobil.submit();
+							}
+							else
+							{	
+								$('#mobileconfirm').modal({ backdrop: 'static', keyboard: false });
+								$('#mobileinfo').show(); 
+								$('#mobileinfo').html(data.data);
+							}
+							
+						}
+						else
+						{
+							$('#mobileinfo').hide(); 
+							noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+						}
+						
+						  
+						}
+					});
+
+		
+	}
+	  
+}
+
+
+
+function getHeatsealdetails()
+{
+	var barcode=$('#heatseal').val();
+	
+	if(barcode == '')
+	{
+		//alert("Invalid Barcode");
+		//$('#barcode').val('')
+		return false;
+	}
+	else
+	{
+		var barlength=barcode.toString().length;
+		if(barlength != 8)
+		{
+			noty({
+								text: 'ugyldig strekkode',
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+			return false;
+		}
+		else
+		{
+		
+			if('[vars.hvitsnip]' == 'company')
+			{	
+				if($('#heatsealscanconfirm').css("display") == 'none')
+				{
+					$('#heatsealscan_confirm').modal({ backdrop: 'static', keyboard: false });
+				}
+				
+				if($('#heatsealscanconfirm').css("display") == 'block')
+				{
+					$('#company_mobile_heatseal').focus()
+				}
+			}
+			else
+			{
+				document.hseal.submit();
+			}
+			
+			
+				
+		}
+		
+	}
+	  
+}
+
+function getHeatsealBarcode()
+{
+
+var barcode=$('#heatseal').val(); 
+
+$("#heatscan_close").trigger( "click" );
+
+
+
+
+	$.ajax({
+						type: "POST",
+						url: "[conf.site_url;noerr]/admin/heatseal/barcodeinfo",
+						data: {
+							barcode: barcode
+						},
+					    dataType: "json",
+					    success: function (data) {
+						
+						if(data.status == 'success')
+						{
+							/*if(data.customerstatus == 1)
+							{
+								var osurl = "[conf.site_url;noerr]/admin/products/";
+								window.location=osurl;
+							}
+							else
+							{*/
+								$('#heatinfo').show(); 
+								$('#heatinfo').html(data.data);
+								$('#heatsealscanconfirm').modal({ backdrop: 'static', keyboard: false });
+								
+								$('#customer_staff').prop('checked', true);	
+								
+								if(data.customerstatus == 0)
+								{
+									$('#customer_div').hide(); 
+									$('#customer_div_hide').hide(); 
+									
+									$("#search_cmobile_heatseal").trigger( "click" );
+									$("#company_mobile_heatseal").focus();
+								}
+								else
+								{
+									$('#customer_div').hide(); 
+									$('#customer_div_hide').show(); 
+								}
+								//$("#search_cmobile_heatseal").trigger( "click" );
+								//$("#company_mobile_heatseal").focus();
+								
+							/*}*/
+							
+							
+							
+							
+						}
+						else
+						{
+							$('#heatinfo').hide(); 
+							noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+						}
+						
+						  
+						}
+					});
+}
+
+function scantab()
+{
+	//hide utlevering button for SL and branch 14
+	if(($('#access').val() == 0)){
+		$('#utlevering').hide(); 
+		$( "#barcode_scan" ).trigger( "click" );
+		$('#barcode').val('');
+		$( "#barcode" ).focus();
+	}
+	else if(($('#hvitsnip').val() == 'company')){
+		$( "#heatseal_scan" ).trigger( "click" );
+		
+	}
+	else{
+		$( "#search_mobile" ).trigger( "click" );
+		$('#mobile').val('');
+		$("#mobile").focus();
+		
+	}
+	
+	
+	$('.frm_wrapper').show();
+	
+}
+function startLogin(staffid)
+{
+	//var staffid=$('#current_staff').val();
+	if(parseInt(staffid) > 0)
+	{
+		$.ajax({
+						type: "POST",
+						url: "[conf.site_url;noerr]/admin/employee/startLogin",
+						data: {
+							staff: staffid
+						},
+					    dataType: "json",
+					    success: function (data) {
+						if(data.response == 'success')
+						{
+							
+							getEmplist();
+							//$('#staffbutton_'+staffid).html('<button type="button" name="stop" id="stop" onclick="stopLogin(\''+staffid+'\');" class="btn-xs red  btn-info">STOP</button>');
+							//alert(data.scripts);
+							// $('#scriptsdiv').html(data.scripts);
+							// $('#basicUsage').show();
+							// $('#ansatt').html(data.ansatt);
+							// timer1.start(data.time);
+							//starttime(data.time);
+							 
+						}
+						else
+						{
+							noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+						}
+						
+						  
+						}
+					});
+	}
+	else
+	{
+		noty({
+			text: '[lang.lang_session_timed_out]',
+			layout: 'bottomRight',
+			type: 'warning',
+			timeout: [settings_general.notifications_display_duration;noerr]
+		});
+	}
+	
+	return false;
+	
+}
+
+ <!--[lists.employee_list_script;noerr;htmlconv=no;protect=no;comm]-->	
+
+var timer = new Timer();
+<!--[lists.stafftime;noerr;htmlconv=no;protect=no;comm]-->
+function starttime(timedata)
+{
+	$('#basicUsage').show();
+	timer.start(timedata);
+}
+function clientStop()
+{
+	timer.stop();
+	$('#staffbutton').html('<button type="button" name="start" id="start" onclick="startLogin();" class="btn-xlg btn-info">START</button>');
+	$('#basicUsage').hide();
+	$('#basicUsage').html('');
+}
+
+function stopLogin(staffid)
+{
+	//timer.stop();
+	//var staffid=$('#current_staff').val();
+	if(parseInt(staffid) > 0)
+	{
+		$.ajax({
+						type: "POST",
+						url: "[conf.site_url;noerr]/admin/employee/stopLogin",
+						data: {
+							staff: staffid
+						},
+					    dataType: "json",
+					    success: function (data) {
+						if(data.response == 'success')
+						{
+							
+							
+							 $( "#employee-profile" ).hide();
+							  getEmplist();
+							//$('#staffbutton_'+staffid).html('<button type="button" name="start" id="start" onclick="startLogin(\''+staffid+'\');" class="btn-xs btn-info">START</button>');
+							
+							//$('#basicUsage').hide();
+							//$('#basicUsage').html('');
+							//$('#ansatt').html(data.ansatt);
+						//	$('#current_staff').val('');
+						//	$( "#employee-profile" ).hide();
+						}
+						else
+						{
+							noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+						}
+						
+						  
+						}
+					});
+	}
+	else
+	{
+		noty({
+			text: '[lang.lang_invalid_employee_id]',
+			layout: 'bottomRight',
+			type: 'warning',
+			timeout: [settings_general.notifications_display_duration;noerr]
+		});
+	}
+	
+	return false;
+	
+}
+timer.addEventListener('secondsUpdated', function (e) {
+$('#basicUsage').html(timer.getTimeValues().toString());
+});
+
+
+$(window).load(function(){
+var pastValue, pastSelectionStart, pastSelectionEnd;
+
+$("#employeelogin input").on("keydown", function() {
+    pastValue          = this.value;
+    pastSelectionStart = this.selectionStart;
+    pastSelectionEnd   = this.selectionEnd;
+}).on("input propertychange", function() {
+    var regex = /^[0-9]+\.?[0-9]*$/;
+					
+    if (this.value.length > 0 && !regex.test(this.value)) {
+        this.value          = pastValue;
+        this.selectionStart = pastSelectionStart;
+        this.selectionEnd   = pastSelectionEnd;
+    }
+	byttansattfocus();
+});
+});//]]> 
+
+var myVar;
+function byttansatt()
+{
+	setTimeout(byttansattfocus,0);
+	myVar = setInterval(function(){ byttansattfocus() }, 0);
+	
+}
+
+
+function byttansattfocus()
+{
+
+	if($('#newAnsatt').css('display') == 'hide')
+	{
+		clearInterval(myVar);
+		return false;
+	}
+
+		var pw1=$('#pw1').val();
+		var pw2=$('#pw2').val();
+		var pw3=$('#pw3').val();
+		var pw4=$('#pw4').val();
+
+		if(pw1 == '')
+		{	
+			$('#pw1').focus();
+			return false;
+		}
+		if(pw2 == '')
+		{	
+			$('#pw2').focus();
+			return false;
+		}
+		if(pw3 == '')
+		{	
+			$('#pw3').focus();
+			return false;
+		}
+		if(pw4 == '')
+		{	
+			$('#pw4').focus();
+			return false;
+		}
+		else
+		{
+			$('#pw4').focus();
+			return false;
+		}
+		
+		
+}
+
+function getEmplist()
+{	
+	$.ajax({
+						type: "GET",
+						url: "[conf.site_url;noerr]/admin/employee/getemplist",
+						dataType: "json",
+					    success: function (data) {
+							if(data.response == 'success')
+							{
+								$('#emp_list').html(data.employees);
+								$('.ansattlist').jScrollPane({
+									autoReinitialise: true
+								});  //scrollpane
+								
+							}
+						}
+					});
+}
+
+						
+function checkNavnMoble()
+{
+	$('#navn_id').val('');
+	$('#navn_branch').val('');
+}
+
+
+
+
+function companypopup()
+{
+	if($('#navn_branch').val() == 14 || $('#navn_branch').val() == 28)
+	{
+		if($('#navn_id').val() == '')
+		{
+			noty({
+					text: "Please search and choose any one company.",
+					layout: 'bottomRight',
+					type: 'warning',
+					timeout: [settings_general.notifications_display_duration;noerr]
+				});
+				return false;
+		}
+		else
+		{
+			$('#searchCompanyCustomerFrm').modal({ backdrop: 'static', keyboard: false });
+			$( "#search_cmobile" ).trigger( "click" );
+			$( "#company_mobile" ).focus();
+			$('input#bedrift_navn').typeahead('destroy');
+		}
+		
+	}
+	else
+	{
+		
+		if($('#bedrift_navn').val() == '')
+		{
+			noty({
+					text: "Invalid.",
+					layout: 'bottomRight',
+					type: 'warning',
+					timeout: [settings_general.notifications_display_duration;noerr]
+				});
+				return false;
+		}
+		else
+		{
+			document.frm_navn.submit();
+		}
+	
+		
+	}
+}
+
+
+
+</script>
+<!--JS_SOME_FORM_VALIDATION-->
+<!--------------------COMMON FOOTER JAVASCRIPT---------------------------->
+<!--[onload;file=../common/common.footer.javascript.html;getbody;comm]-->
+<!--------------------COMMON FOOTER JAVASCRIPT---------------------------->
+<!--WI_REPORT_NEW_BUG_MODAL-->
+
+<div id="scanconfirm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog " style="max-width: 450px; margin-top:150px">
+<div class="modal-content widget ">
+<div class="modal-header">
+<button type="button" class="close scanconfirmclose" data-dismiss="modal" aria-hidden="true">x</button>
+</div>
+<div class="padd"><h4 class="text-center">Vennligst velg mellom</h4></div>
+<div class="modal-footer">
+<button type="button" id="utlevering" onclick="goToutlevering();" data-dismiss="modal" class="btn green" >Utlevering</button>
+<button type="button" onclick="goToOrderscan('view');" data-dismiss="modal" class="btn orange">Sveise etikett</button>
+<button type="button" onclick="goToOrderscan('edit');" data-dismiss="modal" class="btn red">Endre ordre</button>
+</div>
+</div>
+</div>
+</div>
+
+<div id="searchCompanyCustomerFrm"  class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog " style="max-width:40%;">
+<div class="modal-content widget ">
+<div class="modal-header">
+<button type="button" class="close sccfclose" data-dismiss="modal" aria-hidden="true">x</button>
+</div>
+<div class="padd">
+<div class="company-search-tab clearfix group-pos">
+  <div class="velg-block clearfix">
+    <div class="row">
+      <div class="velg col-md-2 fs-16">Velg</div>
+      <div class="col-md-10  no-padd">
+        <div class="btn-group pull-left" style="text-align:left">
+          <button type="button" data-target="#frm_cnavn" data-switch-value="Navn" class="btn btn-default">Navn</button>
+          <button type="button" id="search_cmobile" data-target="#frm_cmobil" data-switch-value="Mobil" class="btn btn-default">Mobil</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="company_frm_wrapper clearfix">
+    <input type="hidden" id="access" name="access" value="[vars.access]"/>
+    <form action="[conf.site_url;noerr]/admin/customer/[vars.hvitsnip]" method="post" id="frm_cnavn">
+      <div class="clearfix">
+        <div class="col-xs-1"> <i class="fa fa-user-o"></i> </div>
+        <div class="col-xs-8 no-padd">
+          <input type="text" required="required" class="fs-16 cnavn" name="cnavn" id="cnavn" placeholder="Navn">
+          <input type="hidden" class="fs-16 cnavn" id="cnavn_cmobile" name="cmobile" placeholder="Navn">
+        </div>
+        <div class="col-xs-3">
+          <input type="submit" value="Søk" class="highlight btn btn-default pull-right">
+        </div>
+      </div>
+    </form>
+    <form action="[conf.site_url;noerr]/admin/customer/[vars.hvitsnip]" method="post" id="frm_cmobil">
+      <div class="clearfix">
+        <div class="col-xs-1"> <i class="fa fa-mobile" style="font-size:45px"></i> </div>
+        <div class="col-xs-8 no-padd">
+          <input type="text"  required="required"  onkeypress="return isNumber(event)" name="cmobile" id="company_mobile" class="fs-16 company_mobile" placeholder="Mobil">
+        </div>
+        <div class="col-xs-3">
+          <input type="submit" value="Søk" class="highlight btn btn-default pull-right">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<div id="heatsealscan_confirm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog " style="max-width: 450px; margin-top:150px">
+<div class="modal-content widget ">
+<div class="modal-header">
+<button type="button" class="close" id="heatscan_close" data-dismiss="modal" aria-hidden="true">x</button>
+</div>
+<div class="padd"><h4 class="text-center">Vennligst velg mellom
+</h4></div>
+<div class="modal-footer">
+<button type="button" onclick="viewHeatscan('view');" data-dismiss="modal" class="btn orange">Se Bestilling</button>
+<button type="button" onclick="getHeatsealBarcode();" data-dismiss="modal" class="btn red">Legg Bestill</button>
+</div>
+</div>
+</div>
+</div>
+
+
+ 
+ <div id="heatsealscanconfirm"  class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog " style="max-width:40%;">
+<div class="modal-content widget ">
+<div class="modal-header">
+<button type="button" class="close heatsealscanclose" data-dismiss="modal" aria-hidden="true">x</button>
+</div>
+<div class="padd">
+
+
+<div id="heatinfo" style="diaplay:none;" class="col-md-12 no-padd"> 
+
+
+</div>
+
+
+<div class="company-search clearfix">
+  
+  <div class="row">
+	  <div class="col-md-3 no-padd">
+	  <input name="company_type" value="company" id="customer_company" type="radio" />Company
+	  </div>
+	   <div class="col-md-3">
+	  <input  value="staff" name="company_type"  id="customer_staff" type="radio" checked="checked" />Staff
+	  </div>
+	   <div class="col-md-3">
+	  <input name="company_type"  value="guest"  id="customer_guest" type="radio" />Guest
+	  </div>
+  </div>
+
+  </div>
+  <br />
+     <div id="customer_div_hide" class="velg-block clearfix">
+	 <div class="clearfix">
+     
+        <div class="text-center">
+        
+        <button type="button" onclick="registerHeatseal();" data-dismiss="modal" class="btn green">OK</button>
+        
+</div>
+      </div>
+	  </div>
+
+    <div id="customer_div" class="row">
+	<div class="company-search-tab clearfix group-pos">
+  <div class="velg-block clearfix">
+    <div class="row">
+      <div class="velg col-md-2 fs-16">Velg</div>
+      <div class="col-md-10  no-padd">
+        <div class="btn-group pull-left" style="text-align:left">
+          <button type="button" data-target="#frm_cnavn_heatseal" data-switch-value="Navn" class="btn btn-default">Navn</button>
+          <button type="button" id="search_cmobile_heatseal" data-target="#frm_cmobil_heatseal" data-switch-value="Mobil" class="btn btn-default">Mobil</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="company_frm_wrapper clearfix">
+    <input type="hidden" id="access_heatseal" name="access" value="[vars.access]"/>
+    <form action="[conf.site_url;noerr]/admin/customer/company"  name="heatname_form" method="post" id="frm_cnavn_heatseal">
+      <div class="clearfix">
+        <div class="col-xs-1"> <i class="fa fa-user-o"></i> </div>
+        <div class="col-xs-8 no-padd">
+          <input required="required" type="text" class="fs-16 cnavn" name="cnavn_heatseal" id="cnavn_heatseal" placeholder="Navn">
+          <input type="hidden" class="fs-16 cnavn" id="cnavn_cmobile_heatseal" name="cmobile_heatseal" placeholder="Navn">
+		  
+		   <input type="hidden" id="cnavn_company" name="company_id" value="" />
+		   <input type="hidden" id="cnavn_type" name="customer_type" value="" />
+		   
+        </div>
+        <div class="col-xs-3">
+          <input type="button" onclick="registerCustomername();" value="Søk" class="highlight btn btn-default pull-right">
+        </div>
+      </div>
+    </form>
+	
+    <form action="[conf.site_url;noerr]/admin/customer/company" name="heatmoble_form" method="post" id="frm_cmobil_heatseal">
+      <div class="clearfix">
+        <div class="col-xs-1"> <i class="fa fa-mobile" style="font-size:45px"></i> </div>
+        <div class="col-xs-8 no-padd">
+          <input required="required" type="text"  onkeypress="return isNumber(event)" name="cmobile_heatseal" id="company_mobile_heatseal" class="fs-16 company_mobile" placeholder="Mobil">
+		  <input type="hidden" id="cmobile_company" name="company_id" value="" />
+		  <input type="hidden" id="cmobile_type" name="customer_type" value="" />
+		</div>
+        <div class="col-xs-3">
+          <input type="button" onclick="registerCustomermobile();" value="Søk" class="highlight btn btn-default pull-right">
+        </div>
+      </div>
+    </form>
+  </div>
+  </div>
+   </div>
+
+ 
+
+  
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+ 
+ 
+<div id="mobileconfirm"  class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog " style="max-width:40%;">
+<div class="modal-content widget ">
+<div class="modal-header">
+<button type="button" class="close mobileconfirmclose" data-dismiss="modal" aria-hidden="true">x</button>
+</div>
+<div class="padd">
+<div id="mobileinfo" style="diaplay:none;" class="col-md-12"> 
+
+</div>
+
+
+<div class="company-search-tab clearfix group-pos">
+  
+  <div class="row">
+  <center>
+	  <div class="col-md-2">
+	 Company <input name="company_type" value="company" id="customer_company" type="radio" />
+	  </div>
+	   <div class="col-md-2">
+	 Staff <input value="staff" name="company_type"  id="customer_staff" type="radio" checked="checked"  />
+	  </div>
+	   <div class="col-md-2">
+	 Guest <input name="company_type"  value="guest"  id="customer_guest" type="radio" />
+	  </div>
+  </center>
+  
+  </div>
+
+</div>
+<br />
+<div id="customer_div_hide" class="velg-block clearfix">
+	 <div class="clearfix">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-8 no-padd"><input type="buton" onclick="registerHeatseal();" value="Søk" class="highlight btn btn-default pull-right"></div>
+        <div class="col-xs-3">
+        </div>
+      </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+ 
+
+<script>
+
+function createCookie(name, value, days) {
+    var date, expires;
+    if (days) {
+        date = new Date();
+        date.setTime(date.getTime()+(days*24*60*60*1000));
+        expires = "; expires="+date.toGMTString();
+    } else {
+        expires = "";
+    }
+    document.cookie = name+"="+value+expires+"; path=/";
+}
+
+function goToutlevering()
+{
+	var nbarcode = $('#barcode').val();
+	var utlurl = "[conf.site_url;noerr]/admin/orders/utlevering/"+nbarcode;
+	window.location=utlurl;
+}
+
+
+function goToHeatscan(e)
+{
+	var action = (e =='edit') ?  e : '';
+	var nbarcode=$('#barcode').val();
+	var osurl = "[conf.site_url;noerr]/admin/orders/"+nbarcode + "/" +action;
+	window.location=osurl;
+}
+
+
+
+function viewHeatscan(e)
+{
+	var nbarcode=$('#heatseal').val();
+	var osurl = "[conf.site_url;noerr]/admin/heatseal/"+nbarcode;
+	window.location=osurl;
+}
+
+function goToOrderscan(e)
+{
+	var action = (e =='edit') ?  e : '';
+	var nbarcode=$('#barcode').val();
+	var osurl = "[conf.site_url;noerr]/admin/orders/"+nbarcode + "/" +action;
+	window.location=osurl;
+}
+
+function registerCustomername()
+{
+	 var company = $("#company").val();
+	 var cmobile_company = $("#cmobile_company").val();
+	 var cnavn_heatseal = $("#cnavn_heatseal").val();
+	  if(company == '')
+	  {
+		noty({
+					text: "Please choose any one company.",
+					layout: 'bottomRight',
+					type: 'warning',
+					timeout: [settings_general.notifications_display_duration;noerr]
+				});
+				return false;
+	  }
+	  else if(cnavn_heatseal == '')
+	  {
+		noty({
+					text: "Please select customer.",
+					layout: 'bottomRight',
+					type: 'warning',
+					timeout: [settings_general.notifications_display_duration;noerr]
+				});
+				return false;
+	  }
+	  else
+	  {
+		 var company_type = $("input[name='company_type']:checked").val();
+		  createCookie('navn_id', company, '');
+		$("#cnavn_company").val(company);
+		$("#cmobile_company").val(company);
+		$("#cnavn_type").val(company_type);
+		$("#cmobile_type").val(company_type);
+		
+		document.heatname_form.submit();
+
+		
+
+		
+	//
+  
+		
+	  }
+}
+
+function registerCustomermobile()
+{
+	 var company = $("#company").val();
+	 var cmobile_company = $("#cmobile_company").val();
+	 var company_mobile_heatseal = $("#company_mobile_heatseal").val();
+	 
+	 
+	  if(company == '')
+	  {
+		
+		noty({
+					text: "Please choose any one company.",
+					layout: 'bottomRight',
+					type: 'warning',
+					timeout: [settings_general.notifications_display_duration;noerr]
+				});
+				return false;
+	  }
+	  else if(company_mobile_heatseal == '')
+	  {
+		
+		noty({
+					text: "Please select customer mobile number.",
+					layout: 'bottomRight',
+					type: 'warning',
+					timeout: [settings_general.notifications_display_duration;noerr]
+				});
+				return false;
+	  }
+	  else
+	  {
+	  
+			var company_type = $("input[name='company_type']:checked").val();
+			 createCookie('navn_id', company,'');
+			$("#cnavn_company").val(company);
+			$("#cmobile_company").val(company);
+			$("#cnavn_type").val(company_type);
+			$("#cmobile_type").val(company_type);
+			document.heatmoble_form.submit();
+	  }
+}
+
+function registerHeatseal()
+{
+	  var company_type = $("input[name='company_type']:checked").val();
+	  var company = $("#company").val();
+	  if(company == '')
+	  {
+		noty({
+					text: "Please choose any one company.",
+					layout: 'bottomRight',
+					type: 'warning',
+					timeout: [settings_general.notifications_display_duration;noerr]
+				});
+				return false;
+	  }
+	  else
+	  {
+		 createCookie('navn_id', company,'');
+		 $.ajax({
+			type: "POST",
+			url: "[conf.site_url;noerr]/admin/heatseal/registerheatseal",
+			data: {
+				companytype: company_type,
+				company: company
+			},
+			dataType: "json",
+			success: function (data) {
+				var url = "[conf.site_url;noerr]/admin/products/";
+				window.location=url;
+			}
+		});	
+	  }
+	  
+	  
+	  
+	  
+	  
+}
+
+function bagConfirm()
+{
+
+var bagbarcode=$('#bagbarcode').val();
+	
+	if(bagbarcode == '')
+	{
+		//alert("Invalid Barcode");
+		//$('#barcode').val('')
+		return false;
+	}
+	else
+	{
+		var barlength=bagbarcode.toString().length;
+		if(barlength != 8)
+		{
+			noty({
+								text: 'ugyldig strekkode',
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+			return false;
+		}
+		else
+		{
+			$.ajax({
+			type: "POST",
+			url: "[conf.site_url;noerr]/admin/heatseal/validateBarcode",
+			data: {
+				barcode: bagbarcode
+			},
+			dataType: "json",
+			success: function (data) {
+			
+			//	var url = "[conf.site_url;noerr]/admin/products/";
+				//window.location=url;
+				
+						if(data.status == 'success')
+						{
+							if(data.bagstatus == 1)
+							{
+								var url = "[conf.site_url;noerr]/admin/orders/"+bagbarcode;
+								window.location=url;
+							}
+							else
+							{
+								$("#bagscan_confirm_msg").html(data.message);
+								$('#bagscan_confirm').modal({ backdrop: 'static', keyboard: false });
+							}
+							
+						}
+						else
+						{
+							
+							noty({
+								text: 'Invalid',
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+						}
+				
+				
+				
+			}
+		});	
+		}
+		
+	}
+	
+}
+function saveCompany(companyval)
+{
+	//$('#scompany').val(companyval);
+	 createCookie('navn_id', companyval, '');
+	 
+	   $('#customer_div').hide();
+          $('input#company_mobile_heatseal').typeahead('destroy');
+         $('input#cnavn_heatseal').typeahead('destroy');
+         if(parseInt(companyval) > 0){
+         
+        
+         $.ajax({
+                    type: "POST",
+                    url: "[conf.site_url;noerr]/admin/heatseal/barcodeinfovelg",
+                    data: {
+                            companyval: companyval
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                  if(data.status == 'success')
+				  {
+                                
+                                 $('#customer_div').show();
+                                 
+                                    $('#company_frm_wrapperfrm_cnavn_heatseal').html(data.data);
+                                    
+                                    
+                                    $("#search_cmobile_heatseal").trigger( "click" );
+
+ 
+ 
+ 
+		 function changeTypeaheadcompanymobileheat(obj, datum) {
+				   $('input#cnavn_cmobile_heatseal').val(datum.phone);
+			};
+ 
+ 
+			$('input#company_mobile_heatseal').typeahead({
+			mobile: 'mobile',
+			display: 'value',
+			remote: '[conf.site_url;noerr]/admin/employee/search-company-mobile?companyval='+companyval+'&query=%QUERY'
+
+			}).bind('typeahead:selected', function(obj, datum) {
+			changeTypeaheadcompanymobileheat(obj, datum);
+			}).bind('typeahead:autocompleted', function(obj, datum) {
+			changeTypeaheadcompanymobileheat(obj, datum);
+			});
+
+	 function changeTypeaheadcompanynameheatseal(obj, datum) {
+			   $('input#cnavn_cmobile_heatseal').val(datum.phone);
+		};
+	 
+	  $('input#cnavn_heatseal').typeahead({
+	   mobile: 'mobile',
+	   display: 'value',
+	   remote: '[conf.site_url;noerr]/admin/employee/search-company-customer?companyval='+companyval+'&query=%QUERY'
+
+	   }).bind('typeahead:selected', function(obj, datum) {
+			changeTypeaheadcompanynameheatseal(obj, datum);
+		}).bind('typeahead:autocompleted', function(obj, datum) {
+			changeTypeaheadcompanynameheatseal(obj, datum);
+		});
+	 
+ 
+
+
+
+					}
+				}
+			});
+      }
+	 
+	 
+}
+
+
+
+</script>
+<script type='text/javascript'>//<![CDATA[
+$(window).load(function(){
+$(function(){
+//scantab();
+   // $("#mobile").focus();
+   if(($('#access').val() == 0)){
+		$('#utlevering').hide(); 
+		$( "#barcode_scan" ).trigger( "click" );
+		$('#barcode').val('');
+		$( "#barcode" ).focus();
+	}
+	else if(($('#hvitsnip').val() == 'company')){
+		$( "#heatseal_scan" ).trigger( "click" );
+		
+	}
+	else{
+		$( "#search_mobile" ).trigger( "click" );
+		$('#mobile').val('');
+		$("#mobile").focus();
+		
+	}
+});
+
+
+
+//$('.heatsealscanclose').click(function() {
+
+//alert('hi');
+ 
+//}
+$('.heatsealscanclose').click(function() {
+ $( "#heatseal_scan" ).trigger( "click" );
+  $('input#bedrift_navn').typeahead('destroy');
+ $('input#bedrift_navn').typeahead({
+			name: 'navn',
+			display: 'value',
+			remote: '[conf.site_url;noerr]/admin/employee/search-customer?query=%QUERY'
+
+	  }).bind('typeahead:selected', function(obj, datum) {
+        changeTypeahead(obj, datum);
+    }).bind('typeahead:autocompleted', function(obj, datum) {
+        changeTypeahead(obj, datum);
+    });
+});
+
+$('.mobileconfirmclose').click(function() {
+ $( "#search_mobile" ).trigger( "click" );
+});
+
+$('.sccfclose').click(function() {
+
+ $( "#search_navn" ).trigger( "click" );
+ $('input#bedrift_navn').typeahead('destroy');
+ $('input#bedrift_navn').typeahead({
+			name: 'navn',
+			display: 'value',
+			remote: '[conf.site_url;noerr]/admin/employee/search-customer?query=%QUERY'
+
+	  }).bind('typeahead:selected', function(obj, datum) {
+        changeTypeahead(obj, datum);
+    }).bind('typeahead:autocompleted', function(obj, datum) {
+        changeTypeahead(obj, datum);
+    });
+ 
+ 
+ 
+});
+
+});//]]> 
+
+
+</script>
+</body>
+</html>
+
+<div id="bagscan_confirm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog " style="max-width: 450px; margin-top:150px">
+<div class="modal-content widget ">
+<div class="modal-header">
+<button type="button" class="close" id="heatscan_close" data-dismiss="modal" aria-hidden="true">x</button>
+</div>
+<div class="padd"><h4 id="bagscan_confirm_msg" class="text-center">Denne strekkoden ikke tildele noen kunde</h4></div>
+<div class="modal-footer">
+<button type="button" data-dismiss="modal" class="btn red">Ok</button>
+</div>
+</div>
+</div>
+</div>

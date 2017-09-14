@@ -1,0 +1,26 @@
+#NEXTLOOP
+#.HACCESS FILE FOR CODEIGNITER
+
+<IfModule mod_suphp.c>
+suPHP_ConfigPath /home2/smartiapp
+<Files php.ini>
+order allow,deny
+deny from all
+</Files>
+
+</IfModule>
+
+
+# Enable Rewrite
+RewriteEngine on
+
+# If you have installed to a subfolder, uncomment the line below and replace the text 'your-subfolder' with your real subfolder name
+#RewriteBase /your-subfolder/
+
+#RewriteRule ^(application/themes|application/language|updates|files|install)($|/) - [L]
+
+#Allow direct access to images and robots.txt
+RewriteCond $1 !^(index\.php|images|application|robots\.txt|css|png|gif|jpg|Documentation|sorting|path.php)
+
+#redirect everything else
+RewriteRule ^(.*)$ ./index.php?/$1 [L]

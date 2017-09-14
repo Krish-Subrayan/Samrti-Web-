@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+<link href="../common/style/bootstrap.css" rel="stylesheet">
+<link href="../common/style/style.css" rel="stylesheet">
+<!--[onshow;block=head;when [visible.foo] == bar;comm]-->
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+</head>
+<!--HEAD - ONLOAD-->
+<!--[onload;file=../common/common.head.html;getbody;comm]-->
+<!--HEAD - ONLOAD-->
+<body class="ModalPopUp">
+<!--JS SECTION - ONLOAD-->
+<!--[onload;file=../common/common.javascript.html;getbody;comm]-->
+<!--JS SECTION - ONLOAD-->
+<!--DEBUG SECTION - ONLOAD-->
+<!--[onload;file=../common/include.debug.html;getbody;comm]-->
+<!--DEBUG SECTION - ONLOAD-->
+<div class="content categories">
+
+
+  <!--OPTIONAL TOP-MENU-->
+  <div class="row">
+    <!--[onshow;block=div;when [visible.categories_menu] == 1;comm]-->
+    <div class="col-md-12 x-menu">
+      <ul class="nav nav-tabs">
+        <li role="presentation" class="[vars.css_menu_view]"><a href="[conf.site_url]/admin/categories/list/[vars.categories_project_id]">View</a></li>
+        <li role="presentation" class="[vars.css_menu_add]"><a href="[conf.site_url]/admin/categories/add/[vars.categories_project_id]">Add</a></li>
+        <li role="presentation" class="[vars.css_menu_move]"><a href="[conf.site_url]/admin/categories/move/[vars.categories_project_id]">Bulk Move</a></li>
+      </ul>
+    </div>
+  </div>
+  <!--/#OPTIONAL TOP-MENU-->
+  
+  
+  <!----------------------COMMON NOTICES--------------------------------->
+  <!--[onload;file=../common/common.notices.html;getbody;comm]-->
+  <!----------------------COMMON NOTICES--------------------------------->
+  
+  
+  <!--SOME SECTION-->
+  <div class="row">
+  <!--[onshow;block=div;when [visible.add_category_form] == 1;comm]-->
+  <div class="col-lg-12">
+    <div class="x-title"><i class="icon-reorder"></i> some title/div>
+      <div class="x-add-form"> xxxxx </div>
+    </div>
+  </div>
+  <!--/#SOME SECTION-->
+  
+  
+  <!--WI_NOTIFICATION-->
+  <div class="row">
+    <!--[onshow;block=div;when [visible.wi_notification] == 1;comm]-->
+    <div class="col-md-12">
+      <div class="widget">
+        <div class="widget-content widget-big-box"> [vars.notification;noerr;htmlconv=no]</div>
+      </div>
+    </div>
+  </div>
+  <!--WI_NOTIFICATION-->
+</div>
+<!--------------------COMMON FOOTER JAVASCRIPT---------------------------->
+<!--[onload;file=../common/common.footer.javascript.html;getbody;comm]-->
+<!--------------------COMMON FOOTER JAVASCRIPT---------------------------->
+</body>
+</html>

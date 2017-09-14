@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+<link href="../common/style/bootstrap.css" rel="stylesheet">
+<link href="../common/style/style.css" rel="stylesheet">
+<link href="../common/style/custom.css" rel="stylesheet">
+<!--[onshow;block=head;when [visible.foo] == bar;comm]-->
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+</head>
+<!--HEAD - ONLOAD-->
+<!--[onload;file=../common/common.head.html;getbody;comm]-->
+<!--HEAD - ONLOAD-->
+<style>
+.antall {
+	color: #a9a9a9;
+	font-size: 14px;
+	line-height: 40px;
+}
+.quantity .qty {
+    border: 1px solid #ccc;
+    box-shadow: none;
+    float: left;
+    font-size: 0.9em;
+    height: 35px;
+    padding: 0 10px;
+    text-align: center;
+    width: 100%;
+}
+.quantity .minus {
+    background: #f4f4f4 none repeat scroll 0 0;
+    border: 1px solid #c8bfc6;
+    border-radius: 2px;
+    box-shadow: none;
+    color: #5e5e5e;
+    cursor: pointer;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    height: 35px;
+    line-height: 13px;
+    margin: 0;
+    outline: 0 none;
+    overflow: visible;
+    padding: 0;
+    position: absolute;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+    vertical-align: text-top;
+    width: 35px;
+}
+.quantity .plus {
+    background: #f4f4f4 none repeat scroll 0 0;
+    border: 1px solid #c8bfc6;
+    border-radius: 2px;
+    box-shadow: none;
+    color: #5e5e5e;
+    cursor: pointer;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    height: 35px;
+    line-height: 13px;
+    margin: 0;
+    outline: 0 none;
+    overflow: visible;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+    top: 0;
+    vertical-align: text-top;
+    width: 35px;
+}
+.quantity .minus, .quantity .plus {
+    /*height: 20px;
+    line-height: 8px;
+    width: 20px;*/
+}
+</style>
+<script>
+var min_qty_price = {};  //Or, new Object()
+</script>
+<body>
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=../common/common.javascript.html;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=common_include_debug;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=common.header.html;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!-- Main content starts -->
+<div class="content"> 
+  <!-- Main bar -->
+  <div class="mainbar"> 
+    <!-- Matter -->
+    <div class="matter">
+      <div class="container receipt-bg">
+        <div class="row header">
+          <div class="col-md-4">
+             <!--TOP-LEFT - ONLOAD -->
+            <!--[onload;file=common.top.left.html;getbody;comm]-->
+             <!--TOP-LEFT - ONLOAD -->
+            <div class="text-center kasse pull-left">All Receipts</div>
+            <div class="search-product" style="display:none">
+              <div id="Exp-serach" class="Exp-serach">
+                <form id="searchFrm" name="searchFrm" action="" method="post">
+                  <input class="ExpInput " onKeyUp="buttonUp();" placeholder="Søk produkt..." onBlur="monkey();" type="search" value="" name="search" id="search">
+                  <input class="Expbtn" type="submit"  value="">
+                  <span class="ExpIcon"><i class="fa fa-search"></i></span>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8">
+             <!--TOP-RIGHT - ONLOAD -->
+            <!--[onload;file=common.top.right.html;getbody;comm]-->
+             <!--TOP-RIGHT - ONLOAD -->
+            <div class="clearfix"></div>
+            <div class="text-center kasse">Information</div>
+            <div class="print" style="display:none"><i class="fa fa-print" aria-hidden="true"></i></div>
+          </div>
+        </div>
+        <div class="row receipt">
+          <div class="col-md-4  no-padd scroll-pane"> 
+		  
+		  <button type="button" style="width:100%" class="accordion-toggle btn ">Heatseal Log <span class="toggle-icon"><i class='fa fa-minus-circle'></i></span></button>
+		  
+		 <div id="heatsealiframe"  class="accordion-content" style="display:block;">
+		  <div id="loadingMessage" style="text-align:center; margin-top:25px"><img src="img/ajax-loader.gif"/></div>
+		  <iframe width="100%" height="100%" onload="setIframeheight()" id="iframeorder" frameborder="0"  src="[conf.site_url;noerr]/admin/heatseal/getHeatseallog/[vars.iframe_order]"></iframe> 
+		  </div>
+		  <!--[lists.customerorderdetails;noerr;htmlconv=no;protect=no;comm]--> 
+          </div>
+          <div class="col-md-8  scroll-pane no-padd">
+            <div class="col-md-12"> 
+              
+             
+			
+             <div class="order_receipt">
+                <div id="ajax-loader"><img src="img/ajax-loader.gif"/></div>
+                
+                
+                <div id="info">
+                
+                    <div>
+                      <!--[onshow;block=div;when [visible.wi_show_order] == 0;comm]-->
+    
+                      <h2><div class="col-md-12 text-center mt-lg mb-lg"><h2>Ingen resultat.</h2></div></h2>
+                   </div>
+                   
+                 <div> 
+                   <!--[onshow;block=div;when [visible.wi_show_order] == 1;comm]-->
+
+                  <!--[lists.company_info;noerr;htmlconv=no;protect=no;comm]--> 
+                  <!--[lists.customer_detail;noerr;htmlconv=no;protect=no;comm]--> 
+                  <!--[lists.orderlines;noerr;htmlconv=no;protect=no;comm]--> 
+                  <!--[lists.summary;noerr;htmlconv=no;protect=no;comm]--> 
+                  
+                <div class="row">
+                
+                     <div class="col-md-3 pull-left">
+                       <!--<button type="button" id="tilbake" onClick="window.location.href='[conf.site_url;noerr]/admin/'" class="btn-lg orange">Tilbake</button>-->
+                     </div>
+                     <div class="col-md-3 pull-right no-padd">
+					 
+					 [visible.bekreft_status]
+					  <!--[onshow;block=div;when [visible.bekreft_status] == 1;comm]-->
+					   <div> 
+                        <button type="button" onClick="updateorderlog();" id="begynne" class="btn-lg green start-btn">Bekreft og skriv ut</button>
+					    </div>
+						
+                      </div>               
+                    <div class="clearfix"></div> 
+                </div>  
+               </div>             
+              
+             </div>  
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Matter ends --> 
+</div>
+<!-- Mainbar ends -->
+<div class="clearfix"></div>
+
+<!-- styles needed by jScrollPane -->
+<link type="text/css" href="style/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+<!-- the mousewheel plugin - optional to provide mousewheel support --> 
+<script type="text/javascript" src="js/jquery.mousewheel.js"></script> 
+<!-- the jScrollPane script --> 
+<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script> 
+
+<script type='text/javascript'>//<![CDATA[
+$(window).load(function(){
+$('#iframeorder').ready(function () {
+    $('#loadingMessage').css('display', 'none');
+	$('#iframeorder').css('display', 'block');
+});
+$('#iframeorder').load(function () {
+    $('#loadingMessage').css('display', 'none');
+	$('#iframeorder').css('display', 'block');
+});
+});//]]> 
+
+</script>
+
+
+<script type="text/javascript">
+
+function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+}
+
+
+$(document).ready(function(){
+
+window.updateMissStatus = function(heatid,status,orderline) {
+		
+	$('#heatdeletebtn').attr('onclick','updatemiss_status(\''+heatid+'\',\''+status+'\',\''+orderline+'\')');
+	
+	if(status == '17')
+	{
+		$('#tild_h4').html('Are you sure want to change?');
+	}
+	else
+	{
+		$('#tild_h4').html('Are you sure want to change?');
+	}
+	
+	$('#removeHeatsealModal').modal({ backdrop: 'static', keyboard: false });			
+};
+
+
+
+
+	//$('.scroll-pane,.orderline-block').jScrollPane();  //scrollpane
+		if($(window).height() < 760){
+		$('.scroll-pane,.orderline-block').jScrollPane({
+			autoReinitialise: true
+		});  //scrollpane
+	}
+	else{
+		$('.scroll-pane,.orderline-block').css({"height": "auto"}); 
+	}
+
+	
+	// function for closing modal window (in parent page)
+	function closeModal() {
+		$("#modalIframe").dialog("close");
+	}	
+	
+	/*search box*/	
+	function buttonUp(){
+		 var valux = $('.ExpInput').val();
+			valux = $.trim(valux).length;
+			if(valux !== 0){
+				$('.Expbtn').css('z-index','99');
+			} else{
+				$('.ExpInput').val(''); 
+				$('.Expbtn').css('z-index','-999');
+			}
+	}
+});
+
+
+</script> 
+<!--------------------COMMON FOOTER JAVASCRIPT----------------------------> 
+<!--[onload;file=../common/common.footer.javascript.html;getbody;comm]--> 
+<!--------------------COMMON FOOTER JAVASCRIPT----------------------------> 
+
+
+
+</body>
+</html>
+
+
+<script  type="text/javascript">
+function refresh_frame(id)
+{
+	 $('#loadingMessage').css('display', 'block');
+	 $('#iframeorder').css('display', 'none');
+	 $("#iframeorder").contents().find("#heatdiv").css('display', 'none');
+	 
+	 
+	if(id == '')
+	{
+		var f = document.getElementById("iframeorder");
+		var s = f.src;
+		f.src = s;
+	}
+	else
+	{
+	 document.getElementById("iframeorder").src="[conf.site_url;noerr]/admin/heatseal/getHeatseallog/"+id;
+	 
+	
+       var obj=document.getElementById("iframeorder");
+	 obj.style.height = 0;
+      var newheight=obj.contentWindow.document.body.scrollHeight+30;
+     obj.style.height = newheight + 'px';
+	  $('#iframeorder').css('display', 'block');
+   
+	
+	 
+	 
+	 
+	}
+}
+
+function setIframeheight()
+{
+	 var obj=document.getElementById("iframeorder");
+	 obj.style.height = 0;
+     var newheight=obj.contentWindow.document.body.scrollHeight+30;
+     obj.style.height = newheight + 'px';
+}
+
+
+
+</script>
+<script type="text/javascript">
+$(document).ready(function () {
+
+window.success_msg = function(arg1,arg2) {
+noty({
+								text: arg2,
+								layout: 'bottomRight',
+								type: arg1,
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+};
+
+window.error_msg = function(arg3,arg4) {
+noty({
+								text: arg4,
+								layout: 'bottomRight',
+								type: arg3,
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+};
+
+
+
+//load order in fo based on order link in sidebar
+	$('.order-list a').click(function(){
+		var oid = $(this).attr('rel');
+		
+		 var processing = false;
+		 if(processing == false){
+			processing = true;
+			 $.ajax({
+				type: "POST",
+				url: "[conf.site_url;noerr]/admin/heatseal/getorderreceipt",
+				data: {
+					oid: oid
+				},
+			   beforeSend: function(){
+					 $("#ajax-loader").show();
+					 $("#info").hide();
+			   },
+			   complete: function(){
+					processing = false;
+					$("#ajax-loader").hide();
+					$("#info").show();
+					$("#barcode" ).focus();
+			   },
+			   dataType: "json",
+			   success: function (data) {
+					$("#info").html(data.order_details);
+					refresh_frame(oid);
+					//orderautoselect();
+					
+					//buttonhide();
+				}
+			});
+		}
+		else {
+			noty({
+								text: '[lang.lang_process_goingon]',
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+		}
+		return false;
+	});
+	
+
+
+    $('.accordion-toggle').on('click', function(event){
+    	event.preventDefault();
+    	// create accordion variables
+    	var accordion = $(this);
+    	var accordionContent = accordion.next('.accordion-content');
+    	var accordionToggleIcon = $(this).children('.toggle-icon');
+    	
+    	// toggle accordion link open class
+    	accordion.toggleClass("open");
+    	// toggle accordion content
+    	accordionContent.slideToggle(250);
+    	
+    	// change plus/minus icon
+    	if (accordion.hasClass("open")) {
+    		accordionToggleIcon.html("<i class='fa fa-plus-circle'></i>");
+    	} else {
+    		accordionToggleIcon.html("<i class='fa fa-minus-circle'></i>");
+    	}
+		
+		var obj=document.getElementById("iframeorder");
+	 obj.style.height = 0;
+	 var newheight=obj.contentWindow.document.body.scrollHeight+0;
+     obj.style.height = newheight + 'px';
+	 
+	 
+    });
+});
+
+function updatemiss_status(heatid,status,orderline)
+{
+	$.ajax({
+			type: "POST",
+			url: "[conf.site_url;noerr]/admin/heatseal/updateMissStatus",
+			data: {
+				heatseal: heatid,
+				status:status,
+				orderline:orderline
+			},
+			dataType: "json",
+			success: function (data) {
+			
+		
+				
+						if(data.status == 'success')
+						{
+						
+						
+						$("#iframeorder").contents().find("#heat_status_"+heatid).html(data.button);
+						
+						
+							//$( "#heat_status_"+heatid ).html(data.button);
+							
+							if(status == '17')
+							{
+								//$("#td_"+heatid).css({"color": 'red'});
+								$("#iframeorder").contents().find("#td_"+heatid).css({"color": 'red'});
+								$("#iframeorder").contents().find("#td_"+heatid).parent().css({"color": 'red'});
+								$("#iframeorder").contents().find("input[type='button']").css({"background": 'ff9933'});
+							}
+							else
+							{
+								$("#iframeorder").contents().find("#td_"+heatid).parent().css({"color": '#000'});
+								$("#iframeorder").contents().find("#td_"+heatid).css({"color": '#000'});
+								//$("#td_"+heatid).css({"color": '#000'});
+							}
+							
+							
+							noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'information',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+							
+							
+							
+						//	 window.parent.success_msg('information',data.message);
+							
+							
+						}
+						else
+						{
+							//window.parent.error_msg('warning',data.message);
+							noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+							
+						}
+				
+				
+				
+			}
+		});
+}
+</script>
+
+<div id="removeHeatsealModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog " style="max-width: 450px; margin-top:150px">
+<div class="modal-content widget ">
+<div class="padd"><h4 id="tild_h4" class="text-center"></h4></div>
+<div class="modal-footer">
+<button type="button" id="heatdeletebtn"  data-dismiss="modal" class="btn green" >Yes</button>
+<button type="button" data-dismiss="modal" class="btn red">Cancel</button>
+</div>
+</div>
+</div>
+</div>

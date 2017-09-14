@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+<link href="../common/style/bootstrap.css" rel="stylesheet">
+<link href="../common/style/style.css" rel="stylesheet">
+<link href="../common/style/custom.css" rel="stylesheet">
+<!--[onshow;block=head;when [visible.foo] == bar;comm]-->
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+</head>
+<!--HEAD - ONLOAD-->
+<!--[onload;file=../common/common.head.html;getbody;comm]-->
+<!--HEAD - ONLOAD-->
+<style>
+.antall {
+	color: #a9a9a9;
+	font-size: 14px;
+	line-height: 40px;
+}
+
+
+.quantity .qty {
+    border: 1px solid #ccc;
+    box-shadow: none;
+    float: left;
+    font-size: 0.9em;
+    height: 35px;
+    padding: 0 10px;
+    text-align: center;
+    width: 100%;
+}
+.quantity .minus {
+    background: #f4f4f4 none repeat scroll 0 0;
+    border: 1px solid #c8bfc6;
+    border-radius: 2px;
+    box-shadow: none;
+    color: #5e5e5e;
+    cursor: pointer;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    height: 35px;
+    line-height: 13px;
+    margin: 0;
+    outline: 0 none;
+    overflow: visible;
+    padding: 0;
+    position: absolute;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+    vertical-align: text-top;
+    width: 35px;
+}
+.quantity .plus {
+    background: #f4f4f4 none repeat scroll 0 0;
+    border: 1px solid #c8bfc6;
+    border-radius: 2px;
+    box-shadow: none;
+    color: #5e5e5e;
+    cursor: pointer;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    height: 35px;
+    line-height: 13px;
+    margin: 0;
+    outline: 0 none;
+    overflow: visible;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+    top: 0;
+    vertical-align: text-top;
+    width: 35px;
+}
+.quantity .minus, .quantity .plus {
+    /*height: 20px;
+    line-height: 8px;
+    width: 20px;*/
+}
+</style>
+<script>
+var min_qty_price = {};  //Or, new Object()
+</script>
+<body>
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=../common/common.javascript.html;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=common_include_debug;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=common.header.html;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!-- Main content starts -->
+<div class="content"> 
+  <!-- Main bar -->
+  <div class="mainbar"> 
+    <!-- Matter -->
+    <div class="matter">
+      <div class="container receipt-bg">
+        <div class="row header">
+          <div class="col-md-4">
+             <!--TOP-LEFT - ONLOAD -->
+            <!--[onload;file=common.top.left.html;getbody;comm]-->
+             <!--TOP-LEFT - ONLOAD -->
+            <div class="text-center kasse pull-left">All Receipts</div>
+            <div class="search-product" style="display:none">
+              <div id="Exp-serach" class="Exp-serach">
+                <form id="searchFrm" name="searchFrm" action="" method="post">
+                  <input class="ExpInput " onKeyUp="buttonUp();" placeholder="Søk produkt..." onBlur="monkey();" type="search" value="" name="search" id="search">
+                  <input class="Expbtn" type="submit"  value="">
+                  <span class="ExpIcon"><i class="fa fa-search"></i></span>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8">
+          <p class="pull-right topbar">[vars.today_date] - Uke [vars.week] - <span id="today_time">[vars.today_time]</span></p>
+            <div class="clearfix"></div>
+            <div class="text-center kasse">Information</div>
+            <div class="print"><i class="fa fa-print" aria-hidden="true"></i></div>
+          </div>
+        </div>
+        <div class="row receipt">
+          <div class="col-md-4  no-padd scroll-pane"> 
+            <!--[lists.customerorderdetails;noerr;htmlconv=no;protect=no;comm]--> 
+            
+          </div>
+          <div class="col-md-8  scroll-pane no-padd">
+            <div class="col-md-12"> 
+              
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse"  id="bs-example-navbar-collapse-1">
+                <center>
+                  <form class="navbar-form orderlist"  action="" id="seachOrder" method="post">
+                    <input type="hidden" name="status" value="[vars.status]"/>
+                    <div class="form-group">
+                      <input type="text" class="form-control" data="order" name="barcode" id="barcode" placeholder="Scan the  Barcode">
+                    </div>
+                  </form>
+                  <form style="display:none;" class="navbar-form navbar-right form-small orderlist" action="" id="seachOrderline" method="post">
+                    <div class="form-group">
+                      <input type="hidden" class="form-control" name="orderline_barcode" id="orderline_barcode" value="">
+                      <input type="hidden" class="form-control" name="orderline_new" id="orderline_new" value="">
+                    </div>
+                  </form>
+                </center>
+              </div>
+              <!-- /.navbar-collapse -->
+			
+             <div class="order_receipt">
+                <div id="ajax-loader"><img src="img/ajax-loader.gif"/></div>
+                
+                <div id="info">
+                  <!--[lists.company_info;noerr;htmlconv=no;protect=no;comm]--> 
+                  <!--[lists.customer_detail;noerr;htmlconv=no;protect=no;comm]--> 
+                  <!--[lists.orderlines;noerr;htmlconv=no;protect=no;comm]--> 
+                  <!--[lists.summary;noerr;htmlconv=no;protect=no;comm]--> 
+                  
+                <div class="row">
+                     <div class="col-md-3 pull-left">
+                       <!--<button type="button" id="tilbake" onClick="window.location.href='[conf.site_url;noerr]/admin/'" class="btn-lg orange">Tilbake</button>-->
+                     </div>
+                     <div class="col-md-3 pull-right no-padd">
+                       
+                       <button type="button" onClick="updateorderlog();" id="begynne" class="btn-lg green start-btn">Bekreft</button>
+                      </div>               
+                    <div class="clearfix"></div> 
+                </div>  
+               </div>             
+              
+             </div>  
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Matter ends --> 
+</div>
+<!-- Mainbar ends -->
+<div class="clearfix"></div>
+<!--WI_IFRAME_MODAL-->
+<div class="row">
+  <div id="modalIframe" class="modal fade reload-parent-on-close" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header back-color">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+          <h4 class="modal-title text-center" id="modal-iframe-title"></h4>
+        </div>
+        <div class="modal-body login">
+          <iframe frameborder="0" class="slimScrollBarModal----"></iframe>
+        </div>
+        <div class="modal-footer" style="display:none">
+          <button type="button" class="btn btn-default close-btn" data-dismiss="modal" aria-hidden="true">[lang.lang_close]</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--WI_IFRAME_MODAL--> 
+<!-- styles needed by jScrollPane -->
+<link type="text/css" href="style/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+<!-- the mousewheel plugin - optional to provide mousewheel support --> 
+<script type="text/javascript" src="js/jquery.mousewheel.js"></script> 
+<!-- the jScrollPane script --> 
+<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script> 
+<script type="text/javascript">
+$(document).ready(function(){
+	//$('.scroll-pane,.orderline-block').jScrollPane();  //scrollpane
+		if($(window).height() < 760){
+		$('.scroll-pane,.orderline-block').jScrollPane({
+			autoReinitialise: true
+		});  //scrollpane
+	}
+	else{
+		$('.scroll-pane,.orderline-block').css({"height": "auto"}); 
+	}
+
+	
+	// function for closing modal window (in parent page)
+	function closeModal() {
+		$("#modalIframe").dialog("close");
+	}	
+	
+	/*search box*/	
+	function buttonUp(){
+		 var valux = $('.ExpInput').val();
+			valux = $.trim(valux).length;
+			if(valux !== 0){
+				$('.Expbtn').css('z-index','99');
+			} else{
+				$('.ExpInput').val(''); 
+				$('.Expbtn').css('z-index','-999');
+			}
+	}
+});
+/*search box*/	
+$(document).ready(function(){
+		var submitIcon = $('.ExpIcon');
+		var submitInput = $('.ExpInput');
+		var searchBox = $('.Exp-serach');
+		var isOpen = false;
+		
+		$(document).mouseup(function(){
+			if(isOpen == true){
+			submitInput.val('');
+			$('.Expbtn').css('z-index','-999');
+			submitIcon.click();
+			}
+		});
+		
+		submitIcon.mouseup(function(){
+			return false;
+		});
+		
+		searchBox.mouseup(function(){
+			return false;
+		});
+				
+		submitIcon.click(function(){
+			if(isOpen == false){
+				searchBox.addClass('Exp-serach-open');
+				isOpen = true;
+			} else {
+				searchBox.removeClass('Exp-serach-open');
+				isOpen = false;
+			}
+	});
+	
+});
+</script> 
+<!--------------------COMMON FOOTER JAVASCRIPT----------------------------> 
+<!--[onload;file=../common/common.footer.javascript.html;getbody;comm]--> 
+<!--------------------COMMON FOOTER JAVASCRIPT----------------------------> 
+
+<script type="text/javascript" src="[conf.site_url_themes_common;noerr]/js/products.js"></script> 
+
+<script type="text/javascript" src="[conf.site_url_themes_common;noerr]/js/jquery-code-scanner1.js"></script> 
+<script type="text/javascript">
+$(document).ready(function() {	  
+	$("#barcode" ).focus();
+	$('#barcode').codeScanner();
+	///orderautoselect();
+	 buttonhide();
+	
+	
+
+	
+	
+	//load order in fo based on order link in sidebar
+	$("form#searchFrm").submit(function(){
+		var oid = $("#search").val();
+		 var processing = false;
+		 if(processing == false){
+			processing = true;
+			 $.ajax({
+				type: "POST",
+				url: "[conf.site_url;noerr]/admin/orders/get-order-receipt",
+				data: {
+					oid: oid
+				},
+			   beforeSend: function(){
+					 $("#ajax-loader").show();
+					 $("#info").hide();
+			   },
+			   complete: function(){
+					processing = false;
+					$("#ajax-loader").hide();
+					$("#info").show();
+					$("#barcode" ).focus();
+			   },
+			   dataType: "json",
+			   success: function (data) {
+					$("#info").html(data.order_details);
+					buttonhide();
+				}
+			});
+		}
+		else {
+			
+				noty({
+								text: '[lang.lang_process_goingon]',
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+		}
+		return false;
+	});
+	
+	
+	//load order in fo based on order link in sidebar
+	$('.order-list a').click(function(){
+		var oid = $(this).attr('rel');
+		 var processing = false;
+		 if(processing == false){
+			processing = true;
+			 $.ajax({
+				type: "POST",
+				url: "[conf.site_url;noerr]/admin/orders/get-order-receipt",
+				data: {
+					oid: oid
+				},
+			   beforeSend: function(){
+					 $("#ajax-loader").show();
+					 $("#info").hide();
+			   },
+			   complete: function(){
+					processing = false;
+					$("#ajax-loader").hide();
+					$("#info").show();
+					$("#barcode" ).focus();
+			   },
+			   dataType: "json",
+			   success: function (data) {
+					$("#info").html(data.order_details);
+					buttonhide();
+				}
+			});
+		}
+		else {
+			noty({
+								text: '[lang.lang_process_goingon]',
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+		}
+		return false;
+	});
+	
+	
+});
+
+function getorderreceipt(oid)
+{
+
+	$.ajax({
+				type: "POST",
+				url: "[conf.site_url;noerr]/admin/orders/get-order-receipt",
+				data: {
+					oid: oid
+				},
+			   beforeSend: function(){
+					 $("#ajax-loader").show();
+					 $("#info").hide();
+			   },
+			   complete: function(){
+					processing = false;
+					$("#ajax-loader").hide();
+					$("#info").show();
+					$("#barcode" ).focus();
+			   },
+			   dataType: "json",
+			   success: function (data) {
+				   
+					$('.popupscroll').jScrollPane({
+						autoReinitialise: true
+					});  //scrollpane
+				   
+				   
+					$("#info").html(data.order_details);
+					buttonhide();
+				}
+			});
+}
+
+function orderautoselect()
+{
+	$( ".cart_table_item" ).each(function( index ) {
+	
+		$( "#"+this.id ).trigger( "click" );
+		return false;
+	});
+}
+
+function validateForm()
+{
+	var radios = document.getElementsByName("producttype");
+    var formValid = false;
+
+    var i = 0;
+    while (!formValid && i < radios.length) {
+        if (radios[i].checked) formValid = true;
+        i++;        
+    }
+
+    return formValid;
+}
+
+function getOrderlinedetails1()
+{
+	var barcode=$("#barcode" ).val();
+	 getOrderlinedetails(barcode);
+}
+
+function getOrderlinedetails(barcode)
+{
+	
+	
+	var barlength=barcode.toString().length;
+	if(barlength < 8)
+	{
+		//alert("Invalid Barcode");
+		return false;
+	}
+	
+	if(barcode.charAt(0) == 8)
+	{
+		noty({
+								text: 'Invalid Barcode',
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+							
+						$('#barcode').val('');
+						$( "#barcode" ).focus();
+							
+		return false;
+	}
+	
+	
+	// $("#tilbake").attr("disabled","disabled");
+		//
+		
+	var orderline=$('#orderline_new').val();
+	if(parseInt(orderline) > 0)
+	{
+		var qty=$('#qty_'+orderline).html();
+		var lstatus=$('#qty_'+orderline).attr( "data" );
+		var sqty=$('#sqty_'+orderline).val();
+	
+			var producttype='';
+			if(parseInt(sqty) > 1)
+			{
+		
+				var vform=validateForm();
+				if(vform)
+				{
+					 producttype = $("input[name='producttype']:checked").val();
+				}
+				else
+				{
+					//alert("Must choose the product type!");
+					
+					$("#multiqtyprotbtn").trigger('click');
+					return false;
+				}
+				
+				
+			}
+		
+			
+		$.ajax({
+			url: "[conf.site_url;noerr]/admin/orders/orderlinedetails",
+			type:   'POST',
+			cache:  false,
+			data: {
+				barcode:barcode,
+				orderline:orderline,
+				lstatus:lstatus,
+				qty:qty,
+				producttype:producttype		
+			},		
+			success: function(response){
+					item=JSON.parse(response); 
+					
+					if(item.status == 'success')
+					{
+					
+						$('#barcode').val('');
+						$( "#barcode" ).focus();
+						
+						if(parseInt(item.qty) > 1 )
+						{	
+							$('#qty_'+item.orderline).html($('#qty_'+item.orderline).html()-1);
+							
+							$( "#newquantity_"+item.orderline).val($( "#newquantity_"+item.orderline).val()-1)
+							
+							
+							
+							$(this).parent().parent().parent().animate( { backgroundColor: "#ffffcc" }, 1 ).animate( { backgroundColor: "#f2f2f2" }, 2000 );
+						}
+						else
+						{
+							
+							var newqty=$('#qty_'+item.orderline).html();
+							$("#tr_"+item.orderline).css({"background-color": '#FFFFFF'});
+							$("#tr_"+item.orderline).removeClass( "cart_table_item" );
+							$("#tr_"+item.orderline).removeAttr( "style" );
+							$("#tr_"+item.orderline).removeAttr( "onclick" );
+							if(parseInt(newqty) > 0)
+							{
+								$('#qty_'+item.orderline).html($('#qty_'+item.orderline).html()-1);
+
+							}
+							$(this).parent().parent().parent().animate( { backgroundColor: "#ffffcc" }, 1 ).animate( { backgroundColor: "#ffffff" }, 2000 );
+							
+						//	$("#tr_"+item.orderline).remove();
+							$('#barcode').val('');
+							$('#orderline_new').val('')
+							var newindex=0;
+							$('.cart_table_item').each(function(index, obj){
+							   newindex=parseInt(index)+1;
+							  
+							});
+							
+							if(parseInt(newindex) == 0)
+							{
+								//$('#widget_content').hide();
+								//$('#barcode').attr('data','order');
+							}
+							//orderautoselect();
+		
+						}
+						
+						 var ele = document.getElementsByName("producttype");
+							for(var i=0;i<ele.length;i++)
+							ele[i].checked = false;
+	
+					}
+					else if(item.status == 'bag')
+					{
+						noty({
+								text: item.message,
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+					}
+					else
+					{
+						noty({
+								text: item.message,
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+						});
+						$('#barcode').val('');
+						$("#barcode" ).focus();
+					}
+					
+				buttonhide();	
+			}           
+		  });
+	 }
+	 else
+	 {
+
+		noty({
+								text: 'Please select any one order line.',
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+		return false;
+	 }
+	
+}
+
+function skipOrderlineScan(oobj,orlid)
+{
+	if(oobj.checked)
+	{
+		$( "#qty_"+orlid ).html('0');
+		$("#tr_"+orlid).css({"background-color": '#fff'});
+		$("#tr_"+orlid).find('p').css({"color": '#000'});
+		$("#tr_"+orlid).find('.antall').css({"color": '#0cc579'});
+		$("#tr_"+orlid).find('font').css({"color": '#ff6511'});
+		
+		$('#orderline_new').val('');
+	
+	}
+	else
+	{
+		$( "#qty_"+orlid ).html($( "#newquantity_"+orlid ).val());
+	}
+buttonhide();
+	
+}
+
+function buttonhide()
+{
+	var newqty=0;
+	$( ".cart_table_item" ).each(function( index ) {
+		var trid = this.id.replace('tr_','');
+		var nqty=$( "#qty_"+trid ).html();
+		newqty=parseInt(newqty)+parseInt(nqty);
+	});
+	
+	
+	if(newqty == 0)
+	{
+		$("#begynne").show();
+	}
+	else
+	{
+		$("#begynne").hide();
+	}
+	
+}
+
+
+	function closepopup()
+	{
+		$("#staff_close").trigger('click');
+		$("#barcode" ).focus();
+		
+		getOrderlinedetails1();
+	}
+
+function setNeworderline(norderline,sts,qtystatus)
+{
+
+	  var isChecked = $("#orderlinechk_"+norderline).is(":checked");
+	  if(isChecked)
+	  {
+		$("#tr_"+norderline).css({"background-color": '#fff'});
+		$("#tr_"+norderline).find('p').css({"color": '#000'});
+		$("#tr_"+norderline).find('.antall').css({"color": '#0cc579'});
+		$("#tr_"+norderline).find('font').css({"color": '#ff6511'});
+		return false;
+	  }
+  
+  
+	
+	$('.cart_table_item').each(function(index, obj){
+		   $(obj).css({"background-color": '#FFFFFF'});
+		   $(obj).find('p').css({"color": '#000'});
+		   $(obj).find('.antall').css({"color": '#0cc579'});
+		   $(obj).find('font').css({"color": '#ff6511'});
+		   
+	});
+	
+	 var oldorderline=$('#orderline_new').val();
+	 
+	 if(oldorderline == norderline)
+	 {
+	
+		 $("#tr_"+norderline).css({"background-color": '#FFFFFF'});
+		 $("#tr_"+norderline).find('p').css({"color": '#000'});
+		 $("#tr_"+norderline).find('.antall').css({"color": '#0cc579'});
+		 $("#tr_"+norderline).find('font').css({"color": '#ff6511'});
+		 $('#orderline_new').val('');
+		 $('#barcode').val('');
+	 }
+	 else
+	 {
+		
+		$("#tr_"+norderline).css({"background-color": '#0cc579'});
+		$("#tr_"+norderline).find('p').css({"color": '#fff'});
+		$("#tr_"+norderline).find('.antall').css({"color": '#fff'});
+		$("#tr_"+norderline).find('font').css({"color": '#fbfa00'});
+		$('#orderline_new').val(norderline);
+		$('#barcode').val('');
+		$("#barcode" ).focus();
+		if(parseInt(qtystatus) > 1)
+		{
+			 getProducttypes(norderline);
+			 //$("#multiqtyprotbtn").trigger('click');
+		}
+	 }
+	
+	//$("#tilbake").attr("disabled","disabled");
+	//$("#begynne").attr("disabled","disabled");
+	
+	$("#tilbake").hide();
+	$("#begynne").hide();
+	buttonhide();
+	//getOrderlinedetails(1);
+	
+}
+
+function updateorderlog(){
+	
+	var newqty=0;
+	$( ".cart_table_item" ).each(function( index ) {
+		var trid = this.id.replace('tr_','');
+		var nqty=$( "#qty_"+trid ).html();
+		newqty=parseInt(newqty)+parseInt(nqty);
+	});
+	
+	if(newqty > 0)
+	{
+		
+		noty({
+								text: "Sorry. Please complete order line scanning process.",
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+		return false;
+	}
+	
+	var ordrenr=$('#ordrenr').val();
+	$.ajax({
+			url: "[conf.site_url;noerr]/admin/orders/updateorderlog",
+			type:   'POST',
+			cache:  false,
+			data: {
+				order:ordrenr		
+			},		
+			success: function(response){
+					item=JSON.parse(response); 
+					
+					if(item.status == 'success')
+					{
+						noty({
+								text: item.message,
+								layout: 'bottomRight',
+								type: 'information',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+						$("#tilbake").show();
+					}
+					else
+					{
+						noty({
+								text: item.message,
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+					}
+				}           
+		  });
+	
+}
+
+function ajaxeditOrder(orid)
+{
+
+	 $.ajax({
+				type: "POST",
+				url: "[conf.site_url;noerr]/admin/orders/editorder",
+				data: {
+					orderid: orid
+				},
+			   beforeSend: function(){
+					 $("#edit-ajax-loader").show();
+					 $("#edit_order_frm").hide();
+
+			   },
+			   complete: function(){
+					processing = false;
+					$("#edit-ajax-loader").hide();
+					$("#edit_order_frm").show();
+					
+				},
+			   dataType: "json",
+			   success: function (data) {
+					$("#edit_order_frm").html(data.order_details);
+					$("#nproduct").select2({
+						allowClear: true
+					});
+					$(".minusplus").trigger('click');
+					
+					getorderreceipt(orid);
+					
+				}
+			});
+}
+
+function editOrder(orid)
+{
+
+	 $.ajax({
+				type: "POST",
+				url: "[conf.site_url;noerr]/admin/orders/editorder",
+				data: {
+					orderid: orid
+				},
+			   beforeSend: function(){
+					 $("#edit-ajax-loader").show();
+					 $("#edit_order_frm").hide();
+
+			   },
+			   complete: function(){
+					processing = false;
+					$("#edit-ajax-loader").hide();
+					$("#edit_order_frm").show();
+					
+				},
+			   dataType: "json",
+			   success: function (data) {
+					$("#edit_order_frm").html(data.order_details);
+					$("#nproduct").select2({
+						allowClear: true
+					});
+					
+					$(".minusplus").trigger('click');
+					
+					//remove an item from cart
+					$('a.removeOrderline').click(function(e){  
+						e.preventDefault();
+						var stuff = $(this).attr('data-stuff').split('@');
+						 olid = stuff[0];
+						 oid = stuff[1];
+						 
+						$('#olid').val(olid);
+						$('#oid').val(oid);
+					});
+					
+					$('.popupscroll').jScrollPane({
+						autoReinitialise: true
+					});  //scrollpane
+					
+					
+					
+				}
+			});
+}
+
+function edit_Order(orid)
+{
+
+	 $.ajax({
+				type: "POST",
+				url: "[conf.site_url;noerr]/admin/orders/editorder",
+				data: {
+					orderid: orid
+				},
+			   beforeSend: function(){
+					 $("#edit-ajax-loader").show();
+					 $("#edit_order_frm").hide();
+
+			   },
+			   complete: function(){
+					processing = false;
+					$("#edit-ajax-loader").hide();
+					$("#edit_order_frm").show();
+					
+				},
+			   dataType: "json",
+			   success: function (data) {
+					$("#edit_order_frm").html(data.order_details);
+					$("#nproduct").select2({
+						allowClear: true
+					});
+						$(".minusplus").trigger('click');
+						
+					//remove an item from cart
+					$('a.removeOrderline').click(function(e){  
+						e.preventDefault();
+						var stuff = $(this).attr('data-stuff').split('@');
+						 olid = stuff[0];
+						 oid = stuff[1];
+						 
+						$('#olid').val(olid);
+						$('#oid').val(oid);
+					});
+						
+					$('.popupscroll').jScrollPane({
+						autoReinitialise: true
+					});  //scrollpane
+						
+					
+					save_edit_order();
+					//getorderreceipt(orid);
+				}
+			});
+}
+</script> 
+	<button class="btn-xlg btn-info full-width" style="display:none;" id="multiqtyprotbtn" data-toggle="modal" href="#multiqtypro">Click</button>
+	
+	
+<div class="row">
+  <div id="multiqtypro" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <form name="radioForm" id="radioForm">
+        <div class="modal-content">
+          <div class="modal-header back-color">
+            <button type="button" id="staff_close" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+           
+            <h4 class="modal-title login-title"> Select Product Type</h4>
+          </div>
+          <div class="modal-body login">
+        <div class="form-login-wrapper">		
+            <div class="pw-wrapper" style="background:none;">
+				<div class="row text-center" id="pro-ajax-loader"><img src="img/ajax-loader.gif"/></div>
+                <div id="product_type" class="row text-center">
+				</div>
+            </div>
+            
+            
+         		   </div>
+             </div>
+             </div>
+           </form>
+        </div>
+      </div>
+</div>
+
+
+
+<div class="row">
+  <div id="editproduct" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="max-width:60%;">
+	
+        <div class="modal-content">
+          <div class="modal-header back-color">
+            <button type="button" id="order_close" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+           
+            <h4 class="modal-title login-title">Order Information</h4>
+          </div>
+          <div class="modal-body ">
+        <div class="form-login-wrapper">		
+            <div class="pw-wrapper" style="background:none; padding:0">
+            
+            <div id="edit-ajax-loader"><img src="img/ajax-loader.gif"/></div>
+
+			 <form class="form-horizontal" action="" method="post" name="ordereditfrm" id="ordereditfrm">
+                <div id="edit_order_frm" class="row">
+                
+               
+				</div>
+				</form>
+            </div>
+            
+            
+         		   </div>
+             </div>
+             </div>
+          
+      
+	</div>
+  </div>
+</div>
+
+<script>
+function save_edit_order()
+{
+	var datastring = $("#ordereditfrm").serialize();
+	
+	$.ajax({
+		type: "POST",
+		url: "[conf.site_url;noerr]/admin/orders/saveeditorder",
+		data: datastring,
+		dataType: "json",
+		success: function(data) {
+			//$("#order_close").trigger('click');
+			/*noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'information',
+								timeout: [settings_general.notifications_display_duration;noerr]
+				});*/
+			var ordder_id=$("#eorder_id").val();	
+			getorderreceipt(ordder_id);
+				
+							
+		},
+		error: function(data) {
+			noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+		}
+	});
+}
+
+
+function save_editorder()
+{
+	var datastring = $("#ordereditfrm").serialize();
+	
+	$.ajax({
+		type: "POST",
+		url: "[conf.site_url;noerr]/admin/orders/saveeditorder",
+		data: datastring,
+		dataType: "json",
+		success: function(data) {
+			//$("#order_close").trigger('click');
+			/*noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'information',
+								timeout: [settings_general.notifications_display_duration;noerr]
+				});*/
+			var ordder_id=$("#eorder_id").val();	
+			ajaxeditOrder(ordder_id);
+			//getorderreceipt(ordder_id);
+			
+							
+		},
+		error: function(data) {
+			noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+		}
+	});
+}
+
+
+
+function saveeditorder()
+{
+	var datastring = $("#ordereditfrm").serialize();
+	
+	$.ajax({
+		type: "POST",
+		url: "[conf.site_url;noerr]/admin/orders/saveeditorder",
+		data: datastring,
+		dataType: "json",
+		success: function(data) {
+			$("#order_close").trigger('click');
+			noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'information',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+			var ordder_id=$("#eorder_id").val();	
+			getorderreceipt(ordder_id);
+				
+							
+		},
+		error: function(data) {
+			noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+		}
+	});
+}
+
+function addProduct()
+{
+	var proid=$("#nproduct").val();
+	var ordder_id=$("#eorder_id").val();
+    if(proid == '' || proid == 0)
+	{
+		noty({
+								text: '[lang.lang_product_not_added]',
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+							return false;
+	}
+	$('#add_productbtn').attr('disabled','disabled');	
+	$("#nproduct").val('');
+	$.ajax({
+		type: "POST",
+		url: "[conf.site_url;noerr]/admin/orders/addOrderline",
+		data: {
+					product: proid,
+					order:ordder_id
+				},
+		dataType: "json",
+		success: function(data) {
+			//$("#order_close").trigger('click');
+			/*noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'information',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});*/
+				
+			//editOrder(ordder_id);
+			$("#nproduct").val('');
+			$('#add_productbtn').removeAttr('disabled');
+			//saveeditorder();
+			edit_Order(ordder_id);
+	
+			//saveeditorder();
+							
+		},
+		error: function(data) {
+			noty({
+								text: '[lang.lang_product_not_added]',
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+		}
+	});
+	
+}
+
+function updateorderlines(orderlineid,orderids)
+{
+	$('#olid').val(orderlineid);
+	$('#oid').val(orderids);
+}
+
+function removeOrderline(orderlineid,orderids)
+{	
+
+	var orderlineid = 	$('#olid').val();
+	var orderids =	$('#oid').val();
+	var chkid='qty_'+orderlineid;
+	
+	$('.qty').each(function(i, obj) {
+	
+		if(chkid == this.id)
+		{
+			$(this).val('0');
+			save_editorder();
+		}
+		
+	});
+
+
+	/*$.ajax({
+		type: "POST",
+		url: "[conf.site_url;noerr]/admin/orders/removeOrderline",
+		data: {
+					orderline: orderlineid
+				},
+		dataType: "json",
+		success: function(data) {
+			
+			var ordder_id=$("#eorder_id").val();
+			edit_Order(ordder_id);
+				
+							
+		},
+		error: function(data) {
+			noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+		}
+	});*/
+
+}
+			 
+function getProducttypes(norderline)
+{
+	
+		$("#multiqtyprotbtn").trigger('click');
+		$.ajax({
+		type: "POST",
+		url: "[conf.site_url;noerr]/admin/orders/getproducttypes",
+		data: {
+					orderline: norderline
+				},
+		dataType: "json",
+		 beforeSend: function(){
+					 $("#pro-ajax-loader").show();
+					 $("#product_type").hide();
+
+			   },
+			   complete: function(){
+					processing = false;
+					$("#pro-ajax-loader").hide();
+					$("#product_type").show();
+					
+				},
+		success: function(data){
+			//$("#order_close").trigger('click');
+			$("#product_type").html(data.protype);			
+			
+		},
+		error: function(data) {
+			noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+		}
+	});
+	//
+}			 
+
+</script>
+
+<div id="removeOrderlineModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog " style="max-width: 450px; margin-top:150px">
+<div class="modal-content widget ">
+<div class="padd"><h4 class="text-center">[lang.lang_confirm_delete_item;noerr]</h4></div>
+<div class="modal-footer">
+<input type="hidden" name="olid" value="" id="olid"/>
+<input type="hidden" name="oid" value="" id="oid"/>
+<button type="button" onclick="removeOrderline()" data-dismiss="modal" class="btn green" >Yes</button>
+<button type="button" data-dismiss="modal" class="btn red">Cancel</button>
+</div>
+</div>
+</div>
+</div>
+<!--ORDER HEAT SEAL - MODAL -->
+<!--[onload;file=order.heatseal.html;getbody;comm]-->
+<!--ORDER HEAT SEAL - MODAL -->
+
+</body>
+</html>
+

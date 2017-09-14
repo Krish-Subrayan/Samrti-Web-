@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0044)https://smart-laundry.no/admin/download/1033 -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- this script helps us to capture any div -->
+<script src="[conf.site_url_themes_common;noerr]/js/html2canvas.js"></script>
+
+<script type="text/javascript">	
+$(document).ready(function() { 
+  $(window).load(function() { 
+     //insert all your ajax callback code here. 
+     //Which will run only after page is fully loaded in background.
+	 var printtotal = $( ".print" ).length;
+	 
+	 var pcnt=0;
+	  $('.print').each(function(index) {
+       // index has the count of the current iteration
+		//get the div content
+		var divid=this.id;
+		div_content = document.querySelector("#"+this.id);
+		html2canvas(div_content).then(function(canvas) {
+		data = canvas.toDataURL('image/png');
+		pcnt=parseInt(pcnt)+1;
+		$('#print_count').val(pcnt);
+		$('#hidden-print').prepend('<input class="printstatus" type="hidden" id="print_'+divid+'" value="0" />');
+			save_img(data,'download',divid);
+			
+		});
+		
+	});
+
+	
+  });
+ 
+ 
+var interval = setInterval(doPrint, 3000); // 2000 ms = start after 2sec 
+function doPrint() {
+  
+   var printtotal = $( ".print" ).length;
+   var print_count=$('#print_count').val();
+   var printstatus=1;
+   if(printtotal == print_count)
+   {
+		$('.printstatus').each(function(index){
+			if($("#"+this.id).val() == 0)
+			{
+				printstatus=0;
+				//alert($("#"+this.id).val());
+			}
+			
+		});
+		
+		if(printstatus == 1)
+		{
+			preparereportprintFrame();
+			clearInterval(interval); 
+		}
+		//alert(printstatus);
+   }
+   
+   
+   
+  //clearInterval(interval);
+}
+
+ 
+});
+
+
+function preparereportprintFrame() {
+
+  var ifrmm = document.createElement("iframe");
+        ifrmm.setAttribute("src", "[conf.site_url;noerr]/admin/printecspos/reportprint/download");
+        ifrmm.style.width = "640px";
+        ifrmm.style.height = "480px";
+		ifrmm.style.display = "none";
+        document.body.appendChild(ifrmm);
+}
+	
+
+
+//to save the canvas image
+function save_img(data,orderid,divid){
+	//ajax method.
+	$.post('[conf.site_url;noerr]/admin/printecspos/save-image', {data: data,order:orderid,id:divid}, function(res){
+		//if the file saved properly, trigger a popup to the user.
+		$('#print_'+divid).val('1');
+		console.log(res);
+		//alert(res);
+		/*if(res != ''){
+			yes = confirm('File saved in output folder, click ok to see it!');
+		}
+		else{
+			alert('something wrong');
+		}*/
+	});
+}
+</script>
+<style>
+@media print {
+ h1 { 
+  page-break-after: always;
+ } 
+}
+@media all {
+	.page-break	{ display: none; }
+}
+
+@media print {
+	.page-break	{ display: block; page-break-before: always; }
+}
+</style>
+<style media="print">
+ @page {
+  size: auto;
+  margin: 0;
+       }
+</style>
+<!--define our base-->
+<base href="[conf.site_url;noerr]/application/themes/[settings_general.theme]/common/">
+<base href=".">
+<title>[lang.lang_website_title;noerr]</title>
+</head>
+<!--<body onLoad="connect();">
+-->
+<body>
+
+<div>
+   <table class="print" id="download" width="90%" align="center" border="0" cellpadding="0" cellspacing="0" > 
+    <tbody>
+      <tr>
+			<td valign="top" align="center" style="padding:0 0 20px 0;"><ul style="margin:0; padding:0 0 0 2px; font-family: 'arial', monospace; font-size: 13px; font-weight: normal; text-align:center">
+            <li style="margin:0; padding: 0; font-family: 'arial', monospace; font-size: 32px; font-weight: normal; color: #000; list-style: none; font-weight:bold">Omsetning på kasserull (small)</li>
+            <li style="margin:0; padding:10px 0; font-family: 'arial', monospace; font-size: 30px; font-weight: normal; color: #000; list-style: none; font-weight:bold">Kasseskuffer 1</li>
+            <li style="margin:0; padding: 0; font-family: 'arial', monospace; font-size: 30px; font-weight: normal; color: #000; list-style: none; font-weight:bold">Dato [vars.from]  -  [vars.to]</li>
+           </ul>
+		   </td>
+      </tr>
+      <tr>
+        <td  valign="top" align="center"><table width="100%" align="center" border="0" cellpadding="0" cellspacing="0">
+            <thead>
+              <tr>
+                <th style="text-align: left; width:30%; border-top:#000 dashed 1px; border-bottom:#000 dashed 1px; padding: 10px 0; font-family: 'arial', monospace; font-size: 30px; font-weight:normal ">Dato</th>
+                <th style="text-align: left; width:15%; border-top:#000 dashed 1px; border-bottom:#000 dashed 1px; padding: 10px 0; font-family: 'arial', monospace; font-size: 30px; font-weight:normal ">Tid</th>
+                <th style="text-align: center; width:25%; border-top:#000 dashed 1px; border-bottom:#000 dashed 1px; padding: 10px 0; font-family: 'arial', monospace; font-size: 30px; font-weight:normal ">Ordre</th>
+                <th style="text-align: center; width:3%; border-top:#000 dashed 1px; border-bottom:#000 dashed 1px; padding: 10px 0; font-family: 'arial', monospace; font-size: 30px; font-weight:normal ">Type</th>
+                <th style="text-align: right; border-top:#000 dashed 1px; border-bottom:#000 dashed 1px; padding: 10px 0; font-family: 'arial', monospace; font-size: 30px; width:20%; font-weight:normal ">Beløp</th>
+              </tr>
+            </thead>
+            <tbody>
+               <!--[lists.report;noerr;htmlconv=no;protect=no;comm]-->
+            <tr>
+              <td colspan="6" valign="top" align="right" style="text-align: right; border-bottom:#000 dashed 1px;  font-family: 'arial', monospace; font-size:13px; font-weight:normal;padding:0;">&nbsp;&nbsp;</td>
+            </tr>        
+            <tr>
+              <td colspan="3" valign="top" align="right" style="text-align: left;font-family: 'arial', monospace; font-size:30px; font-weight:normal;padding: 15px 0 5px;">Summer for åpne/lukkede perioder</td>
+                
+                <td colspan="3" style="text-align: right; padding: 15px 0 5px;font-weight:bold; font-family: 'arial', monospace; font-size: 30px; width:20%;"> 
+                  <!--[lists.total;noerr;htmlconv=no;protect=no;comm]-->
+                </td>
+            </tr>  
+            <tr>
+              <td colspan="3" valign="top" align="right" style="text-align: left;font-family: 'arial', monospace; font-size:30px; font-weight:normal;padding: 0 0 5px;">Sum transaksjoner</td>
+                
+                <td colspan="3" style="text-align: right; font-weight:bold; font-family: 'arial', monospace; font-size: 20px; width:20%;padding: 0 0 5px;"> 
+                  <!--[lists.transaction;noerr;htmlconv=no;protect=no;comm]-->
+                </td>
+            </tr>
+            <tr>
+              <td colspan="3" valign="top" align="right" style="text-align: left;font-family: 'arial', monospace; font-size:30px; font-weight:normal;padding: 5px 0;">Startbeløp i kassen</td>
+                
+                <td colspan="3" style="text-align: right; font-weight:bold; font-family: 'arial', monospace; font-size: 30px; width:20%; ;padding-top: 5px ;padding-bottom:10px"> 
+                    kr 0,00
+                </td>
+            </tr> 
+            
+            <tr>
+              <td colspan="6" valign="top" align="right" style="text-align: right; border-top:#000 dashed 1px;  font-family: 'arial', monospace; font-size:13px; font-weight:normal;padding:0;">&nbsp;&nbsp;</td>
+            </tr>        
+                                         
+            </tbody>
+          </table></td>
+      </tr>
+        <tr>
+        <td  valign="top" align="center"><table width="100%" align="center" border="1" cellpadding="5" cellspacing="0">
+            <thead>
+              <tr>
+                <th style="text-align: left; width:50%;padding:5px 0; font-family: 'arial', monospace; font-size: 20px; font-weight:bold; background:#ccc; ">Betalingsinformasjonen</th>
+                <th style="text-align: center; width:10%; padding: 5px 0; font-family: 'arial', monospace; font-size: 20px; font-weight:bold ; background:#ccc;">Antall</th>
+                <th style="text-align: right; width:40%;dashed 1px; padding: 5px 0; font-family: 'arial', monospace; font-size: 20px; font-weight:bold; background:#ccc; ">Beløp</th>
+              </tr>
+			  
+			   <!--[lists.footer;noerr;htmlconv=no;protect=no;comm]-->
+			 </thead>
+            <tbody>
+            </tbody>
+          </table>
+          </td>
+      </tr>      
+      <tr>
+        <td><table width="100%" align="center" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td  valign="top" align="right" style="text-align: right;font-family: 'arial', monospace; font-size:12px; font-weight:normal;padding: 5px 0;">&nbsp;&nbsp;</td>
+            </tr>        
+            <tr>
+              <td valign="top" align="right" style="text-align: right; padding: 20px; font-family: 'arial', monospace; font-size:20px; font-weight:normal; border-top:#000 dashed 1px; padding: 10px 0;">Skrivet ut: [vars.today] &nbsp; [vars.today_time]</td>
+            </tr>
+            <tr>
+              <td valign="top" align="right" style="text-align: right;font-family: 'arial', monospace; font-size:20px; font-weight:normal;padding: 0px 0;">Page 1 of 1</td>
+            </tr>
+          </table></td>
+      </tr>
+              
+    </tbody>
+  </table>
+</div>
+<form action="" method="get" id="hidden-print">
+<input type="hidden" id="print_count" value="" />
+</form>
+</body>
+</html>

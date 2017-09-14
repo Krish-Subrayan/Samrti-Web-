@@ -1,0 +1,226 @@
+<!--WI_PIN_PROJECTS-->
+<div class="modal fade" id="pinnedProjects">
+  <div class="modal-dialog">
+    <form action="[conf.site_url]/admin/pinned/update" method="post">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title"><lang>[lang.lang_pin_projects_to_home]</lang></h4>
+        </div>
+        <div class="modal-body">
+          
+          <div class="form-group" style="margin-bottom:10px;">
+            <label for="exampleInputEmail1">[lang.lang_project] - [lang.lang_number_1]</label>
+            <select id="team_profile_pinned_1" name="team_profile_pinned_1" data-project-id="[vars.my_pinned_project_1]">
+              <!--lang-->
+              <option value="">--------</option>
+              
+                
+                    
+                    
+                    [lists.all_my_projects;noerr;htmlconv=no;protect=no]            
+                  
+                  
+                  
+              
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:10px;">
+            <label for="exampleInputEmail1">[lang.lang_project] - [lang.lang_number_2]</label>
+            <select id="team_profile_pinned_2" name="team_profile_pinned_2" data-project-id="[vars.my_pinned_project_2]">
+              <!--lang-->
+              <option value="">--------</option>
+              
+                
+                    
+                    
+                    [lists.all_my_projects;noerr;htmlconv=no;protect=no]            
+                  
+                  
+                  
+              
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:10px;">
+            <label for="exampleInputEmail1">[lang.lang_project] - [lang.lang_number_3]</label>
+            <select id="team_profile_pinned_3" name="team_profile_pinned_3" data-project-id="[vars.my_pinned_project_3]">
+              <!--lang-->
+              <option value="">--------</option>
+              
+                
+                    
+                    
+                    [lists.all_my_projects;noerr;htmlconv=no;protect=no]            
+                  
+                  
+                  
+              
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">[lang.lang_project] - [lang.lang_number_4]</label>
+            <select id="team_profile_pinned_4" name="team_profile_pinned_4" data-project-id="[vars.my_pinned_project_4]">
+              <!--lang-->
+              <option value="">--------</option>
+              
+                
+                    
+                    
+                    [lists.all_my_projects;noerr;htmlconv=no;protect=no]            
+                  
+                  
+                  
+              
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal"><lang>[lang.lang_close]</lang></button>
+          <input type="hidden" name="redirect" value="[vars.site_url_current_page]">
+          <input type="submit" class="btn btn-primary" value="[lang.lang_save_changes]" name="submit">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<!--/#WI_PIN_PROJECTS-->
+
+<!--WI_ADD_NEW_TASK_MODAL_TEAM-->
+<div class="row">
+<!--[onshow;block=div;when [vars.my_user_type] == 'team';comm]-->
+  <div id="addNewTaskModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <form class="form-horizontal" action="[conf.site_url]/admin/tasks/[vars.project_id;noerr]/add" method="post" id="addNewTask">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+            <!--full screen icon - custom.js-->
+            <button type="button" class="full-screen-modal close" aria-hidden="true"><i class="icon-fullscreen"></i></button>
+            <!--full screen icon - custom.js-->
+            <h4 class="modal-title"> [lang.lang_add_new_task]</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group" style="margin-bottom:10px;">
+              <label class="control-label col-lg-12" style="width:150px;"> [lang.lang_title]</label>
+              <div class="col-lg-12">
+                <input type="text" class="form-control" id="tasks_text" name="tasks_text" autocomplete="off">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-lg-12" style="width:150px;"> [lang.lang_description]</label>
+              <div class="col-lg-12">
+                <textarea name="tasks_description" id="tasks_description">
+                                        </textarea>
+                <script>
+                                            document.addEventListener('DOMContentLoaded', function(){
+                                                     CKEDITOR.replace( 'tasks_description', {
+                                                              toolbar: 'Advanced',
+                                                              uiColor: '#ffffff',
+	                                                          height: '150px'
+                                                     });
+                                           });
+                                        </script> 
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group" style="margin-bottom:10px;">
+                  <label class="control-label col-lg-12" style="width:150px;"> [lang.lang_milestone]</label>
+                  <div class="col-lg-12">
+                    <select id="tasks-milestones-list" name="tasks_milestones_id" style="width:100%">
+                      <!--[lists.all_milestones;noerr;htmlconv=no;protect=no;comm]-->
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group" style="margin-bottom:10px;">
+                  <label class="control-label col-lg-12" style="width:150px;"> [lang.lang_start_date]</label>
+                  <div class="col-lg-12">
+                    <input type="text" class="form-control pickadate" name="tasks_start_date"  id="tasks_start_date">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group" style="margin-bottom:10px;">
+                  <label class="control-label col-lg-12" style="width:150px;"> [lang.lang_end_date]</label>
+                  <div class="col-lg-12">
+                    <input type="text" class="form-control pickadate" name="tasks_end_date"  id="tasks_end_date">
+                  </div>
+                </div>
+              </div>
+              <!--admin & project leader only-->
+              <div class="col-md-4">
+                <div class="form-group" style="margin-bottom:10px;"> 
+                  <!--[onshow;block=div;when [project_permissions.super_user] == 1;comm]--><!--permissions-->
+                  <label class="control-label col-lg-12" style="width:150px;"> [lang.lang_assigned_to]</label>
+                  <div class="col-lg-12">
+                    <select id="tasks-assigned-to-list" name="tasks_assigned_to_id" style="width:100%;">
+                      <!--[lists.all_project_members;noerr;htmlconv=no;protect=no;comm]-->
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <!--admin & project leader only--> 
+            </div>
+            <!--regular team member only-->
+            <div> 
+              <!--[onshow;block=div;when [project_permissions.regular_user] == 1;comm]--><!--permissions-->
+              <input type="hidden" name="tasks_assigned_to_id" value="[vars.my_id;noerr]">
+            </div>
+            <!--regular team member only--> 
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true">[lang.lang_close]</button>
+            <input type="hidden" name="tasks_project_id" value="[vars.project_id;noerr]">
+            <input type="hidden" name="tasks_client_id" value="[vars.client_id;noerr]">
+            <input type="hidden" name="tasks_events_id" value="[vars.new_events_id;noerr]">
+            <input type="hidden" name="tasks_created_by_id" value="[vars.my_id;noerr]">
+            <input type="hidden" id="redirect_url" name="redirect_url" value="[vars.current_url]">
+            <input class="btn btn-primary" type="submit" value="[lang.lang_create_new_task]" id="" name="submit">
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!--WI_ADD_NEW_TASK_MODAL_TEAM--> 
+
+<!-- Footer starts -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Powered By -->
+        <p class="copy">Powered by: | <a href="http://nextloop.net/products/freelance-dashboard">Freelance Dashboard</a> </p>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- Footer ends -->
+
+
+<!--JS_PRESELECTED-->
+<script type="text/javascript">
+$(document).ready(function(){
+        //get the preselected values from data atrributes
+		var team_profile_pinned_0 = $("#team_profile_pinned_0").attr("data-project-id");
+		var team_profile_pinned_1 = $("#team_profile_pinned_1").attr("data-project-id");
+		var team_profile_pinned_2 = $("#team_profile_pinned_2").attr("data-project-id");
+		var team_profile_pinned_3 = $("#team_profile_pinned_3").attr("data-project-id");
+		var team_profile_pinned_4 = $("#team_profile_pinned_4").attr("data-project-id");
+
+       //pre-select data in pull down lists
+       $("#team_profile_pinned_0").select2().select2('val', team_profile_pinned_0);
+       $("#team_profile_pinned_1").select2().select2('val', team_profile_pinned_1);
+       $("#team_profile_pinned_2").select2().select2('val', team_profile_pinned_2);
+       $("#team_profile_pinned_3").select2().select2('val', team_profile_pinned_3);
+       $("#team_profile_pinned_4").select2().select2('val', team_profile_pinned_4);
+
+});
+</script>
+<!--/#JS_PRESELECTED-->

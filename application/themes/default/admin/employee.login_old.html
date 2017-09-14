@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+<link href="../common/style/bootstrap.css" rel="stylesheet">
+<link href="../common/style/style.css" rel="stylesheet">
+<style>
+.mainbar {
+	margin: 0px;
+}
+.sidebar {
+	display: none;
+}
+</style>
+<!--[onshow;block=head;when [visible.foo] == bar;comm]-->
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+</head>
+<!--HEAD - ONLOAD-->
+<!--[onload;file=../common/common.head.html;getbody;comm]-->
+<!--HEAD - ONLOAD-->
+<body>
+<!--JS SECTION - ONLOAD-->
+<!--[onload;file=../common/common.javascript.html;getbody;comm]-->
+<!--JS SECTION - ONLOAD-->
+<!--DEBUG SECTION - ONLOAD-->
+<!--[onload;file=../common/include.debug.html;getbody;comm]-->
+<!--DEBUG SECTION - ONLOAD-->
+<!--HEADER SECTION - ONLOAD-->
+<!--[onload;file=common.header.html;getbody;comm]-->
+<!--HEADER SECTION - ONLOAD-->
+<!-- Main content starts -->
+<div class="content">
+  <!-- Main bar -->
+  <div class="mainbar">
+    <!-- Matter -->
+    <div class="matter">
+     <button type="submit" class="btn btn-success" data-toggle="modal" href="#reportNewBugModal"> [lang.lang_report_new_bugs]</button>
+      <div class="container">
+        <!----------------------COMMON NOTICES--------------------------------->
+        <!--[onload;file=../common/common.notices.html;getbody;comm]-->
+        <!----------------------COMMON NOTICES--------------------------------->
+        <!--WI_BUGS_TABLE-->
+        <div class="row fullscreen-mode">
+          <div class="col-md-12">
+            <div class="branch">
+             <p><span>Vinderen Rens AS </span><br>Slemdalsveien 72, <br>0373 Oslo <br>+47 22 49 19 19</p> 
+            </div>
+          </div>
+          <div class="col-md-8 no-padd">
+            <div class="search-tab">
+             <div class="velg">Velg</div>
+             <ul>
+             	<li id="search-name">Navn</li>
+                <li id="search-mobile">Mobil</li>
+                <li id="search-order">Ordre</li>
+                <li id="search-bedrift">Bedrift</li>
+                <div class="clearfix"></div>
+             </ul>
+             <div class="searchFrm">
+               <form action="" method="post" id="search-form">
+               	 <input type="text" name="name" id="name"/>
+                 <input type="text" name="mobile" id="mobile"/>
+                 <input type="text" name="order" id="order"/>
+                 <input type="text" name="bedrift" id="bedrift"/>
+               </form>
+             </div>
+             
+            </div>
+          </div>
+          <div class="col-md-1">
+          </div>
+          <div class="col-md-3">
+            <div class="employee-profile">
+            </div>
+          </div>
+        </div>
+        <!--WI_BUGS_TABLE-->
+        <!--WI_NOTIFICATION-->
+        <div class="row">
+          <!--[onshow;block=div;when [visible.wi_notification] == 1;comm]-->
+          <div class="col-md-12">
+            <div class="widget">
+              <div class="widget-content widget-big-box">[vars.notification;noerr]</div>
+            </div>
+          </div>
+        </div>
+        <!--WI_NOTIFICATION-->
+      </div>
+      <!-- Matter ends -->
+    </div>
+    <!-- Mainbar ends -->
+  </div>
+  <div class="clearfix"></div>
+</div>
+<!-- Content ends -->
+<!----------------------COMMON FOOTER--------------------------------->
+<!--[onload;file=../common/common.footer.html;getbody;comm]-->
+<!----------------------COMMON FOOTER--------------------------------->
+<!-- Scroll to top -->
+<span class="totop"><a href="#"><i class="icon-chevron-up"></i></a></span>
+<!--WI_IFRAME_MODAL-->
+<div class="row">
+  <div id="modalIframe" class="modal fade  reload-parent-on-close" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+          <!--full screen icon - custom.js-->
+          <button type="button" class="full-screen-modal close" aria-hidden="true"><i class="icon-fullscreen"></i></button>
+          <!--full screen icon - custom.js-->
+          <h4 class="modal-title" id="modal-iframe-title"> [lang.lang_edit]</h4>
+          <div class="clearfix"></div>
+        </div>
+        <div class="modal-body">
+          <iframe frameborder="0" class="slimScrollBarModal----"></iframe>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true">[lang.lang_close]</button>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--WI_IFRAME_MODAL-->
+
+
+<!--JS_SOME_FORM_VALIDATION-->
+<!--------------------COMMON FOOTER JAVASCRIPT---------------------------->
+<!--[onload;file=../common/common.footer.javascript.html;getbody;comm]-->
+<!--------------------COMMON FOOTER JAVASCRIPT---------------------------->
+</body>
+</html>

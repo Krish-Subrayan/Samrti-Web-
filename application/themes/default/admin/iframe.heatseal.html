@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0044)https://smart-laundry.no/admin/download/1033 -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<!--define our base-->
+<!--<base href="/application/themes/default/common/">-->
+<base href=".">
+<title>[lang.lang_website_title;noerr]</title>
+</head>
+<!--JS SECTION - ONLOAD-->
+<!--[onload;file=../common/common.javascript.html;getbody;comm]-->
+<!--JS SECTION - ONLOAD-->
+<style>
+body
+{
+	font-size: 13px !important;
+	font-weight:normal !important;
+	font-family: 'Helvetica World';
+}
+input[type="button"]{
+    background: #cc0000;
+    width: 85%;
+    margin-bottom: 5px;	
+    padding: 5px 4px !important;
+    font-size: 12px !important;
+    border: none;
+    border-radius: 5px;	
+	color:#fff;
+	cursor:pointer
+}
+</style>
+<body>
+<div id="heatdiv" style="display:none;">
+
+<table  width="100%" align="center" border="0" cellpadding="0" cellspacing="0">
+         
+            <tbody>
+			
+			<!--[lists.orderline;noerr;htmlconv=no;protect=no;comm]-->
+			
+		
+            </tbody>
+          </table>
+</div>
+</body>
+
+</html>
+<script>
+window.onload = function(){
+   document.getElementById('heatdiv').style.display = "block";
+}
+</script>
+
+<script>
+
+function deleteHeatseal(logid)
+{
+
+var orid=$('#iframe_order').val();
+window.parent.removeheatseal(logid,orid);
+
+
+
+		/*$.ajax({
+			type: "POST",
+			url: "[conf.site_url;noerr]/admin/heatseal/deleteHeatseal",
+			data: {
+				heatseallog: logid
+			},
+			dataType: "json",
+			success: function (data) {
+			
+					if(data.status == 'success')
+						{
+							var orid=$('#iframe_order').val();
+							window.parent.success_msg('information',data.message,orid);
+							
+							
+						}
+						else
+						{
+							window.parent.error_msg('warning',data.message);
+							
+						}
+				
+				
+				
+			}
+		});	*/
+		
+		
+	
+	
+}
+
+</script>

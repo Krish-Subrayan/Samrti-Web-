@@ -1,0 +1,21 @@
+<div class="block">
+             
+               <div  class="pull-left col-md-11  customer-info"> 
+                 <div id="customer-pro">
+                    <p><span>[sessiondata.customer.firstname] [sessiondata.customer.lastname] ([vars.partner_branch_name])</span>
+					[sessiondata.customer.companyname;noerr;if [val]!='';then '[val]<br>';]
+				    (+47) [sessiondata.customer.mobile] <br>
+                        <a href="mailto:[sessiondata.customer.email]">[sessiondata.customer.email]</a>  </p>
+                   </div>      
+                 
+               </div>
+               
+               <div class="pull-left col-md-1 text-center">
+                  <a href="[conf.site_url]/admin/customer/profile" class="btn-icon" data-toggle="modal"><i class="icon-pencil"></i></a><br> 
+                   <input type="hidden" name="discount_type_12">
+               	   <input type="hidden" name="discount_value_12"> 
+                  
+                  </div>
+               
+               <div class="clearfix"></div>
+             </div>    

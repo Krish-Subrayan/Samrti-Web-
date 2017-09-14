@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0044)https://smart-laundry.no/admin/download/1033 -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style>
+@media print {
+ h1 { 
+  page-break-after: always;
+ } 
+}
+@media all {
+	.page-break	{ display: none; }
+}
+
+@media print {
+	.page-break	{ display: block; page-break-before: always; }
+}
+</style>
+<style media="print">
+ @page {
+  size: auto;
+  margin: 0;
+       }
+</style>
+<!--define our base-->
+<base href="[conf.site_url;noerr]/application/themes/[settings_general.theme]/common/">
+<base href=".">
+<title>[lang.lang_website_title;noerr]</title>
+</head>
+<body>
+
+<div id="canvas">
+        <table  width="100%" align="center" border="0" cellpadding="0" cellspacing="0" > 
+    <tbody>
+      <tr>
+        <th valign="top" align="center" style="padding:0 0px 26px 0;"><ul style="margin:0; padding: 0; font-family: 'arial', monospace; font-size: 15px; font-weight: normal;text-align:center;">
+            <li style="margin:0; padding: 0; font-family: 'arial', monospace; font-size: 28px; font-weight: normal; color: #000; list-style: none;"><strong>[branch.company]</strong></li>
+            <li style="margin:0; padding: 0; font-family: 'arial', monospace; font-size: 26px; font-weight: normal; color: #000; list-style: none;">[branch.street]</li>
+            <li style="margin:0; padding: 0; font-family: 'arial', monospace; font-size: 26px; font-weight: normal; color: #000; list-style: none;">[branch.zip]</li>
+            <li style="margin:0; padding: 0; font-family: 'arial', monospace; font-size: 26px; font-weight: normal; color: #000; list-style: none;">Telefon:+47 [branch.phone]</li>
+            <li style="margin:0; padding: 0; font-family: 'arial', monospace; font-size: 26px; font-weight: normal; color: #000; list-style: none;">Org.nr: [branch.org_nr]</li>
+
+          </ul></th>
+      </tr>
+      <tr>
+        <td width="50%" valign="top" align="center" style="padding:0 0px 26px 0;"><ul style="margin:0; padding: 0; font-family: 'arial', monospace; font-size: 13px; font-weight: normal">
+        <li style="margin:0; padding: 0; font-family: 'arial', monospace; font-size:32px; font-weight: normal; color: #000; list-style: none;"><img src="[conf.site_url;noerr]/admin/barcode/[order.id]" alt="Barcode" style="width:400px;height:80px;"></li>
+        <li style="margin:0; padding: 0; font-family: 'arial', monospace; font-size:40px; font-weight: normal; color: #000; list-style: none;">[order.id]</li>
+		<li style="margin:0; padding: 0; font-family: 'arial', monospace;font-weight: normal; color: #000; list-style: none;">&nbsp;</li>
+
+         </ul></td>
+      </tr>
+      <tr>
+			<td valign="top" align="left" style="padding:0 0 26px 0;"><ul style="margin:0; padding:0 0 0 2px; font-family: 'arial', monospace; font-size: 26px; font-weight: normal">
+            <li style="margin:0; padding: 0; font-family: 'arial', monospace; font-size: 24px; font-weight: normal; color: #000; list-style: none;">+47[customer.number]</li>
+            <li style="margin:0; padding: 0; font-family: 'arial', monospace; font-size: 32px; font-weight: normal; color: #000; list-style: none; text-transform:uppercase">[customer.customer_name]</li>
+            <li style="margin:0; padding: 0; font-family: 'arial', monospace; font-size: 24px; font-weight: normal; color: #000; list-style: none;">[customer.address]</li>
+            <li style="margin:0; padding: 0; font-family: 'arial', monospace; font-size: 24px; font-weight: normal; color: #000; list-style: none;">[customer.zip] [customer.city]</li>
+               <!--[lists.employee;noerr;htmlconv=no;protect=no;comm]-->
+            <li style="margin:0; padding: 0; font-family: 'arial', monospace; font-size: 24px; font-weight: normal; color: #000; list-style: none;">[order.order_time]</li>
+           </ul>
+		   </td>
+      </tr>
+      <tr>
+        <td  valign="top" align="center"><table width="100%" align="center" border="0" cellpadding="0" cellspacing="0">
+            <thead>
+              <tr>
+                <th style="text-align: left; width:18%; border-top:#000 dashed 1px; border-bottom:#000 dashed 1px; padding: 10px 0; font-family: 'arial', monospace; font-size: 26px; font-weight:normal ">Ant.</th>
+                <th style="text-align: left; width:70%; border-top:#000 dashed 1px; border-bottom:#000 dashed 1px; padding: 10px 0; font-family: 'arial', monospace; font-size: 26px; font-weight:normal ">Artikler</th>
+                <th style="text-align: right; width:20%; border-top:#000 dashed 1px; border-bottom:#000 dashed 1px; padding: 10px 0; font-family: 'arial', monospace; font-size: 26px; width:20%; font-weight:normal ">Beløp</th>
+				<th style="text-align: right; width:5%;">&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody>
+            
+               <!--[lists.orderline;noerr;htmlconv=no;protect=no;comm]-->
+              <tr>
+              <td colspan="3" nowrap="nowrap" style="text-align: center; padding: 5px 0; font-family: 'arial', monospace; font-size: 26px; font-weight:normal;  vertical-align: top;">&nbsp;</td>
+            </tr>
+			
+			<!--[lists.summery;noerr;htmlconv=no;protect=no;comm]-->
+			
+             
+			
+            </tbody>
+          </table></td>
+      </tr>
+      <tr>
+        <td><table width="100%" align="center" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td nowrap="nowrap" style="text-align: center; padding: 5px 0; font-family: 'arial', monospace; font-size: 15px; font-weight:normal;  vertical-align: top;">&nbsp;</td>
+            </tr>
+			<!--[lists.orderlinedelivery;noerr;htmlconv=no;protect=no;comm]-->
+			<!--[lists.delivery_note;noerr;htmlconv=no;protect=no;comm]-->
+			<!--[lists.special_instruction;noerr;htmlconv=no;protect=no;comm]-->
+		  
+                        <tr>
+              <td colspan="3" valign="top" align="center" style="text-align: center; padding: 26px; font-family: 'arial', monospace; font-size: 25px; font-weight:normal;">Intern kopi</td>
+            </tr>
+          </table></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
+<script language="JavaScript">
+//window.print();
+</script>

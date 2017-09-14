@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+<link href="../common/style/bootstrap.css" rel="stylesheet">
+<link href="../common/style/style.css" rel="stylesheet">
+
+<!--[onshow;block=head;when [visible.foo] == bar;comm]-->
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+</head>
+<!--HEAD - ONLOAD-->
+<!--[onload;file=../common/common.head.html;getbody;comm]-->
+<!--HEAD - ONLOAD-->
+<body>
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=../common/common.javascript.html;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=common_include_debug;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=common.header.html;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!-- Main content starts -->
+<style>
+#rens_div,#vask_div,.checkout,#editproductbtn{display:none;}
+</style>
+<div class="content"> 
+  <!-- Main bar -->
+  <div class="mainbar"> 
+    <!-- Matter -->
+    <div class="matter">
+      <div class="container white-bg">
+        <div class="row header">
+          <div class="col-md-8"> 
+            <!--TOP-LEFT - ONLOAD --> 
+            <!--[onload;file=common.top.left.html;getbody;comm]--> 
+            <!--TOP-LEFT - ONLOAD --> 
+            <!--MENU - ONLOAD --> 
+            <!--[onload;file=common.index.menu.html;getbody;comm]--> 
+            <!--MENU - ONLOAD -->
+            <div class="search-product" style="display:none">
+              <div id="Exp-serach" class="Exp-serach">
+                <form>
+                  <input class="ExpInput " onKeyUp="buttonUp();" placeholder="Søk produkt..." onBlur="monkey();" type="search" value="" name="search" id="search">
+                  <input class="Expbtn" type="submit"  value="">
+                  <span class="ExpIcon"><i class="fa fa-search"></i></span>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+             <!--TOP-RIGHT - ONLOAD -->
+            <!--[onload;file=common.top.right.html;getbody;comm]-->
+             <!--TOP-RIGHT - ONLOAD -->
+            <div class="clearfix"></div>
+           <!-- <div class="text-center kasse">Kasse (<span class="cart_total">[vars.cart_total]</span>)</div>
+            <div class="voucher"> <a data-toggle="modal" href="#addNew"><img src="img/voucher.png" title="Voucher" alt="Voucher"/></a></div>--> 
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8  no-padd scroll-pane">
+          <div class="col-md-3 no-padd">
+           		<h2 class="title">Odre</h2>
+           </div>
+		   <div class="clearfix"></div>
+           <div class="finished_orders order-black">
+                <div class="orderlisting row" style="background:#d8d8d8">
+					  <div class="col-md-3 black-text bold">Ordre nr. </div>
+					  <div class="col-md-3 black-text text-left bold"> Kategorier </div>
+					  <div class="col-md-1 black-text no-padd text-center bold"> Kasserer </div>
+					  <div class="col-md-3 black-text text-right bold">Totalt</div>
+					  <div class="col-md-1 text-center black-text bold">Satus</div>
+					  <div class="col-md-1 text-center black-text bold">Print</div>
+					 <!-- <div class="col-md-1 text-center black-text bold">View</div>--> 
+					</div>           
+            <!--[lists.orders;noerr;htmlconv=no;protect=no;comm]--> 
+          </div>
+            <div class="clearfix"></div>
+          </div>
+		
+          <div class="col-md-4 no-padd" id="profile_sec" style="visibility:hidden;"> 
+            <!--CUSTOMER PROFILE - ONLOAD --> 
+            <!--[onload;file=common.customer.profile.html;getbody;comm]--> 
+            <!--CUSTOMER PROFILE - ONLOAD -->
+            <div class="block">
+              <div class="row">
+                <div class="pull-left col-md-12">
+				 <div class="pull-left col-md-10">
+				  <p class="ordernr">Ordrenr: <span class="black-text"></span></p>
+				 </div>
+				 <div class="pull-left col-md-2 no-padd mt-sm">
+				<!-- <a id="deletelink" style="display:none; color:#fff" onclick="deleteOrder();" href="#deleteproduct" class="red btn-xs bold" data-toggle="modal">
+                 Cancel</a>-->
+				 </div>
+				</div>
+              </div>
+            </div>
+			
+			<div style="height:280px;" class="scroll-pane">
+			
+            <div id="ajax-loader-utlevring"><img src="img/ajax-loader.gif"/></div>
+            <div id="rens_div" class="block orderline-block">
+              <div class="row">
+                <div class="pull-left col-md-3 no-padd text-center">
+                  <h2>Rens</h2>
+                </div>
+              </div>
+              <div id="ajax-loader-rens"><img src="img/ajax-loader.gif"/></div>
+              <div class="rens">
+                <div class="col-md-12 mt-sm"> 
+                  <!--[onshow;block=div;when [visible.wi_no_products_added_in_cart_rens] == 1;comm]-->
+                  <p class="black-text  text-center">[lang.lang_cart_empty]</p>
+                  <style>
+					  /*#rens_div{display:none;}*/
+				  </style>
+                </div>
+                <div> 
+                  <!--[onshow;block=div;when [visible.wi_products_added_in_cart_rens] == 1;comm]-->
+                  <div class="orderline mt-sm  <!--[rens.id;block=div]-->">
+                    <div class="pull-left col-md-3 no-padd text-center">
+                      <div class="count"><!--[rens.qty;comm;]--></div>
+                      <div class="round">
+                        <div style="background-image: url('[conf.site_url;noerr]/images/[rens.thumb;onformat=runtime_check_product_thumb]');" class="img"></div>
+                      </div>
+                    </div>
+                    <div class="pull-left col-md-7 no-padd">
+                      <p><span><!--[rens.name;comm;]--></span> 
+                        <!--[rens.description;comm;]--><span>kr. <!--[rens.subtotal;comm;]-->,-</span></p>
+                    </div>
+                    <div class="pull-left col-md-2 no-padd text-center"> <a class="editprod" data-toggle="modal" data-title="<!--[rens.name;comm;]-->"  href="#editProductModal" data-stuff="[rens.id;]@<!--[rens.name;comm;]-->@<!--[rens.price;comm;]-->@<!--[rens.path;comm;]-->@<!--[rens.description;comm;]-->@<!--[rens.rowid;comm;]-->@<!--[rens.qty;comm;]-->@<!--[rens.gtype;comm;]-->">kr. [rens.subtotal;comm;],- <i class="icon-pencil"></i></a> </div>
+                    <div class="clearfix"></div>
+                    <hr>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="vask_div" class="block orderline-block">
+              <div class="row">
+                <div class="pull-left col-md-3 no-padd text-center">
+                  <h2>Vask</h2>
+                </div>
+              </div>
+              <div id="ajax-loader-vask"><img src="img/ajax-loader.gif"/></div>
+              <div class="vask">
+                <div class="col-md-12 mt-sm"> 
+                  <!--[onshow;block=div;when [visible.wi_no_products_added_in_cart_vask] == 1;comm]-->
+                  <p class="black-text  text-center">[lang.lang_cart_empty]</p>
+                  <style>
+				  /*#vask_div{display:none;}*/
+				  </style>
+                </div>
+                <div> 
+                  <!--[onshow;block=div;when [visible.wi_products_added_in_cart_vask] == 1;comm]-->
+                  <div class="orderline mt-sm  <!--[vask.id;block=div]-->">
+                    <div class="pull-left col-md-3 no-padd text-center">
+                      <div class="count"><!--[vask.qty;comm;]--></div>
+                      <div class="round">
+                        <div style="background-image: url('[conf.site_url;noerr]/images/[vask.thumb;onformat=runtime_check_product_thumb]');" class="img"></div>
+                      </div>
+                    </div>
+                    <div class="pull-left col-md-7 no-padd">
+                      <p><span><!--[vask.name;comm;]--></span> 
+                        <!--[vask.description;comm;]--><span>kr. <!--[vask.subtotal;comm;]-->,-</span></p>
+                    </div>
+                    <div class="pull-left col-md-2 no-padd text-center"> <a class="editprod" data-toggle="modal" data-title="<!--[vask.name;comm;]-->"  href="#editProductModal" data-stuff="[vask.id;]@<!--[vask.name;comm;]-->@<!--[vask.price;comm;]-->@<!--[vask.path;comm;]-->@<!--[vask.description;comm;]-->@<!--[vask.rowid;comm;]-->@<!--[vask.qty;comm;]-->@<!--[vask.gtype;comm;]-->">kr. [vask.subtotal;comm;],- <i class="icon-pencil"></i></a> </div>
+                    <div class="clearfix"></div>
+                    <hr>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="block orderline-block" style="display:none">
+              <div class="row">
+                <div class="pull-left col-md-12">
+                  <h2>[lang.lang_special_instruction]</h2>
+                  <textarea name="special_instruction" id="instruction"></textarea>
+                </div>
+              </div>
+            </div>
+			
+			
+			
+		
+          
+		  </div>	
+
+
+		  <div class="block checkout" style="padding:0;height:125px">
+              <div id="coupon_msg" class="col-md-12"></div>
+              <div style="display:none;" class="pull-left col-md-10">
+                <p class="kupongkode">Skriv inn kupongkode</p>
+              </div>
+              <div  style="display:none;" class="pull-left col-md-2 no-padd text-center"> <a id="discountlink" href="#discount_modal10" class="btn-icon" data-toggle="modal"><i class="fa fa-plus-circle mtnone" aria-hidden="true"></i></a>
+                <input type="hidden" id="discount_type_10" name="discount_type_10">
+                <input type="hidden" id="discount_value_10" name="discount_value_10">
+              </div>
+              <div style="display:none;" class="clearfix"></div>
+               <hr style="margin:0;display:none;">
+			 
+			 <style>
+			 .summarypad
+			 {
+				margin-top:5px;
+			 }
+			 </style>
+			 <div style="padding:5px;padding-top:0px;">
+			  
+              <div  class="pull-left summarypad col-md-3 no-padd">
+                <p>Delsum <span id="minamt_text"></span></p>
+              </div>
+              <div class="pull-left summarypad col-md-3 no-padd">
+                <p class="delsum">kr 0,00</p>
+                <input type="hidden" name="delsum" value="[lists.total]" id="delsum"/>
+              </div>
+			  <div  class="pull-left summarypad col-md-3 no-padd kunpongkode">
+                  <p>Dis.<span id="discount_text"></span></p>
+              </div>
+			  <div class="pull-left summarypad col-md-3 no-padd kunpongkode">
+                  <p class="discount">kr 0,00</p>
+                  <input type="hidden" name="discount" value="" id="discount"/>
+               </div>
+               
+               <div class="clearfix kunpongkode"></div>
+
+			   
+			   <div style="display:none;" class="pull-left summarypad no-padd leveringinfo col-md-3">
+                  <p>Levering</p>
+                </div>
+                <div style="display:none;" class="pull-left summarypad no-padd leveringinfo col-md-3 no-padd">
+                  <p class="levering_amt">kr 0,00</p>
+                </div>
+			   
+			    <div class="pull-left minpriceinfo no-padd summarypad col-md-4" style="display:none;">
+                  <p>Minste beløp</p>
+                </div>
+                <div class="pull-left minpriceinfo col-md-4 summarypad no-padd" style="display:none;">
+                  <p class="minprice_amt">kr 0,00</p>
+                </div>
+			   
+			     <div class="pull-left no-padd summarypad col-md-3">
+                <p>MVA (25%)</p>
+              </div>
+			  <div class="pull-left col-md-3 summarypad no-padd">
+                <p class="mva">kr 0,00</p>
+              </div>
+			  
+			  <div class="pull-left summarypad paidamountinfo no-padd col-md-3" tyle="display:none;">
+                  <p>Betalt</p>
+                </div>
+                <div class="pull-left summarypad paidamountinfo col-md-3 no-padd" tyle="display:none;">
+                  <p class="paid_amt">kr 0,00</p>
+                </div>
+				
+				 <div class="pull-left summarypad waitamountinfo col-md-3 no-padd" style="display:none;">
+                 <p>Faktura</p>
+                </div>
+                <div class="pull-left summarypad waitamountinfo col-md-3 no-padd" style="display:none;">
+                  <p class="wait_amt">kr 0,00</p>
+                </div>
+				
+				<div class="pull-left summarypad pendingamountinfo no-padd col-md-3">
+                  <p>Utestående</p>
+                </div>
+                <div class="pull-left summarypad pendingamountinfo col-md-3 no-padd">
+                  <p class="pending_amt">kr 0,00</p>
+                </div>
+			  
+              <div class="clearfix"></div>
+			  </div>
+         
+
+
+		   </div>
+		   
+		   <div id="utlevering_details" class="block">
+              <div class="row">
+                <div  class="pull-left col-md-10">
+				  <div class="utleveringemp_info" style="display:none;"></div>
+				  <div class="utlevering_info" style="display:none;"></div>
+			   </div>
+			  </div>
+            </div>
+			
+			<div class="block orderline-block cancel_reason" style="display:none">
+              <div class="row black-text">
+                <div class="pull-left col-md-12">
+                  <h2>Cancel Reason</h2>
+                  <p id="cancel_reason"></p>
+                </div>
+              </div>
+            </div>
+			
+			<div  class="block orderline-block cancel_comment" style="display:none">
+              <div class="row black-text">
+                <div class="pull-left col-md-12">
+                  <h2>Cancel Comment</h2>
+                  <p id="cancel_comment"></p>
+                </div>
+              </div>
+            </div>
+			
+            <div class="row" id="buttons">
+			 <input type="hidden" name="eorder_id" value=""  id="eorder_id"  class="form-control">
+			  <div class="col-md-6 mb-s">
+				<button type="button" onClick="approveconfirm('rejected');" style="display:none"   class="btn-lg  green">
+                <div class="col-md-12 send">Reject</div>
+                </button>
+              </div>
+              <div class="col-md-6 mb-s">
+                <button type="button" onClick="approveconfirm('approved');"   class="btn-lg  red">
+                <div class="col-md-12 send">Approve</div>
+                </button>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+
+      
+    </div>
+  </div>
+  <!-- Matter ends --> 
+</div>
+<!-- Mainbar ends -->
+<div class="clearfix"></div>
+<!--PRODUCT - EDIT - MODAL --> 
+<!--[onload;file=utlevering.edit.modal.html;getbody;comm]--> 
+<!--PRODUCT - EDIT - MODAL -->
+
+
+<!-- styles needed by jScrollPane -->
+<link type="text/css" href="style/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+<!-- the mousewheel plugin - optional to provide mousewheel support --> 
+<script type="text/javascript" src="js/jquery.mousewheel.js"></script> 
+<!-- the jScrollPane script --> 
+<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script> 
+<script type="text/javascript">
+
+
+      function approveconfirm(flag)
+      {
+      	if(flag == 'approved')
+        {
+        	$('#approveconfirm').modal({ backdrop: 'static', keyboard: false });
+			return false;
+        }
+        else
+        {
+        	$('#rejectconfirm').modal({ backdrop: 'static', keyboard: false });
+			return false;
+        }
+      	
+      }
+	     
+	  
+
+
+$(document).ready(function(){
+ 
+
+	if($(window).height() < 760){
+		$('.scroll-pane').jScrollPane({
+			autoReinitialise: true
+		});  //scrollpane
+	}
+	else{
+		$('.scroll-pane').css({"height": "auto"}); 
+	}
+
+	
+	/*search box*/	
+	function buttonUp(){
+		 var valux = $('.ExpInput').val();
+			valux = $.trim(valux).length;
+			if(valux !== 0){
+				$('.Expbtn').css('z-index','99');
+			} else{
+				$('.ExpInput').val(''); 
+				$('.Expbtn').css('z-index','-999');
+			}
+	}
+});
+
+/*search box*/	
+$(document).ready(function(){
+		var submitIcon = $('.ExpIcon');
+		var submitInput = $('.ExpInput');
+		var searchBox = $('.Exp-serach');
+		var isOpen = false;
+		
+		$(document).mouseup(function(){
+			if(isOpen == true){
+			submitInput.val('');
+			$('.Expbtn').css('z-index','-999');
+			submitIcon.click();
+			}
+		});
+		
+		submitIcon.mouseup(function(){
+			return false;
+		});
+		
+		searchBox.mouseup(function(){
+			return false;
+		});
+				
+		submitIcon.click(function(){
+			if(isOpen == false){
+				searchBox.addClass('Exp-serach-open');
+				isOpen = true;
+			} else {
+				searchBox.removeClass('Exp-serach-open');
+				isOpen = false;
+			}
+	});
+
+	
+
+	var id ;
+	var name ;
+	var price;
+	var img;
+	var desp;
+	var qty;
+	var gtype;
+	var duration;
+	var complain;		
+	var in_house;
+	var oprice;
+
+	//view order  to print
+	$('.utsikt').click(function(){
+		var oid = $(this).attr('id');
+		
+			
+     });			
+		
+	//view order listinsting at right side
+	$('.orderlisting a').click(function(){
+			var oid = $(this).attr('rel');
+			$('#eorder_id').val(oid);
+			$("#coupon_msg").hide();
+			
+			var order_from = $(this).find('div:eq(0)').html();
+			
+			order_from=order_from+'<p style="font-size:15px">'+$("#kasserer_"+oid).html()+'</p>';
+			
+			
+			
+			$('html, body').animate({
+				scrollTop: ($('.ordernr span').first().offset().top)
+			},500);
+
+
+			//alert(order_from);
+			
+			 var processing = false;
+			 if(processing == false){
+				processing = true;
+				 $.ajax({
+					type: "POST",
+					url: "[conf.site_url;noerr]/admin/orders/get-order-detail",
+					data: {
+						oid: oid
+					},
+				   beforeSend: function(){
+						 $("#ajax-loader-utlevring").show();
+						 $("#rens_div").hide();
+						 $("#vask_div").hide();
+				   },
+				   complete: function(){
+						processing = false;
+						$("#ajax-loader-utlevring").hide();
+						 $("#rens_div").show();
+						 $("#vask_div").show();
+						
+				   },
+				   dataType: "json",
+				   success: function (data) {
+					    //alert(data.order_list_rens);
+
+						//  
+		 // visibility:hidden;
+						
+						$('#profile_sec').css("visibility", 'visible'); 
+						
+						$('#customer-pro').html(data.profile);
+						
+						$(".checkout").show();
+						$(".rens").html(data.order_list_rens);
+						$(".vask").html(data.order_list_vask);
+						
+						//subtotal of a cart
+						$('#delsum').val(data.delsum);
+						$('.delsum').html('kr '+data.delsum_currency+'');
+						
+							var saldo=data.amount;
+							$('#lbl_saldo_kr').html(saldo);
+							$('#saldo_kr').val(saldo);
+							
+			
+			
+			
+							if(data.cancelstatus == '1')
+							{
+								$('.cancel_reason').show();
+								$('.cancel_comment').show();
+								$('#cancel_reason').html(data.reason);
+								$('#cancel_comment').html(data.comment);
+							}
+							else
+							{
+								$('.cancel_reason').hide();
+								$('.cancel_comment').hide();
+							}
+			
+							if(data.saldocolor == '1')
+							{
+								$('#customer-saldo').css('color', 'red');
+							}
+							else
+							{
+								$('#customer-saldo').css('color', '');
+							}
+						
+						//total of a cart
+						$('#total').val(data.total_amount);
+						$('.total').html('kr '+data.total_amount_currency+'');	
+						$('.mva').html('kr '+data.mva_currency+'');
+						
+						$('.cart_total').html(data.count);
+						$('#instruction').html(data.instruction);
+						
+						var $picker=$(".datepicker");
+						$picker.datepicker({autoclose:true,format: 'dd.mm.yyyy'});
+						var pickerObject = $picker.data('datepicker');
+						$picker.on('changeDate', function(ev){
+								$picker.datepicker('hide');
+						});
+						$(".datepicker").on('hide', function(ev){
+							   dpclosefire($(this))
+						});
+						
+						
+						$('.ordernr span').html(order_from);
+						
+						$('#deletelink').show();
+						
+						if(parseInt(data.discount) > 0)
+						{
+							$('.kunpongkode').show();
+							
+							if(data.vouchercode != '')
+							{
+								$('#discount_text').html("("+data.vouchercode + ")");
+							}
+							$('#discount').val(data.discount);
+							$('.discount').html("kr " + data.discount_currency);
+							
+							
+						}
+						else
+						{
+							$('.kunpongkode').hide();
+						}
+						
+						
+						if(parseInt(data.min_price_status) > 0)
+						{
+							if(data.min_price_status == 1)
+							{
+								$('#minamt_text').html(data.min_price_txt);
+							}
+							else
+							{
+								$('#minamt_text').html('');
+							}
+							
+							if(data.min_price_status == 2)
+							{
+								$('.minpriceinfo').show();
+								$('#minprice_amt').html("kr " + data.min_price);
+							}
+							else
+							{
+								$('.minpriceinfo').hide();
+							}
+						}
+						
+						if(parseInt(data.delviery) > 0)
+						{
+							
+							$('.leveringinfo').show();
+						}
+						else
+						{
+							$('.leveringinfo').hide();
+						}
+						
+						
+						if(parseInt(data.paidamountstatus) > 0)
+						{
+							$('.paidamountinfo,.paidhr').show();
+							$('.paid_amt').html("kr " + data.paidamount);
+							$('.pending_amt').html("kr " + data.balanceamount);
+						}
+						else
+						{
+							$('.paidamountinfo,.paidhr').hide();
+							$('.paid_amt').html('');
+							$('.pending_amt').html('');
+						}
+						
+						if(parseInt(data.waitamountstatus) > 0)
+						{
+							$('.waitamountinfo,.waitinghr,.paidhr').show();
+							$('.wait_amt').html("kr " + data.totawaitamount);
+						
+						}
+						else
+						{
+							$('.waitamountinfo,.waitinghr').hide();
+							$('.wait_amt').html('');
+						} 
+						$('#utlevering_details').hide();
+						 
+						if(data.deliverytime != '')
+						{
+							$('#utlevering_details').show();
+							$('.utlevering_info').show();
+							$('.utlevering_info').html('<p style="color:#000;font-size:15px"> <span class="black-text">'+data.deliverytime+'</span></p>');
+						}
+						else
+						{
+							$('.utlevering_info').hide();
+							$('.utlevering_info').html('');
+						}
+						
+						if(data.empinitial != '')
+						{
+							$('#utlevering_details').show();
+							$('.utleveringemp_info').show();
+							$('.utleveringemp_info').html('<p style="color:#000;font-size:15px; font-weight:bold">Utlevert: <span class="black-text">'+data.empinitial+'</span></p>');
+						}
+						else
+						{
+							$('.utleveringemp_info').hide();
+							$('.utleveringemp_info').html('');
+						}
+						
+						
+						
+						
+						if(parseInt(data.pendingamountstatus) > 0)
+						{
+							$('.pendingamountinfo,.pendinghr').show();
+							$('.pending_amt').html("kr " + data.balanceamount);
+						}
+						else
+						{
+							$('.pendingamountinfo,.pendinghr').hide();
+							$('.pending_amt').html('');
+						}
+						
+						if(parseInt(data.betalstatus) > 0)
+						{
+							$('#editproductbtn').show();
+							
+							
+							$('#deliverybtn').hide();
+							
+							
+						}
+						else
+						{
+							$('#editproductbtn').hide();
+							
+							if(parseInt(data.deliveryreadystatus) > 0)
+							{
+								$('#deliverybtn').show();
+							}
+							else
+							{
+								$('#deliverybtn').hide();
+								$('#deletelink').hide();
+							}
+						}
+						
+						
+						
+
+						$('a.editprod').click(function(){ 
+						 
+							$('.product-buttons .btn-group .btn:first').trigger('click');
+
+							var title = $(this).data('title');
+							$("h4#edit-product-title").html(title);		
+						
+							var stuff = $(this).attr('data-stuff').split('@');
+								
+							 id = stuff[0];
+							 name = stuff[1];
+							 price = stuff[2];
+							 img = stuff[3];
+							 desp = stuff[4];
+							 qty = stuff[5];
+							 gtype = stuff[6];
+							 complain = stuff[7];
+							 in_house =  stuff[8];
+							 oprice =  stuff[9];
+
+							$('#edit_spl_instruction').val(desp);
+							$('#edit_quantity').val(qty);
+							$('#edit_pris').val(oprice);
+
+							if(in_house == 1){
+								//alert("inhouse" + in_house);
+								//$('input:checkbox[name=in_house]').attr('checked',true);
+								
+								$('#house_div').html('<input type="checkbox" checked="checked" value="" name="in_house" id="edit_in_house"> Renses på huset');
+							  
+							}
+							else{
+								//$('input:checkbox[name=in_house]').attr('checked',false);
+								
+								$('#house_div').html('<input type="checkbox"  value="" name="in_house" id="edit_in_house"> Renses på huset');
+								
+							}
+							
+							if(complain == 1){
+							//alert("inhouse" + complain);
+								//$('input:checkbox[name=complain]').attr('checked',true);
+								$('#complain_div').html('<input type="checkbox" checked="checked" value="" name="complain" id="edit_complain">Reklamasjon');
+							}
+							else{
+								$('#complain_div').html('<input type="checkbox" value="" name="complain" id="edit_complain">Reklamasjon');
+							}
+						
+					   });
+					   
+					
+						$("form#editProduct").submit(function(){
+
+							 var processing2 = false;
+							 if(processing2 == false){
+								 
+								if($('#edit_in_house').prop('checked') === true){
+									//alert("inhouse" + in_house);
+									in_house = 1;
+								}
+								else{
+									in_house = 0;
+								}
+									 
+								if($('#edit_complain').prop('checked') === true){
+									//alert("complain" + complain);
+									complain = 1;
+								}
+								else{
+									complain = 0;
+								}
+								
+								processing2 = true;
+								 $.ajax({
+									type: "POST",
+									url: "[conf.site_url;noerr]/admin/orders/edit-utlevering",
+									data: {
+										oid: oid,
+										olid: id,
+										name: name,
+										price: $('#edit_pris').val(),
+										qty: $('#edit_quantity').val(),
+										img: img,
+										desp: $('#edit_spl_instruction').val(),
+										gtype : gtype,
+										total : $('#total').val(),
+										complain : complain,
+										in_house : in_house
+										
+									},
+								   beforeSend: function(){
+										 $('#editProductModal').modal('hide');
+								   },
+								   complete: function(){
+										processing2 = false;
+								   },
+								   dataType: "json",
+								   success: function (data) {
+										$('.orderlisting  a[rel="' + oid + '"]').trigger('click');
+									}
+								});
+							}
+							else {
+								alert('[lang.lang_process_goingon]');
+							}
+							return false;
+						});
+	
+
+					}
+				});
+			}
+			else {
+				alert('[lang.lang_process_goingon]');
+			}
+			return false;
+		});
+	
+});
+
+
+
+
+function utleveringedit(orderids)
+{
+		 $.ajax({
+					type: "POST",
+					url: "[conf.site_url;noerr]/admin/orders/get-order-detail",
+					data: {
+						oid: orderids
+					},
+				    beforeSend: function(){
+						 $("#ajax-loader-utlevring").show();
+						 $("#rens_div").hide();
+						 $("#vask_div").hide();
+				   },
+				   complete: function(){
+						
+						$("#ajax-loader-utlevring").hide();
+						 $("#rens_div").show();
+						 $("#vask_div").show();
+						
+				   },
+				   dataType: "json",
+				   success: function (data) {
+					    //alert(data.order_list_rens);
+						$(".rens").html(data.order_list_rens);
+						$(".vask").html(data.order_list_vask);
+						
+						//subtotal of a cart
+						$('#delsum').val(data.delsum);
+						$('.delsum').html('kr '+data.delsum_currency+'');
+						
+						//total of a cart
+						$('#total').val(data.total_amount);
+						$('.total').html('kr '+data.total_amount_currency+'');	
+						$('.mva').html('kr '+data.mva_currency+'');
+						
+						$('.cart_total').html(data.count);
+						$('#instruction').html(data.instruction);
+						
+						var $picker=$(".datepicker");
+						$picker.datepicker({autoclose:true,format: 'dd.mm.yyyy'});
+						var pickerObject = $picker.data('datepicker');
+						$picker.on('changeDate', function(ev){
+								$picker.datepicker('hide');
+						});
+						$(".datepicker").on('hide', function(ev){
+							   dpclosefire($(this))
+						});
+						
+						
+						if(parseInt(data.discount) > 0)
+						{
+							$('.kunpongkode').show();
+							
+							if(data.vouchercode != '')
+							{
+								$('#discount_text').html(data.vouchercode);
+							}
+							$('#discount').val(data.discount);
+							$('.discount').html("kr " + data.discount_currency);
+							
+							
+						}
+						else
+						{
+							$('.kunpongkode').hide();
+						}
+						
+						
+						if(parseInt(data.min_price_status) > 0)
+						{
+							if(data.min_price_status == 1)
+							{
+								$('#minamt_text').html(data.min_price_txt);
+							}
+							else
+							{
+								$('#minamt_text').html('');
+							}
+							
+							if(data.min_price_status == 2)
+							{
+								$('.minpriceinfo').show();
+								$('#minprice_amt').html(data.min_price);
+							}
+							else
+							{
+								$('.minpriceinfo').hide();
+							}
+						}
+						
+						if(parseInt(data.delviery) > 0)
+						{
+							
+							$('.leveringinfo').show();
+						}
+						else
+						{
+							$('.leveringinfo').hide();
+						}
+						
+						
+						if(parseInt(data.paidamountstatus) > 0)
+						{
+							$('.paidamountinfo,.paidhr').show();
+							$('.paid_amt').html("kr " + data.paidamount);
+							$('.pending_amt').html("kr " + data.balanceamount);
+						}
+						else
+						{
+							$('.paidamountinfo,.paidhr').hide();
+							$('.paid_amt').html('');
+							$('.pending_amt').html('');
+						}
+						
+						if(parseInt(data.waitamountstatus) > 0)
+						{
+							$('.waitamountinfo,.waitinghr,.paidhr').show();
+							$('.wait_amt').html("kr " + data.totawaitamount);
+						
+						}
+						else
+						{
+							$('.waitamountinfo,.waitinghr').hide();
+							$('.wait_amt').html('');
+						}
+						
+						$('#utlevering_details').hide();
+						
+						 
+						 
+						if(data.deliverytime != '')
+						{
+							$('#utlevering_details').show();
+							$('.utlevering_info').show();
+							$('.utlevering_info').html('<p style="color:#000;">Utlevering: <span class="black-text">'+data.deliverytime+'</span></p>');
+						}
+						else
+						{
+							$('.utlevering_info').hide();
+							$('.utlevering_info').html('');
+						}
+						
+						if(data.empinitial != '')
+						{
+							$('#utlevering_details').show();
+							$('.utleveringemp_info').show();
+							$('.utleveringemp_info').html('<p style="color:#000;">Kasserer: <span class="black-text">'+data.empinitial+'</span></p>');
+						}
+						else
+						{
+							$('.utleveringemp_info').hide();
+							$('.utleveringemp_info').html('');
+						}
+						
+						
+						
+						if(parseInt(data.pendingamountstatus) > 0)
+						{
+							$('.pendingamountinfo,.pendinghr').show();
+							$('.pending_amt').html("kr " + data.balanceamount);
+						}
+						else
+						{
+							$('.pendingamountinfo,.pendinghr').hide();
+							$('.pending_amt').html('');
+						}
+						
+						if(parseInt(data.betalstatus) > 0)
+						{
+							$('#editproductbtn').show();
+							
+							
+							$('#deliverybtn').hide();
+							
+							
+						}
+						else
+						{
+							$('#editproductbtn').hide();
+							
+							if(parseInt(data.deliveryreadystatus) > 0)
+							{
+								$('#deliverybtn').show();
+							}
+							else
+							{
+								$('#deliverybtn').hide();
+							}
+						}
+						
+						
+
+					}
+				});
+			
+}
+
+
+
+</script> 
+
+<!--------------------COMMON FOOTER JAVASCRIPT----------------------------> 
+<!--[onload;file=../common/common.footer.javascript.html;getbody;comm]--> 
+<!--------------------COMMON FOOTER JAVASCRIPT----------------------------> 
+
+  
+
+<link href="../common/style/switch.css" rel="stylesheet">
+<style>
+#confirm{z-index:1041;}
+</style>
+<script>
+
+function approveCancel(astatus)
+{
+	var orid= $("#eorder_id").val();
+	 $.ajax({
+				type: "POST",
+				url: "[conf.site_url;noerr]/admin/settings/ordercancel/approvecancel",
+				data: {
+					orderid: orid,
+					status: astatus
+				},
+				dataType: "json",
+			   success: function (data) {
+					if(data.status == 'success')
+					{
+						noty({
+									text: data.message,
+									layout: 'bottomRight',
+									type: 'information',
+									timeout: [settings_general.notifications_display_duration;noerr]
+								});
+								
+								$("#deliverybtn").hide();
+								$("#order_"+orid).hide();
+								$('.ordernr span').html('');
+								$(".checkout").hide();
+									
+								$('#profile_sec').css("visibility", 'hidden'); 
+								
+								
+								/*$("#rens_div").hide();
+								$("#vask_div").hide();
+								$(".cancel_reason").hide();
+								$(".cancel_comment").hide();
+								$("#buttons").hide();*/
+								
+								
+								/*$(".paidamountinfo").hide();
+								$(".paidhr").hide();
+								$('.delsum').html('kr 0');
+								$('.total').html('kr 0');
+								$('.mva').html('kr 0');*/
+								
+								var oldcnt=	$("#order_tcount").html();
+								var ncnt=parseInt(oldcnt)-1;
+								$("#order_tcount").html(parseInt(ncnt));
+								
+								
+					}
+					else
+					{
+							noty({
+										text: data.message,
+										layout: 'bottomRight',
+										type: 'warning',
+										timeout: [settings_general.notifications_display_duration;noerr]
+							});
+					}
+					
+				}
+			});
+}
+
+
+</script> 
+   
+      
+    
+      
+<div id="approveconfirm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog " style="margin-top: 10%;max-width: 450px;">
+    <div class="modal-content widget ">
+        <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        </div>
+      <div class="padd">
+        <h4 class="text-center">Are you sure want to continue <b id="onew_pay_type"></b>?</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button"   onClick="approveCancel('approved');" data-dismiss="modal" class="btn green" >[lang.lang_yes]</button>
+        <button type="button"  data-dismiss="modal" class="btn red">[lang.lang_no]</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="rejectconfirm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog " style="margin-top: 10%;max-width: 450px;">
+    <div class="modal-content widget ">
+        <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        </div>
+      <div class="padd">
+        <h4 class="text-center">Are you sure want to continue <b id="onew_pay_type"></b>?</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" onClick="approveconfrim('rejected');" data-dismiss="modal" class="btn green" >[lang.lang_yes]</button>
+        <button type="button"   data-dismiss="modal" class="btn red">[lang.lang_no]</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+                    
+                    
+<div>
+<!--[onshow;block=div;when [visible.utorder_status] == 1;comm]-->
+<script type="text/javascript">
+$(document).ready(function() {
+	//utleveringinfo([vars.utorder_count]);
+	$( "#order_[vars.utorder_count] a" ).trigger( "click" );
+});
+</script>
+ </div>
+</body>
+</html>

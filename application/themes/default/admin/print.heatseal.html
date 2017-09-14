@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0044)https://smart-laundry.no/admin/download/1033 -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<!--define our base-->
+<!--<base href="/application/themes/default/common/">-->
+<base href=".">
+<title>[lang.lang_website_title;noerr]</title>
+<link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono" rel="stylesheet">
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- this script helps us to capture any div -->
+<script src="[conf.site_url_themes_common;noerr]/js/html2canvas.js"></script>
+<script type="text/javascript">	
+/*$(function(){	
+   //alert($('.print').length); // alerts a nonnegative number 
+
+ $('.print').each(function(index) {
+       // index has the count of the current iteration
+    //get the div content
+		var divid=this.id;
+		div_content = document.querySelector("#"+this.id);
+		html2canvas(div_content).then(function(canvas) {
+		data = canvas.toDataURL('image/png');
+			save_img(data,[order.id],divid);
+		});
+	});
+
+	
+});*/
+
+$(document).ready(function() { 
+  $(window).load(function() { 
+     //insert all your ajax callback code here. 
+     //Which will run only after page is fully loaded in background.
+	 var printtotal = $( ".print" ).length;
+	 
+	 var pcnt=0;
+	  $('.print').each(function(index) {
+       // index has the count of the current iteration
+		//get the div content
+		var divid=this.id;
+		div_content = document.querySelector("#"+this.id);
+		html2canvas(div_content).then(function(canvas) {
+		data = canvas.toDataURL('image/png');
+		pcnt=parseInt(pcnt)+1;
+		$('#print_count').val(pcnt);
+		$('#hidden-print').prepend('<input class="printstatus" type="hidden" id="print_'+divid+'" value="0" />');
+			save_img(data,[order.id],divid);
+			
+		});
+		
+	});
+
+	
+  });
+ 
+ 
+var interval = setInterval(doPrint, 3000); // 2000 ms = start after 2sec 
+function doPrint() {
+  
+   var printtotal = $( ".print" ).length;
+   var print_count=$('#print_count').val();
+   var printstatus=1;
+   if(printtotal == print_count)
+   {
+		$('.printstatus').each(function(index){
+			if($("#"+this.id).val() == 0)
+			{
+				printstatus=0;
+				//alert($("#"+this.id).val());
+			}
+			
+		});
+		
+		if(printstatus == 1)
+		{
+			preparebillprintFrame();
+			clearInterval(interval); 
+		}
+		//alert(printstatus);
+   }
+   
+   
+   
+  //clearInterval(interval);
+}
+
+ 
+});
+
+
+function preparebillprintFrame() {
+
+//var url ="[conf.site_url;noerr]/admin/printecspos/heatsealprint/[order.id]";
+//window.open(url, '_blank');
+
+//setTimeout(function(){ preparetagprintFrame(); }, 5000);
+
+       var ifrmm = document.createElement("iframe");
+        ifrmm.setAttribute("src", "[conf.site_url;noerr]/admin/printecspos/heatsealprint/[order.id]");
+        ifrmm.style.width = "640px";
+        ifrmm.style.height = "480px";
+		ifrmm.style.display = "none";
+        document.body.appendChild(ifrmm);
+		//alert('Bill Print Success');
+}
+	
+/*function preparetagprintFrame() {
+var url="[conf.site_url;noerr]/admin/printecspos/tagprint/[order.id]";
+window.open(url, '_blank');*/
+/*
+        var ifrm = document.createElement("iframe");
+        ifrm.setAttribute("src", "[conf.site_url;noerr]/admin/printecspos/tagprint/[order.id]");
+        ifrm.style.width = "640px";
+        ifrm.style.height = "480px";
+		ifrm.style.display = "none";
+        document.body.appendChild(ifrm);
+		alert('Tag Print Success');*/
+		
+   /* }*/
+
+
+//to save the canvas image
+function save_img(data,orderid,divid){
+	//ajax method.
+	$.post('[conf.site_url;noerr]/admin/printecspos/save-image', {data: data,order:orderid,id:divid}, function(res){
+		//if the file saved properly, trigger a popup to the user.
+		$('#print_'+divid).val('1');
+		console.log(res);
+		//alert(res);
+		/*if(res != ''){
+			yes = confirm('File saved in output folder, click ok to see it!');
+		}
+		else{
+			alert('something wrong');
+		}*/
+	});
+}
+</script>
+<style>
+@media print {
+ h1 { 
+  page-break-after: always;
+ } 
+}
+@media all {
+	.page-break	{ display: none; }
+}
+
+@media print {
+	.page-break	{ display: block; page-break-before: always; }
+}
+</style>
+<style media="print">
+ @page {
+  size: auto;
+  margin: 0;
+       }
+</style>
+</head>
+<body>
+<div>
+<img src="[conf.site_url;noerr]/admin/barcode/10439575" alt="Barcode" style="width:300px;height:60px;"><br />
+<h1>10439575</h1>
+<img src="[conf.site_url;noerr]/admin/barcode/10436534" alt="Barcode" style="width:300px;height:60px;"><br />
+<h1>10436534</h1>
+<img src="[conf.site_url;noerr]/admin/barcode/10171909" alt="Barcode" style="width:300px;height:60px;"><br />
+<h1>10171909</h1>
+<img src="[conf.site_url;noerr]/admin/barcode/10172271" alt="Barcode" style="width:300px;height:60px;"><br />
+<h1>10172271</h1>
+<img src="[conf.site_url;noerr]/admin/barcode/10172283" alt="Barcode" style="width:300px;height:60px;"><br />
+<h1>10172283</h1>
+<img src="[conf.site_url;noerr]/admin/barcode/10172268" alt="Barcode" style="width:300px;height:60px;"><br />
+<h1>10172268</h1>
+<img src="[conf.site_url;noerr]/admin/barcode/10439258" alt="Barcode" style="width:300px;height:60px;"><br />
+<h1>10439258</h1>
+<img src="[conf.site_url;noerr]/admin/barcode/10190090" alt="Barcode" style="width:300px;height:60px;"><br />
+<h1>10190090</h1>
+<img src="[conf.site_url;noerr]/admin/barcode/10436810" alt="Barcode" style="width:300px;height:60px;"><br />
+<h1>10436810</h1>
+<img src="[conf.site_url;noerr]/admin/barcode/10171230" alt="Barcode" style="width:300px;height:60px;"><br />
+<h1>10171230</h1>
+<img src="[conf.site_url;noerr]/admin/barcode/10436811" alt="Barcode" style="width:300px;height:60px;"><br />
+<h1>10436811</h1>
+<img src="[conf.site_url;noerr]/admin/barcode/10191141" alt="Barcode" style="width:300px;height:60px;"><br />
+<h1>10191141</h1>
+<img src="[conf.site_url;noerr]/admin/barcode/10171221" alt="Barcode" style="width:300px;height:60px;"><br />
+<h1>10171221</h1>
+
+
+
+   <table id="heatseal" class="print" width="600" align="center" border="0" cellpadding="0" cellspacing="0" > 
+    <tbody>
+      <tr>
+      <th valign="top" align="center" style="padding:0 0px 30px 0;"><ul style="margin:0; padding: 0; font-family: 'arial', monospace; font-size: 30px; font-weight: normal;text-align:center;">
+          <li style="margin:0; padding: 0; font-family: 'arial', monospace; font-size: 32px; font-weight: normal; color: #000; list-style: none;"><strong>[branch.company]</strong></li>
+          <li style="margin:0; padding: 0; font-family: 'arial', monospace; font-size: 30px; font-weight: normal; color: #000; list-style: none;">[branch.street]</li>
+          <li style="margin:0; padding: 0; font-family: 'arial', monospace; font-size: 30px; font-weight: normal; color: #000; list-style: none;">[branch.zip]</li>
+          <li style="margin:0; padding: 0; font-family: 'arial', monospace; font-size: 30px; font-weight: normal; color: #000; list-style: none;">Telefon:+47 [branch.phone]</li>
+          <li style="margin:0; padding: 0; font-family: 'arial', monospace; font-size: 30px; font-weight: normal; color: #000; list-style: none;">Org.nr: [branch.org_nr]</li>
+        </ul></th>
+      </tr>
+    <tr>
+      <td  valign="top" align="center" style="padding:0 0px 30px 0;"><ul style="margin:0; padding: 0; font-family: 'arial', monospace; font-size: 30px; font-weight: normal">
+          <li style="margin:0; padding: 0; font-family: 'arial', monospace; font-size:64px; font-weight: normal; color: #000; list-style: none;"><img src="[conf.site_url;noerr]/admin/barcode/[order.id]" alt="Barcode" style="width:300px;height:60px;"></li>
+          <li style="margin:0; padding: 0; font-family: 'arial', monospace; font-size:50px; font-weight: normal; color: #000; list-style: none;">[order.id]</li>
+          <li style="margin:0; padding: 0; font-family: 'arial', monospace;font-weight: normal; color: #000; list-style: none;">&nbsp;</li>
+        </ul></td>
+    </tr>
+    <tr>
+      <td valign="top" align="left" style="padding:0 0 30px 0;"><ul style="margin:0; padding:0 0 0 2px; font-family: 'arial', monospace; font-size: 30px; font-weight: normal">
+          <li style="margin:0; padding: 0; font-family: 'arial', monospace; font-size: 30px; font-weight: normal; color: #000; list-style: none;">+47[customer.number]</li>
+          <li style="margin:0; padding: 0; font-family: 'arial', monospace; font-size: 34px; font-weight: bold; color: #000; list-style: none; text-transform:uppercase">[customer.customer_name]</li>
+          <li style="margin:0; padding: 0; font-family: 'arial', monospace; font-size: 24px; font-weight: normal; color: #000; list-style: none;">[customer.address]</li>
+          <li style="margin:0; padding: 0; font-family: 'arial', monospace; font-size: 24px; font-weight: normal; color: #000; list-style: none;">[customer.zip] [customer.city]</li>
+          <!--[lists.employee;noerr;htmlconv=no;protect=no;comm]-->
+          <li style="margin:0; padding: 0; font-family: 'arial', monospace; font-size: 24px; font-weight: normal; color: #000; list-style: none;">[order.order_time]</li>
+        </ul></td>
+    </tr>
+      <tr>
+        <td  valign="top" align="center"><table width="100%" align="center" border="0" cellpadding="0" cellspacing="0">
+            <thead>
+              <tr>
+                <th style="text-align: left; border-top:#000 dashed 1px; border-bottom:#000 dashed 1px; padding: 10px 0; font-family:  'arial', monospace; font-size: 26px; font-weight:normal ">Artikler</th>
+                <th style="text-align: center; border-top:#000 dashed 1px; border-bottom:#000 dashed 1px; padding: 10px 0; font-family:  'arial', monospace; font-size: 26px; font-weight:normal ">Antall</th>
+                <th style="text-align: right; border-top:#000 dashed 1px; border-bottom:#000 dashed 1px; padding: 10px 0; font-family:  'arial', monospace; font-size: 26px; width:20%; font-weight:normal ">Beløp</th>
+              </tr>
+            </thead>
+            <tbody>
+			
+			<!--[lists.orderline;noerr;htmlconv=no;protect=no;comm]-->
+			
+			<!--[lists.summery;noerr;htmlconv=no;protect=no;comm]-->
+			
+            </tbody>
+          </table></td>
+      </tr>
+      <tr>
+        <td><table width="100%" align="center" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td nowrap="nowrap" style="text-align: center; padding: 5px 0; font-family:  'arial', monospace; font-size: 26px; font-weight:normal;  vertical-align: top;">&nbsp;</td>
+            </tr>
+
+           <!--[lists.orderlinedelivery;noerr;htmlconv=no;protect=no;comm]-->
+			<!--[lists.delivery_note;noerr;htmlconv=no;protect=no;comm]-->
+			<!--[lists.special_instruction;noerr;htmlconv=no;protect=no;comm]-->
+            
+                        <tr>
+              <td colspan="3" valign="top" align="center" style="text-align: center; padding: 20px; font-family:  'arial', monospace; font-size: 50px; font-weight:normal;">Intern kopi</td>
+            </tr>
+          </table></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+<form action="" method="get" id="hidden-print">
+<input type="hidden" id="print_count" value="" />
+</form>
+</html>

@@ -1,0 +1,22 @@
+<div class="row">
+<!--[onshow;block=div;when [visible.show_log] == 1;comm]-->
+<div id="viewEmail" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+  <div class="modal-body">
+    <div class="col-md-12"> <h3>[lang.lang_ipn_log]</h3><pre>[ipn.raw_data;htmlconv=no]</pre></div>
+  </div>
+</div>
+</div>
+</div>
+
+<!--WI_NOTIFICATION-->
+<div class="row"> 
+  <!--[onshow;block=div;when [visible.wi_notification] == 1;comm]-->
+  <div class="col-md-12">
+    <div class="widget">
+      <div class="widget-content widget-big-box">[vars.notification;noerr]</div>
+    </div>
+  </div>
+</div>
+<!--WI_NOTIFICATION-->

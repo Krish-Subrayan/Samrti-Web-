@@ -1,0 +1,2611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+<link href="../common/style/bootstrap.css" rel="stylesheet">
+<link href="../common/style/style.css" rel="stylesheet">
+<link href="../common/style/custom.css" rel="stylesheet">
+<!--[onshow;block=head;when [visible.foo] == bar;comm]-->
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+</head>
+<!--HEAD - ONLOAD-->
+<!--[onload;file=../common/common.head.html;getbody;comm]-->
+<!--HEAD - ONLOAD-->
+<style>
+.antall {
+	color: #a9a9a9;
+	font-size: 14px;
+	line-height: 40px;
+}
+.quantity .qty {
+    border: 1px solid #ccc;
+    box-shadow: none;
+    float: left;
+    font-size: 0.9em;
+    height: 35px;
+    padding: 0 10px;
+    text-align: center;
+    width: 100%;
+}
+.quantity .minus {
+    background: #f4f4f4 none repeat scroll 0 0;
+    border: 1px solid #c8bfc6;
+    border-radius: 2px;
+    box-shadow: none;
+    color: #5e5e5e;
+    cursor: pointer;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    height: 35px;
+    line-height: 13px;
+    margin: 0;
+    outline: 0 none;
+    overflow: visible;
+    padding: 0;
+    position: absolute;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+    vertical-align: text-top;
+    width: 35px;
+}
+.quantity .plus {
+    background: #f4f4f4 none repeat scroll 0 0;
+    border: 1px solid #c8bfc6;
+    border-radius: 2px;
+    box-shadow: none;
+    color: #5e5e5e;
+    cursor: pointer;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    height: 35px;
+    line-height: 13px;
+    margin: 0;
+    outline: 0 none;
+    overflow: visible;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+    top: 0;
+    vertical-align: text-top;
+    width: 35px;
+}
+.quantity .minus, .quantity .plus {
+    /*height: 20px;
+    line-height: 8px;
+    width: 20px;*/
+}
+</style>
+<script>
+var min_qty_price = {};  //Or, new Object()
+</script>
+<body>
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=../common/common.javascript.html;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=common_include_debug;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=common.header.html;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!-- Main content starts -->
+<div class="content"> 
+  <!-- Main bar -->
+  <div class="mainbar"> 
+    <!-- Matter -->
+    <div class="matter">
+      <div class="container receipt-bg">
+        <div class="row header">
+          <div class="col-md-4">
+             <!--TOP-LEFT - ONLOAD -->
+            <!--[onload;file=common.top.left.html;getbody;comm]-->
+             <!--TOP-LEFT - ONLOAD -->
+            <div class="text-center kasse pull-left">All Receipts</div>
+            <div class="search-product" style="display:none">
+              <div id="Exp-serach" class="Exp-serach">
+                <form id="searchFrm" name="searchFrm" action="" method="post">
+                  <input class="ExpInput " onKeyUp="buttonUp();" placeholder="Søk produkt..." onBlur="monkey();" type="search" value="" name="search" id="search">
+                  <input class="Expbtn" type="submit"  value="">
+                  <span class="ExpIcon"><i class="fa fa-search"></i></span>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8">
+             <!--TOP-RIGHT - ONLOAD -->
+            <!--[onload;file=common.top.right.html;getbody;comm]-->
+             <!--TOP-RIGHT - ONLOAD -->
+            <div class="clearfix"></div>
+            <div class="text-center kasse">Information</div>
+            <div class="print" style="display:none"><i class="fa fa-print" aria-hidden="true"></i></div>
+          </div>
+        </div>
+        <div class="row receipt">
+          <div class="col-md-4  no-padd scroll-pane"> 
+		  
+		  <button type="button" style="width:100%" class="accordion-toggle btn ">Heatseal Barcode Log</button>
+		  
+		 <div id="heatsealiframe" class="accordion-content" style="display:none;">
+		  <iframe width="100%" id="iframeorder" frameborder="0"  src="[conf.site_url;noerr]/admin/orders/getHeatseallog/[vars.iframe_order]"></iframe> 
+		  </div>
+		  
+            <!--[lists.customerorderdetails;noerr;htmlconv=no;protect=no;comm]--> 
+          </div>
+          <div class="col-md-8  scroll-pane no-padd">
+            <div class="col-md-12"> 
+              
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse"  id="bs-example-navbar-collapse-1">
+                <center>
+                  <form class="navbar-form orderlist"  action="" id="seachOrder" method="post">
+                    <input type="hidden" name="status" value="[vars.status]"/>
+                    <div class="form-group">
+                      <input type="text" class="form-control" onkeypress="return isNumber(event)"  maxlength="8" data="order" name="barcode" id="barcode" placeholder="Scan the  Barcode">
+                    </div>
+                  </form>
+                  <form style="display:none;" class="navbar-form navbar-right form-small orderlist" action="" id="seachOrderline" method="post">
+                    <div class="form-group">
+                      <input type="hidden" class="form-control" name="orderline_barcode" id="orderline_barcode" value="">
+                      <input type="hidden" class="form-control" name="orderline_new" id="orderline_new" value="">
+                    </div>
+                  </form>
+                </center>
+              </div>
+              <!-- /.navbar-collapse -->
+			
+             <div class="order_receipt">
+                <div id="ajax-loader"><img src="img/ajax-loader.gif"/></div>
+                
+                
+                <div id="info">
+                
+                    <div>
+                      <!--[onshow;block=div;when [visible.wi_show_order] == 0;comm]-->
+    
+                      <h2><div class="col-md-12 text-center mt-lg mb-lg"><h2>Ingen resultat.</h2></div></h2>
+                   </div>
+                   
+                 <div> 
+                   <!--[onshow;block=div;when [visible.wi_show_order] == 1;comm]-->
+
+                  <!--[lists.company_info;noerr;htmlconv=no;protect=no;comm]--> 
+                  <!--[lists.customer_detail;noerr;htmlconv=no;protect=no;comm]--> 
+                  <!--[lists.orderlines;noerr;htmlconv=no;protect=no;comm]--> 
+                  <!--[lists.summary;noerr;htmlconv=no;protect=no;comm]--> 
+                  
+                <div class="row">
+                
+                     <div class="col-md-3 pull-left">
+                       <!--<button type="button" id="tilbake" onClick="window.location.href='[conf.site_url;noerr]/admin/'" class="btn-lg orange">Tilbake</button>-->
+                     </div>
+                     <div class="col-md-3 pull-right no-padd">
+					 
+					 [visible.bekreft_status]
+					  <!--[onshow;block=div;when [visible.bekreft_status] == 1;comm]-->
+					   <div> 
+                        <button type="button" onClick="updateorderlog();" id="begynne" class="btn-lg green start-btn">Bekreft og skriv ut</button>
+					    </div>
+						
+                      </div>               
+                    <div class="clearfix"></div> 
+                </div>  
+               </div>             
+              
+             </div>  
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Matter ends --> 
+</div>
+<!-- Mainbar ends -->
+<div class="clearfix"></div>
+<!--WI_IFRAME_MODAL-->
+<div class="row">
+  <div id="modalIframe" class="modal fade reload-parent-on-close" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header back-color">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+          <h4 class="modal-title text-center" id="modal-iframe-title"></h4>
+        </div>
+        <div class="modal-body login">
+          <iframe frameborder="0" class="slimScrollBarModal----"></iframe>
+        </div>
+        <div class="modal-footer" style="display:none">
+          <button type="button" class="btn btn-default close-btn" data-dismiss="modal" aria-hidden="true">[lang.lang_close]</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--WI_IFRAME_MODAL--> 
+<!-- styles needed by jScrollPane -->
+<link type="text/css" href="style/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+<!-- the mousewheel plugin - optional to provide mousewheel support --> 
+<script type="text/javascript" src="js/jquery.mousewheel.js"></script> 
+<!-- the jScrollPane script --> 
+<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script> 
+<script type="text/javascript">
+
+function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+}
+
+
+$(document).ready(function(){
+	//$('.scroll-pane,.orderline-block').jScrollPane();  //scrollpane
+		if($(window).height() < 760){
+		$('.scroll-pane,.orderline-block').jScrollPane({
+			autoReinitialise: true
+		});  //scrollpane
+	}
+	else{
+		$('.scroll-pane,.orderline-block').css({"height": "auto"}); 
+	}
+
+	
+	// function for closing modal window (in parent page)
+	function closeModal() {
+		$("#modalIframe").dialog("close");
+	}	
+	
+	/*search box*/	
+	function buttonUp(){
+		 var valux = $('.ExpInput').val();
+			valux = $.trim(valux).length;
+			if(valux !== 0){
+				$('.Expbtn').css('z-index','99');
+			} else{
+				$('.ExpInput').val(''); 
+				$('.Expbtn').css('z-index','-999');
+			}
+	}
+});
+/*search box*/	
+$(document).ready(function(){
+		var submitIcon = $('.ExpIcon');
+		var submitInput = $('.ExpInput');
+		var searchBox = $('.Exp-serach');
+		var isOpen = false;
+		
+		$(document).mouseup(function(){
+			if(isOpen == true){
+			submitInput.val('');
+			$('.Expbtn').css('z-index','-999');
+			submitIcon.click();
+			}
+		});
+		
+		submitIcon.mouseup(function(){
+			return false;
+		});
+		
+		searchBox.mouseup(function(){
+			return false;
+		});
+				
+		submitIcon.click(function(){
+			if(isOpen == false){
+				searchBox.addClass('Exp-serach-open');
+				isOpen = true;
+			} else {
+				searchBox.removeClass('Exp-serach-open');
+				isOpen = false;
+			}
+	});
+	
+});
+</script> 
+<!--------------------COMMON FOOTER JAVASCRIPT----------------------------> 
+<!--[onload;file=../common/common.footer.javascript.html;getbody;comm]--> 
+<!--------------------COMMON FOOTER JAVASCRIPT----------------------------> 
+
+<script type="text/javascript" src="[conf.site_url_themes_common;noerr]/js/products.js"></script> 
+
+<script type="text/javascript" src="[conf.site_url_themes_common;noerr]/js/jquery-code-scanner1.js"></script> 
+<script type="text/javascript">
+$(document).ready(function() {	  
+	$("#barcode" ).focus();
+	$('#barcode').codeScanner();
+	
+
+	orderautoselect();
+	 buttonhide();
+	 
+	 
+	
+	$("[data-switch-set]").on("click", function() {
+		id = $(this).data("switch-set");
+		$(id).val($(this).data("switch-value"));
+		$('#discount_val10').focus();
+	});
+	
+	/* group pos starts */
+	$('.group-pos .btn-group > .btn').on("click", function() {
+		$('.group-pos .btn-group > .btn').removeClass('highlight');
+		$(this).addClass('highlight');	
+	});
+
+	
+	var id ;
+	var name ;
+	var price;
+	var img;
+	var desp;
+	var qty;
+	var gtype;
+	var duration;
+	var complain;		
+	var in_house;
+	var oprice;
+	var prdid;
+	
+	
+	//load order in fo based on order link in sidebar
+	$("form#searchFrm").submit(function(){
+		var oid = $("#search").val();
+		 var processing = false;
+		 if(processing == false){
+			processing = true;
+			 $.ajax({
+				type: "POST",
+				url: "[conf.site_url;noerr]/admin/orders/get-order-receipt",
+				data: {
+					oid: oid
+				},
+			   beforeSend: function(){
+					 $("#ajax-loader").show();
+					 $("#info").hide();
+			   },
+			   complete: function(){
+					processing = false;
+					$("#ajax-loader").hide();
+					$("#info").show();
+					$("#barcode" ).focus();
+			   },
+			   dataType: "json",
+			   success: function (data) {
+					$("#info").html(data.order_details);
+					buttonhide();
+				}
+			});
+		}
+		else {
+			
+				noty({
+								text: '[lang.lang_process_goingon]',
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+		}
+		return false;
+	});
+	
+	
+	//load order in fo based on order link in sidebar
+	$('.order-list a').click(function(){
+		var oid = $(this).attr('rel');
+		
+		 var processing = false;
+		 if(processing == false){
+			processing = true;
+			 $.ajax({
+				type: "POST",
+				url: "[conf.site_url;noerr]/admin/orders/get-order-receipt",
+				data: {
+					oid: oid
+				},
+			   beforeSend: function(){
+					 $("#ajax-loader").show();
+					 $("#info").hide();
+			   },
+			   complete: function(){
+					processing = false;
+					$("#ajax-loader").hide();
+					$("#info").show();
+					$("#barcode" ).focus();
+			   },
+			   dataType: "json",
+			   success: function (data) {
+					$("#info").html(data.order_details);
+					refresh_frame(oid);
+					orderautoselect();
+					
+					buttonhide();
+				}
+			});
+		}
+		else {
+			noty({
+								text: '[lang.lang_process_goingon]',
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+		}
+		return false;
+	});
+	
+	
+});
+
+function getorderreceipt(oid)
+{
+
+	$.ajax({
+				type: "POST",
+				url: "[conf.site_url;noerr]/admin/orders/get-order-receipt",
+				data: {
+					oid: oid
+				},
+			   beforeSend: function(){
+					 $("#ajax-loader").show();
+					 $("#info").hide();
+			   },
+			   complete: function(){
+					processing = false;
+					$("#ajax-loader").hide();
+					$("#info").show();
+					$("#barcode" ).focus();
+			   },
+			   dataType: "json",
+			   success: function (data) {
+				   
+					$('.popupscroll').jScrollPane({
+						autoReinitialise: true
+					});  //scrollpane
+				   
+					$("#info").html(data.order_details);
+					
+					
+					buttonhide();
+				}
+			});
+}
+
+function orderautoselect()
+{
+	$( ".cart_table_item" ).each(function( index ) {
+	
+	
+	
+	//var str = this.id;
+	//var oridd=str.replace('tr_','');
+
+
+		//$( "#"+this.id ).trigger( "click" );
+		//setNeworderline
+		
+		$( "#"+this.id+" div:nth-child(2)" ).trigger( "click" );
+		
+		
+		
+		return false;
+	});
+}
+
+function validateForm()
+{
+	var radios = document.getElementsByName("producttype");
+    var formValid = false;
+
+    var i = 0;
+    while (!formValid && i < radios.length) {
+        if (radios[i].checked) formValid = true;
+        i++;        
+    }
+
+    return formValid;
+}
+
+function getOrderlinedetails1()
+{
+	var barcode=$("#barcode" ).val();
+	 getOrderlinedetails(barcode);
+}
+
+function getOrderlinedetails(barcode)
+{
+	var barlength=barcode.toString().length;
+	if(barlength < 8)
+	{
+		//alert("Invalid Barcode");
+		return false;
+	}
+	//alert(barlength);
+	if(barlength != 8)
+	{
+	
+		noty({
+								text: 'Invalid Barcode',
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+							
+						$('#barcode').val('');
+						$( "#barcode" ).focus();
+							
+		return false;
+	}
+	
+		var first2 = barcode.substr(0, 2);
+			
+			 if(first2 != 10)
+			 {
+					noty({
+								text: 'Invalid Barcode',
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+					$( "#barcode" ).focus();
+					failPlay();
+					$('#scanerrorconfirm').modal({ backdrop: 'static', keyboard: false });
+					return false;
+			 }
+	
+	
+	// $("#barcode").attr("disabled","disabled");
+		//
+		
+	var orderline=$('#orderline_new').val();
+	if(parseInt(orderline) > 0)
+	{
+		var qty=$('#qty_'+orderline).html();
+		var lstatus=$('#qty_'+orderline).attr( "data" );
+		var sqty=$('#sqty_'+orderline).val();
+		
+		var product=$('#product_'+orderline).val();
+		
+		
+	
+			var producttype='';
+			if(parseInt(sqty) > 1)
+			{
+		
+				var vform=validateForm();
+				if(vform)
+				{
+					 producttype = $("input[name='producttype']:checked").val();
+				}
+				else
+				{
+					//alert("Must choose the product type!");
+					
+					$("#multiqtyprotbtn").trigger('click');
+					return false;
+				}
+				
+				
+			}
+		
+		$("#barcode").attr("disabled","disabled");
+		
+		$.ajax({
+			url: "[conf.site_url;noerr]/admin/orders/orderlinedetails",
+			type:   'POST',
+			cache:  false,
+			data: {
+				barcode:barcode,
+				orderline:orderline,
+				lstatus:lstatus,
+				qty:qty,
+				product:product,
+				producttype:producttype		
+			},		
+			success: function(response){
+					item=JSON.parse(response); 
+					
+					if(item.status == 'success')
+					{
+					
+						successPlay();
+						$("#barcode").removeAttr("disabled");
+						$('#barcode').val('');
+						$( "#barcode" ).focus();
+						refresh_frame('');
+						if(parseInt(item.qty) > 1 )
+						{	
+							$('#qty_'+item.orderline).html($('#qty_'+item.orderline).html()-1);
+							
+							$( "#newquantity_"+item.orderline).val($( "#newquantity_"+item.orderline).val()-1)
+							
+							
+							
+							$(this).parent().parent().parent().animate( { backgroundColor: "#ffffcc" }, 1 ).animate( { backgroundColor: "#f2f2f2" }, 2000 );
+						}
+						else
+						{
+							
+							var newqty=$('#qty_'+item.orderline).html();
+							//$("#tr_"+item.orderline).css({"background-color": '#a9a9a9'});
+							$("#tr_"+item.orderline).removeClass( "cart_table_item" );
+							$("#tr_"+item.orderline).addClass( "noheatseal" );
+							
+							$("#tr_"+item.orderline).removeAttr( "style" );
+							$("#tr_"+item.orderline).removeAttr( "onclick" );
+							if(parseInt(newqty) > 0)
+							{
+								$('#qty_'+item.orderline).html($('#qty_'+item.orderline).html()-1);
+
+							}
+							
+							$("#orderlinechk_"+item.orderline).attr("disabled","disabled");
+							$("#tr_"+item.orderline).css({"background-color": '#f2f2f2'});
+							$("#tr_"+item.orderline).find('p').css({"color": '#a9a9a9'});
+							$("#tr_"+item.orderline).find('.antall').css({"color": '#a9a9a9'});
+							$("#tr_"+item.orderline).find('font').css({"color": '#a9a9a9'});
+		
+							
+							//
+							
+							
+							$(this).parent().parent().parent().animate( { backgroundColor: "#ffffcc" }, 1 ).animate( { backgroundColor: "#a9a9a9" }, 2000 );
+							
+						//	$("#tr_"+item.orderline).remove();
+							$('#barcode').val('');
+							$('#orderline_new').val('')
+							var newindex=0;
+							$('.cart_table_item').each(function(index, obj){
+							   newindex=parseInt(index)+1;
+							  
+							});
+							
+							if(parseInt(newindex) == 0)
+							{
+								//$('#widget_content').hide();
+								//$('#barcode').attr('data','order');
+							}
+							orderautoselect();
+		
+						}
+						
+						 var ele = document.getElementsByName("producttype");
+							for(var i=0;i<ele.length;i++)
+							ele[i].checked = false;
+	
+					}
+					else if(item.status == 'bag')
+					{
+						failPlay();
+						$("#barcode").removeAttr("disabled");
+						$('#barcode').val('');
+						$( "#barcode" ).focus();
+						
+						noty({
+								text: item.message,
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+						$('#scanerrorconfirm').modal({ backdrop: 'static', keyboard: false });		
+					}
+					else
+					{
+						failPlay();
+						$("#barcode").removeAttr("disabled");
+						$('#barcode').val('');
+						$( "#barcode" ).focus();
+						noty({
+								text: item.message,
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+						});
+						$('#scanerrorconfirm').modal({ backdrop: 'static', keyboard: false });
+						$('#barcode').val('');
+						$("#barcode" ).focus();
+					}
+					
+				buttonhide();	
+			}           
+		  });
+	 }
+	 else
+	 {
+
+		noty({
+								text: 'Please select any one product.',
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+		return false;
+	 }
+	
+}
+
+function skipOrderlineScan(oobj,orlid)
+{
+	if(oobj.checked)
+	{
+		$( "#qty_"+orlid ).html('0');
+		$("#tr_"+orlid).css({"background-color": '#fff'});
+		$("#tr_"+orlid).find('p').css({"color": '#000'});
+		$("#tr_"+orlid).find('.antall').css({"color": '#0cc579'});
+		$("#tr_"+orlid).find('font').css({"color": '#ff6511'});
+		
+		$('#orderline_new').val('');
+	
+	}
+	else
+	{
+		$( "#qty_"+orlid ).html($( "#newquantity_"+orlid ).val());
+	}
+buttonhide();
+	
+}
+
+function buttonhide()
+{
+	var newqty=0;
+	$( ".cart_table_item" ).each(function( index ) {
+		var trid = this.id.replace('tr_','');
+		var nqty=$( "#qty_"+trid ).html();
+		newqty=parseInt(newqty)+parseInt(nqty);
+	});
+	
+	
+	if(newqty == 0)
+	{
+		$("#begynne").show();
+	}
+	else
+	{
+		
+		$("#begynne").hide();
+	}
+	
+}
+
+
+	function closepopup()
+	{
+		$("#staff_close").trigger('click');
+		$("#barcode" ).focus();
+		
+		getOrderlinedetails1();
+	}
+
+function setNeworderline(norderline,sts,qtystatus)
+{
+
+		if($("#qty_"+norderline).html() == 0)
+		{
+			return false;
+		}
+
+	  var isChecked = $("#orderlinechk_"+norderline).is(":checked");
+	  if(isChecked)
+	  {
+		$("#tr_"+norderline).css({"background-color": '#fff'});
+		$("#tr_"+norderline).find('p').css({"color": '#000'});
+		$("#tr_"+norderline).find('.antall').css({"color": '#0cc579'});
+		$("#tr_"+norderline).find('font').css({"color": '#ff6511'});
+		return false;
+	  }
+  
+  
+	
+	$('.cart_table_item').each(function(index, obj){
+		   $(obj).css({"background-color": '#FFFFFF'});
+		   $(obj).find('p').css({"color": '#000'});
+		   $(obj).find('.antall').css({"color": '#0cc579'});
+		   $(obj).find('font').css({"color": '#ff6511'});
+		   
+	});
+	
+	 var oldorderline=$('#orderline_new').val();
+	 
+	 if(oldorderline == norderline)
+	 {
+	
+		 $("#tr_"+norderline).css({"background-color": '#FFFFFF'});
+		 $("#tr_"+norderline).find('p').css({"color": '#000'});
+		 $("#tr_"+norderline).find('.antall').css({"color": '#0cc579'});
+		 $("#tr_"+norderline).find('font').css({"color": '#ff6511'});
+		 $('#orderline_new').val('');
+		 $('#barcode').val('');
+	 }
+	 else
+	 {
+		
+		$("#tr_"+norderline).css({"background-color": '#0cc579'});
+		$("#tr_"+norderline).find('p').css({"color": '#fff'});
+		$("#tr_"+norderline).find('.antall').css({"color": '#fff'});
+		$("#tr_"+norderline).find('font').css({"color": '#fbfa00'});
+		$('#orderline_new').val(norderline);
+		$('#barcode').val('');
+		$("#barcode" ).focus();
+		if(parseInt(qtystatus) > 1)
+		{
+			 getProducttypes(norderline);
+			 //$("#multiqtyprotbtn").trigger('click');
+		}
+	 }
+	
+	//$("#tilbake").attr("disabled","disabled");
+	//$("#begynne").attr("disabled","disabled");
+	
+	$("#tilbake").hide();
+	$("#begynne").hide();
+	buttonhide();
+	//getOrderlinedetails(1);
+	
+}
+
+function updateorderlog(){
+	
+	var newqty=0;
+	$( ".cart_table_item" ).each(function( index ) {
+		var trid = this.id.replace('tr_','');
+		var nqty=$( "#qty_"+trid ).html();
+		newqty=parseInt(newqty)+parseInt(nqty);
+	});
+	
+	if(newqty > 0)
+	{
+		
+		noty({
+								text: "Sorry. Please complete the scanning process.",
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+		return false;
+	}
+	$("#begynne").hide();
+	var ordrenr=$('#ordrenr').val();
+	$.ajax({
+			url: "[conf.site_url;noerr]/admin/orders/updateorderlog",
+			type:   'POST',
+			cache:  false,
+			data: {
+				order:ordrenr		
+			},		
+			success: function(response){
+					item=JSON.parse(response); 
+					
+					if(item.status == 'success')
+					{
+						$("#begynne").hide();
+						noty({
+								text: item.message,
+								layout: 'bottomRight',
+								type: 'information',
+								timeout: [settings_general.notifications_display_duration;noerr]
+						});
+						$("#tilbake").show();
+						
+						var win = window.open('[conf.site_url;noerr]/admin/orders/print-heatseal/'+ordrenr+'', '_blank',"width=512,height=500");
+						if (win) {
+							//win.document.write("ABCD");
+							//win.document.close();
+							win.focus();                
+							setTimeout(function () {
+								//win.print();
+								//win.close();
+							}, 90000); 
+					
+						} else {
+							//Browser has blocked it
+							noty({
+							text: 'Please allow popups for this website.',
+							layout: 'bottomRight',
+							type: 'warning',
+							timeout: [settings_general.notifications_display_duration;noerr]
+							});
+						}
+							
+						
+					}
+					else
+					{	
+						
+						noty({
+								text: item.message,
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+					}
+				}           
+		  });
+	
+}
+
+function ajaxeditOrder(orid)
+{
+
+	 $.ajax({
+				type: "POST",
+				url: "[conf.site_url;noerr]/admin/orders/editorder",
+				data: {
+					orderid: orid
+				},
+			   beforeSend: function(){
+					 $("#edit-ajax-loader").show();
+					 $("#edit_order_frm").hide();
+
+			   },
+			   complete: function(){
+					processing = false;
+					$("#edit-ajax-loader").hide();
+					$("#edit_order_frm").show();
+					
+				},
+			   dataType: "json",
+			   success: function (data) {
+				   
+					$('.popupscroll').jScrollPane({
+						autoReinitialise: true
+					});  //scrollpane
+
+				   
+					$("#edit_order_frm").html(data.order_details);
+					
+					$("#nproduct").select2({
+						allowClear: true
+					});
+					
+					//$(".minusplus").trigger('click');
+					
+					 $('a.editprod').click(function(){  
+								
+							$('.product-buttons .btn-group .btn:first').trigger('click');
+
+							var title = $(this).data('title');
+							$("h4#edit-product-title").html(title);		
+						
+							var stuff = $(this).attr('data-stuff').split('@');
+								
+							 id = stuff[0];
+							 name = stuff[1];
+							 price = stuff[2];
+							 img = stuff[3];
+							 desp = stuff[4];
+							 qty = stuff[5];
+							 gtype = stuff[6];
+							 complain = stuff[7];
+							 in_house =  stuff[8];
+							 oprice =  stuff[9];
+							 prdid = stuff[10];
+							 
+							 
+							$('#edit_spl_instruction').val(desp);
+							$('#edit_quantity').val(qty);
+							//$('#edit_pris').val(oprice);
+							 
+							
+							if(parseInt(price) == 0){
+								$('#edit_pris').val(oprice);
+							}
+							else{
+								
+								price = parseInt(price);
+								$('#edit_pris').val(price);
+							}
+							 
+							 
+							if(stuff[10] == 143)
+							{
+								$('.pris-wrapper').show();
+								$('.qty-wrapper,.product-buttons .btn-group .btn:first').hide();
+								$('#edit-pris').addClass('highlight');
+								$("#edit-pris").css({"border-bottom-left-radius": "5px", "border-top-left-radius": "5px"});
+							}
+							else{
+								$('.product-buttons .btn-group .btn:first,.qty-wrapper').show();
+								$('.product-buttons .btn-group .btn:first').trigger('click');
+								$("#edit-pris").css({"border-bottom-left-radius": "0px", "border-top-left-radius": "0px"});
+							}
+							
+							
+							
+							
+							
+							
+							if(in_house == 1){
+								//alert("inhouse" + in_house);
+								//$('input:checkbox[name=in_house]').attr('checked',true);
+								
+								$('#house_div').html('<input type="checkbox" checked="checked" value="" name="in_house" id="edit_in_house"> Renses på huset');
+							  
+							}
+							else{
+								//$('input:checkbox[name=in_house]').attr('checked',false);
+								
+								$('#house_div').html('<input type="checkbox"  value="" name="in_house" id="edit_in_house"> Renses på huset');
+								
+							}
+							
+							if(complain == 1){
+							//alert("inhouse" + complain);
+								//$('input:checkbox[name=complain]').attr('checked',true);
+								$('#complain_div').html('<input type="checkbox" checked="checked" value="" name="complain" id="edit_complain">Reklamasjon');
+							}
+							else{
+								$('#complain_div').html('<input type="checkbox" value="" name="complain" id="edit_complain">Reklamasjon');
+							}
+					
+				   });
+					
+					
+					getorderreceipt(orid);
+					
+				}
+			});
+}
+
+function printTagOrder(orid)
+{
+
+	 $.ajax({
+				type: "POST",
+				url: "[conf.site_url;noerr]/admin/orders/printtagOrder",
+				data: {
+					orderid: orid
+				},
+			   beforeSend: function(){
+					 $("#edit-ajax-loader").show();
+					 $("#printtag_order_frm").hide();
+
+			   },
+			   complete: function(){
+					processing = false;
+					$("#edit-ajax-loader").hide();
+					$("#printtag_order_frm").show();
+					
+				},
+			   dataType: "json",
+			   success: function (data) {
+				   
+					$("#printtag_order_frm").html(data.order_details);
+
+					$('.popupscroll').jScrollPane({
+						autoReinitialise: true
+					});  //scrollpane
+
+
+					$("#nproduct").select2({
+						allowClear: true
+					});
+					
+				
+					
+					
+					
+				}
+			});
+}
+
+
+
+
+function editOrder(orid)
+{
+
+	 $.ajax({
+				type: "POST",
+				url: "[conf.site_url;noerr]/admin/orders/editorder",
+				data: {
+					orderid: orid
+				},
+			   beforeSend: function(){
+					 $("#edit-ajax-loader").show();
+					 $("#edit_order_frm").hide();
+
+			   },
+			   complete: function(){
+					processing = false;
+					$("#edit-ajax-loader").hide();
+					$("#edit_order_frm").show();
+					
+				},
+			   dataType: "json",
+			   success: function (data) {
+				   
+					$("#edit_order_frm").html(data.order_details);
+
+					$('.popupscroll').jScrollPane({
+						autoReinitialise: true
+					});  //scrollpane
+
+
+					$("#nproduct").select2({
+						allowClear: true
+					});
+					
+					
+					$(".minusplus").trigger('click');
+					
+					editOrderline(orid);
+					
+					//remove an item from cart
+					$('a.removeOrderline').click(function(e){  
+						e.preventDefault();
+						var stuff = $(this).attr('data-stuff').split('@');
+						 olid = stuff[0];
+						 oid = stuff[1];
+						 
+						$('#olid').val(olid);
+						$('#oid').val(oid);
+					});
+					
+				}
+			});
+}
+
+function editOrderline(orid){
+	
+	
+		 $('a.editprod').click(function(){  
+		 
+		 	$('.product-buttons .btn-group .btn:first').trigger('click');
+					
+			var title = $(this).data('title');
+			$("h4#edit-product-title").html(title);	
+			
+			var stuff = $(this).attr('data-stuff').split('@');
+			 id = stuff[0];
+			 name = stuff[1];
+			 price = stuff[2];
+			 img = stuff[3];
+			 desp = stuff[4];
+			 qty = stuff[5];
+			 gtype = stuff[6];
+			 complain = stuff[7];
+			 in_house =  stuff[8];
+			 oprice =  stuff[9];
+
+							 prdid = stuff[10];
+							 
+							 
+							$('#edit_spl_instruction').val(desp);
+							$('#edit_quantity').val(qty);
+							//$('#edit_pris').val(oprice);
+							 
+							
+							if(parseInt(price) == 0){
+								$('#edit_pris').val(oprice);
+							}
+							else{
+								
+								price = parseInt(price);
+								$('#edit_pris').val(price);
+							}
+							 
+							 
+							if(stuff[10] == 143)
+							{
+								$('.pris-wrapper').show();
+								$('.qty-wrapper,.product-buttons .btn-group .btn:first').hide();
+								$('#edit-pris').addClass('highlight');
+								$("#edit-pris").css({"border-bottom-left-radius": "5px", "border-top-left-radius": "5px"});
+							}
+							else{
+								$('.product-buttons .btn-group .btn:first,.qty-wrapper').show();
+								$('.product-buttons .btn-group .btn:first').trigger('click');
+								$("#edit-pris").css({"border-bottom-left-radius": "0px", "border-top-left-radius": "0px"});
+							}
+			
+			
+			if(in_house == 1){
+				//alert("inhouse" + in_house);
+				//$('input:checkbox[name=in_house]').attr('checked',true);
+				
+				$('#house_div').html('<input type="checkbox" checked="checked" value="" name="in_house" id="edit_in_house"> Renses på huset');
+			  
+			}
+			else{
+				//$('input:checkbox[name=in_house]').attr('checked',false);
+				
+				$('#house_div').html('<input type="checkbox"  value="" name="in_house" id="edit_in_house"> Renses på huset');
+				
+			}
+			
+			if(complain == 1){
+			//alert("inhouse" + complain);
+				//$('input:checkbox[name=complain]').attr('checked',true);
+				$('#complain_div').html('<input type="checkbox" checked="checked" value="" name="complain" id="edit_complain">Reklamasjon');
+			}
+			else{
+				$('#complain_div').html('<input type="checkbox" value="" name="complain" id="edit_complain">Reklamasjon');
+			}
+		
+		
+	   });
+	   
+		$("form#editProduct").submit(function(){
+			
+			//alert(id);
+			
+			 var processing2 = false;
+			 if(processing2 == false){
+ 
+				if($('#edit_in_house').prop('checked') === true){
+					//alert("inhouse" + in_house);
+					in_house = 1;
+				}
+				else{
+					in_house = 0;
+				}
+					 
+				if($('#edit_complain').prop('checked') === true){
+					//alert("complain" + complain);
+					complain = 1;
+				}
+				else{
+					complain = 0;
+				}
+				
+				//alert($('#order_total_amount').val());
+
+
+				processing2 = true;
+				 $.ajax({
+					type: "POST",
+					url: "[conf.site_url;noerr]/admin/orders/edit-utlevering",
+					data: {
+						oid: orid,
+						olid: id,
+						name: name,
+						price: $('#edit_pris').val(),
+						qty: $('#edit_quantity').val(),
+						img: img,
+						desp: $('#edit_spl_instruction').val(),
+						gtype : gtype,
+						total : $('#order_total_amount').val(),
+						complain : complain,
+						in_house : in_house
+		
+					},
+				   beforeSend: function(){
+						 $('#editProductModal').modal('hide');
+				   },
+				   complete: function(){
+						processing2 = false;
+				   },
+				   dataType: "json",
+				   success: function (data) {
+					  // alert(oid);
+					  // alert(data.error);
+					   ajaxeditOrder(orid);
+				   }
+				});
+			}
+			else {
+				alert('[lang.lang_process_goingon]');
+			}
+			return false;
+		});
+}
+
+function edit_Order(orid)
+{
+
+	 $.ajax({
+				type: "POST",
+				url: "[conf.site_url;noerr]/admin/orders/editorder",
+				data: {
+					orderid: orid
+				},
+			   beforeSend: function(){
+					 $("#edit-ajax-loader").show();
+					 $("#edit_order_frm").hide();
+
+			   },
+			   complete: function(){
+					processing = false;
+					$("#edit-ajax-loader").hide();
+					$("#edit_order_frm").show();
+					
+				},
+			   dataType: "json",
+			   success: function (data) {
+				   
+					$('.popupscroll').jScrollPane({
+						autoReinitialise: true
+					});  //scrollpane
+						
+				   
+					$("#edit_order_frm").html(data.order_details);
+					$("#nproduct").select2({
+						allowClear: true
+					});
+						$(".minusplus").trigger('click');
+						
+					//remove an item from cart
+					$('a.removeOrderline').click(function(e){  
+						e.preventDefault();
+						var stuff = $(this).attr('data-stuff').split('@');
+						 olid = stuff[0];
+						 oid = stuff[1];
+						 
+						$('#olid').val(olid);
+						$('#oid').val(oid);
+					});
+						
+					 $('a.editprod').click(function(){  
+								
+							$('.product-buttons .btn-group .btn:first').trigger('click');
+
+							var title = $(this).data('title');
+							$("h4#edit-product-title").html(title);		
+						
+							var stuff = $(this).attr('data-stuff').split('@');
+								
+							 id = stuff[0];
+							 name = stuff[1];
+							 price = stuff[2];
+							 img = stuff[3];
+							 desp = stuff[4];
+							 qty = stuff[5];
+							 gtype = stuff[6];
+							 complain = stuff[7];
+							 in_house =  stuff[8];
+							 prdid = stuff[10];
+							 
+							 
+							$('#edit_spl_instruction').val(desp);
+							$('#edit_quantity').val(qty);
+							//$('#edit_pris').val(oprice);
+							 
+							
+							if(parseInt(price) == 0){
+								$('#edit_pris').val(oprice);
+							}
+							else{
+								
+								price = parseInt(price);
+								$('#edit_pris').val(price);
+							}
+							 
+							 
+							if(stuff[10] == 143)
+							{
+								$('.pris-wrapper').show();
+								$('.qty-wrapper,.product-buttons .btn-group .btn:first').hide();
+								$('#edit-pris').addClass('highlight');
+								$("#edit-pris").css({"border-bottom-left-radius": "5px", "border-top-left-radius": "5px"});
+							}
+							else{
+								$('.product-buttons .btn-group .btn:first,.qty-wrapper').show();
+								$('.product-buttons .btn-group .btn:first').trigger('click');
+								$("#edit-pris").css({"border-bottom-left-radius": "0px", "border-top-left-radius": "0px"});
+							}
+							
+							if(in_house == 1){
+								//alert("inhouse" + in_house);
+								//$('input:checkbox[name=in_house]').attr('checked',true);
+								
+								$('#house_div').html('<input type="checkbox" checked="checked" value="" name="in_house" id="edit_in_house"> Renses på huset');
+							  
+							}
+							else{
+								//$('input:checkbox[name=in_house]').attr('checked',false);
+								
+								$('#house_div').html('<input type="checkbox"  value="" name="in_house" id="edit_in_house"> Renses på huset');
+								
+							}
+							
+							if(complain == 1){
+							//alert("inhouse" + complain);
+								//$('input:checkbox[name=complain]').attr('checked',true);
+								$('#complain_div').html('<input type="checkbox" checked="checked" value="" name="complain" id="edit_complain">Reklamasjon');
+							}
+							else{
+								$('#complain_div').html('<input type="checkbox" value="" name="complain" id="edit_complain">Reklamasjon');
+							}
+					
+				   });
+						
+					
+					save_edit_order();
+					
+				}
+			});
+}
+</script> 
+	<button class="btn-xlg btn-info full-width" style="display:none;" id="multiqtyprotbtn" data-toggle="modal" href="#multiqtypro">Click</button>
+	
+	
+<div class="row">
+  <div id="multiqtypro" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:450px">
+      <form name="radioForm" id="radioForm">
+        <div class="modal-content">
+          <div class="modal-header back-color">
+            <button type="button" id="staff_close" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+           
+            <h4 class="modal-title login-title"> Select Product Type</h4>
+          </div>
+          <div class="modal-body login">
+        <div class="form-login-wrapper">		
+            <div class="pw-wrapper" style="background:none;">
+				<div class="row text-center" id="pro-ajax-loader"><img src="img/ajax-loader.gif"/></div>
+                <div id="product_type" class="row text-center" style="20px 0 30px">
+				</div>
+            </div>
+            
+            
+         		   </div>
+             </div>
+             </div>
+           </form>
+        </div>
+      </div>
+</div>
+
+<div class="row">
+  <div id="editproduct" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="max-width:80%;">
+	
+        <div class="modal-content">
+          <div class="modal-header back-color">
+            <button type="button" id="order_close" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+           
+            <h4 class="modal-title login-title">Order Information</h4>
+          </div>
+          <div class="modal-body ">
+        <div class="form-login-wrapper">		
+            <div class="pw-wrapper" style="background:none; padding:0">
+            
+            <div id="edit-ajax-loader"><img src="img/ajax-loader.gif"/></div>
+
+			 <form class="form-horizontal" action="" method="post" name="ordereditfrm" id="ordereditfrm">
+                <div id="edit_order_frm" class="row">
+                
+               
+				</div>
+				</form>
+            </div>
+            
+            
+         		   </div>
+             </div>
+             </div>
+          
+      
+	</div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div id="tagproduct" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="max-width:80%;">
+	
+        <div class="modal-content">
+          <div class="modal-header back-color">
+            <button type="button" id="order_close" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+           
+            <h4 class="modal-title login-title">Order Information</h4>
+          </div>
+          <div class="modal-body ">
+        <div class="form-login-wrapper">		
+            <div class="pw-wrapper" style="background:none; padding:0">
+            
+            <div id="edit-ajax-loader"><img src="img/ajax-loader.gif"/></div>
+
+			 <form class="form-horizontal" action="" method="post" name="ordereditfrm" id="ordereditfrm">
+                <div id="printtag_order_frm" class="row">
+                
+               
+				</div>
+				</form>
+            </div>
+            
+            
+         		   </div>
+             </div>
+             </div>
+          
+      
+	</div>
+  </div>
+</div>
+
+<script>
+function paymenttype(ptype)
+	{
+		$("#opay_type").val(ptype);
+		$('.payment_type').removeClass('highlight');
+		$('#pay_'+ptype).addClass('highlight');	
+	}
+function retim()
+{
+
+	
+	var rsource=$("#saldostatus").val();
+
+	var saldo_amt= $("#saldo_amt").val();
+	var pay_amt= $("#pay_amt").val();
+	
+	
+	if(rsource)
+	{
+		if(parseFloat(saldo_amt) >= parseFloat(pay_amt))
+		{
+			var bsaldo_amot=parseFloat(saldo_amt)-parseFloat(pay_amt);
+			var tpay_amot=0;
+		}
+		else
+		{
+			var tpay_amot=parseFloat(pay_amt)-parseFloat(saldo_amt);
+			var bsaldo_amot=0;
+		}
+		 $("#pay_amt").val(tpay_amot);
+		//$("#payable_amt").html(tpay_amot.toLocaleString('de-DE'));
+		//$("#csaldo_amt").html(bsaldo_amot.toLocaleString('de-DE'));
+	}
+	else
+	{
+		
+		
+		 var nsaldo_amt=parseFloat(saldo_amt);
+		
+		// $("#csaldo_amt").html(nsaldo_amt.toLocaleString('de-DE'));
+		 
+		 checkboxes = document.getElementsByName('corderlines[]');
+		  var ttotamt=0;
+		  for(var i=0, n=checkboxes.length;i<n;i++) 
+		  {
+			if(checkboxes[i].checked)
+			{
+				ttotamt=parseFloat(ttotamt)+parseFloat($("#oltotal_"+checkboxes[i].value).val());
+			}
+		 }
+		 $("#pay_amt").val(ttotamt);
+		  $("#paying_amt").val(ttotamt);
+		// $("#payable_amt").html(ttotamt.toLocaleString('de-DE'));
+	}
+	 
+}
+
+
+
+function getTotalamount()
+{
+	  checkboxes = document.getElementsByName('corderlines[]');
+	  var ttotamt=0;
+	  var count =0;
+	  for(var i=0, n=checkboxes.length;i<n;i++) 
+	  {
+		if(checkboxes[i].checked)
+		{
+			ttotamt=parseFloat(ttotamt)+parseFloat($("#oltotal_"+checkboxes[i].value).val());
+			count ++;
+		}
+	 }
+	 $("#pay_amt").val(ttotamt);
+	  $("#paying_amt").val(ttotamt);
+	  $("#checkedoderline").val(count);
+
+	// $("#payable_amt").html(ttotamt.toLocaleString('de-DE'));
+	
+	var paying_amt=$('#paying_amt').val();
+	$('.npayment_type span').text(" (kr " + paying_amt + ")");
+	
+	 retim();
+	 
+	 
+	
+}
+ 
+  function paycheckall(source) {
+  checkboxes = document.getElementsByName('corderlines[]');
+  for(var i=0, n=checkboxes.length;i<n;i++) {
+
+	if(source.checked)
+	{
+		$("#trr_"+checkboxes[i].value).css({"background-color": '#0cc579'});
+		$("#trr_"+checkboxes[i].value).find('p').css({"color": '#fff'});
+
+	}
+	else
+	{
+		$("#trr_"+checkboxes[i].value).css({"background-color": '#fff'});
+		$("#trr_"+checkboxes[i].value).find('p').css({"color": '#000'});
+		
+	}
+	
+	checkboxes[i].checked = source.checked;
+	
+  }
+  getTotalamount();
+}
+
+function payitem(sour)
+{
+	if(sour.checked)
+	{
+		$("#trr_"+sour.value).css({"background-color": '#0cc579'});
+		$("#trr_"+sour.value).find('p').css({"color": '#fff'});
+	}
+	else
+	{
+		$("#trr_"+sour.value).css({"background-color": '#fff'});
+		$("#trr_"+sour.value).find('p').css({"color": '#000'});
+		
+	}
+	getTotalamount();
+}
+
+
+function newpayment()
+{
+	getTotalamount();
+	var paytype=$('#opay_type').val();
+	var paying_amt=$('#paying_amt').val();
+	var saldo_amt=$('#saldo_amt').val();
+	var discount_amt=$('#order_discount_amount').val();
+	var discountstatus=$('#discountstatus').val();
+	
+	
+	if(parseInt(discountstatus) > 0)
+	{
+			if(parseFloat(discount_amt) > parseFloat(paying_amt))
+			{
+				noty({
+											text: 'You paying amount must be greater that discount amount.',
+											layout: 'bottomRight',
+											type: 'warning',
+											timeout: [settings_general.notifications_display_duration;noerr]
+										});
+										return false;
+			}
+	}
+
+	
+	paying_amt=parseFloat(paying_amt) - parseFloat(discount_amt);
+	
+		if(paytype == 'saldo')
+		{
+			if(parseFloat(paying_amt) > parseFloat(saldo_amt))
+			{
+			
+			var balanceamt=paying_amt-saldo_amt;
+				noty({
+									text: 'Din saldo er for lav. Vennligst legg saldo Kr.'+balanceamt,
+									layout: 'bottomRight',
+									type: 'warning',
+									timeout: [settings_general.notifications_display_duration;noerr]
+								});
+								return false;
+				
+			}
+		}
+		
+		
+	
+	
+	
+	if(paytype == '')
+	{
+		noty({
+								text: 'Vennligst velg betalingstype',
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+							return false;
+	}
+	else
+	{
+		if(paytype == 'visa')
+		{
+			$('#onew_pay_type').html('Kort');
+		}
+		else if(paytype == 'saldo')
+		{
+			$('#onew_pay_type').html('Saldo');
+		}
+		else if(paytype == 'cash')
+		{
+			$('#onew_pay_type').html('Kontant');
+		}
+		else
+		{
+			$('#onew_pay_type').html('Faktura');
+		}
+		
+		
+		
+		$('#paymentconfirm').modal({ backdrop: 'static', keyboard: false });
+	}
+	
+	
+}
+
+function makeOrderpayment()
+{
+	var datastring = $("#ordereditfrm").serialize();
+	var rsource=$("#saldostatus").val();
+	if(rsource)
+	{
+	}
+	else
+	{
+		var opay_type=$("#opay_type").val();
+		
+		if(opay_type == '')
+		{
+			noty({
+								text: 'Please select payment type',
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+		return false
+		
+		}
+		
+		
+	}
+	
+	
+	
+	$.ajax({
+		type: "POST",
+		url: "[conf.site_url;noerr]/admin/orders/makeorderpayment",
+		data: datastring,
+		dataType: "json",
+		success: function(data) {
+				
+
+			if(data.status == 'success')
+			{
+				noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'information',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+							
+							if(data.orderpaymentstatus == true)
+							{
+								 
+								// $("#editproductbtn").hide();
+								// $("#deliverybtn").show();
+				   
+							}
+							else
+							{
+								// $("#editproductbtn").show();
+								// $("#deliverybtn").hide();
+							}
+							
+							
+							
+							var saldo=data.amount;
+							$('#lbl_saldo_kr').html(saldo);
+							$('#saldo_kr').val(saldo);
+							
+							$('#order_close').trigger('click');
+						
+							
+							
+							 //editOrder(data.orderid);
+							//utleveringedit(data.orderid);
+							//ajaxutleveringinfo(data.orderid);
+							ajaxutleveringinfo();
+							ajaxutleveringedit(data.orderid);
+							
+							
+			}
+			else
+			{
+			
+				if(data.status == 'emailerror')
+				{
+					$('#registration_fail').show();
+							$('#registration_fail').html(data.message);
+							$('.close').trigger('click');
+							$('#customerinfobtn').trigger('click');
+				}
+				else
+				{
+					noty({
+									text: data.message,
+									layout: 'bottomRight',
+									type: 'warning',
+									timeout: [settings_general.notifications_display_duration;noerr]
+								});
+				}
+				
+			}
+		},
+		error: function(data) {
+			noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+		}
+	});
+}
+
+
+
+
+
+function tagprint(tagorderid)
+{
+	  checkboxes = document.getElementsByName('printorderlines[]');
+	  var orderlinearray = new Array()    
+	  for(var i=0, n=checkboxes.length;i<n;i++) {
+
+		if(checkboxes[i].checked)
+		{
+			 orderlinearray.push(checkboxes[i].value);
+			 
+		}
+	
+	  }
+	  
+	  if(parseInt(orderlinearray.length) > 0)
+	  {
+		//window.location='[conf.site_url;noerr]/admin/orders/print-tag/'+tagorderid+'?orderlines='+orderlinearray;
+		
+		var win = window.open('[conf.site_url;noerr]/admin/orders/print-tag/'+tagorderid+'?orderlines='+orderlinearray, '_blank',"width=512,height=500");
+		if (win) {
+										//win.document.write("ABCD");
+										//win.document.close();
+										win.focus();
+										setTimeout(function () {
+											//win.print();
+											win.close();
+										}, 60000); 
+																			
+									} else {
+										//Browser has blocked it
+										noty({
+										text: 'Please allow popups for this website',
+										layout: 'bottomRight',
+										type: 'warning',
+										timeout: [settings_general.notifications_display_duration;noerr]
+										});
+									}
+		
+		
+	  }
+	
+	
+}
+
+function save_edit_order()
+{
+	var datastring = $("#ordereditfrm").serialize();
+	
+	$.ajax({
+		type: "POST",
+		url: "[conf.site_url;noerr]/admin/orders/saveeditorder",
+		data: datastring,
+		dataType: "json",
+		success: function(data) {
+			//$("#order_close").trigger('click');
+			/*noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'information',
+								timeout: [settings_general.notifications_display_duration;noerr]
+				});*/
+			var ordder_id=$("#eorder_id").val();
+			$('.popupscroll').jScrollPane({
+				autoReinitialise: true
+			});  //scrollpane
+				
+			getorderreceipt(ordder_id);
+				
+							
+		},
+		error: function(data) {
+			noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+		}
+	});
+}
+
+
+function save_editorder()
+{
+	var datastring = $("#ordereditfrm").serialize();
+	
+	$.ajax({
+		type: "POST",
+		url: "[conf.site_url;noerr]/admin/orders/saveeditorder",
+		data: datastring,
+		dataType: "json",
+		success: function(data) {
+			//$("#order_close").trigger('click');
+			/*noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'information',
+								timeout: [settings_general.notifications_display_duration;noerr]
+				});*/
+			var ordder_id=$("#eorder_id").val();	
+			ajaxeditOrder(ordder_id);
+			//getorderreceipt(ordder_id);
+			
+							
+		},
+		error: function(data) {
+			noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+		}
+	});
+}
+
+
+
+function saveeditorder()
+{
+	var datastring = $("#ordereditfrm").serialize();
+	
+	$.ajax({
+		type: "POST",
+		url: "[conf.site_url;noerr]/admin/orders/saveeditorder",
+		data: datastring,
+		dataType: "json",
+		success: function(data) {
+			$("#order_close").trigger('click');
+			noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'information',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+			var ordder_id=$("#eorder_id").val();	
+			getorderreceipt(ordder_id);
+				
+							
+		},
+		error: function(data) {
+			noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+		}
+	});
+}
+
+function addProduct()
+{
+	var proid=$("#nproduct").val();
+	var ordder_id=$("#eorder_id").val();
+    if(proid == '' || proid == 0)
+	{
+		noty({
+								text: '[lang.lang_product_not_added]',
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+							return false;
+	}
+	$('#add_productbtn').attr('disabled','disabled');	
+	$("#nproduct").val('');
+	
+	$.ajax({
+		type: "POST",
+		url: "[conf.site_url;noerr]/admin/orders/addOrderline",
+		data: {
+					product: proid,
+					order:ordder_id
+				},
+		dataType: "json",
+		success: function(data) {
+			//$("#order_close").trigger('click');
+			/*noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'information',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});*/
+				
+			//editOrder(ordder_id);
+			$("#nproduct").val('');
+			$('#add_productbtn').removeAttr('disabled');
+			
+			
+			$('.popupscroll').jScrollPane({
+				autoReinitialise: true
+			});  //scrollpane
+						
+			
+			
+			//saveeditorder();
+			//edit_Order(ordder_id);
+	
+			ajaxeditOrder(ordder_id);
+	
+			//saveeditorder();
+							
+		},
+		error: function(data) {
+			noty({
+								text: '[lang.lang_product_not_added]',
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+		}
+	});
+	
+}
+
+function updateorderlines(orderlineid,orderids)
+{
+	$('#olid').val(orderlineid);
+	$('#oid').val(orderids);
+}
+//orderlineid,orderids
+function removeOrderline()
+{	
+
+		var orderlineid = 	$('#olid').val();
+		var orderids =	$('#oid').val();
+		var stuff = $("#edit_pad_"+orderlineid).attr('data-stuff').split('@');
+		var id = stuff[0];
+		var name = stuff[1];
+		var price = stuff[2];
+		var img = stuff[3];
+		var desp = stuff[4];
+		var qty = stuff[5];
+		var gtype = stuff[6];
+	
+	 $.ajax({
+					type: "POST",
+					url: "[conf.site_url;noerr]/admin/orders/edit-utlevering",
+					data: {
+						oid: orderids,
+						olid: id,
+						name: name,
+						price: price,
+						qty: 0,
+						img: img,
+						desp: desp,
+						gtype : gtype,
+						total : ''
+						
+					},
+				   beforeSend: function(){
+						 $('#editProductModal').modal('hide');
+				   },
+				   complete: function(){
+						processing2 = false;
+				   },
+				   dataType: "json",
+				   success: function (data) {
+						ajaxeditOrder(orderids);
+				   }
+				});
+	
+	//$('.editprod').each(function(i, obj) {
+	
+	//alert(this.id);
+		//if(chkid == this.id)
+		//{
+			//$(this).val('0');
+			//save_editorder();
+		//}
+		
+	//});
+	
+	/*var id = stuff[0];stuff
+	var name = stuff[1];
+	var price = stuff[2];
+	var img = stuff[3];
+	var desp = stuff[4];
+	var qty = stuff[5];
+	var gtype = stuff[6];
+	
+	alert(id);
+	alert(name);
+	alert(price
+	alert(img);
+	alert(desp);
+	alert(qty);
+	alert(gtype);
+	
+		*/	 
+	
+	
+	/*var chkid='qty_'+orderlineid;
+	
+	$('.qty').each(function(i, obj) {
+	
+		if(chkid == this.id)
+		{
+			$(this).val('0');
+			save_editorder();
+		}
+		
+	});*/
+
+}
+			 
+function getProducttypes(norderline)
+{
+	
+		$("#multiqtyprotbtn").trigger('click');
+		$.ajax({
+		type: "POST",
+		url: "[conf.site_url;noerr]/admin/orders/getproducttypes",
+		data: {
+					orderline: norderline
+				},
+		dataType: "json",
+		 beforeSend: function(){
+					 $("#pro-ajax-loader").show();
+					 $("#product_type").hide();
+
+			   },
+			   complete: function(){
+					processing = false;
+					$("#pro-ajax-loader").hide();
+					$("#product_type").show();
+					
+				},
+		success: function(data){
+			//$("#order_close").trigger('click');
+			$("#product_type").html(data.protype);			
+			
+		},
+		error: function(data) {
+			noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+		}
+	});
+	//
+}			 
+
+</script>
+
+<div id="removeOrderlineModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog " style="max-width: 450px; margin-top:150px">
+<div class="modal-content widget ">
+<div class="padd"><h4 class="text-center">[lang.lang_confirm_delete_item;noerr]</h4></div>
+<div class="modal-footer">
+<input type="hidden" name="olid" value="" id="olid"/>
+<input type="hidden" name="oid" value="" id="oid"/>
+<button type="button" onclick="removeOrderline()" data-dismiss="modal" class="btn green" >Yes</button>
+<button type="button" data-dismiss="modal" class="btn red">Cancel</button>
+</div>
+</div>
+</div>
+</div>
+
+
+<!--ORDER HEAT SEAL - MODAL -->
+<!--[onload;file=order.heatseal.html;getbody;comm]-->
+<!--ORDER HEAT SEAL - MODAL -->
+<!--PRODUCT - EDIT - MODAL --> 
+<!--[onload;file=utlevering.edit.modal.html;getbody;comm]--> 
+<!--PRODUCT - EDIT - MODAL -->
+
+<script>
+function heatsealprint(printurl)
+{
+	var win = window.open(printurl, '_blank');
+	if (win) {
+			setTimeout(function () {
+	  // win.print();
+		win.close();
+	}, 60000); 
+
+		
+	} else {
+		//Browser has blocked it
+		noty({
+		text: 'Please allow popups for this website',
+		layout: 'bottomRight',
+		type: 'warning',
+		timeout: [settings_general.notifications_display_duration;noerr]
+		});
+	}
+}
+
+/*
+function payitem(sour)
+{
+	if(sour.checked)
+	{
+		$("#tr_"+sour.value).css({"background-color": '#0cc579'});
+		$("#tr_"+sour.value).find('p').css({"color": '#fff'});
+	}
+	else
+	{
+		$("#tr_"+sour.value).css({"background-color": '#fff'});
+		$("#tr_"+sour.value).find('p').css({"color": '#000'});
+		
+	}
+}*/
+/*
+ function paycheckall(source) {
+  checkboxes = document.getElementsByName('printorderlines[]');
+  for(var i=0, n=checkboxes.length;i<n;i++) {
+
+	if(source.checked)
+	{
+		$("#tr_"+checkboxes[i].value).css({"background-color": '#0cc579'});
+		$("#tr_"+checkboxes[i].value).find('p').css({"color": '#fff'});
+
+	}
+	else
+	{
+		$("#tr_"+checkboxes[i].value).css({"background-color": '#fff'});
+		$("#tr_"+checkboxes[i].value).find('p').css({"color": '#000'});
+		
+	}
+	
+	checkboxes[i].checked = source.checked;
+	
+  }
+}*/
+
+</script>
+<div>
+<!--[onshow;block=div;when [visible.edit_order] == 1;comm]-->
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#editproduct').modal({ backdrop: 'static', keyboard: false });
+	editOrder([vars.edit_order]);
+
+});
+
+
+
+
+</script>
+ </div>
+
+</body>
+</html>
+
+<div id="paymentconfirm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog " style="margin-top: 10%;max-width: 450px;">
+    <div class="modal-content widget ">
+        <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        </div>
+      <div class="padd">
+        <h4 class="text-center"> Ønsker du betale med <b id="onew_pay_type"></b>?</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button"  onclick="makeOrderpayment();" data-dismiss="modal" class="btn green" >[lang.lang_yes]</button>
+        <button type="button" onclick="boxfocus();" data-dismiss="modal" class="btn red">[lang.lang_no]</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="btn-xlg btn-info full-width"  style="display:none;" id="customerinfobtn" data-toggle="modal" href="#customerinfo">Click</button>
+
+<div class="row">
+  <div id="customerinfo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="max-width:40%;">
+
+        <div class="modal-content">
+          <div class="modal-header back-color">
+            <button type="button" id="customer_close" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+           
+            <h4 class="modal-title login-title">Customer Profile Details</h4>
+          </div>
+          <div class="modal-body login">
+        <div class="form-login-wrapper">		
+            <div class="pw-wrapper" style="background:none;">
+                
+				 <div class="row">
+              <div class="col-md-12">
+			  
+			  <div id="registration_fail" class="response_error alert alert-danger" style="display: none;">Registrering mislyktes, vennligst prøv igjen.</div>
+              
+			  <div id="registration_success" class="response_success  alert alert-success" style="display: none;"></div>
+					  
+                <form class="form-horizontal" method="post" action=""  id="customerFrm">
+                  <div class="widget wtabs">
+                    <div class="col-md-12">
+                  
+                      <table class="table table-forms">
+                        <tbody>
+                          <tr>
+                            <td class="col-md-3 border-none">[lang.lang_fname]</td>
+                            <td class="border-none"><div class="col-sm-12 no-padding-both">
+                                <input type="text"  value="[sessiondata.customer.firstname]"   maxlength="100" class="form-control" name="firstname" id="firstname" >
+                              </div></td>
+                          </tr>
+                          <tr>
+                            <td>[lang.lang_lname]</td>
+                            <td><div class="col-sm-12  no-padding-both">
+                                <input type="text"  value="[sessiondata.customer.lastname]"   maxlength="100" class="form-control" name="lastname" id="lastname" >
+                              </div></td>
+                          </tr>
+						  
+                          <tr>
+                            <td>[lang.lang_email]</td>
+                            <td><div class="col-sm-12  no-padding-both">
+                                <input type="text"  value="[sessiondata.customer.email]"   maxlength="100" class="form-control"  name="email" id="email" >
+                              </div></td>
+                          </tr>
+						  
+						   <tr>
+                            <td>Bekreft E-post</td>
+                            <td><div class="col-sm-12  no-padding-both">
+                                <input type="text"  value="" maxlength="100" class="form-control"  name="confirm_email" id="confirm_email" >
+                              </div></td>
+                          </tr>
+						  
+						  <tr>
+                            <td>[lang.lang_mobile]</td>
+                            <td><div class="col-sm-12 no-padding-both">
+                                <input type="text" readonly value="[sessiondata.customer.mobile]"  maxlength="100" class="form-control" name="mobile" id="mobile" required>
+                              </div></td>
+                          </tr>
+                          <tr>
+                            <td>[lang.lang_street_line_1]</td>
+                            <td><div class="col-sm-12 no-padding-both">
+                                <input type="text"  value="[sessiondata.customer.street_line_1]"   maxlength="100" class="form-control" name="street_line_1" id="street_line_1" >
+                              </div></td>
+                          </tr>
+                          <tr>
+                            <td>[lang.lang_street_line_2]</td>
+                            <td><div class="col-sm-12 no-padding-both">
+                                <input type="text"  value="[sessiondata.customer.street_line_2]"   maxlength="100" class="form-control" name="street_line_2" id="street_line_2" >
+                              </div></td>
+                          </tr>
+                          <tr>
+                            <td>[lang.lang_floor]</td>
+                            <td><div class="col-sm-12 no-padding-both">
+                                <input type="text"  value="[sessiondata.customer.floor]"   maxlength="100" class="form-control" name="floor" id="floor" >
+                              </div></td>
+                          </tr>
+                          <tr>
+                            <td>[lang.lang_calling_bell]</td>
+                            <td><div class="col-sm-12 no-padding-both">
+                                <input type="text"  value="[sessiondata.customer.calling_bell]"   maxlength="100" class="form-control" name="calling_bell" id="calling_bell" >
+                              </div></td>
+                          </tr>
+						  
+						  
+                          <tr>
+                            <td>[lang.lang_zip]</td>
+                            <td><div class="col-sm-12 no-padding-both">
+                                <input type="text"  value="[sessiondata.customer.zip]"   maxlength="100" class="form-control" name="zip" id="zip" required>
+                              </div></td>
+                          </tr>
+						 
+						  
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="modal-footer mb-lg">
+                     <button type="button"  onclick="updateProfile();" id="register_btn" class="btn green " data-loading-text="Registrerer ...."> [lang.lang_submit] </button>
+						 <button type="button" data-dismiss="modal" aria-hidden="true"  class="btn red" >Cancel</button>
+                   		
+                                        </div>    
+                  </div>
+                </form>
+              </div>
+            </div>
+				
+				
+				
+				
+            </div>
+            
+            
+         		   </div>
+             </div>
+             
+                      
+             </div>
+          
+        </div>
+      </div>
+</div>
+
+<script>
+
+function updateProfile()
+{
+	var firstname=$('#firstname').val();
+	var lastname=$('#lastname').val();
+	var email=$('#email').val();
+	var confirmemail=$('#confirm_email').val();
+	var mobile=$('#mobile').val();
+	var street_line_1=$('#street_line_1').val();
+	var street_line_2=$('#street_line_2').val();
+	var floornr=$('#floor').val();
+	var calling_bell=$('#calling_bell').val();
+	var zip=$('#zip').val();
+	var subscribe = $("input[name='subscribe']:checked").val();
+	
+	
+			
+	
+	if(mobile == '')
+	{	
+		$('#registration_fail').show();
+		$('#registration_fail').html('<i class="fa fa-warning"></i> Tast inn ditt mobilnummer');
+		$('#mobile').focus();
+		return false;
+	}
+	
+	if(email != '')
+	{	
+		if(email != confirmemail)
+		{
+			$('#registration_fail').show();
+			$('#registration_fail').html('<i class="fa fa-warning"></i> Samsvarer ikke over e-postadresse');
+			$('#confirm_email').focus();
+			return false;
+		}
+		
+		
+	}
+	
+	if(zip == '')
+	{	
+		$('#registration_fail').show();
+		$('#registration_fail').html('<i class="fa fa-warning"></i> Skriv inn postnummer');
+		$('#zip').focus();
+		return false;
+	}
+	/*$('#register_btn').html('Registrerer ....');*/
+	
+			var base = '<!--[conf.site_url;comm;]-->'; 
+			var url = base + '/admin/customer/updateprofile';
+			//$.getJSON( url, function( data ) {
+			//alert(data);
+			//});
+			 var sendInfo = {
+			 firstname: firstname,
+			 lastname: lastname,
+			 email: email,
+			  mobile: mobile,
+			 street_line_1: street_line_1,
+			 street_line_2: street_line_2,
+			  floornr: floornr,
+			   calling_bell: calling_bell,
+			    zip: zip,
+				subscribe: subscribe
+				};
+			$.ajax({
+			type: 'POST',
+			url: url,
+			data: sendInfo,
+			dataType: 'json'
+		}).done(function(data) {
+			$('#registration_fail').show();
+			$('#register_btn').html('Register');
+			//return false;
+			
+			if(data.response == 'success')
+			{
+				$('#registration_success').show();
+				$('#registration_success').html('<i class="fa fa-success"></i> '+data.message);
+				
+				$('#customer_close').trigger('click');
+				
+				$('#editproductbtn').trigger('click');
+				
+				
+				
+				
+				
+			}
+			else
+			{
+				$('#registration_success').hide();
+				$('#registration_fail').html('<i class="fa fa-warning"></i> '+data.message);
+			}
+		
+		});
+				
+										
+		}
+
+</script>
+<script  type="text/javascript">
+function refresh_frame(id)
+{
+	if(id == '')
+	{
+		var f = document.getElementById("iframeorder");
+		var s = f.src;
+		f.src = s;
+	}
+	else
+	{
+	document.getElementById("iframeorder").src="[conf.site_url;noerr]/admin/orders/getHeatseallog/"+id;
+	}
+}
+
+
+</script>
+<script type="text/javascript">
+$(document).ready(function () {
+    $('.accordion-toggle').on('click', function(event){
+    	event.preventDefault();
+    	// create accordion variables
+    	var accordion = $(this);
+    	var accordionContent = accordion.next('.accordion-content');
+    //	var accordionToggleIcon = $(this).children('.toggle-icon');
+    	
+    	// toggle accordion link open class
+    	accordion.toggleClass("open");
+    	// toggle accordion content
+    	accordionContent.slideToggle(250);
+    	
+    	// change plus/minus icon
+    	//if (accordion.hasClass("open")) {
+    		//accordionToggleIcon.html("<i class='fa fa-minus-circle'></i>");
+    	//} else {
+    		//accordionToggleIcon.html("<i class='fa fa-plus-circle'></i>");
+    	//}
+    });
+});
+function successPlay()
+{	
+		$('#audiosrc').html('<audio  autoplay="autoplay"><source src="[conf.site_url;noerr]/application/themes/[settings_general.theme]/common/download/success.mp3" type="audio/mpeg" /></audio>');
+}
+function failPlay()
+{	
+		$('#audiosrc').html('<audio  autoplay="autoplay"><source src="[conf.site_url;noerr]/application/themes/[settings_general.theme]/common/download/fail.mp3" type="audio/mpeg" /></audio>');
+}
+</script>
+<div id="audiosrc">
+
+</div>
+
+<div id="scanerrorconfirm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog " style="margin-top: 10%;max-width: 450px;">
+    <div class="modal-content widget ">
+        <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        </div>
+      <div class="padd">
+        <h4 class="text-center">Du skannet varmforseglingen er ugyldig</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button"  data-dismiss="modal" class="btn green" >[lang.lang_yes]</button>
+      
+      </div>
+    </div>
+  </div>
+</div>

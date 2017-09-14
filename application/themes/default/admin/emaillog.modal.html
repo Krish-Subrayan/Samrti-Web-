@@ -1,0 +1,23 @@
+<div class="row">
+<!--[onshow;block=div;when [visible.show_email] == 1;comm]-->
+<div id="viewEmail" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<form class="form-horizontal" action="[conf.site_url]/admin/ticket/[ticket.tickets_id;noerr]/edit" method="post" id="editTicket">
+<div class="modal-content">
+  <div class="modal-body">
+    <div class="col-md-12"> [email.email_log_message;htmlconv=no] </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!--WI_NOTIFICATION-->
+<div class="row"> 
+  <!--[onshow;block=div;when [visible.wi_notification] == 1;comm]-->
+  <div class="col-md-12">
+    <div class="widget">
+      <div class="widget-content widget-big-box">[vars.notification;noerr]</div>
+    </div>
+  </div>
+</div>
+<!--WI_NOTIFICATION-->

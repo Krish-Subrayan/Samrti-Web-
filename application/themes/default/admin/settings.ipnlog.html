@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+<link href="../common/style/bootstrap.css" rel="stylesheet">
+<link href="../common/style/style.css" rel="stylesheet">
+<!--[onshow;block=head;when [visible.foo] == bar;comm]-->
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+</head>
+<!--HEAD - ONLOAD-->
+<!--[onload;file=../common/common.head.html;getbody;comm]-->
+<!--HEAD - ONLOAD-->
+<body>
+<!--JS SECTION - ONLOAD--> 
+<!--[onload;file=../common/common.javascript.html;getbody;comm]--> 
+<!--JS SECTION - ONLOAD--> 
+<!--DEBUG SECTION - ONLOAD--> 
+<!--[onload;file=../common/include.debug.html;getbody;comm]--> 
+<!--DEBUG SECTION - ONLOAD--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=common.header.html;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!-- Main content starts -->
+<div class="content"> 
+  <!-- Sidebar -->
+  <div class="sidebar"> 
+    
+    <!--SIDE MENU - ONLOAD --> 
+    <!--[onload;file=common.menu.html;getbody;comm]--> 
+    <!--SIDE MENU - ONLOAD --> 
+  </div>
+  <!-- Sidebar ends -->
+  <div class="mainbar"> 
+    <!----------------------COMMON PAGE HEADING---------------------------------> 
+    <!--[onload;file=common.heading.html;getbody;comm]--> 
+    <!----------------------COMMON PAGE HEADING--------------------------------->
+    <div class="matter">
+      <div class="container"> 
+        <!----------------------COMMON PROJECT HEAD---------------------------------> 
+        <!--[onload;file=common.settings.header.html;getbody;comm]--> 
+        <!----------------------COMMON PROJECT HEAD--------------------------------->
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="widget"> 
+              <!----------------------COMMON SETTINGS MENU---------------------------------> 
+              <!--[onload;file=common.settings.menu.html;getbody;comm]--> 
+              <!----------------------COMMON SETTINGS MENU--------------------------------->
+              <div class="widget-content widget-content-project"> 
+                <!-----------------------------------------------TAB SECTION------------------------------------------------------->
+                <div class="project-info-tabs"> 
+                  <!--actions navigation end-->
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="tabs-sub-nav messaging-menu"> <span class="pull-left">
+                        <h3>[lang.lang_paypal_ipn_log]</h3>
+                        </span> <a class="btn btn-mid btn-danger pull-right"
+                                   href="[conf.site_url]/admin/settings/ipnlog/purge"> <i class="icon-plus"></i> [lang.lang_delete_log] </a>
+                        <div class="clearfix"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--actions navigation end--> 
+                  <!--WI_GENERAL_SETTINGS_FORM-->
+                  <div class="row"> 
+                    <!--[onshow;block=div;when [visible.wi_log_table] == 1;comm]-->
+                    <div class="col-md-12">
+                      <div class="widget wtabs">
+                        <div class="widget-content">
+                          <table class="table table-bordered table-hover table-forms">
+                            <thead>
+                              <tr>
+                                <th>[lang.lang_date]</th>
+                                <th>[lang.lang_project_id]</th>
+                                <th>[lang.lang_invoice_id]</th>
+                                <th>[lang.lang_unique_id]</th>
+                                <th>[lang.lang_transaction_id]</th>
+                                <th>[lang.lang_amount]</th>
+                                <th>[lang.lang_status]</th>
+                                <th>Actions</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td><!--[ipnlog.ipn_date;block=tr;onformat=runtime_date;comm]--></td>
+                                <td><!--[ipnlog.ipn_project_id;block=tr;comm]--></td>
+                                <td><!--[ipnlog.ipn_invoice_id;block=tr;comm]--></td>                                
+                                <td><!--[ipnlog.ipn_invoice_unique_id;block=tr;comm]--></td>
+                                <td><!--[ipnlog.ipn_transaction_id;block=tr;comm]--></td>
+                                <td><!--[ipnlog.ipn_transaction_amount;block=tr;comm]--></td>
+                                <td><!--[ipnlog.ipn_transaction_status;block=tr;comm]--></td>
+                                <td><!--edit settings--> 
+                                  <a class="iframeModal"
+                                                data-toggle="modal" 
+                                                data-modal-window-title="[lang.lang_ipn_log]"
+                                                data-src="[conf.site_url]/admin/settings/ipnlog/view/[ipnlog.ipn_id;block=tr]" 
+                                                data-height="450" 
+                                                data-width="100%" 
+                                                data-target="#modalIframe"><i class="icon-edit"></i> [lang.lang_view_details]</a> 
+                                  <!--edit settings end--></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="widget-foot">
+                          <div class="pull-left">[lang.lang_email_log_info] </div>
+                          <!--WI_PAGINATION-->
+                          <ul class="pagination pull-right">
+                            [vars.pagination;noerr;htmlconv=no]
+                          </ul>
+                          <!--WI_PAGINATION-->
+                          <div class="clearfix"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--WI_SETTINGS_FORM--> 
+                  <!--wi_tabs_notification-->
+                  <div class="row">
+                    <div class="col-lg-12"> 
+                      <!--[onshow;block=div;when [visible.wi_tabs_notification] == 1;comm]-->
+                      <div class="widget-tabs-notification"> [vars.notification;noerr] </div>
+                    </div>
+                  </div>
+                  <!--wi_tabs_notification--> 
+                </div>
+                <!-----------------------------------------------TAB SECTION-------------------------------------------------------> 
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--WI_NOTIFICATION-->
+        <div class="row"> 
+          <!--[onshow;block=div;when [visible.wi_notification] == 1;comm]-->
+          <div class="col-md-12">
+            <div class="widget">
+              <div class="widget-content widget-big-box">[vars.notification;noerr]</div>
+            </div>
+          </div>
+        </div>
+        <!--WI_NOTIFICATION--> 
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>
+<!----------------------COMMON FOOTER---------------------------------> 
+<!--[onload;file=../common/common.footer.html;getbody;comm]--> 
+<!----------------------COMMON FOOTER---------------------------------> 
+<!-- Scroll to top --> 
+<span class="totop"><a href="#"><i class="icon-chevron-up"></i></a></span> 
+<!--WI_IFRAME_MODAL-->
+<div class="row">
+  <div id="modalIframe" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+          <!--full screen icon - custom.js-->
+          <button type="button" class="full-screen-modal close" aria-hidden="true"><i class="icon-fullscreen"></i></button>
+          <!--full screen icon - custom.js-->
+          <h4 class="modal-title" id="modal-iframe-title"> [lang.lang_ipn_log]</h4>
+          <div class="clearfix"></div>
+        </div>
+        <div class="modal-body">
+          <iframe frameborder="0" class="slimScrollBarModal----"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--WI_IFRAME_MODAL--> 
+<!--JS_COMPANY_SETINGS_FORM--> 
+<script type="text/javascript">
+$().ready(function() {
+    //USED BY: WI_COMPANY_SETINGS_FORM
+	//ACTIONS: validates the form and submits it
+	//REQUIRES: jquery.validate.js
+	$("#editCompanySettings").validate({
+		rules: {
+             company_name: "required",
+			 company_email: "required",
+			 company_email_name: "required",
+			 company_email_signature: "required"
+		},
+		messages: {
+			company_name: "[lang.lang_field_is_required]",
+			company_email: "[lang.lang_field_is_required]",
+			company_email_name: "[lang.lang_field_is_required]",
+			company_email_signature: "[lang.lang_field_is_required]",
+		},
+		submitHandler: function(form) {
+        //alert('form submitted');
+		form.submit();
+        }
+	});
+});
+</script> 
+<!--JS_COMPANY_SETINGS_FORM--> 
+<!--------------------COMMON FOOTER JAVASCRIPT----------------------------> 
+<!--[onload;file=../common/common.footer.javascript.html;getbody;comm]--> 
+<!--------------------COMMON FOOTER JAVASCRIPT---------------------------->
+</body>
+</html>

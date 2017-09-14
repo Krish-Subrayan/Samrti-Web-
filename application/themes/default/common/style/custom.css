@@ -1,0 +1,678 @@
+/* font-embedding*/
+@font-face {
+	font-family: 'Helvetica Neue LT Std';
+	src: url('fonts/HelveticaNeueLTStd-Lt.eot');
+	src: url('fonts/HelveticaNeueLTStd-Lt.eot?#iefix') format('embedded-opentype'),
+		url('fonts/HelveticaNeueLTStd-Lt.woff') format('woff'),
+		url('fonts/HelveticaNeueLTStd-Lt.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Harabara Mais BdIt';
+	src: url('fonts/HarabaraMaisBdIt-HarabaraMaisBdIt.eot');
+	src: url('fonts/HarabaraMaisBdIt-HarabaraMaisBdIt.eot?#iefix') format('embedded-opentype'),
+		url('fonts/HarabaraMaisBdIt-HarabaraMaisBdIt.woff') format('woff'),
+		url('fonts/HarabaraMaisBdIt-HarabaraMaisBdIt.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Harabara Mais';
+	src: url('fonts/HarabaraMais-HarabaraMais.eot');
+	src: url('fonts/HarabaraMais-HarabaraMais.eot?#iefix') format('embedded-opentype'),
+		url('fonts/HarabaraMais-HarabaraMais.woff') format('woff'),
+		url('fonts/HarabaraMais-HarabaraMais.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Harabara Mais LtIt';
+	src: url('fonts/HarabaraMaisLtIt-HarabaraMaisLtIt.eot');
+	src: url('fonts/HarabaraMaisLtIt-HarabaraMaisLtIt.eot?#iefix') format('embedded-opentype'),
+		url('fonts/HarabaraMaisLtIt-HarabaraMaisLtIt.woff') format('woff'),
+		url('fonts/HarabaraMaisLtIt-HarabaraMaisLtIt.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'HelveticaNeueLT Com 45 Lt';
+	src: url('fonts/HelveticaNeueLTCom-Lt.eot');
+	src: url('fonts/HelveticaNeueLTCom-Lt.eot?#iefix') format('embedded-opentype'),
+		url('fonts/HelveticaNeueLTCom-Lt.woff') format('woff'),
+		url('fonts/HelveticaNeueLTCom-Lt.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Myriad Pro';
+	src: url('fonts/MyriadPro-Regular.eot');
+	src: url('fonts/MyriadPro-Regular.eot?#iefix') format('embedded-opentype'),
+		url('fonts/MyriadPro-Regular.woff') format('woff'),
+		url('fonts/MyriadPro-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Helvetica World';
+	src: url('fonts/HelveticaWorld-Regular.eot');
+	src: url('fonts/HelveticaWorld-Regular.eot?#iefix') format('embedded-opentype'),
+		url('fonts/HelveticaWorld-Regular.woff') format('woff'),
+		url('fonts/HelveticaWorld-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+body{
+	font-family: 'Helvetica World';
+}
+.content{
+ 	min-width: 1014px;
+}
+
+.modal-dialog {
+	/*max-width:380px;*/
+}
+.fs-10{
+	font-size:15px !important;
+}
+.fs-12{
+	font-size:12px !important;
+}
+.fs-16{
+	font-size:20px !important;
+}
+.fw-bold{
+	font-weight:bold;
+}
+.green-text{
+	color:#0cc579!important;
+}
+.red-text{
+	color:#e83e3e!important;
+}
+.numeric-wrapper input, button, select, textarea{
+	line-height:normal;
+}
+.form-login-wrapper{
+	color: #484848;		
+}
+form input, form button, form textarea, form select {
+	font-size:15px !important;
+}
+.numeric-wrapper,.pris-numeric-wrapper{
+	font-size:26px;
+}
+.numeric-wrapper div,.pris-numeric-wrapper div{
+	text-align:center;
+}
+.numeric-wrapper div.num, .numeric-wrapper div.clear, .numeric-wrapper div.dot,.pris-numeric-wrapper div.num, .pris-numeric-wrapper div.clear, .pris-numeric-wrapper div.dot{
+	cursor:pointer;
+}
+.numeric-wrapper .clearfix > div,.pris-numeric-wrapper .clearfix > div{
+	border:1px solid #eee6e6;
+	line-height: 50px;
+}
+.numeric-wrapper input[type="submit"],.pris-numeric-wrapper input[type="submit"] {
+    background: none;
+    border: none;
+    width: 100%;
+    /*height: 100%;*/
+	color: #0cc579;
+	line-height: 40px;
+}
+.numeric-wrapper input[type="reset"],.pris-numeric-wrapper input[type="reset"] {
+    background: none;
+    border: none;
+    width: 100%;
+    /*height: 100%;*/
+	color: #0cc579;
+	line-height: 40px;
+}
+
+.pw-wrapper{
+	padding: 15px;
+	background-color:#f5f5f5;
+}
+.pw-wrapper .col-xs-3{
+    position: relative;
+	padding:0;		
+}
+.pw-wrapper .col-xs-3::after{
+	position: absolute;
+	border-bottom: 3px solid #cccccc;
+	top:-10px;
+	left:30px;
+	content:"";
+	width: 25%;
+	height: 100%;
+}
+.pw-wrapper .col-xs-3 input[type="text"] {
+	max-width:100%;
+	/*padding: 30px;*/
+	padding:0 30px;
+	color:#484848;
+	border:none;
+	border:1px solid #eee6e6;
+	text-align:center;
+	font-size:25px !important;
+	height: 60px!important;
+}
+.pw-wrapper .col-xs-3 input[type="password"] {
+	max-width:100%;
+	/*padding: 30px;*/
+	padding:0 30px;
+	color:#484848;
+	border:none;
+	border:1px solid #eee6e6;
+	text-align:center;
+	font-size:25px !important;
+	height: 60px!important;
+}
+
+
+.pw-wrapper .col-xs-3 input#pw1:first-child {
+    -webkit-border-radius: 8px 0 0 8px;
+	-moz-border-radius: 8px 0 0 8px;
+	border-radius: 8px 0 0 8px;
+}
+.pw-wrapper .col-xs-3 input#pw4:last-child{
+	-webkit-border-radius: 0 8px 8px 0px;
+	-moz-border-radius: 0 8px 8px 0px;
+	border-radius: 0 8px 8px 0px;
+}
+h4.login-title{
+	text-align:center;
+}
+.modal-body.login {
+    padding: 0;
+}
+
+/*rabatt styles*/
+.text-center{
+	text-align: center;
+}
+.back-color{
+	background-color: #f7f7f7
+}
+.modal-header.rabatt{
+	font-size: 15px;
+	background: #f7f7f7;
+}
+
+/* group-pos styling starts here*/
+
+.group-pos{
+	text-align:center;
+	padding-top: 15px;
+}
+.group-pos .btn-group button{
+	width: 95px;
+	color: #999999!important;
+}
+.group-pos .btn-group button.highlight{
+	color: #fff!important;
+}
+
+.handlekurv .group-pos .btn-group button {
+    width: 80px;
+}
+.group-pos .btn-group .bns-btn:active, .btn.active{
+	box-shadow:none;
+}/*group-pos styling ends here*/
+
+.highlight, .highlight:hover{
+	background-color: #0cc579 !important;
+	color:#ffffff !important;	
+}
+.red-clear{
+	color:#ff0000;
+}
+.blue{
+	color:#096dc3 !important;
+}
+div.modal-dialog.rabatt{
+	max-width: 450px;
+}
+.input-wrapper{
+	padding:15px;
+}
+.input-wrapper .col-xs-12 input,#my_emailaddress {
+    width: 100%;
+   /* padding:20px 25px 25px;*/
+   padding:0px 10px;
+    text-align: right;
+    border: 1px solid #d4d4d4;
+    background-color:#f5f5f5;
+    -webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	font-size:26px!important
+}
+#my_emailaddress {
+    margin: 30px 0 15px;
+    text-align: left;
+    font-size: 18px!important;
+}
+.input-wrapper .row > .col-xs-12 {
+	padding: 0;
+}
+.percentage-wrapper{
+	font-size:15px;
+	background-color: #f5f5f5;
+}
+.percentage-wrapper .row > .percent > div, .col-xs-2 div.clear{
+    border: 1px solid #d4d4d4;
+    padding: 10px;
+    text-align: center;
+    line-height: 20px;
+    cursor: pointer;
+    border-width: 1px 0px 1px 1px;
+}
+.btn-default:hover {
+    background: none;
+}
+.percentage-wrapper .row .percent > .clear{
+	color: #db010f;
+}
+.percentage-wrapper .col-xs-2{
+	padding: 0;
+}
+#discount_modal10 .alphabetic-wrapper .row > div{
+	width: 38px;
+	height: 38px;
+	display: inline-block;
+	background-color: #f4f4f6;
+	font-size: 20px;
+	line-height: 33px;
+	margin: 3px 0 3px 0;
+}
+#discount_modal10 .alphabetic-wrapper{
+	text-align: center;
+	cursor:pointer;
+}
+#discount_modal10 .alphabetic-wrapper .alpha-space {
+    width: 120px !important;
+}
+#discount_modal10 .alphabetic-wrapper input[type="submit"]{
+	border:none;
+	width: 100%;
+    height: auto;
+    background-color: inherit;
+}
+/*saldo styles*/
+.saldo-button .btn-group .btn{
+	width: 140px;
+	width: 105px;
+	padding:5px;
+}
+
+.saldo-button1 .btn{
+	width: 130px;
+	padding:5px;
+}
+
+.modal-dialog.saldo{
+	max-width: 450px;
+	margin:0 auto;
+}
+#discount_modal12 .saldo-buttons .col-xs-4 a.btn {
+    border: 2px dashed #0cc579;
+    width: 100%;
+    font-size: 17px !important;
+    line-height: 30px;
+    color: #0cc579;
+    -webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+#discount_modal12 .saldo-buttons {
+    max-width: 380px;
+    margin: 0 auto;
+}
+#discount_modal12 .input-wrapper {
+    padding: 0 15px 8px 15px;
+}
+#discount_modal12 .saldo-buttons .col-xs-4 {
+    padding: 5px 7px 5px 7px;
+}
+#discount_modal12 .group-pos .btn-group .btn:first-child {
+    -webkit-border-radius: 5px 0 0 5px;
+    -moz-border-radius: 5px 0 0 5px;
+    border-radius: 5px 0 0 5px;
+    
+}
+#discount_modal12 .group-pos .btn-group .btn:last-child {
+	-webkit-border-radius: 0 5px 5px 0 !important;
+    -moz-border-radius: 0 5px 5px 0 !important;
+    border-radius: 0 5px 5px 0 !important;
+
+}
+#discount_modal12 .numeric-wrapper .clear{
+	max-width: 100%;
+	border:none;
+	color:#0cc579;
+}
+#discount_modal12 .saldo-sub .col-xs-12 input[type="submit"]{
+	padding: 10px;
+    width: 100%;
+    margin: 10px 0px 10px 0;
+    background-color: #0cc579;
+    border: 1px solid #0cc579;
+    color: #FFF;
+    font-size: 18px !important;
+    line-height: 30px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+#discount_modal12 .group-pos .btn-group .btn{
+	font-size:14px !important;
+}
+.pull-left.col-md-7.no-padd.customer-info .saldo input#saldo_kr{
+	 max-width: 140px;
+    background: none;
+    border: none;
+}
+
+/* velg styles*/
+.search-tab{
+	/*max-width: 600px;*/
+	margin:0 auto;
+}
+.search-tab .velg-block .btn-group .btn{
+	width: 120px;
+	width: 135px;
+	width:104px;
+	background:#fff;
+	font-size:14px;
+}
+.velg-block{
+	margin:10px 0 10px 0;
+	margin:5px 0 0px 0;
+	line-height: 30px;
+	padding: 0 20px 0 5px;	
+}
+.frm_wrapper form,.company_frm_wrapper form{
+	border:1px solid #bebed0;
+	display: block;
+	padding:11px 0 8px 0;
+	margin:10px 0 10px 0;
+	 -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 8px;
+	background: #fff;
+}
+.frm_wrapper input[type="submit"],.company_frm_wrapper input[type="submit"]{
+	font-size:15px !important;
+	width:107px;
+}
+.frm_wrapper input[type="text"],.company_frm_wrapper input[type="text"]{
+	text-align: left;
+	width:100%;
+	border:none;
+	color: #a9a9a9;	
+	margin: 5px;
+}
+/*.frm_wrapper.clearfix #frm_navn .row > .col-xs-1,{
+	line-height: 37px;
+}*/
+.frm_wrapper i,.company_frm_wrapper i{
+	color:#0cc579;
+	line-height: 40px;
+	font-size: 30px;
+}
+#frm_navn,#frm_mobil,#frm_ordre,#frm_bedrift,#frm_cnavn,#frm_cmobil,{
+	display:none
+}
+.btn-default, .btn-default:active, .btn-default:visited {
+    color: #999999;
+	border: 2px solid  #0cc579;
+}
+.btn{
+	border-radius: 5px;	
+}
+.frm_wrapper,.company_frm_wrapper{
+	padding:5px 20px;
+	background:#fff;
+	border:2px solid #eeeeee;
+	border-radius:0 0 5px 5px;
+	margin-top:15px	 
+}
+
+.customer-info p {
+    font-size: 13px;
+}
+.customer-info p span{
+	line-height: 1.5 !important;
+}
+ul.menu li a span,div.kasse{
+	font-size: 16px;
+}
+.checkout .kupongkode{
+	font-size: 14px !important;
+}
+#discount_modal12 .input-wrapper input, #discount_modal10 .input-wrapper .col-xs-12 input{
+	font-size: 26px !important;
+}
+#discount_modal10 .percentage-wrapper .percent{
+	font-size:20px;
+}
+#discount_modal10 .percentage-wrapper .clear{
+	font-size:14px !important;
+}
+#discount_modal10 .percentage-buttons .btn-group button,.addProduct .product-buttons .btn-group button{
+	width: 110px;
+	font-size: 14px !important;
+}
+#editProductModal .addProduct .product-buttons .btn-group button{
+	width: 100px;
+}
+.branch p , #opening-hours p,.emplogin p{
+	/*font-family: 'Harabara Mais LtIt';*/
+	font-size:25px;
+	line-height:1.1;
+}
+.branch p span{
+	font-size: 38px;
+}
+#opening-hours p {
+	font-size:18px;
+}
+#opening-hours p span ,.emplogin p span{
+	font-size:20px;
+	color:#4c4c4c;
+    margin: 10px 0;
+    display: block;	
+}
+.emplogin p span{
+	    margin: 0 0 5px 0;
+}
+.emplogin div p{
+	font-size:14px;
+	line-height:30px!important;
+	color:#4c4c4c
+}
+.emplogin div p.emptime{
+	font-size:12px;
+}
+.emplogin div p.green-text {
+	font-size:15px
+}
+#timmer div {
+	font-size:17px;
+	margin-bottom:2px;
+}
+#timmer .btn-info {
+	font-size:24px  !important;
+	color:#fff !important;
+}
+ul.menu li a {
+  /*background: none;*/
+}
+ul.menu li a span {
+  /*background: none;*/
+}
+.orderline p span {
+  /*font-weight: normal;*/
+}
+.orderline .pull-left:first-child {
+	margin-top: 10px;
+	margin-top: 0px;
+}
+.orderline .pull-left .price {
+	margin-top: 20px;
+}
+.count {
+  line-height: 19px;
+}
+
+.orderpaid p{
+color:#a9a9a9 !important;
+}
+.orderpaid p span{
+	/*color:#a9a9a9 !important;*/
+}
+.orderpaid .count{
+	/*background:#ccc !important;*/
+}
+#confirm .btn,#confirm .btn:hover,#paymentconfirm .btn,#paymentconfirm .btn:hover,#customerinfo .btn:hover,#customerinfo .btn,#saldoconfirm .btn,#saldoconfirm .btn:hover,#giftconfirm .btn,#giftconfirm .btn:hover,#removeOrderlineModal .btn,#removeOrderlineModal .btn:hover,#removeDamageModal .btn:hover,#removeDamageModal .btn,#scanconfirm .btn:hover,#scanconfirm .btn,#noteconfirm .btn:hover,#noteconfirm .btn,#hentinginfo .btn,.modal .btn {
+	color:#fff!important;
+    font-size: 14px;
+    min-width: 100px;
+    text-align: center;
+    padding-left: 0;
+    padding-right: 0;	
+}
+#confirm  .modal-footer,#paymentconfirm  .modal-footer,#customerinfo  .modal-footer,#saldoconfirm  .modal-footer,#giftconfirm  .modal-footer,#removeOrderlineModal  .modal-footer,#removeDamageModal  .modal-footer,#scanconfirm  .modal-footer,#noteconfirm  .modal-footer,#hentinginfo  .modal-footer,.modal .modal-footer{
+	text-align:center;
+}
+.editprod{
+	line-height:30px
+}
+#customerFrm .form-control,.kassekredit .form-control{
+	background-color: #eee;
+    border: 1px solid #E7E7E7;
+	color: #4c4c4c!important;
+}
+
+/*.addProducbutton{
+    margin: 10px 0px 10px 0;
+    background-color: #0cc579;
+    border: 1px solid #0cc579;
+	color:#fff;
+    border-radius: 5px;	
+	line-height:40px;
+	width:100%;
+}
+.addProductreset{
+    margin: 10px 0px 10px 0;
+    background-color: #cc0000;
+    border: 1px solid #cc0000;
+	color:#fff;
+    border-radius: 5px;	
+	line-height:40px;
+	width:100%;
+	
+}*/
+
+.modal .saldo-buttons .col-xs-4 .btn{
+	color: #0cc579 !important;
+}
+.modal .saldo-buttons .col-xs-4 .btn.highlight{
+		color: #fff !important;
+
+}
+.input-large{
+	height:42px!important
+}
+.frm_wrapper input[type="submit"], .company_frm_wrapper input[type="submit"] ,.frm_wrapper input[type="button"]{
+    font-size: 15px !important;
+    width: 107px;
+}
+.accordion-toggle.btn {
+    border-radius: 0px;
+    font-size: 15px;
+    color: #4c4c4c!important;
+    text-align: left;
+}
+#heatsealiframe{
+    display: block;
+    border-bottom: 1px solid #e7e7e7;
+    /* background: #fff; */
+}
+.toggle-icon .fa{
+	float:right;
+	font-size:18px;
+	margin:0
+}
+body {
+	/*background:red*/
+}
+.kassekredit form{
+    display: block;
+    background: #fff;
+    font-size: 15px;
+	border:none;
+	padding:0;
+	margin:0
+}
+.kassekredit td{
+	text-align:left
+}
+.kassekredit .tt-dropdown-menu {
+    margin-top: 15px;
+    left: 0px!important;
+}
+.kassekredit  .frm_wrapper input[type="submit"]{
+    font-size: 18px !important;
+}
+#customer-saldo,.customer-saldo{
+	display:none
+}
+.modal .company_frm_wrapper form{
+	border:none;
+	margin:0;
+	padding:0
+}
+#searchCompanyCustomerFrm .emplogin{
+	padding-top:0;
+	margin:0;
+	border:none
+}
+.company-search .emplogin p span,.company-search{
+    font-size: 15px;
+}
+.kassekredit .twitter-typeahead{
+	margin-left:5px;
+	background:#eee;
+	width:100%
+
+}
+.company-search .twitter-typeahead{
+	margin-left:0px;
+	background:#eee;
+	width:100%;
+	height:35px;
+	margin-bottom:10px
+}
+.company-search .row{
+	margin:10px 0;
+	
+}
+.kassekredit .tt-dropdown-menu {
+    margin-top: 15px;
+    left: 0px!important;
+}
+.company-search .tt-dropdown-menu {
+    margin-top: 5px;
+    left: 0px!important;
+}
+.company-search input[type="text"]{
+	color:#4c4c4c!important
+}
+.group-pos.small-buttons .btn-group button {
+    width: 75px!important;
+}

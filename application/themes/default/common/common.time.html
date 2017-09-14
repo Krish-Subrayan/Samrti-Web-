@@ -1,0 +1,18 @@
+<script>
+	$(document).ready(function(){
+	/* Show server time without page refresh*/
+	function update() {
+      $.ajax({
+       type: 'POST',
+       url: '[conf.site_url;noerr]/admin/employee/currentTime',
+       success: function(data) {
+		  //alert(data);
+          $("#today_time").html(data);
+		  setInterval(update, 1000); 
+       }
+      });
+     }
+     update();	
+	
+	});
+</script>

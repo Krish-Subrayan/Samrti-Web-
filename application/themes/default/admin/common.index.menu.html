@@ -1,0 +1,21 @@
+[sessiondata.partner_branch;noerr;if [val]=='1000';then '<ul style="display:none;" class="menu everything">';else '<ul  class="menu everything">';]
+[sessiondata.current_staff_employee_type;noerr;if [val]!='accountant';then '
+<!--    <li class="[vars.css_menu_calendar]">
+    <a  href="javascript:void(0)"><span>[lang.lang_calendar]</span></a>
+    </li>
+    <li class="[vars.css_menu_usermanual]"><a class="topLevel" href="javascript:void(0)"><span>[lang.lang_firm_info]</span></a></li>
+    <li class="[vars.css_menu_usermanual]"><a class="topLevel" href="javascript:void(0)"><span>[lang.lang_usermanual]</span></a></li>
+-->   
+ <li class="[vars.css_menu_report]"><a class="topLevel" href="[conf.site_url]/admin/settings/report"><span>[lang.lang_settings]</span></a></li>
+  <li class="[vars.css_menu_settings]"><a class="topLevel" href="[conf.site_url]/admin/settings/orderhistory"><span>Ordre</span></a></li>
+  <li class="[vars.css_menu_kassekredit]"><a class="topLevel" href="[conf.site_url]/admin/settings/kassekredit"><span>Kasse kredit</span></a></li>';else '
+  <li class="[vars.css_menu_faktura]"><a class="topLevel" href="[conf.site_url]/admin/settings/faktura"><span>Faktura</span></a></li><li class="[vars.css_menu_faktura]"><a class="topLevel" href="[conf.site_url]/admin/settings/faktura/sent"><span>Faktura Sent</span></a></li>';]
+  <li class="[vars.css_menu_anullering]"><a class="topLevel" href="[conf.site_url]/admin/settings/ordercancel"><span>Annullering</span></a></li>
+    <li class="[vars.css_menu_faktura]">
+<a class="topLevel" href="[conf.site_url]/admin/settings/faktura"> <span>Faktura</span></a></li>
+  
+    <div class="clearfix"></div>
+</ul>
+
+
+

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+<link href="../common/style/bootstrap.css" rel="stylesheet">
+<link href="../common/style/style.css" rel="stylesheet">
+<!--[onshow;block=head;when [visible.foo] == bar;comm]-->
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+</head>
+<!--HEAD - ONLOAD-->
+<!--[onload;file=../common/common.head.html;getbody;comm]-->
+<!--HEAD - ONLOAD-->
+<body class="ModalPopUp">
+<!--JS SECTION - ONLOAD-->
+<!--[onload;file=../common/common.javascript.html;getbody;comm]-->
+<!--JS SECTION - ONLOAD-->
+<!--DEBUG SECTION - ONLOAD-->
+<!--[onload;file=../common/include.debug.html;getbody;comm]-->
+<!--DEBUG SECTION - ONLOAD-->
+<div class="content">
+  <div class="row">
+      <!--[onshow;block=div;when [visible.wi_product] == 1;comm]-->
+
+    <div class="col-md-12 no-padd">
+      <!--WI_ADD_PRODUCT-->
+        <div class="form-login-wrapper view-product">
+            <form action="[conf.site_url]/admin/products/update-cart" id="addProduct" method="post">
+            <input type="hidden" name="product[0][id]" value="[row.id;noerr]" id="prodId"/>
+            <input type="hidden" name="product[0][rowid]" value="[row.rowid;noerr]" id="prodId"/>
+            <input type="hidden" name="product[0][name]" value="[row.name;noerr]"/>
+            <input type="hidden" name="product[0][price]" id="product_price" value="[row.price;noerr]"/>
+            <input type="hidden" name="product[0][qty]" value="10"/>
+                  <div class="input-wrapper">
+                    <div class="row">
+                      <div class="col-xs-12">
+                        <input type="text" name="product[0][quantity]" placeholder="0" id="quantity" value="[row.qty;noerr]" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="numeric-wrapper">
+                    <div class="clearfix">
+                    <div class="col-xs-4">
+                        <div class="num">7</div></div>
+                      <div class="col-xs-4">
+                        <div class="num">8</div></div>
+                      <div class="col-xs-4">
+                        <div class="num">9</div></div>
+                  </div>
+                  <div class="clearfix">
+                    <div class="col-xs-4">
+                        <div class="num">4</div></div>
+                      <div class="col-xs-4">
+                        <div class="num">5</div></div>
+                      <div class="col-xs-4">
+                        <div class="num">6</div></div>
+                  </div>
+                  <div class="clearfix">
+                        <div class="col-xs-4">
+                            <div class="num">1</div></div>
+                        <div class="col-xs-4">
+                            <div class="num">2</div></div>
+                        <div class="col-xs-4">
+                            <div class="num">3</div></div>
+                  </div>
+                    <div class="clearfix">
+                        <div class="col-xs-4 bdrb-none">
+                    	<div class="clear fs-10">Clear</div></div>
+                        <div class="col-xs-4 bdrb-none">
+                            <div class="num">0</div></div>
+                        <div class="col-xs-4 blue bdrb-none">
+                            <div class="clear"><input type="submit" value="OK" ></div></div>
+                    </div>
+                 </div>
+                          
+            </form>
+        </div>
+    </div>
+  </div>
+  <!--WI_ADD_PRODUCT-->
+  <!--WI_NOTIFICATION-->
+  <div class="row">
+    <!--[onshow;block=div;when [visible.wi_notification] == 1;comm]-->
+    <div class="col-md-12">
+      <div class="widget">
+        <div class="widget-content widget-big-box"> [vars.notification;noerr]</div>
+      </div>
+    </div>
+  </div>
+  <!--WI_NOTIFICATION-->
+</div>
+<!--------------------COMMON FOOTER JAVASCRIPT---------------------------->
+<!--[onload;file=../common/common.footer.javascript.html;getbody;comm]-->
+<!--------------------COMMON FOOTER JAVASCRIPT---------------------------->
+<script type="text/javascript">
+	$(document).ready(function() {
+		
+		$(".clear").click(function(){    
+			$('.saldo-buttons a').removeClass('highlight');
+			$('#quantity').val('');
+		});
+		
+		$('#addProduct .numeric-wrapper .num').on("click",function(){
+			new_val = $('#quantity').val();
+			$('#quantity').val(new_val + $(this).html());
+		});
+		
+		$("form#addProduct").submit(function(){
+			parent.$('.close-btn').click();
+		});
+		
+		
+	});
+</script>
+
+</body>
+</html>

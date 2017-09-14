@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+<link href="../common/style/bootstrap.css" rel="stylesheet">
+<link href="../common/style/style.css" rel="stylesheet">
+<!--[onshow;block=head;when [visible.foo] == bar;comm]-->
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+</head>
+<!--HEAD - ONLOAD-->
+<!--[onload;file=../common/common.head.html;getbody;comm]-->
+<!--HEAD - ONLOAD-->
+<body>
+<!--JS SECTION - ONLOAD--> 
+<!--[onload;file=../common/common.javascript.html;getbody;comm]--> 
+<!--JS SECTION - ONLOAD--> 
+<!--DEBUG SECTION - ONLOAD--> 
+<!--[onload;file=../common/include.debug.html;getbody;comm]--> 
+<!--DEBUG SECTION - ONLOAD--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=common.header.html;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!-- Main content starts -->
+<div class="content"> 
+  <!-- Sidebar -->
+  <div class="sidebar"> 
+    <!--SIDE MENU - ONLOAD --> 
+    <!--[onload;file=common.menu.html;getbody;comm]--> 
+    <!--SIDE MENU - ONLOAD --> 
+  </div>
+  <!-- Sidebar ends -->
+  <div class="mainbar"> 
+    <!----------------------COMMON PAGE HEADING---------------------------------> 
+    <!--[onload;file=common.heading.html;getbody;comm]--> 
+    <!----------------------COMMON PAGE HEADING--------------------------------->
+    <div class="matter"> 
+      <!----------------------COMMON PROJECT HEAD---------------------------------> 
+      <!--[onload;file=common.project.header.html;getbody;comm]--> 
+      <!----------------------COMMON PROJECT HEAD--------------------------------->
+      <div class="container">
+        <div class="row"> 
+          <!--WI_PROJECT_NAV_CONTENT-->
+          <div class="col-lg-3"> 
+            <!----------------------COMMON PROJECT MENU---------------------------------> 
+            <!--[onload;file=common.project.navigation.html;getbody;comm]--> 
+            <!----------------------COMMON PROJECT MENU---------------------------------> 
+          </div>
+          <!--WI_PROJECT_NAV_CONTENT-->
+          <div class="col-lg-9 project-no-col-padding">
+            <div class="widget">
+              <div class="widget-content widget-content-project"> 
+                <!-----------------------------------------------TABS-TASKS------------------------------------------------------------------> 
+                <!--WI_PROJECT_TASKS-->
+                <div class="project-info-tabs"> 
+                  <!--[onshow;block=div;when [visible.wi_project_tasks] == 1;comm]--> 
+                  <!--actions navigation end-->
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="tabs-sub-nav"> <span class="pull-left">
+                        <h3>[vars.tasks_tabs_title]</h3>
+                        </span> <a data-toggle="modal" class="btn btn-mid btn-success pull-right" href="[vars.completed_tasks_link]"> [lang.lang_completed] </a> <a data-toggle="modal" class="btn btn-mid btn-danger pull-right" href="[vars.behind_tasks_link]"> [lang.lang_behind] </a> <a data-toggle="modal" class="btn btn-mid btn-warning pull-right" href="[vars.pending_tasks_link]"> [lang.lang_pending] </a> <a data-toggle="modal" class="btn btn-mid btn-purple pull-right" href="[vars.all_tasks_link]"> [lang.lang_all] </a> <a data-toggle="modal" class="btn btn-mid btn-info pull-right" href="#addNewTaskModal"><i class="icon-plus"></i> [lang.lang_add_new_task] <!--[onshow;block=a;when [project_permissions.add_item_my_project_my_tasks] == 1;comm]--></a>
+                        <div class="clearfix"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--actions navigation end--> 
+                  
+                  <!--TASKS LIST-->
+                  <div class="just-a-wrapper"> 
+                    <!--[onshow;block=div;when [visible.tasks_milestone_list] == 1;comm]--> 
+                    [tasks;block=begin]
+                    <div class="row task" id="task_container_[tasks.tasks_id]">
+                      <div class="col-lg-12">
+                        <div class="x-wrapper [tasks.tasks_status;onformat=runtime_task_status]" id="main_task_container_[tasks.tasks_id]">
+                          <div class="row">
+                            <div class="col-md-4 responsive-task-left">
+                              <input class="icheckjs" 
+                                     type="checkbox"
+                                     data-url="[conf.site_url]/admin/ajaxtwo/update-task-status/[tasks.tasks_id]"
+                                     data-task-id="[tasks.tasks_id]"
+                                     data-status-holder-original="original_task_status_[tasks.tasks_id]"
+                                     data-status-holder-pending="pending_task_status_[tasks.tasks_id]"
+                                     data-status-holder-completed="completed_task_status_[tasks.tasks_id]"
+                                     data-status-holder-behind="behind_task_status_[tasks.tasks_id]"
+                                     data-task-main-container="main_task_container_[tasks.tasks_id]"
+                                     [tasks.tasks_status;onformat=runtime_task_checkbox_status]>
+                              <span class="x-title"><a class="iframeModal"
+                                   data-height="450px" 
+                                   data-width="100%"
+                                   data-toggle="modal"
+                                   data-target="#modalIframe"
+                                   data-modal-window-title='<i class="icon-check"></i> [tasks.tasks_text]' 
+                                   data-src="[conf.site_url]/admin/task/[tasks.tasks_project_id]/view/[tasks.tasks_id]"
+                                   href="#">[tasks.tasks_text;ope=max:30]</a></span> </div>
+                            <div class="col-md-8 responsive-task-right">
+                              <div class="row">
+                                <div class="col-xs-3"><i class="icon-user"></i> [tasks.assigned_to;onformat=runtime_check_blank;ope=max:12]</div>
+                                <div class="col-xs-5"><span style="padding-right:15px;"><i class="icon-calendar"></i> [tasks.tasks_start_date;onformat=runtime_date]</span> <span><i class="icon-calendar-empty"></i> [tasks.tasks_end_date;onformat=runtime_date]</span></div>
+                                <div class="col-xs-4">
+                                  <div class="pull-left">
+                                  <!--actual status-->
+                                  <span id="original_task_status_[tasks.tasks_id]">
+                                    <!--[tasks.tasks_status;block=tr;comm;onformat=runtime_status_colors;htmlconv=no]-->
+                                  </span>
+                                  <!--actual status-->
+                                  
+                                  <!--dynamic status - completed-->
+                                  <span id="completed_task_status_[tasks.tasks_id]" style="display:none;">
+                                  <span class="label label-success" id="bns-status-badge">[lang.lang_completed]</span>
+                                  </span>
+                                  <!--/#dynamic status - completed-->
+                                  <!--dynamic status - pending-->
+                                  <span id="pending_task_status_[tasks.tasks_id]" style="display:none;">
+                                  <span class="label label-warning" id="bns-status-badge">[lang.lang_pending]</span>
+                                  </span>
+                                  <!--/#dynamic status - pending-->
+                                  <!--dynamic status - behind-->
+                                  <span id="behind_task_status_[tasks.tasks_id]" style="display:none;">
+                                  <span class="label label-danger" id="bns-status-badge">[lang.lang_behind]</span>
+                                  </span>
+                                  <!--/#dynamic status - behind-->                                  
+                                                                    
+                                    <span style="display:none;"><i class="icon-time" style="padding-left:10px;"></i> 04:10:33</span>
+                                  </div>
+                                  <div class="pull-right"> 
+                                    <!--control buttons edit--> 
+                                    <span> 
+                                    <!--[onshow;block=span;when [tasks.visible_edit_button] == 1;comm]--> 
+                                    <a class="btn btn-xs btn-info edit-task-modal" 
+                                data-toggle="modal"
+                                data-modal-window-title="[lang.lang_edit_task]"
+                                data-height="450" 
+                                data-width="100%"
+                                data-task-text="[tasks.tasks_text;noerr]"
+                                data-task-start-date="[tasks.tasks_start_date;noerr]"
+                                data-task-end-date="[tasks.tasks_end_date;block=tr;noerr]"
+                                data-task-id="[tasks.tasks_id;block=tr;noerr]"
+                                data-task-assigned-to-id="[tasks.tasks_assigned_to_id;noerr]"
+                                data-task-milestone-id="[tasks.tasks_milestones_id;noerr]"
+                                data-task-events-id="[tasks.tasks_events_id;noerr]"
+                                data-task-status="[tasks.tasks_status;noerr]"
+                                data-target="#editTaskModal"><i class="icon-pencil"></i> </a> </span> 
+                                    <!--control buttons edit - end--> 
+                                    <!--control - view task-->
+                                    <a class="iframeModal btn btn-xs btn-success"
+                                   data-height="450px" 
+                                   data-width="100%"
+                                   data-toggle="modal"
+                                   data-target="#modalIframe"
+                                   data-modal-window-title='<i class="icon-check"></i> [tasks.tasks_text]' 
+                                   data-src="[conf.site_url]/admin/task/[tasks.tasks_project_id]/view/[tasks.tasks_id]"
+                                   href="#"><i class="icon-location-arrow"></i></a>
+                                   <!--control - view task-->
+                                    <!--control buttons delete--> 
+                                    <span> 
+                                    <!--[onshow;block=span;when [tasks.visible_delete_button] == 1;comm]-->
+                                    
+                                    <button class="btn btn-xs btn-danger ajax-delete-content"
+                                data-parent-div-id="task_container_[tasks.tasks_id]"
+                                data-popconfirm-yes="[lang.lang_yes;noerr]"
+			                    data-popconfirm-no="[lang.lang_no;noerr]"
+                                data-popconfirm-title="[lang.lang_are_you_sure;noerr]"
+                                data-popconfirm-placement="left"
+                                data-mysql-record-id="[tasks.tasks_id;block=tr]"
+                                data-mysql-record-id4="[tasks.tasks_project_id;noerr]"
+                                data-mysql-table-name="tasks"
+                                data-ajax-url="[conf.site_url]/admin/ajax/delete-task"> <i class="icon-trash"></i> </button>
+                                    </span> 
+                                    <!--control buttons delete - end --> 
+                                  </div>
+                                  <div class="clearfix"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    [tasks;block=end] </div>
+                  <!--/#TASKS LIST--> 
+                  
+                  <!--WI_TABS_NOTIFICATIONS-->
+                  <div class="col-lg-12"> 
+                    <!--[onshow;block=div;when [visible.wi_tabs_notification] == 1;comm]-->
+                    <div class="widget-tabs-notification"> [vars.notification;noerr] </div>
+                  </div>
+                  <!--WI_TABS_NOTIFICATIONS--> 
+                  <!---------------------------------------WI_INFORMATION_AND_TIPS-------------------------------------><!---------------------------------------WI_INFORMATION_AND_TIPS-------------------------------------> 
+                </div>
+                <div class="clearfix"></div>
+                <!--WI_PROJECT_TASKS--> 
+                <!-----------------------------------------------TABS-TASKS------------------------------------------------------------------> 
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--WI_NOTIFICATION-->
+        <div class="row"> 
+          <!--[onshow;block=div;when [visible.wi_notification] == 1;comm]-->
+          <div class="col-md-12">
+            <div class="widget">
+              <div class="widget-content widget-big-box">[vars.notification;noerr]</div>
+            </div>
+          </div>
+        </div>
+        <!--WI_NOTIFICATION--> 
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>
+<!----------------------COMMON FOOTER---------------------------------> 
+<!--[onload;file=../common/common.footer.html;getbody;comm]--> 
+<!----------------------COMMON FOOTER---------------------------------> 
+<!-- Scroll to top --> 
+<span class="totop"><a href="#"><i class="icon-chevron-up"></i></a></span> 
+
+<!--WI_IFRAME_MODAL-->
+  <div id="modalIframe" class="modal fade reload-parent-on-close" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" height="100%" data-reload-window="">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+          <!--full screen icon - custom.js-->
+          <button type="button" class="full-screen-modal close" aria-hidden="true"><i class="icon-fullscreen"></i></button>
+          <!--full screen icon - custom.js-->
+          <h4 class="modal-title" id="modal-iframe-title"> [lang.lang_edit]</h4>
+          <div class="clearfix"></div>
+        </div>
+        <div class="modal-body">
+          <iframe frameborder="0" class="slimScrollBarModal----"></iframe>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="cancel-modal-action" class="btn btn-default" data-dismiss="modal" data-close-type="no-refresh">[lang.lang_close]</button>
+          <button type="button" class="btn btn-info" data-dismiss="modal" aria-hidden="true">[lang.lang_close_and_refresh]</button>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--WI_IFRAME_MODAL--> 
+<!----------------------COMMON PROJECT FOOTER---------------------------------> 
+<!--[onload;file=common.project.footer.html;getbody;comm]--> 
+<!----------------------COMMON PROJECT FOOTER---------------------------------> 
+<!--JS_ADD_NEW_TASK_MODAL--> 
+<script type="text/javascript">
+$().ready(function() {
+    //USED BY: WI_ADD_NEW_TASK_MODAL
+	//ACTIONS: validates the form and submits it
+	//REQUIRES: jquery.validate.js
+	$("#addNewTask").validate({
+		rules: {
+             tasks_text: "required",
+			 tasks_milestones_id: "required",
+			 tasks_start_date: "required",
+			 tasks_end_date: "required",
+			 tasks_assigned_to_id: "required"
+		},
+		messages: {
+			tasks_text: "[lang.lang_field_is_required]",
+			tasks_milestones_id: "[lang.lang_field_is_required]",
+			tasks_start_date: "[lang.lang_field_is_required]",
+			tasks_end_date: "[lang.lang_field_is_required]",
+			tasks_assigned_to_id: "[lang.lang_field_is_required]"
+		},
+		submitHandler: function(form) {
+        //alert('form submitted');
+		form.submit();
+        }
+	});
+});
+</script> 
+<!--JS_ADD_NEW_TASK_MODAL--> 
+<!--JS_ADD_NEW_TASK_MODAL--> 
+<script>
+//USED BY: ADD_NEW_TASK_MODAL
+//ACTIONS: creates a noce pull down/select for each specified field
+//REQUIRES: select2.js
+//NOTES: no need for '$().ready(function()' as this only need jquery & select2.js which are loaded up top
+    $("#tasks-milestones-list").select2({
+        allowClear: true
+    });
+    $("#tasks-assigned-to-list").select2({
+        allowClear: true
+    });
+</script> 
+<!--JS_ADD_NEW_TASK_MODAL--> 
+<!--JS_EDIT_NEW_TASK_MODAL--> 
+<script type="text/javascript">
+$().ready(function() {
+    //USED BY: WI_EDIT_NEW_TASK_MODAL
+	//ACTIONS: validates the form and submits it
+	//REQUIRES: jquery.validate.js
+	$("#editTask").validate({
+		rules: {
+             tasks_text: "required",
+			 tasks_milestones_id: "required",
+			 tasks_start_date: "required",
+			 tasks_end_date: "required",
+			 tasks_assigned_to_id: "required"
+		},
+		messages: {
+			tasks_text: "[lang.lang_field_is_required]",
+			tasks_milestones_id: "[lang.lang_field_is_required]",
+			tasks_start_date: "[lang.lang_field_is_required]",
+			tasks_end_date: "[lang.lang_field_is_required]",
+			tasks_assigned_to_id: "[lang.lang_field_is_required]"
+		},
+		submitHandler: function(form) {
+        //alert('form submitted');
+		form.submit();
+        }
+	});
+});
+</script> 
+<!--JS_EDIT_NEW_TASK_MODAL--> 
+<!--JS_EDIT_TASK_MODAL--> 
+<script type="text/javascript">
+$(document).ready(function(){
+    //USED BY: WI_EDIT_TASK_MODAL
+	//ACTIONS: dynamically add data into modal form
+	//REQUIRES: jquery.js
+	//ACTIONS-2: creates a pull down/select for each specified field (with preselected values)
+    //REQUIRES-2: select2.js
+		
+    //---edit item link clicked-------
+    $(".edit-task-modal").click(function(){
+    
+        //get variables from "edit link" data attributes
+        var task_text_edit = $(this).attr("data-task-text");
+		var task_start_date_edit = $(this).attr("data-task-start-date");
+		var task_end_date_edit = $(this).attr("data-task-end-date");
+		var task_id_edit = $(this).attr("data-task-id");
+		var task_events_id_edit = $(this).attr("data-task-events-id");
+		var task_assigned_to_preselected = $(this).attr("data-task-assigned-to-id");
+		var task_milestone_preselected = $(this).attr("data-task-milestone-id");
+		var task_status_preselected = $(this).attr("data-task-status");
+
+        //set modal input values dynamically
+		$('#task_text_edit').val(task_text_edit);
+		$('#task_start_date_edit').val(task_start_date_edit);
+		$('#task_end_date_edit').val(task_end_date_edit);
+		$('#task_id_edit').val(task_id_edit);
+		$('#task_events_id_edit').val(task_events_id_edit);
+
+       //pre-select data in pull down lists
+       $("#tasks-assigned-to-list-edit").select2().select2('val', task_assigned_to_preselected); 
+       $("#tasks-milestones-list-edit").select2().select2('val', task_milestone_preselected); 
+       $("#tasks-status-list-edit").select2().select2('val', task_status_preselected); 
+  });
+    
+});
+</script> 
+<!--JS_EDIT_TASK_MODAL--> 
+<!--JS_LANG_AJAX_FILE_UPLOAD--> 
+<script>
+//-------------------------------------------------------------------------------
+//[DYNAMIC (TBS) VARIABLES & LANGUAGE] 
+//-------------------------------------------------------------------------------
+//variabled
+var upload_url = '[conf.site_url;noerr]/common/ajax/upload-task-file/[vars.project_id;noerr]/team';
+var js_allowed_types = [vars.js_allowed_types;protect=no;noerr];
+var js_file_size_limit = [vars.js_file_size_limit;noerr];
+
+//language
+var lang_file_too_big = "[lang.lang_upload_invalid_filesize;noerr]";
+var lang_your_file_has_been_uploaded = "[lang.lang_file_has_been_attached;noerr]";
+var lang_upload_invalid_filetype = "[lang.lang_upload_invalid_filetype;noerr]";
+var lang_upload_invalid_filesize = "[lang.lang_upload_invalid_filesize;noerr]";
+var lang_upload_system_error = "[lang.lang_upload_system_error;noerr]";
+
+</script> 
+
+<!--JS_EDIT_TASK_MODAL--> 
+
+
+<script type="text/javascript" src="[conf.site_url_themes_common;noerr]/js/custom/custom.tasks.js"></script>
+
+<!--------------------COMMON FOOTER JAVASCRIPT----------------------------> 
+<!--[onload;file=../common/common.footer.javascript.html;getbody;comm]--> 
+<!--------------------COMMON FOOTER JAVASCRIPT---------------------------->
+</body>
+</html>

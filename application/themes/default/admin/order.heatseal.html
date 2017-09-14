@@ -1,0 +1,217 @@
+<style>
+#removeDamageModal
+{
+	z-index:1045;
+}
+</style>
+<div class="row">
+  <div id="orderHeatSeal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="max-width:80%;">
+      <div class="modal-content">
+        <div class="modal-header back-color">
+          <button type="button" id="order_close" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+          <h4 class="modal-title login-title">Order Information</h4>
+        </div>
+        <div class="modal-body ">
+          <div class="form-login-wrapper">
+            <div class="pw-wrapper" style="background:none; padding:0">
+              <div id="hseal-ajax-loader" style="display: none;"><img src="img/ajax-loader.gif"></div>
+				<form id='uploadImage' class="form-horizontal" action='upload.php' method='post' enctype='multipart/form-data'>
+				 <div id="order_heatseal_frm" class="row" style="display: block;">
+                  
+				  
+				  
+                 </div>
+			    </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="removeDamageModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog " style="max-width: 450px; margin-top:150px">
+<div class="modal-content widget ">
+<div class="padd"><h4 class="text-center">[lang.lang_confirm_delete_item;noerr]</h4></div>
+<div class="modal-footer">
+<input type="hidden" name="dimg_id" value="" id="dimg_id"/>
+<input type="hidden" name="dimg_oid" value="" id="dimg_oid"/>
+<button type="button" onclick="removeDimage()" data-dismiss="modal" class="btn green" >Yes</button>
+<button type="button" data-dismiss="modal" class="btn red">Cancel</button>
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$("#bytype,#sheatseal,#sproduct").select2({
+			allowClear: true
+		});
+		
+		$('#sheatseal').hide();
+									
+	});
+	
+function getHeatdropdown()
+{
+	var dtypes= $('#bytype').val();
+	
+	if(dtypes == 'heatseal')
+	{
+		$('#sheatseal').show();
+		$('#sproduct').hide();
+		$("#sheatseal").select2({
+			allowClear: true
+		});
+	
+	}
+	else
+	{
+		$('#sheatseal').hide();
+		$('#sproduct').show();
+		$("#sproduct").select2({
+			allowClear: true
+		});
+	}
+	
+	
+	
+}
+	
+function damageheatseal(orid)
+{
+
+	 $.ajax({
+				type: "POST",
+				url: "[conf.site_url;noerr]/admin/orders/damageheatseal",
+				data: {
+					orderid: orid
+				},
+			   beforeSend: function(){
+					 $("#hseal-ajax-loader").show();
+					 $("#order_heatseal_frm").hide();
+
+			   },
+			   complete: function(){
+					processing = false;
+					$("#hseal-ajax-loader").hide();
+					$("#order_heatseal_frm").show();
+					
+				},
+			   dataType: "json",
+			   success: function (data) {
+					$("#order_heatseal_frm").html(data.order_details);
+					
+					$('.popupscroll').jScrollPane({
+						autoReinitialise: true
+					});  //scrollpane
+					
+	
+					$("#bytype,#sheatseal,#sproduct").select2({
+						allowClear: true
+					});
+									
+					
+					getHeatdropdown();
+					
+				}
+			});
+}
+
+//Adding a submit function to the form 
+$('#uploadImage').submit(function(e){
+	
+	//Preventing the default behavior of the form 
+	//Because of this line the form will do nothing i.e will not refresh or redirect the page 
+	e.preventDefault();
+	
+	//Creating an ajax method
+	$.ajax({
+		
+		//Getting the url of the uploadphp from action attr of form 
+		//this means currently selected element which is our form 
+		url: "[conf.site_url;noerr]/admin/orders/savedamageheatseal",
+		//For file upload we use post request
+		type: "POST",
+		
+		//Creating data from form 
+		data: new FormData(this),
+		
+		//Setting these to false because we are sending a multipart request
+		contentType: false,
+		cache: false,
+		processData: false,
+		beforeSend: function(){
+					$("#hseal-ajax-loader").show();
+					 $("#order_heatseal_frm").hide();
+
+			   },
+			   complete: function(){
+					processing = false;
+					$("#hseal-ajax-loader").hide();
+					$("#order_heatseal_frm").show();
+					
+				},
+		success: function(data){
+			//If the request is successfull we will get the scripts output in data variable 
+			//Showing the result in our html element 
+			
+			$('#heatsealimage').val('');
+			
+			var ordder_id=$("#eorder_id").val();
+			
+					
+			
+				
+			damageheatseal(ordder_id);
+			
+		},
+		error: function(){}
+	});
+});
+
+
+function removeimg(dmids,dmoid)
+{
+	$('#dimg_id').val(dmids);
+	$('#dimg_oid').val(dmoid);
+}	
+
+function removeDimage()
+{
+	$.ajax({
+					type: "POST",
+					url: "[conf.site_url;noerr]/admin/orders/removedamageline",
+					data: {
+						id: $('#dimg_id').val()
+					},
+				   beforeSend: function(){
+					 $("#hseal-ajax-loader").show();
+					 $("#order_heatseal_frm").hide();
+				   },
+				   complete: function(){
+					processing = false;
+					//$("#hseal-ajax-loader").hide();
+					//$("#order_heatseal_frm").show();
+				   },
+				   dataType: "json",
+				   success: function (data) {
+					   
+					   
+						$("#bytype,#sheatseal,#sproduct").select2({
+							allowClear: true
+						});
+
+					$('.popupscroll').jScrollPane({
+						autoReinitialise: true
+					});  //scrollpane
+					
+					   
+						damageheatseal($('#dimg_oid').val());
+				   }
+				});
+}
+
+</script>	

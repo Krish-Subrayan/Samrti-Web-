@@ -1,0 +1,175 @@
+<html>
+<head>
+<meta charset="UTF-8">
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- this script helps us to capture any div -->
+<script src="[conf.site_url_themes_common;noerr]/js/html2canvas.js"></script>
+<script type="text/javascript">	
+/*$(function(){	
+   //alert($('.print').length); // alerts a nonnegative number 
+
+ $('.print').each(function(index) {
+       // index has the count of the current iteration
+    //get the div content
+		var divid=this.id;
+		div_content = document.querySelector("#"+this.id);
+		html2canvas(div_content).then(function(canvas) {
+		data = canvas.toDataURL('image/png');
+			save_img(data,[order.id],divid);
+		});
+	});
+
+	
+});*/
+
+$(document).ready(function() { 
+  $(window).load(function() { 
+     //insert all your ajax callback code here. 
+     //Which will run only after page is fully loaded in background.
+	 var printtotal = $( ".print" ).length;
+	 
+	 var pcnt=0;
+	  $('.print').each(function(index) {
+       // index has the count of the current iteration
+		//get the div content
+		var divid=this.id;
+		div_content = document.querySelector("#"+this.id);
+		html2canvas(div_content).then(function(canvas) {
+		data = canvas.toDataURL('image/png');
+		pcnt=parseInt(pcnt)+1;
+		$('#print_count').val(pcnt);
+		$('#hidden-print').prepend('<input class="printstatus" type="hidden" id="print_'+divid+'" value="0" />');
+			save_img(data,[order.id],divid);
+			
+		});
+		
+	});
+
+	
+  });
+ 
+ 
+var interval = setInterval(doPrint, 3000); // 2000 ms = start after 2sec 
+function doPrint() {
+  
+   var printtotal = $( ".print" ).length;
+   var print_count=$('#print_count').val();
+   var printstatus=1;
+   if(printtotal == print_count)
+   {
+		$('.printstatus').each(function(index){
+			if($("#"+this.id).val() == 0)
+			{
+				printstatus=0;
+				//alert($("#"+this.id).val());
+			}
+			
+		});
+		
+		if(printstatus == 1)
+		{
+			//preparebillprintFrame();
+			preparetagprintFrame();
+			clearInterval(interval); 
+		}
+		//alert(printstatus);
+   }
+   
+   
+   
+  //clearInterval(interval);
+}
+
+ 
+});
+
+/*
+function preparebillprintFrame() {
+
+//var url ="[conf.site_url;noerr]/admin/printecspos/billprint/[order.id]";
+//window.open(url, '_blank');
+
+//setTimeout(function(){ preparetagprintFrame(); }, 5000);
+
+       var ifrmm = document.createElement("iframe");
+        ifrmm.setAttribute("src", "[conf.site_url;noerr]/admin/printecspos/billprint/[order.id]");
+        ifrmm.style.width = "640px";
+        ifrmm.style.height = "480px";
+		ifrmm.style.display = "none";
+        document.body.appendChild(ifrmm);
+		alert('Bill Print Success');
+}*/
+	
+function preparetagprintFrame() {
+//var url="[conf.site_url;noerr]/admin/printecspos/tagprint/[order.id]";
+//window.open(url, '_blank');*/
+
+        var ifrm = document.createElement("iframe");
+        ifrm.setAttribute("src", "[conf.site_url;noerr]/admin/printecspos/tagprint/[order.id]");
+        ifrm.style.width = "640px";
+        ifrm.style.height = "480px";
+		ifrm.style.display = "none";
+        document.body.appendChild(ifrm);
+		//alert('Tag Print Success');
+		
+    }
+
+
+//to save the canvas image
+function save_img(data,orderid,divid){
+	//ajax method.
+	$.post('[conf.site_url;noerr]/admin/printecspos/save-image', {data: data,order:orderid,id:divid}, function(res){
+		//if the file saved properly, trigger a popup to the user.
+		$('#print_'+divid).val('1');
+		console.log(res);
+		//alert(res);
+		/*if(res != ''){
+			yes = confirm('File saved in output folder, click ok to see it!');
+		}
+		else{
+			alert('something wrong');
+		}*/
+	});
+}
+</script>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+}
+@media print {
+ h1 { 
+  page-break-after: always;
+ } 
+}
+@media all {
+	.page-break	{ display: none; }
+}
+
+@media print {
+	.page-break	{ display: block; page-break-before: always; }
+}
+</style>
+<style media="print">
+@page {
+  size: auto;
+  margin: 0;
+       }
+</style>
+<!--define our base-->
+<base href="[conf.site_url;noerr]/application/themes/[settings_general.theme]/common/">
+<base href=".">
+<title>[lang.lang_website_title;noerr]</title>
+<link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono" rel="stylesheet">
+</head>
+<body>
+ <!--[lists.printtag;noerr;htmlconv=no;protect=no;comm]-->
+ <form action="" method="get" id="hidden-print">
+<input type="hidden" id="print_count" value="" />
+</form>
+</body>
+</html>

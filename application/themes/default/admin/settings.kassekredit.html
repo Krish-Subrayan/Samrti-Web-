@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+<link href="../common/style/bootstrap.css" rel="stylesheet">
+<link href="../common/style/style.css" rel="stylesheet">
+<link href="../common/style/custom.css" rel="stylesheet">
+<!--[onshow;block=head;when [visible.foo] == bar;comm]-->
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+</head>
+<!--HEAD - ONLOAD-->
+<!--[onload;file=../common/common.head.html;getbody;comm]-->
+<!--HEAD - ONLOAD-->
+<body onload="scantab();">
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=../common/common.javascript.html;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=common_include_debug;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=common.header.html;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!-- Main content starts -->
+<div class="content"> 
+  <!-- Main bar -->
+  <div class="mainbar"> 
+    <!-- Matter -->
+    <div class="matter">
+      <div class="container customer-bg">
+        <div class="row header">
+          <div class="col-md-8"> 
+            <!--TOP-LEFT - ONLOAD --> 
+            <!--[onload;file=common.top.left.html;getbody;comm]--> 
+            <!--TOP-LEFT - ONLOAD --> 
+            <!--MENU - ONLOAD --> 
+            <!--[onload;file=common.index.menu.html;getbody;comm]--> 
+            <!--MENU - ONLOAD -->
+            <div class="search-product" style="display:none">
+              <div id="Exp-serach" class="Exp-serach">
+                <form>
+                  <input class="ExpInput " onkeyup="buttonUp();" placeholder="Søk produkt..." onblur="monkey();" type="search" value="" name="search" id="search">
+                  <input class="Expbtn" type="submit"  value="">
+                  <span class="ExpIcon"><i class="fa fa-search"></i></span>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4"> 
+            <!--TOP-RIGHT - ONLOAD --> 
+            <!--[onload;file=common.top.right.html;getbody;comm]--> 
+            <!--TOP-RIGHT - ONLOAD -->
+            <div class="clearfix"></div>
+            <!-- <div class="text-center kasse">Kasse (<span class="cart_total">[vars.cart_total]</span>)</div>
+            <div class="voucher"> <a data-toggle="modal" href="#addNew"><img src="img/voucher.png" title="Voucher" alt="Voucher"/></a></div>--> 
+          </div>
+        </div>
+        <div class="row receipt">
+          <div class="col-md-4  no-padd scroll-pane">
+            <div class="row">
+              <div class="col-md-12 no-padd"> 
+                <!--SETTINGS-MENU - ONLOAD --> 
+                <!--[onload;file=common.settings.kassekredit.html;getbody;comm]--> 
+                <!--SETTINGS-MENU - ONLOAD --> 
+              </div>
+            </div>
+          </div>
+		 
+          <div class="col-md-8  scroll-pane no-padd">
+            <div class="row">
+              <div class="col-md-12 mt-sm"> [errormsg;noerr;if [val]!='';then '<br>
+                <div class="alert alert-danger"><i class="fa fa-warning"></i> [val]</div>
+                ';][successmsg;noerr;if [val]!='';then '<br>
+                <div class="alert alert-success"><i class="fa fa-thumbs-o-up"></i> [val]</div>
+                ';]
+                <div class="search-tab clearfix group-pos">
+                  <div class="velg-block clearfix">
+                    <div class="row"> 
+                      <div class="velg col-md-2 fs-16">Velg</div>
+                      <div class="col-md-10  no-padd">
+                        <div class="btn-group pull-left">
+                          <button type="button" onclick="searchName();" id="search_navn" data-target="#frm_navn" data-switch-value="Navn" class="btn btn-default">Navn</button>
+                          <button type="button" onclick="searchMobile();"  id="search_mobile" data-target="#frm_mobil" data-switch-value="Mobil" class="btn btn-default">Mobil</button>
+                         
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="display:none;" class="frm_wrapper clearfix kassekredit">
+                    <form action="[conf.site_url;noerr]/admin/settings/kassekredit/add-saldo" method="post" name="frm_navn" id="frm_navn">
+                      <div class="clearfix">
+                        <table class="table table-forms">
+                          <tbody>
+                            <tr>
+                              <td class="col-md-3 border-none">Navn</td>
+                              <td class="border-none"><div class="col-sm-12 no-padding-both">
+                                  
+                                   <input type="text" onkeyup="checkNavnMoble();" class="fs-16 navn form-control" id="bedrift_navn" name="navn" required>
+                          <input type="hidden" class="fs-16 navn" id="navn_mobile" name="mobile">
+                          <input type="hidden" class="fs-16 navn" id="navn_id" name="navn_id">
+                                </div></td>
+                            </tr>
+                            <tr>
+                              <td>Amount</td>
+                              <td><div class="col-sm-12  no-padding-both">
+                                  <input type="text"  value=""  class="form-control amount" onkeypress="return isNumber(event)" name="amount" id="amount" required>
+                                </div></td>
+                            </tr>
+                            <tr>
+                              <td>Reason</td>
+                              <td><div class="col-sm-12 no-padding-both">
+                                  <input type="text"  value=""  class="form-control" name="complaint_reason" id="complaint_reason" required>
+                                </div></td>
+                            </tr>
+                          </tbody>
+                        </table>                      
+                        <div class="col-xs-12 no-padd">
+                          <input type="submit" value="Submit" class="btn-lg green savebutton pull-right mb-xlg">
+                        </div>
+                      </div>
+                    </form>
+                    <form action="[conf.site_url;noerr]/admin/settings/kassekredit/add-saldo" method="post" name="frm_mobil" id="frm_mobil">
+                    <table class="table table-forms">
+                      <tbody>
+                        <tr>
+                          <td class="col-md-3 border-none">Mobil</td>
+                          <td class="border-none"><div class="col-sm-12 no-padding-both">
+                           <input type="text" required="required" onkeypress="return isNumber(event)" name="mobile" id="mobile" class="fs-16 form-control" >
+                            <input type="hidden" class="fs-16 navn" id="navn_mobile" name="mobile">
+                             <input type="hidden" class="fs-16 navn" id="navn_id" name="navn_id1">
+                            </div></td>
+                        </tr>
+                        <tr>
+                          <td>Amount</td>
+                          <td><div class="col-sm-12  no-padding-both">
+                              <input type="text"  value=""  class="form-control amount"  onkeypress="return isNumber(event)" name="amount1" id="amount" required>
+                            </div></td>
+                        </tr>
+                        <tr>
+                          <td>Reason</td>
+                          <td><div class="col-sm-12 no-padding-both">
+                              <input type="text"  value=""  class="form-control" name="complaint_reason1" id="complaint_reason" required>
+                            </div></td>
+                        </tr>
+                      </tbody>
+                    </table>                    
+                    <div class="col-xs-12 no-padd">
+                      <input type="submit" value="Submit" class="btn-lg green  pull-right savebutton mb-xlg">
+                    </div>                    
+                      <div class="clearfix"> 
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Matter ends --> 
+</div>
+<!-- Mainbar ends -->
+<div class="clearfix"></div>
+<!--WI_IFRAME_MODAL-->
+<div class="row">
+  <div id="modalIframe" class="modal fade reload-parent-on-close" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header back-color">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+          <h4 class="modal-title text-center" id="modal-iframe-title"></h4>
+        </div>
+        <div class="modal-body login">
+          <iframe frameborder="0" class="slimScrollBarModal----"></iframe>
+        </div>
+        <div class="modal-footer" style="display:none">
+          <button type="button" class="btn btn-default close-btn" data-dismiss="modal" aria-hidden="true">[lang.lang_close]</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--WI_IFRAME_MODAL--> 
+
+<!-- styles needed by jScrollPane -->
+<link type="text/css" href="style/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+<!-- the mousewheel plugin - optional to provide mousewheel support --> 
+<script type="text/javascript" src="js/jquery.mousewheel.js"></script> 
+<!-- the jScrollPane script --> 
+<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script> 
+<script type="text/javascript" src="js/typeahead.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$('.group-pos .btn-group > .btn').on("click", function() {
+		$('.group-pos .btn-group > .btn').removeClass('highlight');
+		$(this).addClass('highlight');	
+	});
+ 	$('.frm_wrapper form').hide();
+	
+	$('.search-tab .velg-block .btn').on("click", function() {
+		$('.frm_wrapper form').hide();
+		$('.frm_wrapper form').find('input[type=text]').val('');
+		$($(this).data('target')).show();
+		$($(this).data('target')).find('input.fs-16').focus();
+	});
+	
+	$('.company-search-tab .velg-block .btn').on("click", function() {
+		$('.company_frm_wrapper form').hide();
+		$('.company_frm_wrapper form').find('input[type=text]').val('');
+		$($(this).data('target')).show();
+		$($(this).data('target')).find('input.fs-16').focus();
+	});
+	
+	delete_cookie('navn_id');
+	/*for name search*/
+	function changeTypeahead(obj, datum) {
+		$('input#navn_mobile').val(datum.phone);
+		$('input#navn_id').val(datum.label);
+		createCookie('navn_id', datum.label, '');
+    };
+	
+	/*for mobile search*/
+	function changeTypeaheadmoble(obj, datum) {
+		  $('input#navn_mobile').val(datum.value);
+		  $('input#navn_id').val(datum.label);
+          $('input#mobile').val(datum.value);
+    };
+	
+
+	$('input#bedrift_navn').typeahead({
+			name: 'navn',
+			display: 'value',
+			remote: '[conf.site_url;noerr]/admin/employee/search-customer?query=%QUERY'
+
+	  }).bind('typeahead:selected', function(obj, datum) {
+        changeTypeahead(obj, datum);
+    }).bind('typeahead:autocompleted', function(obj, datum) {
+        changeTypeahead(obj, datum);
+    });
+	
+	
+	 $('input#mobile').typeahead({
+			mobile: 'mobile',
+			display: 'value',
+			remote: '[conf.site_url;noerr]/admin/employee/search-mobile?query=%QUERY'
+
+	  }).bind('typeahead:selected', function(obj, datum) {
+        changeTypeaheadmoble(obj, datum);
+    }).bind('typeahead:autocompleted', function(obj, datum) {
+        changeTypeaheadmoble(obj, datum);
+    });
+	
+	
+	
+	 
+	 
+	 
+		  
+		  
+	
+	//kasse form submit
+	$("form#frm_navn").submit(function(){
+		var myform =this.id;
+		
+		
+		
+		var customer=$('input[name="navn_id"]').val();
+		var amount=$('input[name="amount"]').val();
+		var reason=$('input[name="complaint_reason"]').val();
+		//alert(amount);
+		//alert(customer);
+		//alert(reason);
+		
+		if(amount == '')
+		{
+			noty({
+							text: 'Please add some amount',
+							layout: 'bottomRight',
+							type: 'warning',
+							timeout: [settings_general.notifications_display_duration;noerr]
+						});
+						return false;
+		}
+		if(reason == '')
+		{
+			noty({
+							text: 'Please type any reason',
+							layout: 'bottomRight',
+							type: 'warning',
+							timeout: [settings_general.notifications_display_duration;noerr]
+						});
+						return false;
+		}
+		if(customer == '')
+		{
+			noty({
+							text: 'Please select a customer',
+							layout: 'bottomRight',
+							type: 'warning',
+							timeout: [settings_general.notifications_display_duration;noerr]
+						});
+						return false;
+		}
+		amount = parseFloat(amount);
+		if(amount == '0')
+		{
+			noty({
+							text: 'Please add valid amount',
+							layout: 'bottomRight',
+							type: 'warning',
+							timeout: [settings_general.notifications_display_duration;noerr]
+						});
+						return false;
+		}
+		
+		$(".savebutton").attr('disabled', true); 
+		
+		
+		
+		$.ajax({
+			type: "POST",
+			url: "[conf.site_url;noerr]/admin/settings/kassekredit/add-saldo",
+			data: {
+				amount: amount,
+				customer: customer,
+				reason:reason
+			},
+		   beforeSend: function(){
+				$(".savebutton").val('Processing...'); 
+		   },
+		   complete: function(){
+			//	processing = false;
+				$(".savebutton").val('Submit'); 
+		   },
+		   dataType: "json",
+		   success: function (data) {
+				
+			$('.savebutton').removeAttr("disabled");				
+			if(data.status == 'success')
+			{	
+				document.getElementById(myform).reset();
+				
+				noty({
+					text: data.message,
+					layout: 'bottomRight',
+					type: 'information',
+					timeout: [settings_general.notifications_display_duration;noerr]
+				});
+			}
+			else
+			{
+				noty({
+					text: data.message,
+					layout: 'bottomRight',
+					type: 'warning',
+					timeout: [settings_general.notifications_display_duration;noerr]
+				});
+			}
+		}
+
+	});
+		
+	return false;
+	
+ });	
+	
+	
+	//kasse form submit
+	$("form#frm_mobil").submit(function(){
+		var myform =this.id;
+		var customer=$('input[name="navn_id1"]').val();
+		var amount=$('input[name="amount1"]').val();
+		var reason=$('input[name="complaint_reason1"]').val();
+		//alert(amount);
+		//alert(customer);
+		//alert(reason);
+		
+		if(amount == '')
+		{
+			noty({
+							text: 'Please add some amount',
+							layout: 'bottomRight',
+							type: 'warning',
+							timeout: [settings_general.notifications_display_duration;noerr]
+						});
+						return false;
+		}
+		if(reason == '')
+		{
+			noty({
+							text: 'Please type any reason',
+							layout: 'bottomRight',
+							type: 'warning',
+							timeout: [settings_general.notifications_display_duration;noerr]
+						});
+						return false;
+		}
+		if(customer == '')
+		{
+			noty({
+							text: 'Please select a customer',
+							layout: 'bottomRight',
+							type: 'warning',
+							timeout: [settings_general.notifications_display_duration;noerr]
+						});
+						return false;
+		}
+		amount = parseFloat(amount);
+		if(amount == '0')
+		{
+			noty({
+							text: 'Please add valid amount',
+							layout: 'bottomRight',
+							type: 'warning',
+							timeout: [settings_general.notifications_display_duration;noerr]
+						});
+						return false;
+		}
+		$(".savebutton").attr('disabled', true); 
+		$.ajax({
+			type: "POST",
+			url: "[conf.site_url;noerr]/admin/settings/kassekredit/add-saldo",
+			data: {
+				amount: amount,
+				customer: customer,
+				reason:reason
+			},
+		   beforeSend: function(){
+				$(".savebutton").val('Processing...'); 
+		   },
+		   complete: function(){
+				$(".savebutton").val('Submit'); 
+		   },
+		   dataType: "json",
+		   success: function (data) {
+					
+			if(data.status == 'success')
+			{	
+			$('.savebutton').removeAttr("disabled");
+				document.getElementById(myform).reset();
+				
+				noty({
+					text: data.message,
+					layout: 'bottomRight',
+					type: 'information',
+					timeout: [settings_general.notifications_display_duration;noerr]
+				});
+			}
+			else
+			{
+				noty({
+					text: data.message,
+					layout: 'bottomRight',
+					type: 'warning',
+					timeout: [settings_general.notifications_display_duration;noerr]
+				});
+			}
+		}
+
+	});
+		
+	return false;
+	
+ });	
+	
+	
+});
+
+/*for name search*/
+	function changeTypeahead1(obj, datum) {
+		$('input#navn_mobile').val(datum.phone);
+		$('input#navn_id').val(datum.label);
+		createCookie('navn_id', datum.label, '');
+    };
+	
+	/*for mobile search*/
+	function changeTypeaheadmoble1(obj, datum) {
+		  $('input#navn_mobile').val(datum.value);
+		  $('input#navn_id').val(datum.label);
+          $('input#mobile').val(datum.value);
+    };
+
+function searchMobile()
+	{
+	
+	  $('input#mobile').typeahead('destroy');
+	  
+	  
+			$('input#navn_mobile').val('');
+			$('input#navn_id').val('');
+			$('input#mobile').val('');
+
+			$('input#mobile').typeahead({
+			mobile: 'mobile',
+			display: 'value',
+			remote: '[conf.site_url;noerr]/admin/employee/search-mobile?query=%QUERY'
+			}).bind('typeahead:selected', function(obj, datum) {
+			changeTypeaheadmoble1(obj, datum);
+			}).bind('typeahead:autocompleted', function(obj, datum) {
+			changeTypeaheadmoble1(obj, datum);
+			});
+	
+	}
+	
+	
+	function searchName()
+	{
+	
+		$('input#navn_mobile').val('');
+		$('input#navn_id').val('');
+		
+		 $('input#bedrift_navn').typeahead('destroy');
+		 
+		$('input#bedrift_navn').typeahead({
+				name: 'navn',
+				display: 'value',
+				remote: '[conf.site_url;noerr]/admin/employee/search-customer?query=%QUERY'
+
+		  }).bind('typeahead:selected', function(obj, datum) {
+			changeTypeahead1(obj, datum);
+		}).bind('typeahead:autocompleted', function(obj, datum) {
+			changeTypeahead1(obj, datum);
+		});
+	
+	}
+	
+	
+	
+//check its a number when key pressed
+function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+}
+//scann tab
+function scantab()
+{
+	$( "#search_mobile" ).trigger( "click" );
+	$('#mobile').val('');
+	$("#mobile").focus();
+	
+	$('.frm_wrapper').show();
+	
+}
+/*create cookie*/
+function createCookie(name, value, days) {
+    var date, expires;
+    if (days) {
+        date = new Date();
+        date.setTime(date.getTime()+(days*24*60*60*1000));
+        expires = "; expires="+date.toGMTString();
+    } else {
+        expires = "";
+    }
+    document.cookie = name+"="+value+expires+"; path=/";
+}
+
+/*delete cookie*/
+function delete_cookie(name) {
+	document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+}
+
+/*empty navn field*/
+function checkNavnMoble()
+{
+	$('#navn_id').val('');
+	$('#navn_branch').val('');
+}
+
+															
+</script> 
+
+<!--------------------COMMON FOOTER JAVASCRIPT----------------------------> 
+<!--[onload;file=../common/common.footer.javascript.html;getbody;comm]--> 
+<!--------------------COMMON FOOTER JAVASCRIPT---------------------------->
+</body>
+</html>

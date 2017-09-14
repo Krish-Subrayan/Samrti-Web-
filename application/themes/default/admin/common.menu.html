@@ -1,0 +1,14 @@
+<ul class="menu everything">
+    <li class="[vars.css_menu_products]">
+	[sessiondata.logged_in;noerr;if [val]=='shop';then '<a  href="[conf.site_url]/admin/products">';else '<a  href="[conf.site_url]/admin/smartlaundry">';]<span>Innlevering</span></a>
+    </li><li class="[vars.css_menu_utlevering]"><a class="topLevel" href="[conf.site_url]/admin/orders/utlevering">[vars.order_count;noerr;if [val]=='0';then '<div id="order_tcount" style="display:none" class="count ucount">';else '<div  id="order_tcount" style="display:block" class="count ucount">';][vars.order_count]</div><span>Utlevering</span></a></li>
+    <li class="[vars.css_menu_parkerte]"><a class="topLevel" href="[conf.site_url]/admin/products/parkerte"><!--[vars.parkert_count;noerr;htmlconv=no;protect=no;comm]--> <span>Parkerte ordre</span></a></li>
+	
+    
+<!--	<li class="[vars.css_menu_pendingutlever]"><a class="topLevel" href="[conf.site_url]/admin/orders/utlever-pending"><span>Venter på levering</span></a></li>
+-->	
+	
+    <div class="clearfix"></div>
+</ul>
+
+

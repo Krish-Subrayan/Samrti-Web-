@@ -1,0 +1,1805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+<link href="../common/style/bootstrap.css" rel="stylesheet">
+<link href="../common/style/style.css" rel="stylesheet">
+<link href="../common/style/custom.css" rel="stylesheet">
+<!--[onshow;block=head;when [visible.foo] == bar;comm]-->
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+</head>
+<!--HEAD - ONLOAD-->
+<!--[onload;file=../common/common.head.html;getbody;comm]-->
+<!--HEAD - ONLOAD-->
+<body>
+<!--HEADER SECTION - ONLOAD-->
+<!--[onload;file=../common/common.javascript.html;getbody;comm]-->
+<!--HEADER SECTION - ONLOAD-->
+<!--HEADER SECTION - ONLOAD-->
+<!--[onload;file=common_include_debug;getbody;comm]-->
+<!--HEADER SECTION - ONLOAD-->
+<!--HEADER SECTION - ONLOAD-->
+<!--[onload;file=common.header.html;getbody;comm]-->
+<!--HEADER SECTION - ONLOAD-->
+<!-- Main content starts -->
+<style>
+#editProductModal #edit-antall,#editProductModal .qty-wrapper
+{
+	display:none !important;
+}
+
+
+</style>
+<div class="content">
+  <!-- Main bar -->
+  <div class="mainbar">
+    <!-- Matter -->
+    <div class="matter">
+      <div class="container white-bg">
+        <div class="row header">
+        	<div class="col-md-8">
+             <!--TOP-LEFT - ONLOAD -->
+            <!--[onload;file=common.top.left.html;getbody;comm]-->
+             <!--TOP-LEFT - ONLOAD -->
+            <!--MENU - ONLOAD -->
+            <!--[onload;file=common.menu.html;getbody;comm]-->
+            <!--MENU - ONLOAD -->
+             <div class="search-product">
+              <div id="Exp-serach" class="Exp-serach">
+                <form id="searchFrm" name="searchFrm" action="" method="post">
+                  <input class="ExpInput " onKeyUp="buttonUp();" placeholder="Søk produkt..." onBlur="" type="search" value="" name="search" id="search">
+                  <input class="Expbtn" type="submit"  value="">
+                  <span class="ExpIcon" onclick="searchFocus();"><i class="fa fa-search"></i></span>
+                </form>
+              </div>
+            </div>              
+            </div>
+        	<div class="col-md-4">
+             <!--TOP-RIGHT - ONLOAD -->
+            <!--[onload;file=common.top.right.html;getbody;comm]-->
+             <!--TOP-RIGHT - ONLOAD -->
+            <div class="clearfix"></div>
+			<div class="col-md-4">
+			<div class="text-left kasse">Kasse (<span class="cart_total">[vars.cart_total]</span>)	
+			 </div>
+			 
+			 </div>
+			 <div class="col-md-8">
+				<div class="text-left kasse"><input class="form-control" type="text" id="heatseal" value="[sessiondata.current_heatseal]" name="heatseal" style="width:86%" class=" fs-16" placeholder="Heatseal"><span onclick="getHeatsealdetails();" class="ExpIcon1"><i class="fa fa-search"></i></span>	
+			 </div>
+			 </div>
+			 
+	
+            </div>
+        </div>
+        
+        <div class="row product">
+        <div class="col-md-8  no-padd scroll-pane">
+            <div class="prod-column">
+                 <!--[lists.categories;noerr;htmlconv=no;protect=no;comm]-->
+             </div>
+             <div id="ajax-loader-products"><img src="img/ajax-loader.gif"></div>
+            <div class="prod-list-column">
+            
+             </div>
+        </div>                                         
+        <div class="col-md-4 no-padd">
+           <form action="" name="" id=""> 
+            <!--CUSTOMER PROFILE - ONLOAD -->
+            <!--[onload;file=common.customer.profile.html;getbody;comm]-->
+            <!--CUSTOMER PROFILE - ONLOAD -->
+			 
+<div style="height:295px;" class="scroll-pane">
+
+			 
+             <div id="rens_div" class="block orderline-block">
+			 
+               <div class="row">
+                <div class="pull-left col-md-3 no-padd text-center">
+                 <h2>Rens</h2>
+                </div> 
+               </div>
+                 <div id="ajax-loader-rens"><img src="img/ajax-loader.gif"/></div>
+
+                <div class="rens">
+                 <div class="col-md-12 mt-sm"> 
+                  <!--[onshow;block=div;when [visible.wi_no_products_added_in_cart_rens] == 1;comm]-->
+                  <p class="black-text  text-center">[lang.lang_cart_empty]</p>
+				   <style>
+				  #rens_div{display:none;}
+				  </style>
+                 </div>
+                  <!--[lists.rens;noerr;htmlconv=no;protect=no;comm]-->
+               </div>   
+             </div>  
+             
+          <div id="vask_div" class="block orderline-block">
+             <div class="row">
+                <div class="pull-left col-md-3 no-padd text-center">
+                 <h2>Vask</h2>
+                </div> 
+               </div>
+                              
+                  <div id="ajax-loader-vask"><img src="img/ajax-loader.gif"/></div>
+
+                <div class="vask">
+                 <div class="col-md-12 mt-sm"> 
+                  <!--[onshow;block=div;when [visible.wi_no_products_added_in_cart_vask] == 1;comm]-->
+                  <p class="black-text  text-center">[lang.lang_cart_empty]</p>
+				  <style>
+				  #vask_div{display:none;}
+				  </style>
+                 </div>
+                  <!--[lists.vask;noerr;htmlconv=no;protect=no;comm]-->
+              </div>  
+             </div> 
+      
+	    <div class="block orderline-block" style="display:none">
+              <div class="row">
+                <div class="pull-left col-md-12">
+                  <h2>[lang.lang_special_instruction]</h2>
+                  <textarea name="special_instruction" id="instruction"></textarea>
+                </div>
+              </div>
+            </div>
+            
+	  
+	  </div>  
+	  
+                       
+
+               <div class="block checkout" style="padding-bottom:0;height:125px;">
+			 <div id="coupon_msg"  class="col-md-12"></div>			 
+               <div class="pull-left col-md-10">
+                 <p class="kupongkode">Skriv inn kupongkode</p>
+               </div>
+               <div class="pull-left col-md-2 no-padd text-center">
+                <a id="discountlink" href="#discount_modal10" class="btn-icon" data-toggle="modal"><i class="fa fa-plus-circle mtnone" aria-hidden="true"></i></a>
+                <input type="hidden" id="discount_type_10" name="discount_type_10">
+                <input type="hidden" id="discount_value_10" name="discount_value_10">
+               </div>
+               <div class="clearfix"></div>
+               <hr>
+               
+			   
+			   <div class="row" style="padding:5px;padding-top:0px;padding-left:10px;">
+			  
+			  <div class="pull-left col-md-4 no-padd" title="Delsum">Delsum</div>
+			  
+			  
+			 <div class="pull-left col-md-4 no-padd" title="MVA (25%)">MVA (25%)</div>
+			
+	
+			 
+<div class="pull-left col-md-4 kunpongkode no-padd" title="Discount">Discount
+			  <span id="discount_text"></span></div>
+              
+            </div>   
+              			    
+			<div class="row" style="padding:5px;padding-top:0px;padding-left:10px;">
+			
+			<div class="pull-left col-md-4 no-padd"  title="Delsum">
+			 <p class="delsum">kr [lists.total_currency]</p><input type="hidden" name="delsum" value="[lists.total]" id="delsum"/>
+			</div>
+			
+			
+			
+	
+			  <div class="pull-left col-md-4 no-padd" title="MVA (25%)"> <p class="mva">kr [lists.mva_currency]</p></div>
+			 
+			  
+			 
+<div class="pull-left col-md-4 kunpongkode no-padd"  title="Discount"><p class="discount">kr 0,00</p>
+            <input type="hidden" name="discount" value="" id="discount"/></div>					  </div>
+	  
+			  
+			  <!--
+               
+               <div class="pull-left col-md-8">
+                 <p>Delsum</p>
+               </div>
+               <div class="pull-left col-md-4 text-right">
+                <p class="delsum">kr [lists.total_currency]</p>
+                <input type="hidden" name="delsum" value="[lists.total]" id="delsum"/>
+               </div>
+               <div class="clearfix"></div>
+               <hr>
+			   
+			     <div class="kunpongkode">
+               <div class="pull-left col-md-8">
+                 <p>Discount <span id="discount_text"></span></p>
+               </div>
+               <div class="pull-left col-md-4 text-right">
+                <p class="discount">kr 0</p>
+                <input type="hidden" name="discount" value="" id="discount"/>
+               </div>
+               <div class="clearfix"></div>
+               <hr>
+              </div>
+
+               <div class="pull-left col-md-8">
+                 <p>MVA (25%)</p>
+               </div>
+               <div class="pull-left col-md-4  text-right">
+                <p class="mva">kr [lists.mva_currency]</p>
+               </div>
+              -->
+
+			  <div class="clearfix"></div>
+             </div>  
+			 
+			 
+			 
+             <div class="row">
+                 <div class="col-md-6">
+                   <button type="button" onclick="saveParkere();" class="btn-lg orange">Parkere</button>
+                 </div>
+                 <div class="col-md-6">
+                   <button type="button" onclick="logout();" class="btn-lg red">Avslutt</button>
+                  </div> 
+                <div class="clearfix"></div> 
+                <div class="col-md-12 mt-sm mb-s">
+                   <button type="button" onclick="saveOrder();" class="btn-lg  green">
+                   <div class="col-md-6 send">Skriv ut ordre</div>
+                   <div class="col-md-6 total">kr [lists.total_currency]</div>
+                  <input type="hidden" name="total" value="[lists.total]" id="total"/>
+				    <input type="hidden" name="voucher_id"  id="voucher_id"  class="form-control">
+                   </button>
+                 </div>                                
+                <div class="clearfix"></div> 
+            </div>
+			
+			</form>
+          </div>
+        </div>        
+      </div>
+    </div>
+  </div>
+  <!-- Matter ends -->
+</div>
+<!-- Mainbar ends -->
+<div class="clearfix"></div>
+<!--WI_IFRAME_MODAL-->
+<div class="row">
+  <div id="modalIframe" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+    	<div class="modal-content">
+        	<div class="modal-header back-color">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                 <h4 class="modal-title text-center" id="modal-iframe-title"></h4>
+             </div>
+             <div class="modal-body login">
+             <iframe frameborder="0" class="slimScrollBarModal----"></iframe>
+        </div>
+        <div class="modal-footer" style="display:none">
+          <button type="button" class="btn btn-default close-btn" data-dismiss="modal" aria-hidden="true">[lang.lang_close]</button>
+        </div>        
+      </div>
+    </div>
+  </div>
+</div>
+<!--WI_IFRAME_MODAL-->
+
+
+
+<!-- styles needed by jScrollPane -->
+<link type="text/css" href="style/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+<!-- the mousewheel plugin - optional to provide mousewheel support -->
+<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+<!-- the jScrollPane script -->
+<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
+
+<script type="text/javascript" src="[conf.site_url_themes_common;noerr]/js/jquery-code-scanner2.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+$('#heatseal').codeScanner1();
+
+$('#heatseal').val([sessiondata.current_heatseal]);
+
+if($('#heatseal').val() != '')
+{
+	getHeatsealdetails();
+}
+
+$("#heatseal").keydown(function(e){
+        if(e.which==17 || e.which==74){
+            e.preventDefault();
+        }else{
+            console.log(e.which);
+        }
+    });
+
+
+//	var cookie_name = [sessiondata.pos_customer_id];
+//	delete_cookie(cookie_name);
+	
+	
+	/*if($(window).height() < 760){
+		$('.scroll-pane').jScrollPane({
+			autoReinitialise: true
+		});  //scrollpane
+	}
+	else{
+		$('.scroll-pane').css({"height": "auto"}); 
+	}*/
+	 
+	
+	/*search box*/	
+	function buttonUpw(){
+
+		 var valux = $('.ExpInput').val();
+			valux = $.trim(valux).length;
+			if(valux !== 0){
+				$('.Expbtn').css('z-index','99');
+			} else{
+				$('.ExpInput').val(''); 
+				$('.Expbtn').css('z-index','-999');
+			}
+	}
+
+	/*search box*/	
+		var submitIcon = $('.ExpIcon');
+		var submitInput = $('.ExpInput');
+		var searchBox = $('.Exp-serach');
+		var isOpen = false;
+		
+		$(document).mouseup(function(){
+			if(isOpen == true){
+			submitInput.val('');
+			$('.Expbtn').css('z-index','-999');
+			submitIcon.click();
+			}
+		});
+		
+		submitIcon.mouseup(function(){
+			return false;
+		});
+		
+		searchBox.mouseup(function(){
+			return false;
+		});
+				
+		submitIcon.click(function(){
+			if(isOpen == false){
+				searchBox.addClass('Exp-serach-open');
+				isOpen = true;
+			} else {
+				searchBox.removeClass('Exp-serach-open');
+				isOpen = false;
+			}
+	});
+	
+	
+	
+});
+
+
+function getHeatsealdetails()
+{
+
+var barcode=$('#heatseal').val();
+var barlength=barcode.toString().length;
+if(barcode == '' || barlength != 8)
+{
+			noty({
+								text: 'ugyldig strekkode',
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+		
+							$('#heatseal').focus();
+	return false;
+}
+
+
+	$.ajax({
+						type: "POST",
+						url: "[conf.site_url;noerr]/admin/heatseal/addtocartbarcode",
+						data: {
+							barcode: barcode
+						},
+					    dataType: "json",
+					    success: function (data) {
+						
+						if(data.status == 'success')
+						{
+						$('#heatseal').val('');
+						$('#heatseal').focus();
+						$(".rens").html(data.order_list_rens);
+						$(".vask").html(data.order_list_vask);
+						$('#quantity').val('0');
+						$('.product-buttons .btn-group .btn:first').trigger('click');
+						$('#in_house,#complain').prop('checked', false);	
+						$('#spl_instruction').val("");					
+						
+						//subtotal of a cart
+						$('#delsum').val(data.delsum);
+						$('.delsum').html('kr '+data.delsum_currency+'');
+						
+						//total of a cart
+						$('#total').val(data.delsum);
+						$('.total').html('kr '+data.delsum_currency+'');	
+						$('.mva').html('kr '+data.mva_currency+'');
+						
+						$('.cart_total').html(data.count);
+						
+						var $picker=$(".datepicker");
+						$picker.datepicker({autoclose:true,format: 'dd.mm.yyyy'});
+						var pickerObject = $picker.data('datepicker');
+						$picker.on('changeDate', function(ev){
+								$picker.datepicker('hide');
+						});
+						$(".datepicker").on('hide', function(ev){
+							   dpclosefire($(this))
+						});
+						
+						 
+						$('a.editprod').click(function(){  
+	
+							var title = $(this).data('title');
+							$("h4#edit-product-title").html(title);		
+						
+							var stuff = $(this).attr('data-stuff').split('@');
+								
+							 id = stuff[0];
+							 name = stuff[1];
+							 price = stuff[2];
+							 img = stuff[3];
+							 desp = stuff[4];
+							 rowid = stuff[5];
+							 qty = stuff[6];
+							 gtype = stuff[7];
+							 //duration = stuff[8];
+							 complain = stuff[8];
+							 in_house =  stuff[9];
+							 
+							$('#edit_spl_instruction').val(desp);
+							$('#edit_quantity').val(qty);
+							
+							if(stuff[0] == 143)
+							{
+								$('#edit-antall').html('Pris');
+								$('#edit_quantity').val(stuff[2]);
+							}
+							else
+							{
+								$('#edit-antall').html('Antall');
+							}
+							
+							if(in_house == 1){
+								//alert("inhouse" + in_house);
+								//$('input:checkbox[name=in_house]').attr('checked',true);
+								
+								$('#house_div').html('<input type="checkbox" checked="checked" value="" name="in_house" id="edit_in_house"> Renses på huset');
+							}
+							else{
+								$('#house_div').html('<input type="checkbox"  value="" name="in_house" id="edit_in_house"> Renses på huset');
+							}
+			
+							if(complain == 1){
+								$('#complain_div').html('<input type="checkbox" checked="checked" value="" name="complain" id="edit_complain">Reklamasjon');
+							}
+							else{
+								$('#complain_div').html('<input type="checkbox" value="" name="complain" id="edit_complain"> Reklamasjon');
+							}
+		
+						});
+						
+						
+				
+					$("form#editProduct").submit(function(){
+						 var processing = false;
+						 if(processing == false){
+							in_house = 0;
+							complain = 0;
+							 
+								 
+							if($('#edit_in_house').prop('checked') === true){
+								in_house = 1;
+							}
+							else{
+								in_house = 0;
+							}
+								 
+							if($('#edit_complain').prop('checked') === true){
+								complain = 1;
+							}
+							else{
+								complain = 0;
+							}
+
+							 
+							processing = true;
+							 $.ajax({
+								type: "POST",
+								url: "[conf.site_url;noerr]/admin/products/update-cart",
+								data: {
+									pid: id,
+									name: name,
+									price: price,
+									qty: $('#edit_quantity').val(),
+									img: img,
+									desp: $('#edit_spl_instruction').val(),
+									rowid:rowid,
+									gtype : gtype,
+									complain : complain,
+									in_house : in_house
+									
+									
+								},
+							   beforeSend: function(){
+									 $('#editProductModal').modal('hide');
+									 $("#ajax-loader-"+gtype).show();
+									 $("."+gtype).hide();
+							   },
+							   complete: function(){
+									processing = false;
+									$("#ajax-loader-"+gtype).hide();
+									$("."+gtype).show();
+							   },
+							   dataType: "json",
+							   success: function (data) {
+									//alert(data.error);
+									//alert(data.order_list);
+									$(".rens").html(data.order_list_rens);
+									$(".vask").html(data.order_list_vask);
+									
+									
+									//subtotal of a cart
+									$('#delsum').val(data.delsum);
+									$('.delsum').html('kr '+data.delsum_currency+'');
+									
+									//total of a cart
+									$('#total').val(data.delsum);
+									$('.total').html('kr '+data.delsum_currency+'');
+									
+									$('.mva').html('kr '+data.mva_currency+'');
+									$('.cart_total').html(data.count);
+			
+			
+								   
+									var $picker=$(".datepicker");
+									$picker.datepicker({autoclose:true,format: 'dd.mm.yyyy'});
+									var pickerObject = $picker.data('datepicker');
+									$picker.on('changeDate', function(ev){
+											$picker.datepicker('hide');
+									});
+									$(".datepicker").on('hide', function(ev){
+										   dpclosefire($(this))
+									});
+								   
+								   
+			
+			
+								}
+							});
+						}
+						else {
+							alert('[lang.lang_process_goingon]');
+						}
+						return false;
+					});
+								
+							
+						}
+						else
+						{
+						
+							if(data.status == 'empty')
+							{
+								$('#productconfirm').modal({ backdrop: 'static', keyboard: false });
+							}
+							else if(data.status == 'multiqty')
+							{
+								$("#product_type").html(data.protype);
+								$("#pro-ajax-loader").hide();								
+								$('#multiqtypro').modal({ backdrop: 'static', keyboard: false });
+							
+								
+								
+							}
+							else
+							{
+								//$('#heatinfo').hide(); 
+								noty({
+									text: data.message,
+									layout: 'bottomRight',
+									type: 'warning',
+									timeout: [settings_general.notifications_display_duration;noerr]
+								});
+							}
+						
+							
+						}
+						
+						  
+						}
+					});
+}
+
+function getProducttypepopup(productid)
+{
+   //alert(productid);
+	
+	
+	$.ajax({
+						type: "POST",
+						url: "[conf.site_url;noerr]/admin/heatseal/getProducttype",
+						data: {
+							product: productid
+						},
+					    dataType: "json",
+					    success: function (data) {
+							if(data.status == 'success')
+							{
+								$("#product_type").html(data.protype);
+								$("#pro-ajax-loader").hide();$('#multiqtypro').modal({ backdrop: 'static', keyboard: false });
+							}
+						}
+					});
+	
+	return false;
+	
+}
+
+
+/*search box*/	
+	function buttonUp(){
+
+		 var valux = $('.ExpInput').val();
+			valux = $.trim(valux).length;
+			if(valux !== 0){
+				$('.Expbtn').css('z-index','99');
+			} else{
+				$('.ExpInput').val(''); 
+				$('.Expbtn').css('z-index','-999');
+			}
+	}
+
+function saveParkere()
+{
+
+	
+	 $.ajax({
+		'url': "[conf.site_url;noerr]/admin/products/saveParkere",
+	   'type' : 'GET',
+	   'success' : function(data) {
+			window.location="[conf.site_url;noerr]/admin/customer/logout";
+    }
+  });
+
+}
+
+
+function saveOrder()
+{
+
+
+	var discount= $('#discount').val();
+	var total= $('#total').val();
+	var voucher_id= $('#voucher_id').val();
+	var discount_type_10= $('#discount_type_10').val();
+	var discount_value_10= $('#discount_value_10').val();
+	var instruction= $('#instruction').val();
+	
+				
+	$.ajax({
+						type: "POST",
+						url: "[conf.site_url;noerr]/admin/orders/saveOrder",
+						data: {
+							discount: discount,
+							total: total,
+							voucher: voucher_id,
+							discount_type: discount_type_10,
+							discount_value: discount_value_10,
+							instruction : instruction
+						},
+						  dataType: "json",
+						   success: function (data) {
+							   if(data.status=='success'){
+									noty({
+									text: data.message,
+									layout: 'bottomRight',
+									type: 'information',
+									timeout: [settings_general.notifications_display_duration;noerr]
+									});
+									cartReferesh();
+									var neworderid=data.orderid;
+									//var win = window.open('[conf.site_url;noerr]/admin/orders/print/'+neworderid+'', '_blank');
+									var win = window.open('[conf.site_url;noerr]/admin/orders/print/'+neworderid+'', '_blank',"width=512,height=500");
+									//var win=window.open('','_blank','width=512,height=500');
+									
+									if (win) {
+										//win.document.write("ABCD");
+										//win.document.close();
+										win.focus();               
+										setTimeout(function () {
+											win.print();
+											//win.close();
+										}, 1200); 
+																			
+									} else {
+										//Browser has blocked it
+										noty({
+										text: 'Please allow popups for this website',
+										layout: 'bottomRight',
+										type: 'warning',
+										timeout: [settings_general.notifications_display_duration;noerr]
+										});
+									}
+				
+									$("#coupon_msg").hide();
+
+							   }
+							   else{
+									noty({
+										text: data.message,
+										layout: 'bottomRight',
+										type: 'warning',
+										timeout: [settings_general.notifications_display_duration;noerr]
+									});				
+							   }
+						}
+		});
+}
+
+function cartReferesh()
+{
+		 $.ajax({
+					type: "GET",
+					url: "[conf.site_url;noerr]/admin/products/insert-cart",
+					dataType: "json",
+				    success: function (data) {
+					    //alert(data.order_list_rens);
+						//alert(data.order_list_vask);
+						$(".rens").html(data.order_list_rens);
+						$(".vask").html(data.order_list_vask);
+						$('#quantity').val('');
+						
+						//subtotal of a cart
+						$('#delsum').val(data.delsum);
+						$('.delsum').html('kr '+data.delsum_currency+'');
+						
+						//alert($('.delsum').html());
+						//total of a cart
+						$('#total').val(data.delsum);
+						$('.total').html('kr '+data.delsum_currency+'');	
+						$('.mva').html('kr '+data.mva_currency+'');
+						
+						$('.cart_total').html('0');
+						$('#instruction').val('');
+						$('.kunpongkode').hide();
+						$('#discount').val('');
+						
+						$('#order_tcount').show();
+						var ocount = parseInt($('#order_tcount').html()) + parseInt(1) ;
+						$('#order_tcount').html(ocount) ;
+						
+						var $picker=$(".datepicker");
+						$picker.datepicker({autoclose:true,format: 'dd.mm.yyyy',startDate: date,weekStart: 1});
+						var pickerObject = $picker.data('datepicker');
+						$picker.on('changeDate', function(ev){
+								$picker.datepicker('hide');
+						});
+						$picker.on('hide', function(ev){
+							   dpclosefire($picker)
+						});
+						
+						$('a.editprod').click(function(){  
+
+							var title = $(this).data('title');
+							$("h4#edit-product-title").html(title);		
+						
+							var stuff = $(this).attr('data-stuff').split('@');
+								
+							 id = stuff[0];
+							 name = stuff[1];
+							 price = stuff[2];
+							 img = stuff[3];
+							 desp = stuff[4];
+							 rowid = stuff[5];
+							 qty = stuff[6];
+							 gtype = stuff[7];
+							 //duration = stuff[8];
+							 complain = stuff[8];
+							 in_house =  stuff[9];
+							 
+							 
+			
+			
+			 
+							$('#edit_spl_instruction').val(desp);
+							$('#edit_quantity').val(qty);
+							
+							if(stuff[0] == 143)
+							{
+								$('#edit-antall').html('Pris');
+								$('#edit_quantity').val(stuff[2]);
+							}
+							else
+							{
+								$('#edit-antall').html('Antall');
+							}
+							if(in_house == 1){
+								//alert("inhouse" + in_house);
+								//$('input:checkbox[name=in_house]').attr('checked',true);
+								
+								$('#house_div').html('<input type="checkbox" checked="checked" value="" name="in_house" id="edit_in_house"> Renses på huset');
+							}
+							else{
+								$('#house_div').html('<input type="checkbox"  value="" name="in_house" id="edit_in_house"> Renses på huset');
+							}
+			
+							if(complain == 1){
+								$('#complain_div').html('<input type="checkbox" checked="checked" value="" name="complain" id="edit_complain">Reklamasjon');
+							}
+							else{
+								$('#complain_div').html('<input type="checkbox" value="" name="complain" id="edit_complain"> Reklamasjon');
+							}
+		
+						});
+						
+						
+					   
+					}
+				});
+			
+}
+
+
+function cart_Referesh(data)
+{
+					$(".rens").html(data.order_list_rens);
+						$(".vask").html(data.order_list_vask);
+						$('#quantity').val('0');
+						$('.product-buttons .btn-group .btn:first').trigger('click');
+						$('#in_house,#complain').prop('checked', false);	
+						$('#spl_instruction').val("");					
+						
+						//subtotal of a cart
+						$('#delsum').val(data.delsum);
+						$('.delsum').html('kr '+data.delsum_currency+'');
+						
+						//total of a cart
+						$('#total').val(data.delsum);
+						$('.total').html('kr '+data.delsum_currency+'');	
+						$('.mva').html('kr '+data.mva_currency+'');
+						
+						$('.cart_total').html(data.count);
+						
+						var $picker=$(".datepicker");
+						$picker.datepicker({autoclose:true,format: 'dd.mm.yyyy'});
+						var pickerObject = $picker.data('datepicker');
+						$picker.on('changeDate', function(ev){
+								$picker.datepicker('hide');
+						});
+						$(".datepicker").on('hide', function(ev){
+							   dpclosefire($(this))
+						});
+						
+						 
+						$('a.editprod').click(function(){  
+	
+							var title = $(this).data('title');
+							$("h4#edit-product-title").html(title);		
+						
+							var stuff = $(this).attr('data-stuff').split('@');
+								
+							 id = stuff[0];
+							 name = stuff[1];
+							 price = stuff[2];
+							 img = stuff[3];
+							 desp = stuff[4];
+							 rowid = stuff[5];
+							 qty = stuff[6];
+							 gtype = stuff[7];
+							 //duration = stuff[8];
+							 complain = stuff[8];
+							 in_house =  stuff[9];
+							 
+							$('#edit_spl_instruction').val(desp);
+							$('#edit_quantity').val(qty);
+							
+							if(stuff[0] == 143)
+							{
+								$('#edit-antall').html('Pris');
+								$('#edit_quantity').val(stuff[2]);
+							}
+							else
+							{
+								$('#edit-antall').html('Antall');
+							}
+							
+							if(in_house == 1){
+								//alert("inhouse" + in_house);
+								//$('input:checkbox[name=in_house]').attr('checked',true);
+								
+								$('#house_div').html('<input type="checkbox" checked="checked" value="" name="in_house" id="edit_in_house"> Renses på huset');
+							}
+							else{
+								$('#house_div').html('<input type="checkbox"  value="" name="in_house" id="edit_in_house"> Renses på huset');
+							}
+			
+							if(complain == 1){
+								$('#complain_div').html('<input type="checkbox" checked="checked" value="" name="complain" id="edit_complain">Reklamasjon');
+							}
+							else{
+								$('#complain_div').html('<input type="checkbox" value="" name="complain" id="edit_complain"> Reklamasjon');
+							}
+		
+						});
+						
+						
+				
+					$("form#editProduct").submit(function(){
+						 var processing = false;
+						 if(processing == false){
+							in_house = 0;
+							complain = 0;
+							 
+								 
+							if($('#edit_in_house').prop('checked') === true){
+								in_house = 1;
+							}
+							else{
+								in_house = 0;
+							}
+								 
+							if($('#edit_complain').prop('checked') === true){
+								complain = 1;
+							}
+							else{
+								complain = 0;
+							}
+
+							 
+							processing = true;
+							 $.ajax({
+								type: "POST",
+								url: "[conf.site_url;noerr]/admin/products/update-cart",
+								data: {
+									pid: id,
+									name: name,
+									price: price,
+									qty: $('#edit_quantity').val(),
+									img: img,
+									desp: $('#edit_spl_instruction').val(),
+									rowid:rowid,
+									gtype : gtype,
+									complain : complain,
+									in_house : in_house
+									
+									
+								},
+							   beforeSend: function(){
+									 $('#editProductModal').modal('hide');
+									 $("#ajax-loader-"+gtype).show();
+									 $("."+gtype).hide();
+							   },
+							   complete: function(){
+									processing = false;
+									$("#ajax-loader-"+gtype).hide();
+									$("."+gtype).show();
+							   },
+							   dataType: "json",
+							   success: function (data) {
+									//alert(data.error);
+									//alert(data.order_list);
+									$(".rens").html(data.order_list_rens);
+									$(".vask").html(data.order_list_vask);
+									
+									
+									//subtotal of a cart
+									$('#delsum').val(data.delsum);
+									$('.delsum').html('kr '+data.delsum_currency+'');
+									
+									//total of a cart
+									$('#total').val(data.delsum);
+									$('.total').html('kr '+data.delsum_currency+'');
+									
+									$('.mva').html('kr '+data.mva_currency+'');
+									$('.cart_total').html(data.count);
+			
+			
+								   
+									var $picker=$(".datepicker");
+									$picker.datepicker({autoclose:true,format: 'dd.mm.yyyy'});
+									var pickerObject = $picker.data('datepicker');
+									$picker.on('changeDate', function(ev){
+											$picker.datepicker('hide');
+									});
+									$(".datepicker").on('hide', function(ev){
+										   dpclosefire($(this))
+									});
+								   
+								   
+			
+			
+								}
+							});
+						}
+						else {
+							alert('[lang.lang_process_goingon]');
+						}
+						return false;
+					});
+						
+}
+
+function logout()
+{
+	window.location="[conf.site_url;noerr]/admin/customer/logout";
+}
+/**
+ * Delete cookie with javascript
+ *
+ * @param {string} name cookie name
+ */
+function delete_cookie(name) {
+	document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+}
+
+
+</script>
+
+<!--------------------COMMON FOOTER JAVASCRIPT---------------------------->
+<!--[onload;file=../common/common.footer.javascript.html;getbody;comm]-->
+<!--------------------COMMON FOOTER JAVASCRIPT---------------------------->
+<!--SALDO - MODAL -->
+<!--[onload;file=saldo.modal.html;getbody;comm]-->
+<!--SALDO - MODAL -->
+<!--KUPONGKODE - MODAL -->
+<!--[onload;file=kupongkode.modal.html;getbody;comm]-->
+<!--KUPONGKODE - MODAL -->
+<!--PRODUCT - ADD - MODAL -->
+<!--[onload;file=product.add.modal.heatseal.html;getbody;comm]-->
+<!--PRODUCT - ADD - MODAL -->
+<!--PRODUCT - EDIT - MODAL -->
+<!--[onload;file=product.edit.modal.html;getbody;comm]-->
+<!--PRODUCT - EDIT - MODAL -->
+
+<script>
+
+	//load order in fo based on order link in sidebar
+	$("form#searchFrm").submit(function(e){
+		e.preventDefault();	
+		var keyword = $("#search").val();
+		 var processing = false;
+		 if(processing == false){
+			processing = true;
+			 $.ajax({
+				type: "POST",
+				url: "[conf.site_url;noerr]/admin/products/search-product",
+				data: {
+					keyword: keyword
+				},
+			   beforeSend: function(){
+					 $("#ajax-loader-products").show();
+					 $(".prod-list-column").hide();
+			   },
+			   complete: function(){
+					processing = false;
+					$("#ajax-loader-products").hide();
+					$(".prod-list-column").show();
+			   },
+			   dataType: "json",
+			   success: function (data) {
+					$(".prod-list-column").html(data.prod_list);
+					
+					$('.product-buttons .btn-group .btn:first').trigger('click');
+					
+					$('a.productimg').click(function(){  
+						
+						var title = $(this).data('title');
+						$("h4#product-title").html(title);	
+
+							var barcode=$('#heatseal').val();
+							/*if(barcode == '')
+							{
+								noty({
+															text: "Invalid Barcode",
+															layout: 'bottomRight',
+															type: 'warning',
+															timeout: [settings_general.notifications_display_duration;noerr]
+														});
+ $('#heatseal').focus();
+								return false;
+							}	*/					
+					var dataqty = $(this).attr('data-qty');
+						var stuff = $(this).attr('data-stuff').split('@');
+						
+						 id = stuff[0];
+						 name = stuff[1];
+						 price = stuff[2];
+						 img = stuff[3];
+						 desp = stuff[4];
+						 gtype = stuff[5];
+						 duration = stuff[6];
+						 note = stuff[7];
+						 
+						
+						 
+						 $('#quantity').val($('#heatseal').val());
+						 
+						
+							 $('.product-buttons .btn-group .btn:first').trigger('click');
+
+							// $('#addProductModal').modal({ backdrop: 'static', keyboard: false });
+							
+								if(stuff[0] == '143')
+								 {
+									 if(dataqty > 1)
+									{
+										getProducttypepopup(stuff[0]);
+									}
+									else
+									{
+										$('#addProductModal').modal({ backdrop: 'static', keyboard: false });
+									}
+								 }
+								 else
+								 {
+									if(dataqty > 1)
+									{
+										getProducttypepopup(stuff[0]);
+									}
+									else
+									{
+										$('#addProductModal').modal({ backdrop: 'static', keyboard: false });
+									}
+								 }
+								 
+								 
+						 
+						 
+						return false;
+					});
+				}
+			});
+		}
+		else {
+			alert('[lang.lang_process_goingon]');
+		}
+		return false;
+	});
+
+var date = new Date();
+date.setDate(date.getDate());
+
+
+var $picker = $(".datepicker");
+$picker.datepicker({autoclose:true,format: 'dd.mm.yyyy',startDate: date,weekStart: 1});
+var pickerObject = $picker.data('datepicker');
+$picker.on('changeDate', function(ev){
+        $(this).datepicker('hide');
+});
+$(".datepicker").on('hide', function(ev){
+       dpclosefire($(this))
+});
+function dpclosefire(dpobj)
+{
+			 var id = dpobj.attr('id');
+             var utlevering = dpobj.val();
+			 //alert(id);
+			 //alert(utlevering);
+			 var gtype =  dpobj.parent().parent().parent().parent().attr('class');
+			 //alert(gtype);
+			var processing2 = false;
+			if(processing2 == false){
+				processing2 = true;
+				 $.ajax({
+					type: "POST",
+					url: "[conf.site_url;noerr]/admin/products/update-utlevering",
+					data: {
+						rowid: id,
+						utlevering: utlevering,
+					},
+				   beforeSend: function(){
+					   	 $('#editProductModal').modal('hide');
+						 $("#ajax-loader-"+gtype).show();
+						 $("."+gtype).hide();
+				   },
+				   complete: function(){
+						processing = false;
+						$("#ajax-loader-"+gtype).hide();
+						$("."+gtype).show();
+				   },
+				   dataType: "json",
+				   success: function (data) {
+					    //alert(data.error);
+					    //alert(data.order_list);
+						$(".rens").html(data.order_list_rens);
+						$(".vask").html(data.order_list_vask);
+						
+						
+						//subtotal of a cart
+						$('#delsum').val(data.delsum);
+						$('.delsum').html('kr '+data.delsum_currency+'');
+						
+						//total of a cart
+						$('#total').val(data.delsum);
+						$('.total').html('kr '+data.delsum_currency+'');
+						
+						$('.mva').html('kr '+data.mva_currency+'');
+						$('.cart_total').html(data.count);
+						
+						
+						var $picker=$(".datepicker");
+						$picker.datepicker({autoclose:true,format: 'dd.mm.yyyy',startDate: date,weekStart: 1});
+						var pickerObject = $picker.data('datepicker');
+						$picker.on('changeDate', function(ev){
+								$picker.datepicker('hide');
+						});
+						$(".datepicker").on('hide', function(ev){
+							   dpclosefire($(this))
+						});
+
+
+						$('a.editprod').click(function(){  
+				
+							$( "#edit-antall").trigger( "click" );
+							var title = $(this).data('title');
+							$("h4#edit-product-title").html(title);		
+						
+							var stuff = $(this).attr('data-stuff').split('@');
+							
+							 id = stuff[0];
+							 name = stuff[1];
+							 price = stuff[2];
+							 img = stuff[3];
+							 desp = stuff[4];
+							 rowid = stuff[5];
+							 qty = stuff[6];
+							 gtype = stuff[7];
+							 duration =  stuff[8];
+							$('#edit_quantity').val(qty);
+							 if(stuff[0] == 143)
+							{
+								$('#edit-antall').html('Pris');
+								$('#edit_quantity').val(stuff[2]);
+							}
+							else
+							{
+								$('#edit-antall').html('Antall');
+							}
+						
+					   });
+
+
+					}
+				});
+			}
+			else {
+				alert('[lang.lang_process_goingon]');
+			}
+			return false;
+}
+
+function getFirstcatProducts(cid,cpid)
+	{
+	
+
+		var processing = false;
+             if(processing == false){
+                processing = true;
+                 $.ajax({
+                    type: "POST",
+                    url: "[conf.site_url;noerr]/admin/products/get-products",
+                    data: {
+                        cid: cid,
+						cpid : cpid						
+                    },
+                   beforeSend: function(){
+                         $("#ajax-loader-products").show();
+                         $(".prod-list-column").hide();
+                   },
+                   complete: function(){
+                        processing = false;
+                        $("#ajax-loader-products").hide();
+                        $(".prod-list-column").show();
+                   },
+                   dataType: "json",
+                   success: function (data) {
+					   
+						$('.scroll-pane').jScrollPane({
+							autoReinitialise: true
+						});  //scrollpane
+						$('.product-buttons .btn-group .btn:first').trigger('click');
+                   
+                        $(".prod-list-column").html(data.prod_list);
+						
+
+						
+						$('a.productimg').click(function(){ 
+					
+							var barcode=$('#heatseal').val();
+							/*if(barcode == '')
+							{
+								noty({
+															text: "Invalid Barcode",
+															layout: 'bottomRight',
+															type: 'warning',
+															timeout: [settings_general.notifications_display_duration;noerr]
+														});
+ $('#heatseal').focus();
+								return false;
+							}*/
+							var title = $(this).data('title');
+							$("h4#product-title").html(title);	
+var dataqty = $(this).attr('data-qty');							
+							var stuff = $(this).attr('data-stuff').split('@');
+							//alert(stuff[0]);
+							id = stuff[0];
+							 name = stuff[1];
+							 price = stuff[2];
+							 img = stuff[3];
+							 desp = stuff[4];
+							 gtype = stuff[5];
+							 duration = stuff[6];
+							 note = stuff[7];
+							 $('#quantity').val($('#heatseal').val());
+							 $('#last_product').val(id);
+							 $('.product-buttons .btn-group .btn:first').trigger('click');
+							if(stuff[0] == '143')
+							{
+								if(dataqty > 1)
+									{
+										getProducttypepopup(stuff[0]);
+									}
+									else
+									{
+										$('#addProductModal').modal({ backdrop: 'static', keyboard: false });
+									}
+									
+							}
+							else
+							{
+								 if(dataqty > 1)
+									{
+										getProducttypepopup(stuff[0]);
+									}
+									else
+									{
+										$('#addProductModal').modal({ backdrop: 'static', keyboard: false });
+									}
+									
+							}
+							return false;
+
+							 
+						});
+						
+						
+                    }
+                });
+            }
+            else {
+                alert('[lang.lang_process_goingon]');
+            }
+	}
+
+
+ $(document).ready(function() {
+
+ $('#producttypeconfirm').modal({ backdrop: 'static', keyboard: false });
+ 
+ 
+ 	$('.catclass').each(function(i, obj) {
+		getFirstcatProducts(this.rel,this.id);
+		return false;
+		
+	});
+	
+	
+	//$('a.productimg').click(function(){  
+		//$( "#add-antall").trigger( "click" );
+	//});
+	
+	//getting products category
+	$('a.catclass').click(function(e){
+		    e.preventDefault();	
+			var cid = $(this).attr('rel');
+			var cpid = $(this).attr('id');
+             var processing = false;
+             if(processing == false){
+                processing = true;
+                 $.ajax({
+                    type: "POST",
+                    url: "[conf.site_url;noerr]/admin/products/get-products",
+                    data: {
+                        cid: cid,
+						cpid : cpid
+                    },
+                   beforeSend: function(){
+                         $("#ajax-loader-products").show();
+                         $(".prod-list-column").hide();
+                   },
+                   complete: function(){
+                        processing = false;
+                        $("#ajax-loader-products").hide();
+                        $(".prod-list-column").show();
+                   },
+                   dataType: "json",
+                   success: function (data) {
+					   
+						$('.scroll-pane').jScrollPane({
+							autoReinitialise: true
+						});  //scrollpane
+						
+						$('.product-buttons .btn-group .btn:first').trigger('click');
+			   
+                   
+                        $(".prod-list-column").html(data.prod_list);
+						
+						/*$('a.catclass').click(function(e){
+								e.preventDefault();	
+								var cid = $(this).attr('rel');
+								var cpid = $(this).attr('id');
+								//alert("ajax==" + cid + "==" +  cpid);
+								getFirstcatProducts(this.rel,this.id);
+						});	*/		
+						
+						$('a.productimg').click(function(){ 
+						
+							//$( "#add-antall").trigger( "click" );
+							var title = $(this).data('title');
+							$("h4#product-title").html(title);	
+
+var barcode=$('#heatseal').val();
+							/*if(barcode == '')
+							{
+								noty({
+															text: "Invalid Barcode",
+															layout: 'bottomRight',
+															type: 'warning',
+															timeout: [settings_general.notifications_display_duration;noerr]
+														});
+ $('#heatseal').focus();
+								return false;
+							}*/		
+
+							var dataqty = $(this).attr('data-qty');							
+						
+							 var stuff = $(this).attr('data-stuff').split('@');
+							 id = stuff[0];
+							 name = stuff[1];
+							 price = stuff[2];
+							 img = stuff[3];
+							 desp = stuff[4];
+							 gtype = stuff[5];
+							 duration = stuff[6];
+							 note = stuff[7];
+							 
+							 $('#quantity').val($('#heatseal').val());
+							 $('#last_product').val(id);
+							 
+							 /*if(note!=''){
+								 $('#disclaimer').html(note);
+								 $('#noteconfirm').modal({ backdrop: 'static', keyboard: false });
+							 }
+							 else{*/
+								$('.product-buttons .btn-group .btn:first').trigger('click');
+								 //$('#addProductModal').modal({ backdrop: 'static', keyboard: false });
+								 if(stuff[0] == '143')
+								 {
+									if(dataqty > 1)
+									{
+										getProducttypepopup(stuff[0]);
+									}
+									else
+									{
+										$('#addProductModal').modal({ backdrop: 'static', keyboard: false });
+									}
+									
+									
+								 }
+								 else
+								 {
+										
+									if(dataqty > 1)
+									{
+										getProducttypepopup(stuff[0]);
+									}
+									else
+									{
+										$('#addProductModal').modal({ backdrop: 'static', keyboard: false });
+									}
+									
+									
+								 }
+							 //}
+							 return false;
+						});
+						
+						
+                    }
+                });
+            }
+            else {
+                alert('[lang.lang_process_goingon]');
+            }
+     });
+	 	
+  });
+  	
+  function editprod()
+  {
+	//$( "#edit-antall").trigger( "click" );
+	$( "#edit-fritekst").trigger( "click" );
+	
+	//$('input:checkbox[name=in_house]').attr('checked',false);
+	//$('input:checkbox[name=complain]').attr('checked',false);
+  }
+  
+  function searchFocus()
+  {
+	$("#search" ).focus();
+  }
+  
+  function addHeatseal()
+  {
+	
+  }
+  
+function getProducttypes(product)
+{
+		$.ajax({
+		type: "POST",
+		url: "[conf.site_url;noerr]/admin/heatseal/getproducttypes",
+		data: {
+					product: product
+				},
+		dataType: "json",
+		 beforeSend: function(){
+					 $("#pro-ajax-loader").show();
+					 $("#product_type").hide();
+
+			   },
+			   complete: function(){
+					processing = false;
+					$("#pro-ajax-loader").hide();
+					$("#product_type").show();
+					
+				},
+		success: function(data){
+			//$("#order_close").trigger('click');
+			$("#product_type").show();
+			$("#product_type").html(data.protype);			
+			
+		},
+		error: function(data) {
+			noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+		}
+	});
+	//
+}
+
+	function producttypepopup(typeid,proid)
+	{
+		$("#barcode" ).focus();
+		$("#qty_"+proid).val($("#qty_"+proid).val()+1);
+		
+		
+		
+		producttypecart(proid,typeid,'barcode');
+		//if($("#qty_"+proid).val() == $("#qty_"+proid).attr("data"))
+		//{
+			//$("#producttype_close").trigger('click');
+			
+			
+		//}
+		
+		
+		
+		//$("#producttype_close").trigger('click');
+	}
+	
+	function producttypecart(product,typeid,barstatus)
+	{
+		if(barstatus == 'skip')
+		{
+			var heatseal='skip';
+		}
+		else
+		{
+			var heatseal=$("#heatseal" ).val();
+		}
+		
+		if(heatseal == '')
+		{
+			noty({
+									text: 'Invalid Barcode',
+									layout: 'bottomRight',
+									type: 'warning',
+									timeout: [settings_general.notifications_display_duration;noerr]
+								});
+				$("#barcode" ).focus();
+			return false;
+		}
+		
+		
+			$.ajax({
+			type: "POST",
+			url: "[conf.site_url;noerr]/admin/heatseal/producttypecart",
+			data: {
+						product: product,
+						heatseal: heatseal,
+						producttype: typeid
+					},
+			dataType: "json",
+			 beforeSend: function(){
+						 $("#pro-ajax-loader").show();
+						 $("#product_type").hide();
+
+				   },
+				   complete: function(){
+						processing = false;
+						$("#pro-ajax-loader").hide();
+						$("#product_type").show();
+						
+					},
+			success: function(data){
+				//$("#order_close").trigger('click');
+				
+				if(data.status == 'success')
+				{
+					$("#producttype_"+typeid).attr('disabled', true);	
+					$("#skip_"+typeid).attr('disabled', true);
+		
+					if(barstatus == 'barcode')
+					{
+						$("#heatseal").val('');
+						$("#heatseal").focus();
+						//$("#producttype_close").trigger('click');
+					}
+					if(data.cartstatus == 0)
+					{
+					}
+					else
+					{
+						cart_Referesh(data);
+						//$("#producttype_close").trigger('click');
+					}
+				}
+				else
+				{
+				
+				noty({
+									text: data.message,
+									layout: 'bottomRight',
+									type: 'warning',
+									timeout: [settings_general.notifications_display_duration;noerr]
+								});
+		
+				}
+				
+				
+				
+				
+				
+				
+			},
+			error: function(data) {
+				noty({
+									text: data.message,
+									layout: 'bottomRight',
+									type: 'warning',
+									timeout: [settings_general.notifications_display_duration;noerr]
+								});
+			}
+		});
+	}
+	
+	function addTocartDT()
+	{
+		//skipbtn
+		$('.skipbtn').each(function(i, obj) {
+	
+			var self=this;
+			if($("#"+this.id).attr( "disabled" ) != 'disabled')
+			{
+				if(i == 0)
+				{
+					$("#"+this.id).trigger( "click" );
+				}
+				else
+				{
+					setTimeout(function() { 
+							$("#"+self.id).trigger( "click" );
+					}, i * 400);
+				}
+				//$("#"+this.id).trigger( "click" );
+				//alert(i);
+				/*setTimeout(function() { 
+					$("#"+self.id).trigger( "click" );
+				}, i * 800); */
+				//setTimeout(function () { alert('hello');  }, 3000 * start);
+				
+				
+			}
+			//alert();//skip_2
+		});
+	
+	}
+	
+	function skipscan(typeid,proid)
+	{
+	
+
+		$("#qty_"+proid).val($("#qty_"+proid).val()+1);
+		$("#producttype_"+typeid).attr('disabled', true);	
+		$("#skip_"+typeid).attr('disabled', true);
+		producttypecart(proid,typeid,'skip');
+		
+		//if($("#qty_"+proid).val() == $("#qty_"+proid).attr("data"))
+		//{
+			//producttypecart(proid,typeid);
+		//}
+
+	}	
+function removeBarcode()
+{
+	$('#heatseal').focus();
+	$("#heatseal").val('');
+	
+}	
+
+
+</script>
+
+
+</body>
+</html>
+
+<div id="productconfirm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog " style="max-width: 450px; margin-top:150px">
+<div class="modal-content widget ">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+</div>
+<div class="padd"><h4 class="text-center">Are you sure if you want to add this heatseal?</h4></div>
+<div class="modal-footer">
+<button type="button"  data-dismiss="modal" class="btn green" >[lang.lang_yes]</button>
+<button type="button" data-dismiss="modal" class="btn red">[lang.lang_no]</button>
+</div>
+</div>
+</div>
+</div>
+
+
+
+  <div id="multiqtypro" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  
+	<div class="modal-dialog " style="max-width:450px;">
+      <form name="radioForm" id="radioForm">
+        <div class="modal-content">
+          <div class="modal-header back-color">
+            <button type="button" id="producttype_close" onclick="removeBarcode();" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+           
+            <h4 class="modal-title login-title"> Select Product Type</h4>
+          </div>
+          <div class="modal-body login">
+        <div class="form-login-wrapper">		
+            <div class="pw-wrapper" style="background:none;">
+				<div class="row text-center" id="pro-ajax-loader"><img src="img/ajax-loader.gif"/></div>
+                <div id="product_type" class="row text-center">
+				</div>
+            </div>
+            
+            
+         		   </div>
+             </div>
+             </div>
+           </form>
+        </div>
+      </div>
+
+

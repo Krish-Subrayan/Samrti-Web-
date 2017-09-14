@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+<link href="../common/style/bootstrap.css" rel="stylesheet">
+<link href="../common/style/style.css" rel="stylesheet">
+<link href="../common/style/custom.css" rel="stylesheet">
+<!--[onshow;block=head;when [visible.foo] == bar;comm]-->
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+</head>
+<!--HEAD - ONLOAD-->
+<!--[onload;file=../common/common.head.html;getbody;comm]-->
+<!--HEAD - ONLOAD-->
+<body>
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=../common/common.javascript.html;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=common_include_debug;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=common.header.html;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!-- Main content starts -->
+<div class="content"> 
+  <!-- Main bar -->
+  <div class="mainbar"> 
+    <!-- Matter -->
+    <div class="matter">
+      <div class="container" style="background:#fff">
+        <div class="row header">
+          <div class="col-md-8"> 
+            <!--TOP-LEFT - ONLOAD --> 
+            <!--[onload;file=common.top.left.html;getbody;comm]--> 
+            <!--TOP-LEFT - ONLOAD --> 
+            <!--MENU - ONLOAD --> 
+            <!--[onload;file=common.index.menu.html;getbody;comm]--> 
+            <!--MENU - ONLOAD -->
+            <div class="search-product" style="display:none">
+              <div id="Exp-serach" class="Exp-serach">
+                <form>
+                  <input class="ExpInput " onkeyup="buttonUp();" placeholder="Søk produkt..." onblur="monkey();" type="search" value="" name="search" id="search">
+                  <input class="Expbtn" type="submit"  value="">
+                  <span class="ExpIcon"><i class="fa fa-search"></i></span>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+             <!--TOP-RIGHT - ONLOAD -->
+            <!--[onload;file=common.top.right.html;getbody;comm]-->
+             <!--TOP-RIGHT - ONLOAD -->
+            <div class="clearfix"></div>
+           <!-- <div class="text-center kasse">Kasse (<span class="cart_total">[vars.cart_total]</span>)</div>
+            <div class="voucher"> <a data-toggle="modal" href="#addNew"><img src="img/voucher.png" title="Voucher" alt="Voucher"/></a></div>--> 
+          </div>
+        </div>
+        <div class="row receipt">
+          <div class="col-md-12  scroll-pane no-padd">
+          	
+          
+            <div class="row">
+              <div class="col-md-12">
+			  
+			  [errormsg;noerr;if [val]!='';then '<br>
+                <div class="alert alert-danger"><i class="fa fa-warning"></i> [val]</div>
+                ';][successmsg;noerr;if [val]!='';then '<br>
+                <div class="alert alert-success"><i class="fa fa-thumbs-o-up"></i> [val]</div>
+                ';]
+			  
+			  
+                <form id="reportFrm" action="" method="post">
+                <div class="widget wtabs">
+                  <div class="widget-content col-md-12">
+                      <div class="row">
+                       <div class="form-group col-md-2" style="line-height: 40px;
+    font-size: 20px;">Dato </div>
+                        <div class="form-group col-md-4 no-padd">
+                           <input type="text" id="from" class="form-control-small form-control pickadate input-large" name="from" value="Dato" placeholder="Start">
+                        </div>
+						
+                        <div class="form-group col-md-2 no-padd">
+                          <!--<input type="text" id="to" class="form-control-small form-control pickadate" name="to" value="[vars.to]" placeholder="Avslutt">-->
+						     <input type="submit"  value="Skriv ut" style="font-size: 18px!important;
+    color: #fff!important;" class="btn green  pull-right mb-xlg savebutton" data-loading-text="Loading...">
+						</div> 
+                        <div class="form-group col-md-3">
+							  <a href="javascript:void(0);" id="downbtn"   onclick="reportDownload();" class="btn red btn button-link"><i class="fa fa-download" aria-hidden="true"></i> Lagre som PDF</a>
+                        </div> 
+                        
+                      </div>
+                  </div>
+                <!--  <div class="row">
+                    <div class="col-md-10"> </div>
+                    <div class="col-md-3 mt-sm pull-right">
+                                <a href="[conf.site_url]/admin/download" target="_blank" class="btn-lg red btn button-link"><i class="fa fa-download" aria-hidden="true"></i> Donwload</a>
+					</div>
+                    <div class="col-md-3 mt-sm pull-right">
+                      <input type="submit" value="[lang.lang_submit]" class="btn-lg green  pull-right mb-xlg" data-loading-text="Loading...">
+                    </div>
+                  </div> -->
+                  
+                 <div class="row"> 
+                 <!--[onshow;block=div;when [visible.report] == 1;comm]-->
+ 
+                <div class="finished_orders order-black">
+                        <div class="orderlisting row" style="background:#d8d8d8">
+                              <div class="col-md-6 black-text  text-left bold">Betalingsinformasjonen</div>
+                              <div class="col-md-3 black-text text-right bold">Antall	</div>
+                              <div class="col-md-3 text-right black-text bold">Beløp</div>
+                        </div>
+                    <!--[lists.footer;noerr;htmlconv=no;protect=no;comm]--> 
+                                 
+                  </div>
+                   
+                  <div class="clearfix"></div>
+                 
+                    <div class="finished_orders order-black">
+                        <div class="orderlisting row" style="background:#d8d8d8">
+                              <div class="col-md-1 black-text no-padd text-center bold">Dato</div>
+                              <div class="col-md-1 black-text bold">Tid</div>
+                              <div class="col-md-5 black-text text-left bold"> Kundenavn </div>
+                              <div class="col-md-1 black-text no-padd text-left bold"> Ordre </div>
+                              <div class="col-md-1 black-text text-right bold">Type</div>
+                              <div class="col-md-3 text-right black-text bold">Beløp</div>
+                        </div>           
+                        <!--[lists.report;noerr;htmlconv=no;protect=no;comm]-->
+                    
+                     
+                  </div>  
+              </div>
+              
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Matter ends --> 
+</div>
+<!-- Mainbar ends -->
+<div class="clearfix"></div>
+<!--WI_IFRAME_MODAL-->
+<div class="row">
+  <div id="modalIframe" class="modal fade reload-parent-on-close" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header back-color">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+          <h4 class="modal-title text-center" id="modal-iframe-title"></h4>
+        </div>
+        <div class="modal-body login">
+          <iframe frameborder="0" class="slimScrollBarModal----"></iframe>
+        </div>
+        <div class="modal-footer" style="display:none">
+          <button type="button" class="btn btn-default close-btn" data-dismiss="modal" aria-hidden="true">[lang.lang_close]</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--WI_IFRAME_MODAL--> 
+
+<!-- styles needed by jScrollPane -->
+<link type="text/css" href="style/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+<!-- the mousewheel plugin - optional to provide mousewheel support --> 
+<script type="text/javascript" src="js/jquery.mousewheel.js"></script> 
+<!-- the jScrollPane script --> 
+<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script> 
+<script type="text/javascript">
+
+function reportDownload()
+{
+
+	var fromdate = $("#from").val();
+	//alert(fromdate);
+	if(fromdate == '' || fromdate == 'Dato')
+	{
+		noty({
+				text: 'Please select date',
+				layout: 'bottomRight',
+				type: 'warning',
+				timeout: [settings_general.notifications_display_duration;noerr]
+			});
+			return false;
+	}
+	else{
+		//$('#downbtn').html('Downloading...');
+	}
+	$.ajax({
+			type: "POST",
+			url: "[conf.site_url;noerr]/admin/download/reportDownload",
+			data: {
+				from: fromdate,
+				to: fromdate,
+			},
+			  dataType: "json",
+			   success: function (data) {
+				 // alert(data.status);
+				  $('#downbtn').html('<i class="fa fa-download" aria-hidden="true"></i> Lagre som PDF ');
+				  if(data.status=='success'){
+				 // alert("[conf.site_url;noerr]/admin/download/report/"+fromdate);
+					window.location="[conf.site_url;noerr]/admin/download/report/"+fromdate;
+				   }
+				   else{
+						noty({
+							text: data.message,
+							layout: 'bottomRight',
+							type: 'warning',
+							timeout: [settings_general.notifications_display_duration;noerr]
+						});				
+				   }
+			}
+		});
+	
+	
+}
+$(document).ready(function(){
+	
+	if($(window).height() < 760){
+		$('.scroll-pane,.orderline-block').jScrollPane({
+			autoReinitialise: true
+		});  //scrollpane
+	}
+	else{
+		$('.scroll-pane,.orderline-block').css({"height": "auto"}); 
+	}
+	
+	
+	//download today report
+	$("form#reportFrm").submit(function(){
+		$(".savebutton").attr('disabled', true); 
+
+		var from = $("#from").val();
+		 var to = $("#to").val();
+		 var processing = false;
+		 if(processing == false){
+			processing = true;
+			$.ajax({
+					type: "POST",
+					url: "[conf.site_url;noerr]/admin/download",
+					data: {
+						from: from,
+						to: from,
+						status: 1,
+					},
+				   beforeSend: function(){
+						$(".savebutton").val('Processing...'); 
+				   },
+				   complete: function(){
+					//	processing = false;
+						$(".savebutton").val('Skriv ut'); 
+				   },
+					  dataType: "json",
+					   success: function (data) {
+						   
+						  
+						  if(data.status=='success'){
+								doPosSalesBillprint(from);	
+						   }
+						   else{
+								$('.savebutton').removeAttr("disabled");						   
+							   
+								noty({
+									text: data.message,
+									layout: 'bottomRight',
+									type: 'warning',
+									timeout: [settings_general.notifications_display_duration;noerr]
+								});				
+						   }
+					}
+				});
+			
+		}
+		else {
+			alert('[lang.lang_process_goingon]');
+		}
+		return false;
+	});
+	
+	
+function doPosSalesBillprint(rdate)
+{
+		var ifrmm = document.createElement("iframe");
+        ifrmm.setAttribute("src", "[conf.site_url;noerr]/admin/printecspos/print-report/"+rdate+"");
+        ifrmm.style.width = "640px";
+        ifrmm.style.height = "480px";
+		ifrmm.style.display = "none";
+        document.body.appendChild(ifrmm);
+		$('.savebutton').removeAttr("disabled");						   
+}
+
+	
+	/*search box*/	
+	function buttonUp(){
+		 var valux = $('.ExpInput').val();
+			valux = $.trim(valux).length;
+			if(valux !== 0){
+				$('.Expbtn').css('z-index','99');
+			} else{
+				$('.ExpInput').val(''); 
+				$('.Expbtn').css('z-index','-999');
+			}
+	}
+});
+
+/*search box*/	
+$(document).ready(function(){
+		var submitIcon = $('.ExpIcon');
+		var submitInput = $('.ExpInput');
+		var searchBox = $('.Exp-serach');
+		var isOpen = false;
+		
+		$(document).mouseup(function(){
+			if(isOpen == true){
+			submitInput.val('');
+			$('.Expbtn').css('z-index','-999');
+			submitIcon.click();
+			}
+		});
+		
+		submitIcon.mouseup(function(){
+			return false;
+		});
+		
+		searchBox.mouseup(function(){
+			return false;
+		});
+				
+		submitIcon.click(function(){
+			if(isOpen == false){
+				searchBox.addClass('Exp-serach-open');
+				isOpen = true;
+			} else {
+				searchBox.removeClass('Exp-serach-open');
+				isOpen = false;
+			}
+	});
+		
+});
+															
+</script> 
+
+<!--------------------COMMON FOOTER JAVASCRIPT----------------------------> 
+<!--[onload;file=../common/common.footer.javascript.html;getbody;comm]--> 
+<!--------------------COMMON FOOTER JAVASCRIPT---------------------------->
+</body>
+</html>

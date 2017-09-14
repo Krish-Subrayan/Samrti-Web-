@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+<link href="../common/style/bootstrap.css" rel="stylesheet">
+<link href="../common/style/style.css" rel="stylesheet">
+<style>
+.mainbar {
+	margin: 0px;
+}
+.sidebar {
+	display: none;
+}
+</style>
+<!--[onshow;block=head;when [visible.foo] == bar;comm]-->
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+</head>
+<!--HEAD - ONLOAD-->
+<!--[onload;file=../common/common.head.html;getbody;comm]-->
+<!--HEAD - ONLOAD-->
+<body onload="scantab();">
+<!--JS SECTION - ONLOAD-->
+<!--[onload;file=../common/common.javascript.html;getbody;comm]-->
+<!--JS SECTION - ONLOAD-->
+<!--DEBUG SECTION - ONLOAD-->
+<!--[onload;file=../common/include.debug.html;getbody;comm]-->
+<!--DEBUG SECTION - ONLOAD-->
+<!--HEADER SECTION - ONLOAD-->
+<!--[onload;file=common.header.html;getbody;comm]-->
+<!--HEADER SECTION - ONLOAD-->
+<!-- Main content starts -->
+<div class="content">
+  <!-- Main bar -->
+  <div class="mainbar">
+    <!-- Matter -->
+    <div class="matter">
+      <div class="container">
+	   <div class="row header">
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-8">
+          <p class="pull-right topbar">[vars.today_date] - Uke [vars.week] - <span id="today_time">[vars.today_time]</span></p>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+       
+        <!----------------------COMMON NOTICES--------------------------------->
+        <!--[onload;file=../common/common.notices.html;getbody;comm]-->
+        <!----------------------COMMON NOTICES--------------------------------->
+        <!--Dashboard-->
+        <div class="row fullscreen-mode">
+          <div class="col-md-5">
+            <div class="branch">
+             <p><span>[sessiondata.partner_branch_name;noerr;]</span><br>[sessiondata.partner_branch_street;noerr;]<br>[sessiondata.partner_branch_zip;noerr;] [sessiondata.partner_branch_city;noerr;] <br>+47 [sessiondata.partner_branch_phone;noerr;]</p> 
+            </div>
+          </div>
+          <div class="col-md-3 text-left no-padd">   
+           <!--[lists.opening_hours;noerr;htmlconv=no;protect=no;comm]-->
+          </div>
+           <div class="col-md-4 text-left no-padd emplogin">
+ 		  <p><span>Pålogget ansatte:</span></p>
+		  <!--[lists.employee_list;noerr;htmlconv=no;protect=no;comm]-->	
+		  
+          </div>
+          <div class="clearfix"></div> 
+          <div class="col-md-8 no-padd">
+            <div class="search-tab clearfix group-pos">
+              <div class="velg-block clearfix">
+                <div class="row">
+                 <div class="velg col-md-1 fs-16">Velg</div>
+                 <div class="col-md-11  no-padd">
+                  <div class="btn-group pull-right">
+                      <button type="button" data-target="#frm_navn" data-switch-value="Navn" class="btn btn-default">Navn</button>
+                      <button type="button" data-target="#frm_mobil" data-switch-value="Mobil" class="btn btn-default">Mobil</button>
+                      <button type="button" id="barcode_scan" data-target="#frm_ordre" data-switch-value="Scan" class="btn btn-default">Scan</button>
+                      <button type="button" data-target="#frm_bedrift" data-switch-value="Bedrift" class="btn btn-default">Bedrift</button>
+                  </div>
+                </div>
+                 </div>
+              </div>
+                 <div class="frm_wrapper clearfix">
+                    <form action="[conf.site_url;noerr]/admin/customer/navn" method="post" id="frm_navn">
+                        <div class="clearfix">
+                            <div class="col-xs-1">
+                                <i class="fa fa-user-o"></i>
+                            </div>
+                            <div class="col-xs-8 no-padd">
+                                <input type="text" class="fs-16 navn" name="navn" placeholder="Navn">
+								 <input type="hidden" class="fs-16 navn" id="navn_mobile" name="mobile" placeholder="Navn">
+                            </div>
+                            <div class="col-xs-3">
+                                <input type="submit" value="Søk" class="highlight btn btn-default pull-right">
+                            </div>
+                        </div>
+                    </form>
+                    <form action="[conf.site_url;noerr]/admin/customer" method="post" id="frm_mobil">
+                        <div class="clearfix">
+                            <div class="col-xs-1">
+                                <i class="fa fa-mobile" style="font-size:45px"></i>
+                            </div>
+                            <div class="col-xs-8 no-padd">
+                                <input type="text" name="mobile" id="mobile" class="fs-16" placeholder="Mobil">
+                            </div>
+                            <div class="col-xs-3">
+                                <input type="submit" value="Søk" class="highlight btn btn-default pull-right">
+                            </div>
+                        </div>
+                    </form>
+                    <form action="[conf.site_url;noerr]/admin/orders" method="post" name="orderbarcode" id="frm_ordre">
+                        <div class="clearfix">
+                            <div class="col-xs-1">
+                                <i class="icon-barcode"></i>
+                            </div>
+                            <div class="col-xs-8 no-padd">
+                                <input type="text" id="barcode" name="barcode" class=" fs-16" placeholder="Scan">
+                            </div>
+                            <div class="col-xs-3">
+                                <input type="submit" value="Søk" class="highlight btn btn-default pull-right">
+                            </div>
+                        </div>
+                    </form>
+                    <form action="" id="frm_bedrift">
+                        <div class="clearfix">
+                            <div class="col-xs-1">
+                                <i class="fa fa-building-o"></i>
+                            </div>
+                            <div class="col-xs-8 no-padd">
+                                <input type="text" class="fs-16" placeholder="Bedrift">
+                            </div>
+                            <div class="col-xs-3">
+                                <input type="submit" value="Søk" class="highlight btn btn-default pull-right">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+          </div>
+           <div class="col-md-1 no-padd">
+           </div>
+          <div class="col-md-3 no-padd">
+          <div class="today_info"  style="display:none">
+          	<p>Total Ansatt : <span id="ansatt">[lists.ansatt]</span></p>
+            <p>Total Ordre : [lists.order]</p>
+          </div>  
+          
+		  <div id="employee-profile" class="employee-profile block">
+			<!--[lists.staffprofile;noerr;htmlconv=no;protect=no;comm]-->
+		  </div>
+		
+            <!-- <div class="block message">
+                <div class="col-md-12">
+                    <p><span>Beskjed:</span>
+                    Vennligst husk å slå av 
+                    Vaskemaskin før du/dere forlater
+                    butikken.
+                    Mvh
+                    Dag Lian</p>
+                 </div>   
+            </div>
+-->
+          </div>
+          <div class="clearfix"></div>
+            <div id="timmer"> 
+             <div class="col-md-12 no-padd">
+			 <div class="clearfix"></div>
+              
+             <div class="col-md-4 no-padd">
+
+             
+			   
+			   
+              </div>
+            <div class="col-md-4 no-padd">
+              <div class="text-center">
+              <a  class="btn-xlg red btn-info full-width" style="padding:3px 25px 5px !important"  href="[conf.site_url;noerr]/admin/login/logout">  <img src="img/ic_directions_run_white.png" alt="" title=""/> <span>STENG BUTIKK</span></a>
+              </div>
+            </div>
+             <div class="col-md-4 no-padd">  
+               <div class="pull-right">
+               	<button onclick="byttansatt();" class="btn-xlg btn-info full-width" data-toggle="modal" href="#newAnsatt">Bytt ansatt</button>
+               </div>
+               <div class="clearfix"></div>
+             </div>
+           </div>
+            <div class="clearfix"></div>
+                
+            </div>
+        </div>
+        <!--Dashboard-->
+        <!--WI_NOTIFICATION-->
+        <div class="row">
+          <!--[onshow;block=div;when [visible.wi_notification] == 1;comm]-->
+          <div class="col-md-12">
+            <div class="widget">
+              <div class="widget-content widget-big-box">[vars.notification;noerr]</div>
+            </div>
+          </div>
+        </div>
+        <!--WI_NOTIFICATION-->
+      </div>
+      <!-- Matter ends -->
+    </div>
+    <!-- Mainbar ends -->
+  </div>
+  <div class="clearfix"></div>
+</div>
+<!-- Content ends -->
+<!--WI_IFRAME_MODAL-->
+<div class="row">
+  <div id="modalIframe" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+          <!--full screen icon - custom.js-->
+          <button type="button" class="full-screen-modal close" aria-hidden="true"><i class="icon-fullscreen"></i></button>
+          <!--full screen icon - custom.js-->
+          <h4 class="modal-title" id="modal-iframe-title"> [lang.lang_edit]</h4>
+          <div class="clearfix"></div>
+        </div>
+        <div class="modal-body">
+          <iframe frameborder="0" class="slimScrollBarModal----"></iframe>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true">[lang.lang_close]</button>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--WI_IFRAME_MODAL-->
+<!--WI_REPORT_NEW_BUG_MODAL-->
+<div class="row">
+  <div id="newAnsatt" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <form class="form-horizontal" action="[conf.site_url]/admin/employee" method="post" id="employeelogin">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" id="staff_close" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+            <!--full screen icon - custom.js-->
+            <!--<button type="button" class="full-screen-modal close" aria-hidden="true"><i class="icon-fullscreen"></i></button>-->
+            <!--full screen icon - custom.js-->
+            <h4 class="modal-title login-title"> Tast inn ansatt nummer</h4>
+          </div>
+          <div class="modal-body login">
+        <div class="form-login-wrapper">		
+            <div class="pw-wrapper">
+                <div class="row">
+                	<div class="col-xs-3">
+                	  <input type="text" id="pw1" name="pw1" required></div>
+                    <div class="col-xs-3"> 
+                      <input type="text" id="pw2" name="pw2" required></div>
+                    <div class="col-xs-3">
+                      <input type="text" id="pw3" name="pw3" required></div>
+                    <div class="col-xs-3">
+                      <input type="text" id="pw4" name="pw4" required></div>
+                </div>
+            </div>
+            
+            <div class="numeric-wrapper">
+            	<div class="clearfix">
+                	<div class="col-xs-4">
+                    	<div class="num">7</div></div>
+                    <div class="col-xs-4">
+                    	<div class="num">8</div></div>
+                    <div class="col-xs-4">
+                    	<div class="num">9</div></div>
+                 </div>
+                <div class="clearfix">
+                	<div class="col-xs-4">
+                    	<div class="num">4</div></div>
+                    <div class="col-xs-4">
+                    	<div class="num">5</div></div>
+                    <div class="col-xs-4">
+                    	<div class="num">6</div></div>
+                 </div>
+                <div class="clearfix">
+                	<div class="col-xs-4">
+                    	<div class="num">1</div></div>
+                    <div class="col-xs-4">
+                    	<div class="num">2</div></div>
+                    <div class="col-xs-4">
+                    	<div class="num">3</div></div>
+                 </div>
+                <div class="clearfix">
+                	<div class="col-xs-4">
+                    	<div class="clear fs-10 red-text">Fjern</div></div>
+                    <div class="col-xs-4">
+                    	<div class="num">0</div></div>
+                    <div class="col-xs-4">
+                    	<div><input type="submit" id="staff" name="staff" value="Enter"></div></div>
+                </div>
+             </div>
+         		   </div>
+             </div>
+             </div>
+           </form>
+        </div>
+      </div>
+</div>
+
+<!-- styles needed by jScrollPane -->
+<link type="text/css" href="style/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+<!-- the mousewheel plugin - optional to provide mousewheel support -->
+<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+<!-- the jScrollPane script -->
+<script type="text/javascript" src="js/easytimer.min.js"></script>
+<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="[conf.site_url_themes_common;noerr]/js/jquery-code-scanner.js"></script>
+<script type="text/javascript" src="js/typeahead.js"></script>
+
+<div id="scriptsdiv">
+</div>
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+
+
+	
+	/*for name search*/
+	function changeTypeahead(obj, datum) {
+          $('input#navn_mobile').val(datum.phone);
+           // $('input#customer-name').val(datum.value);
+		  // alert(datum.phone);
+    };
+	
+	
+	
+	 $('input.navn').typeahead({
+			name: 'navn',
+			display: 'value',
+			remote: '[conf.site_url;noerr]/admin/employee/search-customer?query=%QUERY'
+
+	  }).bind('typeahead:selected', function(obj, datum) {
+        changeTypeahead(obj, datum);
+    }).bind('typeahead:autocompleted', function(obj, datum) {
+        changeTypeahead(obj, datum);
+    });
+	
+	
+	/*for mobile search*/
+	function changeTypeaheadmoble(obj, datum) {
+          $('input#mobile').val(datum.value);
+          
+    };
+	
+	 $('input#mobile').typeahead({
+			mobile: 'mobile',
+			display: 'value',
+			remote: '[conf.site_url;noerr]/admin/employee/search-mobile?query=%QUERY'
+
+	  }).bind('typeahead:selected', function(obj, datum) {
+        changeTypeaheadmoble(obj, datum);
+    }).bind('typeahead:autocompleted', function(obj, datum) {
+        changeTypeaheadmoble(obj, datum);
+    });
+	
+
+	$('#barcode').codeScanner();
+	
+    $('.message').jScrollPane();  //scrollpane
+   
+	
+	 /*check if the employee logged in before search any forms*/
+	 $(".frm_wrapper form").submit(function(){
+		 
+		if(($('#current_staff').val() != '')){
+			
+			if(($('#basicUsage').is(':empty'))){
+
+				noty({
+					text: '[lang.lang_please_start_timmer]',
+					layout: 'bottomRight',
+					type: 'warning',
+					timeout: [settings_general.notifications_display_duration;noerr]
+				});
+				return false;
+				
+			}
+			else{
+				
+				return true;
+			}
+		}
+		else
+		{
+			noty({
+				text: '[lang.lang_please_login]',
+				layout: 'bottomRight',
+				type: 'warning',
+				timeout: [settings_general.notifications_display_duration;noerr]
+			});
+			return false;
+		}
+		
+		return false;
+	 });
+	
+	
+	
+   
+    var pw= [{name:"#pw1", status:0},{name:"#pw2", status:0},{name:"#pw3", status:0},{name:"#pw4", status:0}];
+	$(".num").click(function(){
+     for (i = 0; i < pw.length; i++) {
+       if(pw[i]['status'] == 0 &&  $(pw[i]['name']).val() == ''){
+	 
+          $(pw[i]['name']).val($(this).html());
+          pw[i]['status'] = 1;
+		  
+			if(3 > i)
+			{
+				var j=parseInt(i)+1;
+				$(pw[j]['name']).focus();
+			}
+			
+          break;
+       }
+	  
+     } 		
+	});
+	
+	
+	$(".clear").click(function(){    
+      for (i = 0; i < pw.length; i++) {
+          $(pw[i]['name']).val('');
+          pw[i]['status'] = 0;
+     }
+	 byttansattfocus();
+  });
+  
+	$('.group-pos .btn-group > .btn').on("click", function() {
+		$('.group-pos .btn-group > .btn').removeClass('highlight');
+		$(this).addClass('highlight');	
+	});
+ 	$('.frm_wrapper form').hide();
+	$('.search-tab .velg-block .btn').on("click", function() {
+		$('.frm_wrapper form').hide();
+		$('.frm_wrapper form').find('input[type=text]').val('');
+		$($(this).data('target')).show();
+		$($(this).data('target')).find('input.fs-16').focus();
+	});
+	
+	$('.search-tab .velg-block .btn:first').trigger('click');
+
+	$("form#employeelogin").submit(function(){
+			
+		var pw1=$('#pw1').val();
+		var pw2=$('#pw2').val();
+		var pw3=$('#pw3').val();
+		var pw4=$('#pw4').val();
+		if($( "#current_staff" ).val() != '')
+		{
+			clientStop();
+		}
+		var empid=pw1+pw2+pw3+pw4;
+			$.ajax({
+						type: "POST",
+						url: "[conf.site_url;noerr]/admin/employee",
+						data: {
+							staff: empid
+						},
+					    dataType: "json",
+					    success: function (data) {
+						
+						if(data.response == 'success')
+						{
+							noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'information',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+							 
+							 $( "#employee-profile" ).html( data.profile );
+							 $( "#employee-profile" ).show();
+							 $( "#staff_close" ).trigger( "click" );
+							 $( "#current_staff" ).val( data.staff );
+							  for (i = 0; i < pw.length; i++) {
+								  $(pw[i]['name']).val('');
+								  pw[i]['status'] = 0;
+							 }
+													 
+							 if(data.start_status == 1)
+							 {
+								startLogin(data.staff);
+							 }
+							 
+							
+						}
+						else
+						{
+							$( "#employee-profile" ).hide();
+							$( "#staff_close" ).trigger( "click" );
+							$(".clear").trigger( "click" );
+							noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+						}
+						
+						  
+						}
+					});
+					
+		return false;
+	});
+});
+function getBagdetails()
+{
+	var barcode=$('#barcode').val();
+	if(barcode == '')
+	{
+		//alert("Invalid Barcode");
+		//$('#barcode').val('')
+		return false;
+	}
+	else
+	{
+		var barlength=barcode.toString().length;
+		if(barlength < 8)
+		{
+			//alert("Invalid Barcode");
+			return false;
+		}
+		else
+		{
+			document.orderbarcode.submit();
+		}
+		
+	}
+	
+	
+	  
+	  
+}
+function scantab()
+{
+	$( "#barcode_scan" ).trigger( "click" );
+	$('#barcode').val('');
+	$( "#barcode" ).focus();
+	
+}
+function startLogin(staffid)
+{
+	//var staffid=$('#current_staff').val();
+	if(parseInt(staffid) > 0)
+	{
+		$.ajax({
+						type: "POST",
+						url: "[conf.site_url;noerr]/admin/employee/startLogin",
+						data: {
+							staff: staffid
+						},
+					    dataType: "json",
+					    success: function (data) {
+						if(data.response == 'success')
+						{
+							 
+							$('#staffbutton_'+staffid).html('<button type="button" name="stop" id="stop" onclick="stopLogin(\''+staffid+'\');" class="btn-xs red  btn-info">STOP</button>');
+							//alert(data.scripts);
+							 $('#scriptsdiv').html(data.scripts);
+							// $('#basicUsage').show();
+							// $('#ansatt').html(data.ansatt);
+							// timer1.start(data.time);
+							//starttime(data.time);
+							 
+						}
+						else
+						{
+							noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+						}
+						
+						  
+						}
+					});
+	}
+	else
+	{
+		noty({
+			text: '[lang.lang_session_timed_out]',
+			layout: 'bottomRight',
+			type: 'warning',
+			timeout: [settings_general.notifications_display_duration;noerr]
+		});
+	}
+	
+	return false;
+	
+}
+
+ <!--[lists.employee_list_script;noerr;htmlconv=no;protect=no;comm]-->	
+
+var timer = new Timer();
+<!--[lists.stafftime;noerr;htmlconv=no;protect=no;comm]-->
+function starttime(timedata)
+{
+	$('#basicUsage').show();
+	timer.start(timedata);
+}
+function clientStop()
+{
+	timer.stop();
+	$('#staffbutton').html('<button type="button" name="start" id="start" onclick="startLogin();" class="btn-xlg btn-info">START</button>');
+	$('#basicUsage').hide();
+	$('#basicUsage').html('');
+}
+
+function stopLogin(staffid)
+{
+	//timer.stop();
+	//var staffid=$('#current_staff').val();
+	if(parseInt(staffid) > 0)
+	{
+		$.ajax({
+						type: "POST",
+						url: "[conf.site_url;noerr]/admin/employee/stopLogin",
+						data: {
+							staff: staffid
+						},
+					    dataType: "json",
+					    success: function (data) {
+						if(data.response == 'success')
+						{
+							 
+							$('#staffbutton_'+staffid).html('<button type="button" name="start" id="start" onclick="startLogin(\''+staffid+'\');" class="btn-xs btn-info">START</button>');
+							
+							//$('#basicUsage').hide();
+							//$('#basicUsage').html('');
+							//$('#ansatt').html(data.ansatt);
+						//	$('#current_staff').val('');
+						//	$( "#employee-profile" ).hide();
+						}
+						else
+						{
+							noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+						}
+						
+						  
+						}
+					});
+	}
+	else
+	{
+		noty({
+			text: '[lang.lang_invalid_employee_id]',
+			layout: 'bottomRight',
+			type: 'warning',
+			timeout: [settings_general.notifications_display_duration;noerr]
+		});
+	}
+	
+	return false;
+	
+}
+timer.addEventListener('secondsUpdated', function (e) {
+$('#basicUsage').html(timer.getTimeValues().toString());
+});
+
+
+$(window).load(function(){
+var pastValue, pastSelectionStart, pastSelectionEnd;
+
+$("#employeelogin input").on("keydown", function() {
+    pastValue          = this.value;
+    pastSelectionStart = this.selectionStart;
+    pastSelectionEnd   = this.selectionEnd;
+}).on("input propertychange", function() {
+    var regex = /^[0-9]+\.?[0-9]*$/;
+					
+    if (this.value.length > 0 && !regex.test(this.value)) {
+        this.value          = pastValue;
+        this.selectionStart = pastSelectionStart;
+        this.selectionEnd   = pastSelectionEnd;
+    }
+	//byttansattfocus();
+});
+});//]]> 
+
+var myVar;
+function byttansatt()
+{
+
+setTimeout(byttansattfocus, 600);
+myVar = setInterval(function(){ byttansattfocus() }, 600);
+	
+}
+
+
+function byttansattfocus()
+{
+
+	if($('#newAnsatt').css('display') == 'hide')
+	{
+		clearInterval(myVar);
+		return false;
+	}
+
+		var pw1=$('#pw1').val();
+		var pw2=$('#pw2').val();
+		var pw3=$('#pw3').val();
+		var pw4=$('#pw4').val();
+
+		if(pw1 == '')
+		{	
+			$('#pw1').focus();
+			return false;
+		}
+		if(pw2 == '')
+		{	
+			$('#pw2').focus();
+			return false;
+		}
+		if(pw3 == '')
+		{	
+			$('#pw3').focus();
+			return false;
+		}
+		if(pw4 == '')
+		{	
+			$('#pw4').focus();
+			return false;
+		}
+		else
+		{
+			$('#pw4').focus();
+			return false;
+		}
+		
+		
+}
+
+</script>
+<!--JS_SOME_FORM_VALIDATION-->
+<!--------------------COMMON FOOTER JAVASCRIPT---------------------------->
+<!--[onload;file=../common/common.footer.javascript.html;getbody;comm]-->
+<!--------------------COMMON FOOTER JAVASCRIPT---------------------------->
+<!--WI_REPORT_NEW_BUG_MODAL-->
+</body>
+</html>

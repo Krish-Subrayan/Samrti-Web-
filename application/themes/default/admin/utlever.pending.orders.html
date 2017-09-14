@@ -1,0 +1,2523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+<link href="../common/style/bootstrap.css" rel="stylesheet">
+<link href="../common/style/style.css" rel="stylesheet">
+<!--[onshow;block=head;when [visible.foo] == bar;comm]-->
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+</head>
+<!--HEAD - ONLOAD-->
+<!--[onload;file=../common/common.head.html;getbody;comm]-->
+<!--HEAD - ONLOAD-->
+<body>
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=../common/common.javascript.html;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=common_include_debug;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!--[onload;file=common.header.html;getbody;comm]--> 
+<!--HEADER SECTION - ONLOAD--> 
+<!-- Main content starts -->
+<style>
+#rens_div,#vask_div,.checkout,#editproductbtn{display:none;}
+</style>
+<div class="content"> 
+  <!-- Main bar -->
+  <div class="mainbar"> 
+    <!-- Matter -->
+    <div class="matter">
+      <div class="container white-bg">
+        <div class="row header">
+          <div class="col-md-8"> 
+            <!--TOP-LEFT - ONLOAD --> 
+            <!--[onload;file=common.top.left.html;getbody;comm]--> 
+            <!--TOP-LEFT - ONLOAD --> 
+            <!--MENU - ONLOAD --> 
+            <!--[onload;file=common.menu.html;getbody;comm]--> 
+            <!--MENU - ONLOAD -->
+            <div class="search-product" style="display:none">
+              <div id="Exp-serach" class="Exp-serach">
+                <form>
+                  <input class="ExpInput " onkeyup="buttonUp();" placeholder="Søk produkt..." onblur="monkey();" type="search" value="" name="search" id="search">
+                  <input class="Expbtn" type="submit"  value="">
+                  <span class="ExpIcon"><i class="fa fa-search"></i></span>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+             <!--TOP-RIGHT - ONLOAD -->
+            <!--[onload;file=common.top.right.html;getbody;comm]-->
+             <!--TOP-RIGHT - ONLOAD -->
+            <div class="clearfix"></div>
+			<!--<input type="button" value="ajax" onclick="ajaxutleveringinfo();" />--> 
+            <div class="text-center kasse">Kasse (<span class="cart_total">[vars.cart_total]</span>)</div>
+            <!--<div class="voucher"> <a data-toggle="modal" href="#addNew"><img src="img/voucher.png" title="Voucher" alt="Voucher"/></a></div>--> 
+          </div>
+        </div>
+        <div class="row">
+        
+		 <div  class="col-md-8  no-padd scroll-pane">
+		 	<div id="utlever-ajax-loader" class="col-md-8 no-padd " ><img src="img/ajax-loader.gif"/></div>
+          <div id="uorder_info">
+           <h2 class="title">Aktuelle</h2>
+           <div class="finished_orders order-black aktuelle">
+                <div class="orderlisting row" style="background:#d8d8d8">
+                    <div class="col-md-1"></div>
+					  <div class="col-md-2 black-text bold">Ordre nr. </div>
+					  <div class="col-md-2 black-text no-padd bold">Inn</div>
+					  <div class="col-md-3 black-text  bold"> Kategorier </div>
+					  <div class="col-md-3 black-text bold">Totalt</div>
+					  <div class="col-md-1 text-center black-text bold">Print</div>
+					</div>           
+            <!--[lists.orders_in_process;noerr;htmlconv=no;protect=no;comm]--> 
+			
+          </div>
+          
+            <div class="clearfix"></div>
+          </div>
+          </div>
+		  
+		  
+		  
+          <div id="single_order"  class="col-md-4 no-padd"> 
+            <!--CUSTOMER PROFILE - ONLOAD --> 
+            <!--[onload;file=common.customer.profile.html;getbody;comm]--> 
+            <!--CUSTOMER PROFILE - ONLOAD -->
+			<div class="block">
+              <div class="row">
+                <div class="pull-left col-md-12">
+				 <div class="pull-left col-md-10">
+				  <p class="ordernr">Ordrenr: <span class="black-text"></span></p>
+				 </div>
+				<div class="pull-left col-md-2 no-padd mt-sm">
+				 <a id="deletelink" style="display:none; color:#fff" onclick="deleteOrder();" href="#deleteproduct" class="red btn-xs bold" data-toggle="modal">
+                 Cancel</a>
+				 </div>
+				</div>
+              </div>
+            </div>
+			
+			<div style="height:280px;" class="scroll-pane">
+            
+            <div id="ajax-loader-utlevring"><img src="img/ajax-loader.gif"/></div>
+            <div id="rens_div" class="block orderline-block">
+              <div class="row">
+                <div class="pull-left col-md-3 no-padd text-center">
+                  <h2>Rens</h2>
+                </div>
+              </div>
+              <div id="ajax-loader-rens"><img src="img/ajax-loader.gif"/></div>
+              <div class="rens">
+                <div class="col-md-12 mt-sm"> 
+                  <!--[onshow;block=div;when [visible.wi_no_products_added_in_cart_rens] == 1;comm]-->
+                  <p class="black-text  text-center">[lang.lang_cart_empty]</p>
+                  <style>
+					  /*#rens_div{display:none;}*/
+				  </style>
+                </div>
+                <div> 
+                  <!--[onshow;block=div;when [visible.wi_products_added_in_cart_rens] == 1;comm]-->
+                  <div class="orderline mt-sm  <!--[rens.id;block=div]-->">
+                    <div class="pull-left col-md-3 no-padd text-center">
+                      <div class="count"><!--[rens.qty;comm;]--></div>
+                      <div class="round">
+                        <div style="background-image: url('[conf.site_url;noerr]/images/[rens.thumb;onformat=runtime_check_product_thumb]');" class="img"></div>
+                      </div>
+                    </div>
+                    <div class="pull-left col-md-7 no-padd">
+                      <p><span><!--[rens.name;comm;]--></span> 
+                        <!--[rens.description;comm;]--><span>kr. <!--[rens.subtotal;comm;]-->,-</span></p>
+                    </div>
+                    <div class="pull-left col-md-2 no-padd text-center"> <a class="editprod" data-toggle="modal" data-title="<!--[rens.name;comm;]-->"  href="#editProductModal" data-stuff="[rens.id;]@<!--[rens.name;comm;]-->@<!--[rens.price;comm;]-->@<!--[rens.path;comm;]-->@<!--[rens.description;comm;]-->@<!--[rens.rowid;comm;]-->@<!--[rens.qty;comm;]-->@<!--[rens.gtype;comm;]-->">kr. [rens.subtotal;comm;],- <i class="icon-pencil"></i></a> </div>
+                    <div class="clearfix"></div>
+                    <hr>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="vask_div" class="block orderline-block">
+              <div class="row">
+                <div class="pull-left col-md-3 no-padd text-center">
+                  <h2>Vask</h2>
+                </div>
+              </div>
+              <div id="ajax-loader-vask"><img src="img/ajax-loader.gif"/></div>
+              <div class="vask">
+                <div class="col-md-12 mt-sm"> 
+                  <!--[onshow;block=div;when [visible.wi_no_products_added_in_cart_vask] == 1;comm]-->
+                  <p class="black-text  text-center">[lang.lang_cart_empty]</p>
+                  <style>
+				  /*#vask_div{display:none;}*/
+				  </style>
+                </div>
+                <div> 
+                  <!--[onshow;block=div;when [visible.wi_products_added_in_cart_vask] == 1;comm]-->
+                  <div class="orderline mt-sm  <!--[vask.id;block=div]-->">
+                    <div class="pull-left col-md-3 no-padd text-center">
+                      <div class="count"><!--[vask.qty;comm;]--></div>
+                      <div class="round">
+                        <div style="background-image: url('[conf.site_url;noerr]/images/[vask.thumb;onformat=runtime_check_product_thumb]');" class="img"></div>
+                      </div>
+                    </div>
+                    <div class="pull-left col-md-7 no-padd">
+                      <p><span><!--[vask.name;comm;]--></span> 
+                        <!--[vask.description;comm;]--><span>kr. <!--[vask.subtotal;comm;]-->,-</span></p>
+                    </div>
+                    <div class="pull-left col-md-2 no-padd text-center"> <a class="editprod" data-toggle="modal" data-title="<!--[vask.name;comm;]-->"  href="#editProductModal" data-stuff="[vask.id;]@<!--[vask.name;comm;]-->@<!--[vask.price;comm;]-->@<!--[vask.path;comm;]-->@<!--[vask.description;comm;]-->@<!--[vask.rowid;comm;]-->@<!--[vask.qty;comm;]-->@<!--[vask.gtype;comm;]-->">kr. [vask.subtotal;comm;],- <i class="icon-pencil"></i></a> </div>
+                    <div class="clearfix"></div>
+                    <hr>
+                  </div>
+                </div>
+              </div>
+            </div>
+			
+			<div class="block orderline-block" style="display:none">
+              <div class="row">
+                <div class="pull-left col-md-12">
+                  <h2>[lang.lang_special_instruction]</h2>
+                  <textarea name="special_instruction" id="instruction"></textarea>
+                </div>
+              </div>
+            </div>
+			
+		</div>	
+			
+          
+            <div class="block checkout" style="padding:0;height:125px">
+              <div id="coupon_msg" class="col-md-12"></div>
+              <div class="pull-left col-md-10">
+                <p class="kupongkode">Skriv inn kupongkode</p>
+              </div>
+              <div class="pull-left col-md-2 no-padd text-center"> <a id="discountlink" href="#discount_modal10" class="btn-icon" data-toggle="modal"><i class="fa fa-plus-circle mtnone" aria-hidden="true"></i></a>
+                <input type="hidden" id="discount_type_10" name="discount_type_10">
+                <input type="hidden" id="discount_value_10" name="discount_value_10">
+              </div>
+              <div class="clearfix"></div>
+              <hr style="margin:0">
+		
+			<!--  <div class="row" style="padding:5px;padding-top:0px;padding-left:10px;">
+			  
+			  <div class="pull-left col-md-2 no-padd" style="text-align:center;" title="Delsum">Del.</div>
+			  <div class="pull-left col-md-2 kunpongkode no-padd" style="text-align:center;" title="Discount">Dis.</div>
+			  <div class="pull-left col-md-2 leveringinfo no-padd" style="display:none;text-align:center;" title="Levering">Lev.</div>
+			  <div class="pull-left col-md-2 minpriceinfo no-padd" style="display:none;text-align:center;" title="Minste beløp">Min.</div>
+			  <div class="pull-left col-md-2 no-padd" style="text-align:center;" title="MVA (25%)">MVA.</div>
+			  
+			  <div class="pull-left col-md-2 paidamountinfo no-padd" style="display:none;text-align:center;" title="Betalt Beløp">Bet.</div>
+			  <div class="pull-left col-md-2 waitamountinfo no-padd" style="display:none;text-align:center;" title="Faktura Beløp">Fak.</div>
+			  <div class="pull-left col-md-2 pendingamountinfo no-padd" style="display:none;text-align:center;" title="Utestående Beløp">Ute.</div>
+			  </div>
+			  
+			<div class="row" style="padding:5px;padding-top:0px;padding-left:10px;">
+			<div class="pull-left col-md-2 no-padd" title="Delsum"><p class="delsum">kr 0,00</p><input type="hidden" name="delsum" value="[lists.total]" id="delsum"/></div>
+			<div class="pull-left col-md-2 no-padd kunpongkode" title="Discount"><p class="discount">kr 0,00</p>
+            <input type="hidden" name="discount" value="" id="discount"/></div>
+			<div class="pull-left col-md-2 no-padd leveringinfo" style="display:none;" title="Levering"><p class="levering_amt">kr 0,00</p></div>
+			
+			
+			  <div class="pull-left col-md-2 no-padd minpriceinfo" style="display:none;" title="Minste beløp"><p class="minprice_amt">kr 0,00</p></div>
+			  <div class="pull-left col-md-2 no-padd" title="MVA (25%)"><p class="mva">kr 0,00</p></div>
+			  <div class="pull-left col-md-2 no-padd paidamountinfo" style="display:none;" title="Betalt Beløp"> <p class="paid_amt">kr 0,00</p></div>
+			  <div class="pull-left col-md-2 no-padd waitamountinfo" style="display:none;" title="Faktura Beløp"><p class="wait_amt">kr 0,00</p></div>
+			  <div class="pull-left col-md-2 no-padd pendingamountinfo" style="display:none;" title="Utestående Beløp"><p class="pending_amt">kr 0,00</p></div>
+			  
+			  </div>-->
+			 
+	 		
+			 <style>
+			 .summarypad
+			 {
+				margin-top:5px;
+			 }
+			 </style>
+			 <div style="padding:5px;padding-top:0px;">
+			  
+              <div  class="pull-left summarypad col-md-3 no-padd">
+                <p>Delsum <span id="minamt_text"></span></p>
+              </div>
+              <div class="pull-left summarypad col-md-3 no-padd">
+                <p class="delsum">kr 0,00</p>
+                <input type="hidden" name="delsum" value="[lists.total]" id="delsum"/>
+              </div>
+			  <div  class="pull-left summarypad col-md-3 no-padd kunpongkode">
+                  <p>Dis.<span id="discount_text"></span></p>
+              </div>
+			  <div class="pull-left summarypad col-md-3 no-padd kunpongkode">
+                  <p class="discount">kr 0,00</p>
+                  <input type="hidden" name="discount" value="" id="discount"/>
+               </div>
+               
+               <div class="clearfix kunpongkode"></div>
+			   
+			   <div style="display:none;" class="pull-left summarypad no-padd leveringinfo col-md-3">
+                  <p>Levering</p>
+                </div>
+                <div style="display:none;" class="pull-left summarypad no-padd leveringinfo col-md-3 no-padd">
+                  <p class="levering_amt">kr 0,00</p>
+                </div>
+			   
+			    <div class="pull-left minpriceinfo no-padd summarypad col-md-4" style="display:none;">
+                  <p>Minste beløp</p>
+                </div>
+                <div class="pull-left minpriceinfo col-md-4 summarypad no-padd" style="display:none;">
+                  <p class="minprice_amt">kr 0,00</p>
+                </div>
+			   
+			     <div class="pull-left no-padd summarypad col-md-3">
+                <p>MVA (25%)</p>
+              </div>
+			  <div class="pull-left col-md-3 summarypad no-padd">
+                <p class="mva">kr 0,00</p>
+              </div>
+			  
+			  <div class="pull-left summarypad paidamountinfo no-padd col-md-3" tyle="display:none;">
+                  <p>Betalt</p>
+                </div>
+                <div class="pull-left summarypad paidamountinfo col-md-3 no-padd" tyle="display:none;">
+                  <p class="paid_amt">kr 0,00</p>
+                </div>
+				
+				 <div class="pull-left summarypad waitamountinfo col-md-3 no-padd" style="display:none;">
+                 <p>Faktura</p>
+                </div>
+                <div class="pull-left summarypad waitamountinfo col-md-3 no-padd" style="display:none;">
+                  <p class="wait_amt">kr 0,00</p>
+                </div>
+				
+				<div class="pull-left summarypad pendingamountinfo no-padd col-md-3">
+                  <p>Utestående</p>
+                </div>
+                <div class="pull-left summarypad pendingamountinfo col-md-3 no-padd">
+                  <p class="pending_amt">kr 0,00</p>
+                </div>
+			<div class="clearfix"></div>
+			  </div>
+         
+ 	
+		  </div>
+		 
+		  <div id="utlevering_details" class="block">
+              <div class="row">
+                <div  class="pull-left col-md-10">
+				  <div class="utleveringemp_info" style="display:none;"></div>
+				  <div class="utlevering_info" style="display:none;"></div>
+			   </div>
+				
+              </div>
+            </div>
+           
+		   <div class="row">
+              <div class="col-md-12 mb-s">
+                <button type="button" href="#editproduct" onclick="editOrder();" id="editproductbtn" data-toggle="modal" class="btn-lg  green">
+                <div class="col-md-4 send">Betal</div>
+                <div class="col-md-8 total">kr 0,00</div>
+                <input type="hidden" name="total" value="[lists.total]" id="total"/>
+                <input type="hidden" name="voucher_id"  id="voucher_id"  class="form-control">
+                <input type="hidden" name="eorder_id" value=""  id="eorder_id"  class="form-control">
+				<input type="hidden" name="last_orderline_id" value=""  id="last_orderline_id"  class="form-control">
+                </button>
+				<a id="deliverylink" style="display:none; color:#fff" onclick="deliveryOrder();" href="#deleteproduct" class="red btn-xs bold" data-toggle="modal">Utlever</a>
+				
+				
+                <button type="button" onclick="deliveryupdate();" id="deliverybtn" style="display:none;" class="btn-lg  green">
+                <div class="col-md-12 send">Utlever</div>
+                </button>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+		  
+		    <div id="multi_order" style="display:none;"  class="col-md-4 no-padd"> 
+		   <!--CUSTOMER PROFILE - ONLOAD --> 
+<!--[onload;file=common.customer.profile.html;getbody;comm]--> 
+<!--            <div class="block">
+               <div class="pull-left col-md-3 text-center">
+               <a href="#" class="btn  orange saldo-btn add-saldo-btn" data-toggle="modal">Saldo
+<br />forbruk</a>
+                <a href="#discount_modal12" id="saldolink" class="mt-sm btn  green saldo-btn add-saldo-btn" data-toggle="modal">Legg til <br />Saldo </a>
+               </div>
+               <div  class="pull-left col-md-7 no-padd customer-info"> 
+                 <div id="customer-pro">
+                    <p><span>Celine U (Vin)</span>
+                     (+47) 99398005 <br>
+                        <a href="mailto:celine@vinderen.no">celine@vinderen.no</a>  </p>
+                        
+                  </div>      
+                    <p class="saldo" style="color:red;">Saldo kr <input type="hidden" name="saldo_kr" id="saldo_kr" value="-288,00 (5.000,00)"><span id="lbl_saldo_kr" style="display:inline-block; color:inherit; font-size:inherit;">-288,00 (5.000,00)</span></p>
+               </div>
+               
+               <div class="pull-left col-md-2 text-center">
+                  <a href="#" class="btn-icon" data-toggle="modal"><i class="icon-pencil"></i></a><br> 
+                   <input type="hidden" name="discount_type_12">
+               	   <input type="hidden" name="discount_value_12"> 
+                  
+                  </div>
+               
+               <div class="clearfix"></div>
+             </div>    -->
+ 
+            <!--CUSTOMER PROFILE - ONLOAD -->
+			
+			<div class="row mb-s" style="background:#fff">
+			 <div id="ajax-pay-loader-utlevring"><img src="img/ajax-loader.gif"/></div>
+                <div id="orders_div" class="pull-left col-md-12">
+                </div>
+              </div>
+			
+			  <div class="row">
+              <div class="col-md-12 mb-s">
+                <button type="button" onclick="paymentMultiOrder();" id="multipaybtn" class="btn-lg  green">
+                <div class="col-md-6 send">Betal og utlever</div>
+                <div class="col-md-6 total">kr 0,00</div>
+                </button>
+                <button type="button" onclick="updatemultidelivery();" id="multideliverybtn" style="display:none;" class="btn-lg  green">
+                <div class="col-md-12 send">Utlever</div>
+                </button>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+			  
+			  
+		
+		   </div>
+		  
+		  
+		  
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Matter ends --> 
+</div>
+<!-- Mainbar ends -->
+<div class="clearfix"></div>
+<!--PRODUCT - EDIT - MODAL --> 
+<!--[onload;file=utlevering.edit.modal.html;getbody;comm]--> 
+<!--PRODUCT - EDIT - MODAL -->
+<!-- styles needed by jScrollPane -->
+<link type="text/css" href="style/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+<!-- the mousewheel plugin - optional to provide mousewheel support --> 
+<script type="text/javascript" src="js/jquery.mousewheel.js"></script> 
+<!-- the jScrollPane script --> 
+<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script> 
+<script type="text/javascript">
+$(document).ready(function(){
+ 
+	if($(window).height() < 760){
+		$('.scroll-pane').jScrollPane({
+			autoReinitialise: true
+		});  //scrollpane
+	}
+	else{
+		$('.scroll-pane').css({"height": "auto"}); 
+	}
+	
+	/*search box*/	
+	function buttonUp(){
+		 var valux = $('.ExpInput').val();
+			valux = $.trim(valux).length;
+			if(valux !== 0){
+				$('.Expbtn').css('z-index','99');
+			} else{
+				$('.ExpInput').val(''); 
+				$('.Expbtn').css('z-index','-999');
+			}
+	}
+});
+/*search box*/	
+$(document).ready(function(){
+		var submitIcon = $('.ExpIcon');
+		var submitInput = $('.ExpInput');
+		var searchBox = $('.Exp-serach');
+		var isOpen = false;
+		
+		$(document).mouseup(function(){
+			if(isOpen == true){
+			submitInput.val('');
+			$('.Expbtn').css('z-index','-999');
+			submitIcon.click();
+			}
+		});
+		
+		submitIcon.mouseup(function(){
+			return false;
+		});
+		
+		searchBox.mouseup(function(){
+			return false;
+		});
+				
+		submitIcon.click(function(){
+			if(isOpen == false){
+				searchBox.addClass('Exp-serach-open');
+				isOpen = true;
+			} else {
+				searchBox.removeClass('Exp-serach-open');
+				isOpen = false;
+			}
+	});
+	
+	var id ;
+	var name ;
+	var price;
+	var img;
+	var desp;
+	var qty;
+	var gtype;
+	var duration;
+	var complain;		
+	var in_house;
+	var oprice;
+	var prdid;
+	
+	//view order  to print
+	$('.utsikt').click(function(){
+		var oid = $(this).attr('id');
+		$('#oid').val(oid);
+		
+		if('[sessiondata.partner_branch]' == '1')
+		{
+			$("#tagprintbtn").hide();
+		}
+		else
+		{
+			$("#tagprintbtn").show();
+		}
+		
+		$('#print_bills').modal({ backdrop: 'static', keyboard: false });
+     });	
+	 
+		
+	//view order listinsting at right side
+	$('.orderlisting a').click(function(){
+			var oid = $(this).attr('rel');
+			
+	  checkboxes = document.getElementsByName('orderchkbox[]');
+	  var orderarray = new Array()    
+	  for(var i=0, n=checkboxes.length;i<n;i++) {
+		if(checkboxes[i].checked)
+		{
+			orderarray.push(checkboxes[i].value);
+		}
+	 }
+	 if(orderarray.length == 0)
+	 {
+		$("#multi_order").hide();
+		$("#single_order").show();
+	 }
+			
+			
+			$('#eorder_id').val(oid);
+			$("#coupon_msg").hide();
+			
+			var order_from = $(this).find('div:first').html();
+			
+			order_from=order_from+'<p style="font-size:15px">'+$("#kasserer_"+oid).html()+'</p>';
+			
+			$('html, body').animate({
+				scrollTop: ($('.ordernr span').first().offset().top)
+			},500);
+			//alert(order_from);
+			
+			 var processing = false;
+			 if(processing == false && orderarray.length == 0){
+				processing = true;
+				 $.ajax({
+					type: "POST",
+					url: "[conf.site_url;noerr]/admin/orders/get-order-detail",
+					data: {
+						oid: oid
+					},
+				   beforeSend: function(){
+						 $("#ajax-loader-utlevring").show();
+						 $("#rens_div").hide();
+						 $("#vask_div").hide();
+				   },
+				   complete: function(){
+						processing = false;
+						$("#ajax-loader-utlevring").hide();
+						 $("#rens_div").show();
+						 $("#vask_div").show();
+						
+				   },
+				   dataType: "json",
+				   success: function (data) {
+					    //alert(data.order_list_rens);
+						$(".checkout").show();
+						$(".rens").html(data.order_list_rens);
+						$(".vask").html(data.order_list_vask);
+						
+						//subtotal of a cart
+						$('#delsum').val(data.delsum);
+						$('.delsum').html('kr '+data.delsum_currency+'');
+						
+						//total of a cart
+						$('#total').val(data.total_amount);
+						$('.total').html('kr '+data.total_amount_currency+'');	
+						$('.mva').html('kr '+data.mva_currency+'');
+						
+						$('.cart_total').html(data.count);
+						$('#instruction').html(data.instruction);
+						
+						var $picker=$(".datepicker");
+						$picker.datepicker({autoclose:true,format: 'dd.mm.yyyy'});
+						var pickerObject = $picker.data('datepicker');
+						$picker.on('changeDate', function(ev){
+								$picker.datepicker('hide');
+						});
+						$(".datepicker").on('hide', function(ev){
+							   dpclosefire($(this))
+						});
+						
+						
+						$('.ordernr span').html(order_from);
+						
+						$('#deletelink').show();
+						
+						
+						
+						
+						if(parseInt(data.discount) > 0)
+						{
+							$('.kunpongkode').show();
+							
+							if(data.vouchercode != '')
+							{
+								$('#discount_text').html("("+data.vouchercode + ")");
+							}
+							$('#discount').val(data.discount);
+							$('.discount').html("kr " + data.discount_currency);
+							
+							
+						}
+						else
+						{
+							$('.kunpongkode').hide();
+						}
+						
+						
+						if(parseInt(data.min_price_status) > 0)
+						{
+							if(data.min_price_status == 1)
+							{
+								$('#minamt_text').html(data.min_price_txt);
+							}
+							else
+							{
+								$('#minamt_text').html('');
+							}
+							
+							if(data.min_price_status == 2)
+							{
+								$('.minpriceinfo').show();
+								$('#minprice_amt').html("kr " + data.min_price);
+							}
+							else
+							{
+								$('.minpriceinfo').hide();
+							}
+						}
+						
+						if(parseInt(data.delviery) > 0)
+						{
+							
+							$('.leveringinfo').show();
+						}
+						else
+						{
+							$('.leveringinfo').hide();
+						}
+						
+						
+						if(parseInt(data.paidamountstatus) > 0)
+						{
+							$('.paidamountinfo,.paidhr').show();
+							$('.paid_amt').html("kr " + data.paidamount);
+							$('.pending_amt').html("kr " + data.balanceamount);
+						}
+						else
+						{
+							$('.paidamountinfo,.paidhr').hide();
+							$('.paid_amt').html('');
+							$('.pending_amt').html('');
+						}
+						
+						if(parseInt(data.waitamountstatus) > 0)
+						{
+							$('.waitamountinfo,.waitinghr,.paidhr').show();
+							$('.wait_amt').html("kr " + data.totawaitamount);
+						
+						}
+						else
+						{
+							$('.waitamountinfo,.waitinghr').hide();
+							$('.wait_amt').html('');
+						}
+						$('#utlevering_details').hide();
+						
+						 <!--utlevering_details<p >Utlevering: <span class="black-text"></span></p>-->
+						 
+						 
+						if(data.deliverytime != '')
+						{
+							$('#utlevering_details').show();
+							$('.utlevering_info').show();
+							$('.utlevering_info').html('<p style="color:#000;font-size:15px"> <span class="black-text">'+data.deliverytime+'</span></p>');
+						}
+						else
+						{
+							$('.utlevering_info').hide();
+							$('.utlevering_info').html('');
+						}
+						
+						if(data.empinitial != '')
+						{
+							$('#utlevering_details').show();
+							$('.utleveringemp_info').show();
+							$('.utleveringemp_info').html('<p style="color:#000;font-size:15px; font-weight:bold">Utlevert: <span class="black-text">'+data.empinitial+'</span></p>');
+						}
+						else
+						{
+							$('.utleveringemp_info').hide();
+							$('.utleveringemp_info').html('');
+						}
+						
+						
+						if(parseInt(data.pendingamountstatus) > 0)
+						{
+							$('.pendingamountinfo,.pendinghr').show();
+							$('.pending_amt').html("kr " + data.balanceamount);
+						}
+						else
+						{
+							$('.pendingamountinfo,.pendinghr').hide();
+							$('.pending_amt').html('');
+						}
+						
+						
+						
+						
+						
+						if(parseInt(data.betalstatus) > 0)
+						{
+							$('#editproductbtn').show();
+							
+							
+							$('#deliverybtn').hide();
+							$('.kupongkode').show();
+							$('#discountlink').show();
+							
+						}
+						else
+						{
+							$('#editproductbtn').hide();
+							
+							$('.kupongkode').hide();
+							$('#discountlink').hide();
+							  
+			
+							
+							if(parseInt(data.deliveryreadystatus) > 0)
+							{
+								$('#deliverybtn').show();
+							}
+							else
+							{
+								$('#deliverybtn').hide();
+								$('#deletelink').hide();
+							}
+						}
+						
+						
+						
+						$('a.editprod').click(function(){ 
+						 
+							var title = $(this).data('title');
+							$("h4#edit-product-title").html(title);		
+						$("#product_edit_status").val(1);
+							var stuff = $(this).attr('data-stuff').split('@');
+								
+							 id = stuff[0];
+							  $("#last_orderline_id").val(stuff[0]);
+							 var olineid=stuff[0];
+							 
+							 name = stuff[1];
+							 price = stuff[2];
+							 img = stuff[3];
+							 desp = stuff[4];
+							 qty = stuff[5];
+							 gtype = stuff[6];
+							 complain = stuff[7];
+							 in_house =  stuff[8];
+							 oprice =  stuff[9];
+							 prdid = stuff[10];
+							 
+							 
+							$('#edit_spl_instruction').val(desp);
+							$('#edit_quantity').val(qty);
+							//$('#edit_pris').val(oprice);
+							 
+							
+							if(parseInt(price) == 0){
+								$('#edit_pris').val(oprice);
+							}
+							else{
+								
+								price = parseInt(price);
+								$('#edit_pris').val(price);
+							}
+							 
+							 
+							if(stuff[10] == 143)
+							{
+								$('.pris-wrapper').show();
+								$('.qty-wrapper,.product-buttons .btn-group .btn:first').hide();
+								$('#edit-pris').addClass('highlight');
+								$("#edit-pris").css({"border-bottom-left-radius": "5px", "border-top-left-radius": "5px"});
+							}
+							else{
+								$('.product-buttons .btn-group .btn:first,.qty-wrapper').show();
+								$('.product-buttons .btn-group .btn:first').trigger('click');
+								$("#edit-pris").css({"border-bottom-left-radius": "0px", "border-top-left-radius": "0px"});
+							}
+							if(in_house == 1){
+								//alert("inhouse" + in_house);
+								//$('input:checkbox[name=in_house]').attr('checked',true);
+								
+								$('#house_div').html('<input type="checkbox" checked="checked" value="" name="in_house" id="edit_in_house"> Renses på huset');
+							  
+							}
+							else{
+								//$('input:checkbox[name=in_house]').attr('checked',false);
+								
+								$('#house_div').html('<input type="checkbox"  value="" name="in_house" id="edit_in_house"> Renses på huset');
+								
+							}
+							
+							if(complain == 1){
+							//alert("inhouse" + complain);
+								//$('input:checkbox[name=complain]').attr('checked',true);
+								$('#complain_div').html('<input type="checkbox" checked="checked" value="" name="complain" id="edit_complain">Reklamasjon');
+							}
+							else{
+								$('#complain_div').html('<input type="checkbox" value="" name="complain" id="edit_complain">Reklamasjon');
+							}
+						
+					   });
+					   
+					
+						$("form#editProduct").submit(function(){
+						
+					
+							 var processing2 = false;
+							 if(processing2 == false){
+								 
+								if($('#edit_in_house').prop('checked') === true){
+									//alert("inhouse" + in_house);
+									in_house = 1;
+								}
+								else{
+									in_house = 0;
+								}
+									 
+								if($('#edit_complain').prop('checked') === true){
+									//alert("complain" + complain);
+									complain = 1;
+								}
+								else{
+									complain = 0;
+								}
+							
+								processing2 = true;
+								
+								if($('#eorder_id').val() == oid)
+								{
+								
+					
+								 $.ajax({
+									type: "POST",
+									url: "[conf.site_url;noerr]/admin/orders/edit-utlevering",
+									data: {
+										oid: oid,
+										olid: $("#last_orderline_id").val(),
+										name: name,
+										price: $('#edit_pris').val(),
+										qty: $('#edit_quantity').val(),
+										img: img,
+										desp: $('#edit_spl_instruction').val(),
+										gtype : gtype,
+										total : $('#total').val(),
+										complain : complain,
+										in_house : in_house
+										
+									},
+								   beforeSend: function(){
+										 $('#editProductModal').modal('hide');
+								   },
+								   complete: function(){
+										processing2 = false;
+								   },
+								   dataType: "json",
+								   success: function (data) {
+								  
+										//$('.orderlisting  a[rel="' + oid + '"]').trigger('click');
+										ajaxutleveringedit(oid);
+										ajaxutleveringinfo();
+									}
+								});
+							 }
+							}
+							else {
+								alert('[lang.lang_process_goingon]');
+							}
+							return false;
+						});
+	
+					}
+				});
+			}
+			else {
+noty({ text: '[lang.lang_process_goingon]', layout: 'bottomRight', type: 'warning', timeout: [settings_general.notifications_display_duration;noerr] });
+				//alert('[lang.lang_process_goingon]');
+			}
+			return false;
+		});
+	
+});
+
+/*print different types of bills*/
+function printBill(type)
+{
+	var oid = $('#oid').val();
+	var ifrmm = document.createElement("iframe");
+	ifrmm.setAttribute("src", "[conf.site_url;noerr]/admin/printecspos/"+type+"/"+oid+"");
+	ifrmm.style.width = "640px";
+	ifrmm.style.height = "480px";
+	ifrmm.style.display = "none";
+	document.body.appendChild(ifrmm);
+}
+
+
+
+function orderchkbox()
+{
+ $( "#multi_order" ).hide();
+$("#multipaybtn").hide();
+	  checkboxes = document.getElementsByName('orderchkbox[]');
+	  var orderarray = new Array()    
+	  for(var i=0, n=checkboxes.length;i<n;i++) {
+		if(checkboxes[i].checked)
+		{
+			   $( "#multi_order" ).show();
+			   $( "#single_order" ).hide();
+			   orderarray.push(checkboxes[i].value);
+			 
+		}
+	
+	 }
+	 
+	 if(orderarray.length == 0){ 
+	  $( "#multi_order" ).hide();
+	  $( "#single_order" ).show();
+	 }
+	 
+	  $.ajax({
+					type: "POST",
+					url: "[conf.site_url;noerr]/admin/orders/get-pay-order-details",
+					data: {
+						orders: orderarray
+					},
+				    beforeSend: function(){
+						 $("#ajax-pay-loader-utlevring").show();
+						  $('#orders_div').hide();
+					},
+				   complete: function(){
+						
+						$("#ajax-pay-loader-utlevring").hide();
+						$('#orders_div').show();
+						
+				   },
+				   dataType: "json",
+				   success: function (data) {
+				   
+				   $('#orders_div').html(data.order_details);
+				   
+				    $('#multi_order .total').html(data.order_amount);
+$("#multipaybtn").hide();
+$("#multideliverybtn").hide();
+if(data.order_amount == 'Kr.0,00'){ 
+    $("#multideliverybtn").show();
+}else{ 
+    $("#multipaybtn").show();
+}
+	
+					
+				   
+				   
+				   }
+				   
+				 });
+	 
+	
+}
+function paymentMultiOrder()
+{
+	 checkboxes = document.getElementsByName('orderchkbox[]');
+	  var orderarray = new Array()    
+	  for(var i=0, n=checkboxes.length;i<n;i++) {
+		if(checkboxes[i].checked)
+		{
+			   $( "#multi_order" ).show();
+			   $( "#single_order" ).hide();
+			   orderarray.push(checkboxes[i].value);
+			 
+		}
+	
+	 }
+	  var opay_type=$("#opay_type").val();
+		if(opay_type == ''){
+			noty({
+					text: 'Please select payment type',
+					layout: 'bottomRight',
+					type: 'warning',
+					timeout: [settings_general.notifications_display_duration;noerr]
+				});
+			return false
+		}
+	  $.ajax({
+					type: "POST",
+					url: "[conf.site_url;noerr]/admin/orders/paymentMultiOrder",
+					data: {
+opay_type: opay_type,
+						orders: orderarray
+					},
+				    beforeSend: function(){
+						 $("#ajax-pay-loader-utlevring").show();
+					},
+				   complete: function(){
+						
+						$("#ajax-pay-loader-utlevring").hide();
+						
+				   },
+				   dataType: "json",
+				   success: function (data) {
+				   
+				
+								
+							if(data.status == 'success')
+							{
+								 $("#multipaybtn").hide();
+								 $("#multideliverybtn").show();
+							}
+							else
+							{
+								$("#multipaybtn").show();
+								$("#multideliverybtn").hide();
+							}
+							var saldo=data.amount;
+							$('#lbl_saldo_kr').html(saldo);
+							$('#saldo_kr').val(saldo);
+							// $( "#multi_order" ).hide();
+							//$( "#single_order" ).show();
+							ajaxutleveringinfo();
+							
+							$('#rens_div').hide();
+							$('#vask_div').hide();
+							$('#deliverybtn').hide();
+							$('#editproductbtn').hide();
+							$('.summarypad').hide();
+
+							 
+							
+						
+							noty({
+									text: data.message,
+									layout: 'bottomRight',
+									type: 'information',
+									timeout: 4500
+								});
+							
+				 
+				   
+				   }
+				   
+				 });
+}
+function updatemultidelivery()
+{
+	checkboxes = document.getElementsByName('orderchkbox[]');
+	  var orderarray = new Array()    
+	  for(var i=0, n=checkboxes.length;i<n;i++) {
+		if(checkboxes[i].checked)
+		{
+			   $( "#multi_order" ).show();
+			   $( "#single_order" ).hide();
+			   orderarray.push(checkboxes[i].value);
+			 
+		}
+	
+	 }
+	 $.ajax({
+				type: "POST",
+				url: "[conf.site_url;noerr]/admin/orders/updatemultideliverystatus",
+				data: {
+					orders: orderarray
+				},
+				dataType: "json",
+			   success: function (data) {
+					if(data.status == 'success')
+					{
+						noty({
+									text: data.message,
+									layout: 'bottomRight',
+									type: 'information',
+									timeout: 4500
+								});
+								/*$("#deliverybtn").hide();
+								$("#order_"+orid).hide();
+								$('.ordernr span').html('');
+								$('#deletelink').hide();
+								$(".checkout").hide();*/
+								
+								//$("#rens_div").hide();
+								//$("#vask_div").hide();
+								/*$(".paidamountinfo").hide();
+								$(".paidhr").hide();
+								$('.delsum').html('kr 0');
+								$('.total').html('kr 0');
+								$('.mva').html('kr 0');*/
+								
+								//var oldcnt=	$("#order_tcount").html();
+								//var ncnt=parseInt(oldcnt)-1;
+								//$("#order_tcount").html(parseInt(ncnt));
+								ajaxutleveringinfo();
+								
+								$( "#multi_order" ).show();
+								
+								$( "#single_order" ).hide();
+								
+					}
+					else
+					{
+							noty({
+										text: data.message,
+										layout: 'bottomRight',
+										type: 'warning',
+										timeout: 4500
+							});
+					}
+					
+				}
+			});
+}
+function utleveringedit(orderids)
+{
+		 $.ajax({
+					type: "POST",
+					url: "[conf.site_url;noerr]/admin/orders/get-order-detail",
+					data: {
+						oid: orderids
+					},
+				    beforeSend: function(){
+						 $("#ajax-loader-utlevring").show();
+						 $("#rens_div").hide();
+						 $("#vask_div").hide();
+				   },
+				   complete: function(){
+						
+						$("#ajax-loader-utlevring").hide();
+						 $("#rens_div").show();
+						 $("#vask_div").show();
+						
+				   },
+				   dataType: "json",
+				   success: function (data) {
+					    //alert(data.order_list_rens);
+						$(".rens").html(data.order_list_rens);
+						$(".vask").html(data.order_list_vask);
+						
+						//subtotal of a cart
+						$('#delsum').val(data.delsum);
+						$('.delsum').html('kr '+data.delsum_currency+'');
+						
+						//total of a cart
+						$('#total').val(data.total_amount);
+						$('.total').html('kr '+data.total_amount_currency+'');	
+						$('.mva').html('kr '+data.mva_currency+'');
+						
+						$('.cart_total').html(data.count);
+						$('#instruction').html(data.instruction);
+						
+						var $picker=$(".datepicker");
+						$picker.datepicker({autoclose:true,format: 'dd.mm.yyyy'});
+						var pickerObject = $picker.data('datepicker');
+						$picker.on('changeDate', function(ev){
+								$picker.datepicker('hide');
+						});
+						$(".datepicker").on('hide', function(ev){
+							   dpclosefire($(this))
+						});
+						
+						
+						if(parseInt(data.discount) > 0)
+						{
+							$('.kunpongkode').show();
+							
+							if(data.vouchercode != '')
+							{
+								$('#discount_text').html(data.vouchercode);
+							}
+							$('#discount').val(data.discount);
+							$('.discount').html("kr " + data.discount_currency);
+							
+							
+						}
+						else
+						{
+							$('.kunpongkode').hide();
+						}
+						
+						
+						if(parseInt(data.min_price_status) > 0)
+						{
+							if(data.min_price_status == 1)
+							{
+								$('#minamt_text').html(data.min_price_txt);
+							}
+							else
+							{
+								$('#minamt_text').html('');
+							}
+							
+							if(data.min_price_status == 2)
+							{
+								$('.minpriceinfo').show();
+								$('#minprice_amt').html(data.min_price);
+							}
+							else
+							{
+								$('.minpriceinfo').hide();
+							}
+						}
+						
+						if(parseInt(data.delviery) > 0)
+						{
+							
+							$('.leveringinfo').show();
+						}
+						else
+						{
+							$('.leveringinfo').hide();
+						}
+						
+						if(data.deliverytime != '')
+						{
+							$('.utlevering_info').show();
+							$('.utlevering_time').html(data.deliverytime);
+						}
+						else
+						{
+							$('.utlevering_info').hide();
+							$('.utlevering_time').html('');
+						}
+						
+						
+						if(parseInt(data.paidamountstatus) > 0)
+						{
+							$('.paidamountinfo,.paidhr').show();
+							$('.paid_amt').html("kr " + data.paidamount);
+							$('.pending_amt').html("kr " + data.balanceamount);
+						}
+						else
+						{
+							$('.paidamountinfo,.paidhr').hide();
+							$('.paid_amt').html('');
+							$('.pending_amt').html('');
+						}
+						
+						if(parseInt(data.waitamountstatus) > 0)
+						{
+							$('.waitamountinfo,.waitinghr,.paidhr').show();
+							$('.wait_amt').html("kr " + data.totawaitamount);
+						
+						}
+						else
+						{
+							$('.waitamountinfo,.waitinghr').hide();
+							$('.wait_amt').html('');
+						}
+						
+						$('#utlevering_details').hide();
+						
+						 
+						 
+						if(data.deliverytime != '')
+						{
+							$('#utlevering_details').show();
+							$('.utlevering_info').show();
+							$('.utlevering_info').html('<p style="color:#000;font-size:15px"> <span class="black-text">'+data.deliverytime+'</span></p>');
+							
+						}
+						else
+						{
+							$('.utlevering_info').hide();
+							$('.utlevering_info').html('');
+						}
+						
+						if(data.empinitial != '')
+						{
+							$('#utlevering_details').show();
+							$('.utleveringemp_info').show();
+							$('.utleveringemp_info').html('<p style="color:#000;font-size:15px; font-weight:bold">Utlevert: <span class="black-text">'+data.empinitial+'</span></p>');
+						}
+						else
+						{
+							$('.utleveringemp_info').hide();
+							$('.utleveringemp_info').html('');
+						}
+						
+						
+						if(parseInt(data.pendingamountstatus) > 0)
+						{
+							$('.pendingamountinfo,.pendinghr').show();
+							$('.pending_amt').html("kr " + data.balanceamount);
+						}
+						else
+						{
+							$('.pendingamountinfo,.pendinghr').hide();
+							$('.pending_amt').html('');
+						}
+						
+						if(parseInt(data.betalstatus) > 0)
+						{
+							$('#editproductbtn').show();
+							
+							
+							$('#deliverybtn').hide();
+							$('.kupongkode').show();
+							$('#discountlink').show();
+							
+						}
+						else
+						{
+							$('#editproductbtn').hide();
+							$('.kupongkode').hide();
+							$('#discountlink').hide();
+							if(parseInt(data.deliveryreadystatus) > 0)
+							{
+								$('#deliverybtn').show();
+							}
+							else
+							{
+								$('#deliverybtn').hide();
+								$('#deletelink').hide();
+								
+							}
+						}
+						
+						
+					}
+				});
+			
+}
+</script> 
+<!--------------------COMMON FOOTER JAVASCRIPT----------------------------> 
+<!--[onload;file=../common/common.footer.javascript.html;getbody;comm]--> 
+<!--------------------COMMON FOOTER JAVASCRIPT----------------------------> 
+<!--SALDO - MODAL --> 
+<!--[onload;file=saldo.modal.html;getbody;comm]--> 
+<!--SALDO - MODAL --> 
+<!--KUPONGKODE - MODAL --> 
+<!--[onload;file=utlevering.kupongkode.modal.html;getbody;comm]--> 
+<!--KUPONGKODE - MODAL --> 
+<div class="row">
+  <div id="editproduct" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" >
+      <div class="modal-content">
+        <div class="modal-header back-color">
+          <button type="button" id="order_close" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+          <h4 class="modal-title login-title">Order Payment Information</h4>
+        </div>
+        <div class="modal-body ">
+          <div class="form-login-wrapper utlevering">
+            <div class="pw-wrapper" style="background:none; padding:0">
+              <div id="edit-ajax-loader"><img src="img/ajax-loader.gif"/></div>
+              <form class="form-horizontal" action="" method="post" name="ordereditfrm" id="ordereditfrm">
+                <div id="edit_order_frm" class="row"> </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+   <div id="deleteproduct" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" >
+      <div class="modal-content">
+        <div class="modal-header back-color">
+          <button type="button" id="delete_close" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+          <h4 class="modal-title login-title">Order Information</h4>
+        </div>
+        <div class="modal-body ">
+          <div class="form-login-wrapper utlevering">
+            <div class="pw-wrapper" style="background:none; padding:0">
+              <div id="delete-ajax-loader"><img src="img/ajax-loader.gif"/></div>
+              <form class="form-horizontal" action="" method="post" name="orderdeletefrm" id="orderdeletefrm">
+              <div id="delete_order_frm" class="row"> </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+</div>
+<link href="../common/style/switch.css" rel="stylesheet">
+<style>
+#confirm{z-index:1041;}
+</style>
+<div>
+<script type="text/javascript">
+$(document).ready(function() {
+	//utleveringinfo([vars.utorder_count]);
+	$( "#order_[vars.utorder_count] a" ).trigger( "click" );
+});
+</script>
+ </div>
+<script type="text/javascript">
+function confirmkundenprint()
+{
+	$('#kundenprint_confirm').modal({ backdrop: 'static', keyboard: false });
+}
+function doPoskundenprint(ordernumber)
+{
+		
+		var ifrmm = document.createElement("iframe");
+        ifrmm.setAttribute("src", "[conf.site_url;noerr]/admin/printecspos/print-kunden-bill/"+ordernumber+"");
+        ifrmm.style.width = "640px";
+        ifrmm.style.height = "480px";
+		ifrmm.style.display = "none";
+        document.body.appendChild(ifrmm);
+			
+}
+function retim()
+{
+	
+	var rsource=$("#saldostatus").val();
+	var saldo_amt= $("#saldo_amt").val();
+	var pay_amt= $("#pay_amt").val();
+	
+	
+	if(rsource)
+	{
+		if(parseFloat(saldo_amt) >= parseFloat(pay_amt))
+		{
+			var bsaldo_amot=parseFloat(saldo_amt)-parseFloat(pay_amt);
+			var tpay_amot=0;
+		}
+		else
+		{
+			var tpay_amot=parseFloat(pay_amt)-parseFloat(saldo_amt);
+			var bsaldo_amot=0;
+		}
+		 $("#pay_amt").val(tpay_amot);
+		//$("#payable_amt").html(tpay_amot.toLocaleString('de-DE'));
+		//$("#csaldo_amt").html(bsaldo_amot.toLocaleString('de-DE'));
+	}
+	else
+	{
+		
+		
+		 var nsaldo_amt=parseFloat(saldo_amt);
+		
+		// $("#csaldo_amt").html(nsaldo_amt.toLocaleString('de-DE'));
+		 
+		 checkboxes = document.getElementsByName('corderlines[]');
+		  var ttotamt=0;
+		  for(var i=0, n=checkboxes.length;i<n;i++) 
+		  {
+			if(checkboxes[i].checked)
+			{
+				ttotamt=parseFloat(ttotamt)+parseFloat($("#oltotal_"+checkboxes[i].value).val());
+			}
+		 }
+		 $("#pay_amt").val(ttotamt);
+		  $("#paying_amt").val(ttotamt);
+		// $("#payable_amt").html(ttotamt.toLocaleString('de-DE'));
+	}
+	 
+}
+function getTotalamount()
+{
+	  checkboxes = document.getElementsByName('corderlines[]');
+	  var ttotamt=0;
+	  var count =0;
+	  for(var i=0, n=checkboxes.length;i<n;i++) 
+	  {
+		if(checkboxes[i].checked)
+		{
+			ttotamt=parseFloat(ttotamt)+parseFloat($("#oltotal_"+checkboxes[i].value).val());
+			count ++;
+		}
+	 }
+	 $("#pay_amt").val(ttotamt);
+	  $("#paying_amt").val(ttotamt);
+	  $("#checkedoderline").val(count);
+	// $("#payable_amt").html(ttotamt.toLocaleString('de-DE'));
+	
+	var paying_amt=$('#paying_amt').val();
+	$('.npayment_type span').text(" (kr " + paying_amt + ")");
+	
+	 retim();
+	 
+	 
+	
+}
+ 
+ function paycheckall(source) {
+
+  checkboxes = document.getElementsByName('corderlines[]');
+  for(var i=0, n=checkboxes.length;i<n;i++) {
+	if(source.checked)
+	{
+		$("#tr_"+checkboxes[i].value).css({"background-color": '#0cc579'});
+		$("#tr_"+checkboxes[i].value).find('p').css({"color": '#fff'});
+	}
+	else
+	{
+		$("#tr_"+checkboxes[i].value).css({"background-color": '#fff'});
+		$("#tr_"+checkboxes[i].value).find('p').css({"color": '#000'});
+		
+	}
+	
+	checkboxes[i].checked = source.checked;
+	
+  }
+  
+  getTotalamount();
+}
+
+function payitem(sour)
+{
+	if(sour.checked)
+	{
+		$("#tr_"+sour.value).css({"background-color": '#0cc579'});
+		$("#tr_"+sour.value).find('p').css({"color": '#fff'});
+	}
+	else
+	{
+		$("#tr_"+sour.value).css({"background-color": '#fff'});
+		$("#tr_"+sour.value).find('p').css({"color": '#000'});
+		
+	}
+	getTotalamount();
+}
+function editOrder(orid)
+{
+	// $('#checkall').trigger('click');
+	 
+	
+	$("#delete_order_frm").html('');
+	var orid= $("#eorder_id").val();
+	 
+	 if(orid==''){
+		noty({
+					text: 'Select any one order to pay.',
+						layout: 'bottomRight',
+						type: 'warning',
+						timeout: [settings_general.notifications_display_duration;noerr]
+				});
+	 
+	 }
+	 else{
+		 
+	 $.ajax({
+				type: "POST",
+				url: "[conf.site_url;noerr]/admin/orders/editorderpayment",
+				data: {
+					orderid: orid
+				},
+			   beforeSend: function(){
+					 $("#edit-ajax-loader").show();
+					 $("#edit_order_frm").hide();
+			   },
+			   complete: function(){
+					processing = false;
+					$("#edit-ajax-loader").hide();
+					$("#edit_order_frm").show();
+					
+				},
+			   dataType: "json",
+			   success: function (data) {
+					
+					
+					$("#edit_order_frm").html(data.order_details);
+					
+					$('#checkall').trigger('click');
+					 
+					$('.popupscroll').jScrollPane({
+						autoReinitialise: true
+					});  //scrollpane
+					
+				}
+			});
+	 }
+}
+function deleteOrder()
+{
+	var orid= $("#eorder_id").val();
+	 
+	 if(orid==''){
+		noty({
+					text: 'Select any one order to pay.',
+						layout: 'bottomRight',
+						type: 'warning',
+						timeout: [settings_general.notifications_display_duration;noerr]
+				});
+	 
+	 }
+	 else{
+		 
+	 $.ajax({
+				type: "POST",
+				url: "[conf.site_url;noerr]/admin/orders/deleteorderpayment",
+				data: {
+					orderid: orid
+				},
+			   beforeSend: function(){
+					 $("#delete-ajax-loader").show();
+					 $("#delete_order_frm").hide();
+			   },
+			   complete: function(){
+					processing = false;
+					$("#delete-ajax-loader").hide();
+					$("#delete_order_frm").show();
+					
+				},
+			   dataType: "json",
+			   success: function (data) {
+					
+					$("#delete_order_frm").html(data.order_details);
+					$('.popupscroll').jScrollPane({
+						autoReinitialise: true
+					});  //scrollpane
+					
+					$("#cancelreason").select2({
+						allowClear: true
+					});
+					
+					
+					
+				}
+			});
+	 }
+}
+function deliveryupdate()
+{
+	// 
+	$("#deliverylink").trigger('click');
+	
+	
+}
+function deliveryOrder()
+{
+	var orid= $("#eorder_id").val();
+	 
+	 if(orid==''){
+		noty({
+					text: 'Select any one order to pay.',
+						layout: 'bottomRight',
+						type: 'warning',
+						timeout: [settings_general.notifications_display_duration;noerr]
+				});
+	 
+	 }
+	 else{
+		 
+	 $.ajax({
+				type: "POST",
+				url: "[conf.site_url;noerr]/admin/heatseal/deliveryOrder",
+				data: {
+					orderid: orid
+				},
+			   beforeSend: function(){
+					 $("#delete-ajax-loader").show();
+					 $("#delete_order_frm").hide();
+			   },
+			   complete: function(){
+					processing = false;
+					$("#delete-ajax-loader").hide();
+					$("#delete_order_frm").show();
+					
+				},
+			   dataType: "json",
+			   success: function (data) {
+					
+					$("#delete_order_frm").html(data.order_details);
+					$('.popupscroll').jScrollPane({
+						autoReinitialise: true
+					});  //scrollpane
+					
+					$('#newcheckall').trigger('click');
+				}
+			});
+	 }
+}
+function deliveryorderlines()
+{
+	var datastring = $("#orderdeletefrm").serialize();
+	$.ajax({
+		type: "POST",
+		url: "[conf.site_url;noerr]/admin/heatseal/upatedeliverystatus",
+		data: datastring,
+		dataType: "json",
+		success: function(data) {
+				
+			if(data.status == 'success')
+			{
+				noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'information',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+							$('#delete_close').trigger('click');
+							
+							$('#kundenprintbtn').attr('onclick','doPoskundenprint('+data.orderid+')');
+							confirmkundenprint();
+								
+								
+							//deleteOrder();	
+							//editOrder(data.orderid);
+							//utleveringedit(data.orderid);
+							//ajaxutleveringinfo(data.orderid);			
+							ajaxutleveringinfo();
+							ajaxutleveringedit(data.orderid);							
+							
+			}
+			else
+			{
+			
+				noty({
+									text: data.message,
+									layout: 'bottomRight',
+									type: 'warning',
+									timeout: [settings_general.notifications_display_duration;noerr]
+								});
+				
+			}
+		},
+		error: function(data) {
+			noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+		}
+	});
+	
+}
+function updatedelivery()
+{
+	var orid= $("#eorder_id").val();
+	 $.ajax({
+				type: "POST",
+				url: "[conf.site_url;noerr]/admin/orders/updatedeliverystatus",
+				data: {
+					orderid: orid
+				},
+				dataType: "json",
+			   success: function (data) {
+					if(data.status == 'success')
+					{
+						noty({
+									text: data.message,
+									layout: 'bottomRight',
+									type: 'information',
+									timeout: [settings_general.notifications_display_duration;noerr]
+								});
+								
+								$('#kundenprintbtn').attr('onclick','doPoskundenprint('+orid+')');
+								confirmkundenprint();
+										
+										
+								$("#deliverybtn").hide();
+								$("#order_"+orid).hide();
+								$('.ordernr span').html('');
+								$('#deletelink').hide();
+								$(".checkout").hide();
+								
+								$("#rens_div").hide();
+								$("#vask_div").hide();
+								/*$(".paidamountinfo").hide();
+								$(".paidhr").hide();
+								$('.delsum').html('kr 0');
+								$('.total').html('kr 0');
+								$('.mva').html('kr 0');*/
+								
+								var oldcnt=	$("#order_tcount").html();
+								var ncnt=parseInt(oldcnt)-1;
+								$("#order_tcount").html(parseInt(ncnt));
+								
+								ajaxutleveringinfo(orid);
+								
+					}
+					else
+					{
+							noty({
+										text: data.message,
+										layout: 'bottomRight',
+										type: 'warning',
+										timeout: [settings_general.notifications_display_duration;noerr]
+							});
+					}
+					
+				}
+			});
+}
+function deleteorderlines()
+{
+	var datastring = $("#orderdeletefrm").serialize();
+	$.ajax({
+		type: "POST",
+		url: "[conf.site_url;noerr]/admin/orders/cancelorderlines",
+		data: datastring,
+		dataType: "json",
+		success: function(data) {
+				
+			if(data.status == 'success')
+			{
+				noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'information',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+							$('#delete_close').trigger('click');
+							//deleteOrder();	
+							//editOrder(data.orderid);
+							//utleveringedit(data.orderid);
+							//ajaxutleveringinfo(data.orderid);			
+							ajaxutleveringinfo();
+							ajaxutleveringedit(data.orderid);							
+							
+			}
+			else
+			{
+			
+				noty({
+									text: data.message,
+									layout: 'bottomRight',
+									type: 'warning',
+									timeout: [settings_general.notifications_display_duration;noerr]
+								});
+				
+			}
+		},
+		error: function(data) {
+			noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+		}
+	});
+	
+}
+function makeOrderpayment()
+{
+	var datastring = $("#ordereditfrm").serialize();
+	var rsource=$("#saldostatus").val();
+	if(rsource)
+	{
+	}
+	else
+	{
+		var opay_type=$("#opay_type").val();
+		
+		if(opay_type == '')
+		{
+			noty({
+								text: 'Please select payment type',
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+		return false
+		
+		}
+		
+		
+	}
+	
+	
+	
+	$.ajax({
+		type: "POST",
+		url: "[conf.site_url;noerr]/admin/orders/makeorderpayment",
+		data: datastring,
+		dataType: "json",
+		success: function(data) {
+				
+			if(data.status == 'success')
+			{
+				noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'information',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+							
+							if(data.orderpaymentstatus == true)
+							{
+								 
+								 $("#editproductbtn").hide();
+								 $("#deliverybtn").show();
+				   
+							}
+							else
+							{
+								 $("#editproductbtn").show();
+								 $("#deliverybtn").hide();
+							}
+							
+							
+							
+							var saldo=data.amount;
+							$('#lbl_saldo_kr').html(saldo);
+							$('#saldo_kr').val(saldo);
+							
+							$('#order_close').trigger('click');
+						
+							$('#kundenprintbtn').attr('onclick','doPoskundenprint('+data.orderid+')');
+							confirmkundenprint();
+							
+							 //editOrder(data.orderid);
+							//utleveringedit(data.orderid);
+							//ajaxutleveringinfo(data.orderid);
+							ajaxutleveringinfo();
+							ajaxutleveringedit(data.orderid);
+							
+							
+							
+							
+			}
+			else
+			{
+			
+				if(data.status='emailerror')
+				{
+					$('#registration_fail').show();
+							$('#registration_fail').html(data.message);
+							$('.close').trigger('click');
+							$('#customerinfobtn').trigger('click');
+				}
+				else
+				{
+					noty({
+									text: data.message,
+									layout: 'bottomRight',
+									type: 'warning',
+									timeout: [settings_general.notifications_display_duration;noerr]
+								});
+				}
+				
+			}
+		},
+		error: function(data) {
+			noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+		}
+	});
+}
+	$('.saldo-buttons a').on('click',function(e){
+				$('.saldo-buttons a').removeClass('highlight');
+				$(this).addClass('highlight');	
+				
+	});
+		
+	function paymenttype(ptype)
+	{
+		$("#opay_type").val(ptype);
+		$('.payment_type').removeClass('highlight');
+		$('#pay_'+ptype).addClass('highlight');	
+	}
+	
+	function ajaxutleveringinfo()
+	{
+		//
+		$.ajax({
+				type: "GET",
+				url: "[conf.site_url;noerr]/admin/orders/ajaxutpendingleveringinfo",
+				beforeSend: function(){
+					$("#utlever-ajax-loader").show();
+					$("#uorder_info").hide();
+				},
+			   complete: function(){
+					processing = false;
+					$("#utlever-ajax-loader").hide();
+					$("#uorder_info").show();
+				},
+			   dataType: "json",
+			   success: function (data) {
+					
+					$('.scroll-pane').jScrollPane({
+						autoReinitialise: true
+					});  //scrollpane
+					$("#uorder_info").html(data.order_details);
+					$( "#multi_order" ).hide();
+                    $( "#single_order" ).show();
+					
+				}
+			});
+		
+	}
+							
+</script> 
+<script type='text/javascript'>
+function ajaxutleveringedit(ajaxorderid)
+{
+	
+	//$('.orderlisting  a[rel="' + ajaxorderid + '"]').trigger('click');
+	
+	var oid = ajaxorderid;
+
+			$('#eorder_id').val(oid);
+			$("#coupon_msg").hide();
+			
+			var order_from = $("#orderinfo_"+oid).html();
+			
+			order_from=order_from+'<p style="font-size:15px">'+$("#kasserer_"+oid).html()+'</P>';
+			
+			
+			$('html, body').animate({
+				scrollTop: ($('.ordernr span').first().offset().top)
+			},500);
+			//alert(order_from);
+			
+			 var processing = false;
+			 if(processing == false){
+				processing = true;
+				 $.ajax({
+					type: "POST",
+					url: "[conf.site_url;noerr]/admin/orders/get-order-detail",
+					data: {
+						oid: oid
+					},
+				   beforeSend: function(){
+						 $("#ajax-loader-utlevring").show();
+						 $("#rens_div").hide();
+						 $("#vask_div").hide();
+				   },
+				   complete: function(){
+						processing = false;
+						$("#ajax-loader-utlevring").hide();
+						 $("#rens_div").show();
+						 $("#vask_div").show();
+						
+				   },
+				   dataType: "json",
+				   success: function (data) {
+					    //alert(data.order_list_rens);
+$("#single_order").show();
+						$(".checkout").show();
+						$(".rens").html(data.order_list_rens);
+						$(".vask").html(data.order_list_vask);
+						
+						//subtotal of a cart
+						$('#delsum').val(data.delsum);
+						$('.delsum').html('kr '+data.delsum_currency+'');
+						
+						//total of a cart
+						$('#total').val(data.total_amount);
+						$('.total').html('kr '+data.total_amount_currency+'');	
+						$('.mva').html('kr '+data.mva_currency+'');
+						
+						$('.cart_total').html(data.count);
+						$('#instruction').html(data.instruction);
+						
+						var $picker=$(".datepicker");
+						$picker.datepicker({autoclose:true,format: 'dd.mm.yyyy'});
+						var pickerObject = $picker.data('datepicker');
+						$picker.on('changeDate', function(ev){
+								$picker.datepicker('hide');
+						});
+						$(".datepicker").on('hide', function(ev){
+							   dpclosefire($(this))
+						});
+						
+						if(data.deliverytime != '')
+						{
+							$('.utlevering_info').show();
+							$('.utlevering_time').html(data.deliverytime);
+						}
+						else
+						{
+							$('.utlevering_info').hide();
+							$('.utlevering_time').html('');
+						}
+						
+						$('.ordernr span').html(order_from);
+						$('#deletelink').show();
+						
+						if(parseInt(data.discount) > 0)
+						{
+							$('.kunpongkode').show();
+							
+							if(data.vouchercode != '')
+							{
+								$('#discount_text').html("("+data.vouchercode + ")");
+							}
+							$('#discount').val(data.discount);
+							$('.discount').html("kr " + data.discount_currency);
+							
+							
+						}
+						else
+						{
+							$('.kunpongkode').hide();
+						}
+						
+						
+						if(parseInt(data.min_price_status) > 0)
+						{
+							if(data.min_price_status == 1)
+							{
+								$('#minamt_text').html(data.min_price_txt);
+							}
+							else
+							{
+								$('#minamt_text').html('');
+							}
+							
+							if(data.min_price_status == 2)
+							{
+								$('.minpriceinfo').show();
+								$('#minprice_amt').html("kr " + data.min_price);
+							}
+							else
+							{
+								$('.minpriceinfo').hide();
+							}
+						}
+						
+						if(parseInt(data.delviery) > 0)
+						{
+							
+							$('.leveringinfo').show();
+						}
+						else
+						{
+							$('.leveringinfo').hide();
+						}
+						
+						
+						if(parseInt(data.paidamountstatus) > 0)
+						{
+							$('.paidamountinfo,.paidhr').show();
+							$('.paid_amt').html("kr " + data.paidamount);
+							$('.pending_amt').html("kr " + data.balanceamount);
+						}
+						else
+						{
+							$('.paidamountinfo,.paidhr').hide();
+							$('.paid_amt').html('');
+							$('.pending_amt').html('');
+						}
+						
+						if(parseInt(data.waitamountstatus) > 0)
+						{
+							$('.waitamountinfo,.waitinghr,.paidhr').show();
+							$('.wait_amt').html("kr " + data.totawaitamount);
+						
+						}
+						else
+						{
+							$('.waitamountinfo,.waitinghr').hide();
+							$('.wait_amt').html('');
+						}
+						
+						$('#utlevering_details').hide();
+						
+						 
+						 
+						if(data.deliverytime != '')
+						{
+							$('#utlevering_details').show();
+							$('.utlevering_info').show();
+							$('.utlevering_info').html('<p style="color:#000;font-size:15px"> <span class="black-text">'+data.deliverytime+'</span></p>');
+						}
+						else
+						{
+							$('.utlevering_info').hide();
+							$('.utlevering_info').html('');
+						}
+						
+						if(data.empinitial != '')
+						{
+							$('#utlevering_details').show();
+							$('.utleveringemp_info').show();
+							$('.utleveringemp_info').html('<p style="color:#000;font-size:15px; font-weight:bold">Utlevert: <span class="black-text">'+data.empinitial+'</span></p>');
+							
+						}
+						else
+						{
+							$('.utleveringemp_info').hide();
+							$('.utleveringemp_info').html('');
+						}
+						
+						
+						if(parseInt(data.pendingamountstatus) > 0)
+						{
+							$('.pendingamountinfo,.pendinghr').show();
+							$('.pending_amt').html("kr " + data.balanceamount);
+						}
+						else
+						{
+							$('.pendingamountinfo,.pendinghr').hide();
+							$('.pending_amt').html('');
+						}
+						
+						if(parseInt(data.betalstatus) > 0)
+						{
+							$('#editproductbtn').show();
+							
+							
+							$('#deliverybtn').hide();
+							$('.kupongkode').show();
+							$('#discountlink').show();
+							
+						}
+						else
+						{
+							$('#editproductbtn').hide();
+							$('.kupongkode').hide();
+							$('#discountlink').hide();
+							if(parseInt(data.deliveryreadystatus) > 0)
+							{
+								$('#deliverybtn').show();
+							}
+							else
+							{
+								$('#deliverybtn').hide();
+								$('#deletelink').hide();
+								
+							}
+						}
+						
+						
+						$('a.editprod').click(function(){ 
+						 
+							$('.product-buttons .btn-group .btn:first').trigger('click');
+							var title = $(this).data('title');
+							$("h4#edit-product-title").html(title);		
+						$("#product_edit_status").val(1);
+							var stuff = $(this).attr('data-stuff').split('@');
+								
+							 id = stuff[0];
+							  $("#last_orderline_id").val(stuff[0]);
+							 newid = stuff[0];
+						
+							 name = stuff[1];
+							 price = stuff[2];
+							 img = stuff[3];
+							 desp = stuff[4];
+							 qty = stuff[5];
+							 gtype = stuff[6];
+							 complain = stuff[7];
+							 in_house =  stuff[8];
+							 oprice =  stuff[9];
+							 
+							 prdid = stuff[10];
+							 
+							 
+							$('#edit_spl_instruction').val(desp);
+							$('#edit_quantity').val(qty);
+							//$('#edit_pris').val(oprice);
+							 
+							
+							if(parseInt(price) == 0){
+								$('#edit_pris').val(oprice);
+							}
+							else{
+								
+								price = parseInt(price);
+								$('#edit_pris').val(price);
+							}
+							 
+							 
+							if(stuff[10] == 143)
+							{
+								$('.pris-wrapper').show();
+								$('.qty-wrapper,.product-buttons .btn-group .btn:first').hide();
+								$('#edit-pris').addClass('highlight');
+								$("#edit-pris").css({"border-bottom-left-radius": "5px", "border-top-left-radius": "5px"});
+							}
+							else{
+								$('.product-buttons .btn-group .btn:first,.qty-wrapper').show();
+								$('.product-buttons .btn-group .btn:first').trigger('click');
+								$("#edit-pris").css({"border-bottom-left-radius": "0px", "border-top-left-radius": "0px"});
+							}
+							 
+							if(in_house == 1){
+								//alert("inhouse" + in_house);
+								//$('input:checkbox[name=in_house]').attr('checked',true);
+								
+								$('#house_div').html('<input type="checkbox" checked="checked" value="" name="in_house" id="edit_in_house"> Renses på huset');
+							  
+							}
+							else{
+								//$('input:checkbox[name=in_house]').attr('checked',false);
+								
+								$('#house_div').html('<input type="checkbox"  value="" name="in_house" id="edit_in_house"> Renses på huset');
+								
+							}
+							
+							if(complain == 1){
+							//alert("inhouse" + complain);
+								//$('input:checkbox[name=complain]').attr('checked',true);
+								$('#complain_div').html('<input type="checkbox" checked="checked" value="" name="complain" id="edit_complain">Reklamasjon');
+							}
+							else{
+								$('#complain_div').html('<input type="checkbox" value="" name="complain" id="edit_complain">Reklamasjon');
+							}
+						
+					   });
+					   
+					
+						$("form#editProduct").submit(function(){
+					
+						
+							 var processing2 = false;
+							 if(processing2 == false){
+								 
+								if($('#edit_in_house').prop('checked') === true){
+									//alert("inhouse" + in_house);
+									in_house = 1;
+								}
+								else{
+									in_house = 0;
+								}
+									 
+								if($('#edit_complain').prop('checked') === true){
+									//alert("complain" + complain);
+									complain = 1;
+								}
+								else{
+									complain = 0;
+								}
+									
+								processing2 = true;
+								if($('#eorder_id').val() == oid)
+								{
+								
+									$.ajax({
+										type: "POST",
+										url: "[conf.site_url;noerr]/admin/orders/edit-utlevering",
+										data: {
+											oid: oid,
+											olid: $("#last_orderline_id").val(),
+											name: name,
+											price: $('#edit_pris').val(),
+											qty: $('#edit_quantity').val(),
+											img: img,
+											desp: $('#edit_spl_instruction').val(),
+											gtype : gtype,
+											total : $('#total').val(),
+											complain : complain,
+											in_house : in_house
+											
+										},
+									   beforeSend: function(){
+											 $('#editProductModal').modal('hide');
+									   },
+									   complete: function(){
+											processing2 = false;
+									   },
+									   dataType: "json",
+									   success: function (data) {
+											//$('.orderlisting  a[rel="' + oid + '"]').trigger('click');
+											
+											ajaxutleveringedit(oid);	
+										}
+									});
+								}
+								
+								
+							}
+							else {
+								alert('[lang.lang_process_goingon]');
+							}
+							return false;
+						});
+	
+	
+					}
+				});
+			}
+			else {
+				alert('[lang.lang_process_goingon]');
+			}
+			return false;
+		
+	
+	
+}
+function newpayment()
+{
+	getTotalamount();
+	var paytype=$('#opay_type').val();
+	var paying_amt=$('#paying_amt').val();
+	var saldo_amt=$('#saldo_amt').val();
+	var discount_amt=$('#order_discount_amount').val();
+	var discountstatus=$('#discountstatus').val();
+	
+	
+	if(parseInt(discountstatus) > 0)
+	{
+			if(parseFloat(discount_amt) > parseFloat(paying_amt))
+			{
+				noty({
+											text: 'You paying amount must be greater that discount amount.',
+											layout: 'bottomRight',
+											type: 'warning',
+											timeout: [settings_general.notifications_display_duration;noerr]
+										});
+										return false;
+			}
+	}
+	
+	paying_amt=parseFloat(paying_amt) - parseFloat(discount_amt);
+	
+		if(paytype == 'saldo')
+		{
+			if(parseFloat(paying_amt) > parseFloat(saldo_amt))
+			{
+			
+			/*var balanceamt=paying_amt-saldo_amt;
+				noty({
+									text: 'Din saldo er for lav. Vennligst legg saldo Kr.'+balanceamt,
+									layout: 'bottomRight',
+									type: 'warning',
+									timeout: [settings_general.notifications_display_duration;noerr]
+								});
+								return false;*/
+				
+			}
+		}
+		
+		
+	
+	
+	
+	if(paytype == '')
+	{
+		noty({
+								text: 'Vennligst velg betalingstype',
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+							return false;
+	}
+	else
+	{
+		if(paytype == 'visa')
+		{
+			$('#onew_pay_type').html('Kort');
+		}
+		else if(paytype == 'saldo')
+		{
+			$('#onew_pay_type').html('Saldo');
+		}
+		else if(paytype == 'cash')
+		{
+			$('#onew_pay_type').html('Kontant');
+		}
+		else
+		{
+			$('#onew_pay_type').html('Faktura');
+		}
+		
+		
+		
+		$('#paymentconfirm').modal({ backdrop: 'static', keyboard: false });
+	}
+	
+	
+}
+$(window).load(function(){
+$('.npayment_type').on('click', function(e){
+    // e.preventDefault();
+   // $('#paymentconfirm').modal({ backdrop: 'static', keyboard: false });
+	
+});
+});
+</script>
+<div id="paymentconfirm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog " style="margin-top: 10%;max-width: 450px;">
+    <div class="modal-content widget ">
+        <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        </div>
+      <div class="padd">
+        <h4 class="text-center"> Ønsker du betale med <b id="onew_pay_type"></b>?</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button"  onclick="makeOrderpayment();" data-dismiss="modal" class="btn green" >[lang.lang_yes]</button>
+        <button type="button" onclick="boxfocus();" data-dismiss="modal" class="btn red">[lang.lang_no]</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+<div id="kundenprint_confirm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog " style="max-width: 450px; margin-top:150px">
+<div class="modal-content widget ">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+</div>
+<div class="padd"><h4 class="text-center">Do you want to print kundens kopi ?</h4></div>
+<div id="tagprint_action" class="modal-footer">
+<button type="button" id="kundenprintbtn"  data-dismiss="modal" class="btn green" >Yes</button>
+ <button type="button" class="btn red" data-dismiss="modal" aria-hidden="true">No</button>
+</div>
+</div>
+</div>
+</div>
+<div id="print_bills" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog " style="max-width: 520px; margin-top:150px">
+<div class="modal-content widget ">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+</div>
+<div class="padd"><h4 class="text-center">Do you want to print?</h4></div>
+<div class="modal-footer">
+<input type="hidden" id="oid" name="oid" value=""/>
+<button type="button" id="utlevering" onclick="printBill('print-kunden-bill');" data-dismiss="modal" class="btn green">Kunden Kopi</button>
+<button type="button" onclick="printBill('print-intern-bill');" data-dismiss="modal" class="btn orange">Intern Kopi</button>
+<button type="button" id="tagprintbtn" onclick="printBill('print-tag');" data-dismiss="modal" class="btn purple">Tag</button>
+
+				
+<button type="button" onclick="printBill('print');" data-dismiss="modal" class="btn red">Alle</button>
+</div>
+</div>
+</div>
+</div>
+
+<!--<input type="button" value="ajax" onclick="ajaxutleveringinfo();" />-->

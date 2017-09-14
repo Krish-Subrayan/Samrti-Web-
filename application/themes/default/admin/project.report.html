@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+<link href="../common/style/bootstrap.css" rel="stylesheet">
+<link href="../common/style/style.css" rel="stylesheet">
+<style>
+.mainbar {
+	margin:0px;
+}
+.sidebar {
+	display:none;
+}
+</style>
+<!--[onshow;block=head;when [visible.foo] == bar;comm]-->
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+</head>
+<!--HEAD - ONLOAD-->
+<!--[onload;file=../common/common.head.html;getbody;comm]-->
+<!--HEAD - ONLOAD-->
+<body>
+<!--JS SECTION - ONLOAD-->
+<!--[onload;file=../common/common.javascript.html;getbody;comm]-->
+<!--JS SECTION - ONLOAD-->
+<!--DEBUG SECTION - ONLOAD-->
+<!--[onload;file=../common/include.debug.html;getbody;comm]-->
+<!--DEBUG SECTION - ONLOAD-->
+<!--HEADER SECTION - ONLOAD-->
+<!--[onload;file=common.header.html;getbody;comm]-->
+<!--HEADER SECTION - ONLOAD-->
+<!--FLOT CHART-->
+<!--[if lte IE 8]>
+<script language="javascript" type="text/javascript" src="[conf.site_url_themes_common;noerr]/js/flot/excanvas.min.js"></script><![endif]-->
+<script type="text/javascript" src="[conf.site_url_themes_common;noerr]/js/flot/jquery.flot.js"></script>
+<script type="text/javascript" src="[conf.site_url_themes_common;noerr]/js/flot/jquery.flot.pie.js"></script>
+<script type="text/javascript" src="[conf.site_url_themes_common;noerr]/js/flot/jquery.flot.canvas.js"></script>
+<!--FLOT CHART-->
+<!-- Main content starts -->
+<div class="content">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!--SIDE MENU - ONLOAD -->
+    <!--[onload;file=common.menu.html;getbody;comm]-->
+    <!--SIDE MENU - ONLOAD -->
+  </div>
+  <!-- Sidebar ends -->
+  <div class="mainbar">
+    <!----------------------COMMON PAGE HEADING--------------------------------->
+    <!--[onload;file=common.heading.html;getbody;comm]-->
+    <!----------------------COMMON PAGE HEADING--------------------------------->
+    <div class="matter">
+      <!----------------------COMMON PROJECT HEAD--------------------------------->
+      <!--[onload;file=common.project.header.html;getbody;comm]-->
+      <!----------------------COMMON PROJECT HEAD--------------------------------->
+      <div class="container">
+        <div class="row">
+          <!--WI_PROJECT_NAV_CONTENT-->
+          <div class="col-lg-3">
+            <!----------------------COMMON PROJECT MENU--------------------------------->
+            <!--[onload;file=common.project.navigation.html;getbody;comm]-->
+            <!----------------------COMMON PROJECT MENU--------------------------------->
+          </div>
+          <!--WI_PROJECT_NAV_CONTENT-->
+          <div class="col-lg-9 project-no-col-padding">
+            <div class="widget">
+              <div class="widget-content-project">
+                <!-----------------------------------------------TABS-FILES------------------------------------------------------------------>
+                <div class="project-info-tabs">
+                  <!--WI_FILES_NAVIGATION-->
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="tabs-sub-nav"> <span class="pull-left">
+                        <h3>[lang.lang_project_report]</h3>
+                        </span>
+                        <div class="clearfix"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--WI_FILES_NAVIGATION-->
+                  <!--WI_REPORT_HEADER-->
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="project-report-header">
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="report-chart-container">
+                              <div class="x-title">[lang.lang_all_tasks]</div>
+                              <div id="report-chart-tasks"></div>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="report-chart-container">
+                              <div class="report-invoices report-invoices-first">
+                                <div class="x-title">[lang.lang_invoices]</div>
+                                <div class="x-split">
+                                  <div class="x-split-left x-blue">
+                                    <div class="x-heading">[lang.lang_total]</div>
+                                    <div class="x-body">[settings_general.currency_symbol][report_basic.sum_invoices_all;onformat=runtime_number_decimal]</div>
+                                  </div>
+                                  <div class="x-split-right x-blue-light">
+                                    <div class="x-heading">[lang.lang_unpaid]</div>
+                                    <div class="x-body">[settings_general.currency_symbol][report_basic.sum_invoices_balance;onformat=runtime_number_decimal]</div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="report-invoices">
+                                <div class="x-title">[lang.lang_payments]</div>
+                                <div class="x-split">
+                                  <div class="x-split-left x-green">
+                                    <div class="x-heading">[lang.lang_this_month]</div>
+                                    <div class="x-body">[settings_general.currency_symbol][report_basic.sum_payments_this_month;onformat=runtime_number_decimal]</div>
+                                  </div>
+                                  <div class="x-split-right x-green-light">
+                                    <div class="x-heading">[lang.lang_total]</div>
+                                    <div class="x-body">[settings_general.currency_symbol][report_basic.sum_payments_all;onformat=runtime_number_decimal]</div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="project-report-stats">
+                              <ul>
+                                <div class="x-title">[lang.lang_stats]</div>
+                                <li><span class="x-icon"><i class="icon-flag-alt"></i></span><span class="x-text">[lang.lang_all_milestones]</span> <span class="x-counter">
+                                  <label class="label label-info">[report_basic.count_milestones_all;onformat=runtime_number]</label>
+                                  </span></li>
+                                <li><span class="x-icon"><i class="icon-flag"></i></span><span class="x-text">[lang.lang_completed_milestones]</span> <span class="x-counter">
+                                  <label class="label label-success">[report_basic.count_milestones_completed;onformat=runtime_number]</label>
+                                  </span></li>
+                                <li><span class="x-icon"><i class="icon-bug"></i></span><span class="x-text">[lang.lang_pending_bugs]</span> <span class="x-counter">
+                                  <label class="label label-purple">[report_basic.count_bugs_pending;onformat=runtime_number]</label>
+                                  </span></li>
+                                <li><span class="x-icon"><i class="icon-time"></i></span><span class="x-text">[lang.lang_time_spent]</span> <span class="x-counter">
+                                  <label class="label label-warning">[report_basic.sum_timers;onformat=runtime_timer]</label>
+                                  </span></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--/#WI_REPORT_HEADER-->
+                  <!--WI_REPORT_TIME_SHEET-->
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="project-report">
+                        <div class="x-header"><i class="icon-time"></i> [lang.lang_time_sheet]</div>
+                        <div class="x-body">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                              <th>[lang.lang_user]</th>
+                                <th>[lang.lang_name]</th>
+                                <th>[lang.lang_status]</th>
+                                <th>[lang.lang_time]</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            [report_time;block=begin]
+                              <tr>
+                                <td><img class="avatar-smallest image-boardered" src="[conf.site_url;noerr]/files/avatars/[report_time.team_profile_avatar_filename;block=tr;onformat=runtime_check_avatar]" alt=""/></td>
+                                <td>[report_time.team_profile_full_name]</td>
+                                <td>[report_time.timer_status;onformat=runtime_status_colors;htmlconv=no]</td>
+                                <td>[report_time.timer_seconds;onformat=runtime_timer]</td>
+                              </tr>
+                            [report_time;block=end]  
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--/#WI_REPORT_TIME_SHEET-->
+<!--WI_REPORT_TASKS-->
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="project-report">
+                        <div class="x-header"><i class="icon-list-ul"></i> [lang.lang_tasks]</div>
+                        <div class="x-body">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                              <th>[lang.lang_user]</th>
+                                <th>[lang.lang_name]</th>
+                                <th>[lang.lang_pending]</th>
+                                <th>[lang.lang_completed]</th>
+                                <th>[lang.lang_behind]</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            [report_tasks;block=begin]
+                              <tr>
+                                <td><img class="avatar-smallest image-boardered" src="[conf.site_url;noerr]/files/avatars/[report_tasks.team_profile_avatar_filename;block=tr;onformat=runtime_check_avatar]" alt=""/></td>
+                                <td>[report_tasks.team_profile_full_name]</td>
+                                <td>[report_tasks.count_tasks_pending;onformat=runtime_number]</td>
+                                <td>[report_tasks.count_tasks_completed;onformat=runtime_number]</td>
+                                 <td>[report_tasks.count_tasks_behind;onformat=runtime_number]</td>
+                              </tr>
+                            [report_tasks;block=end]  
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--/#WI_REPORT_TASKS-->
+ 
+ 
+ <!--WI_REPORT_TASKS-->
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="project-report">
+                        <div class="x-header"><i class="icon-credit-card"></i> [lang.lang_payments]</div>
+                        <div class="x-body">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                              <th>[lang.lang_date]</th>
+                                <th>[lang.lang_invoice_id]</th>
+                                <th>[lang.lang_transaction_id]</th>
+                                <th>[lang.lang_payment_method]</th>
+                                <th>[lang.lang_amount]</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            [report_payments;block=begin]
+                              <tr>
+                                <td>[report_payments.payments_date;onformat=runtime_date]</td>
+                                <td>[report_payments.payments_invoice_id]</td>
+                                <td>[report_payments.payments_transaction_id;onformat=runtime_check_blank]</td>
+                                <td>[report_payments.payments_method]</td>
+                                 <td>[settings_general.currency_symbol][report_payments.payments_amount;onformat=runtime_number_decimal]</td>
+                              </tr>
+                            [report_payments;block=end]  
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--/#WI_REPORT_TASKS-->                 
+                  <!--WI_REPORT_SECTION-->
+                  <!--WI_TABS_NOTIFICATIONS-->
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <!--[onshow;block=div;when [visible.wi_tabs_notification] == 1;comm]-->
+                      <div class="widget-tabs-notification"> [vars.notification;noerr] </div>
+                    </div>
+                  </div>
+                  <!--WI_TABS_NOTIFICATIONS-->
+                </div>
+                <div class="clearfix"></div>
+                <!-----------------------------------------------TABS-FILES------------------------------------------------------------------>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--WI_NOTIFICATION-->
+        <div class="row">
+          <!--[onshow;block=div;when [visible.wi_notification] == 1;comm]-->
+          <div class="col-md-12">
+            <div class="widget">
+              <div class="widget-content widget-big-box">[vars.notification;noerr]</div>
+            </div>
+          </div>
+        </div>
+        <!--WI_NOTIFICATION-->
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>
+<!----------------------COMMON FOOTER--------------------------------->
+<!--[onload;file=../common/common.footer.html;getbody;comm]-->
+<!----------------------COMMON FOOTER--------------------------------->
+<!-- Scroll to top -->
+<span class="totop"><a href="#"><i class="icon-chevron-up"></i></a></span>
+<!--WI_IFRAME_MODAL-->
+<div class="row">
+  <div id="modalIframe" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+          <!--full screen icon - custom.js-->
+          <button type="button" class="full-screen-modal close" aria-hidden="true"><i class="icon-fullscreen"></i></button>
+          <!--full screen icon - custom.js-->
+          <h4 class="modal-title" id="modal-iframe-title"> [lang.lang_edit]</h4>
+          <div class="clearfix"></div>
+        </div>
+        <div class="modal-body">
+          <iframe frameborder="0" class="slimScrollBarModal----"></iframe>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true">[lang.lang_close]</button>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--WI_IFRAME_MODAL-->
+<!----------------------COMMON PROJECT FOOTER--------------------------------->
+<!--[onload;file=common.project.footer.html;getbody;comm]-->
+<!----------------------COMMON PROJECT FOOTER--------------------------------->
+<!--CHART-ALL-TASKS-->
+<script type="text/javascript">
+<!--[onshow;block=div;when [vars.my_group] == 1;comm]-->
+$().ready(function(){
+
+        //chart data
+		var data = [
+		{ label: "[lang.lang_pending] - [report_basic.count_tasks_pending;onformat=runtime_number]",  data: [report_basic.count_tasks_pending;onformat=runtime_number], color: '#0993d3'},
+		{ label: "[lang.lang_behind] - [report_basic.count_tasks_behind;onformat=runtime_number]",  data: [report_basic.count_tasks_behind;onformat=runtime_number], color: '#69c5ef'},
+		{ label: "[lang.lang_completed] - [report_basic.count_tasks_completed;onformat=runtime_number]",  data: [report_basic.count_tasks_completed;onformat=runtime_number], color: '#A5A5A5'}
+		];
+
+    //plot the chart
+$.plot($("#report-chart-tasks"), data,
+{
+        series: {
+            pie: {
+			    innerRadius: 0.5,
+                show: true
+            }
+        }
+});
+});
+
+</script>
+<!--CHART-ALL-TASKS-->
+<!--------------------COMMON FOOTER JAVASCRIPT---------------------------->
+<!--[onload;file=../common/common.footer.javascript.html;getbody;comm]-->
+<!--------------------COMMON FOOTER JAVASCRIPT---------------------------->
+</body>
+</html>

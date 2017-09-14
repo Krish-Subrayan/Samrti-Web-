@@ -1,0 +1,555 @@
+<!--WI_ADD_PRODUCT_MODAL-->
+
+<div class="row">
+  <div id="addProductModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog addProduct">
+      <div class="modal-content">
+        <div class="modal-header back-color">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+          <h4 class="modal-title text-center" id="product-title"></h4>
+        </div>
+        <div class="modal-body login">
+          <div class="form-login-wrapper view-product">
+            <form action="" id="addProduct" method="post">
+            
+              <div class="product-buttons group-pos">
+                  <div class="clearfix">
+                    <div class="btn-group">
+                      <button id="add-antall" type="button" data-switch-set="#add_product" data-switch-value="qty" class="btn btn-default">Antall</button>
+                      <button id="add-fritekst" type="button" data-switch-set="#add_product" data-switch-value="des" class="btn btn-default">Fritekst</button>
+                      <button id="add-reklamasjon" type="button" data-switch-set="#add_product" data-switch-value="extra" class="btn btn-default">Reklamasjon</button>
+                    </div>
+                    <input type="hidden" name="add_product" id="add_product" value="%">
+                  </div>
+                </div>
+                
+              <div class="des-wrapper">
+                    <div class="pull-left col-md-12">
+                      <p class="fs-16 green-text">Fritekst</p>
+                      <textarea name="spl_instruction" id="spl_instruction"></textarea>
+                    </div>              
+			 </div>	                
+              <div class="extra-wrapper">
+                  <div class="col-md-6 fs-16">
+                    <input type="checkbox" class="" value="" name="complain" id="complain">
+                    Reklamasjon
+                  </div>
+                   <div class="col-md-6 fs-16">
+                    <input type="checkbox" class="" value="" name="in_house" id="in_house">
+                    Renses på huset
+                  </div>
+			  </div>            
+            
+             <div class="qty-wrapper"> 
+              <div class="input-wrapper">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <input type="text" name="product[0][qty]" placeholder="0" id="quantity" value="0" />
+                    <input type="hidden" id="last_product" name="last_product" value="0" />
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="numeric-wrapper">
+                <div class="clearfix">
+                  <div class="col-xs-4">
+                    <div class="num">7</div>
+                  </div>
+                  <div class="col-xs-4">
+                    <div class="num">8</div>
+                  </div>
+                  <div class="col-xs-4">
+                    <div class="num">9</div>
+                  </div>
+                </div>
+                <div class="clearfix">
+                  <div class="col-xs-4">
+                    <div class="num">4</div>
+                  </div>
+                  <div class="col-xs-4">
+                    <div class="num">5</div>
+                  </div>
+                  <div class="col-xs-4">
+                    <div class="num">6</div>
+                  </div>
+                </div>
+                <div class="clearfix">
+                  <div class="col-xs-4">
+                    <div class="num">1</div>
+                  </div>
+                  <div class="col-xs-4">
+                    <div class="num">2</div>
+                  </div>
+                  <div class="col-xs-4">
+                    <div class="num">3</div>
+                  </div>
+                </div>
+                <div class="clearfix">
+                  <div class="col-xs-4">
+                    <div class="dot">.</div>
+                  </div>
+                  <div class="col-xs-4">
+                    <div class="num">0</div>
+                  </div>
+                  <div class="col-xs-4 blue">
+                    <div class="clear fs-10 red-clear">Fjern</div>
+                  </div>
+                </div>
+             </div>   
+             </div> 
+             <div class="numeric-wrapper">
+                <div class="col-xs-6">
+                    <input  type="submit" class="" value="OK">
+                </div>
+                <div class="col-xs-6">
+                    <input  type="reset" class="red reset" value="[lang.lang_delete]" >
+                </div>
+                <div class="clearfix"></div>
+             </div>                
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--WI_ADD_PRODUCT_MODAL--> 
+
+<!-- add product --> 
+<script type="text/javascript">
+
+	
+	$(document).ready(function() {
+		
+		
+		$(".clear").click(function(){  
+			$('#quantity').val('');
+			$('#edit_quantity').val('');
+			
+		});
+		
+		
+		/* group pos ends */
+		$('.product-buttons .btn-group .btn:first').trigger('click');
+
+		$('.des-wrapper').hide();
+		$('.extra-wrapper').hide();
+		
+	
+		$('.product-buttons .btn').on("click", function() {
+			tab_val = $(this).data('switch-value');
+			
+			if(tab_val == 'qty') {
+				$('.des-wrapper').hide();
+				$('.extra-wrapper').hide();
+				$('.qty-wrapper').show();
+			}else if(tab_val == 'extra'){
+				$('.des-wrapper').hide();
+				$('.extra-wrapper').show();
+				$('.qty-wrapper').hide();
+				
+			}else if(tab_val == 'des'){
+				$('.des-wrapper').show();
+				$('.extra-wrapper').hide();
+				$('.qty-wrapper').hide();
+			}
+			
+		});
+		
+		
+		
+		$('#addProduct .numeric-wrapper .num').on("click",function(){
+			var new_val = $('#quantity').val();
+			$('#quantity').val(new_val + $(this).html());
+		});
+		
+		$('#addProduct .numeric-wrapper .dot').on("click",function(){
+			var str = $('#quantity').val();
+			//$('#quantity').val(new_val + $(this).html());
+			n = str.indexOf('.');
+			if(n == -1){
+				prefix = ($('#quantity').val() == '') ? '0' : $('#quantity').val();
+				$('#quantity').val(prefix + $(this).html());
+				$('#quantity').focus();
+			}			
+			
+		});
+		
+		
+		var id ;
+		var name;
+		var price;
+		var img;
+		var desp;
+		var gtype;
+		var duration;
+		var complain;		
+		var in_house;
+		var note;
+		
+
+		$('a.productimg').click(function(){  
+		
+		$( "#add-antall").trigger( "click" );
+			var title = $(this).data('title');
+			$("h4#product-title").html(title);		
+		
+			var stuff = $(this).attr('data-stuff').split('@');
+			 id = stuff[0];
+			 name = stuff[1];
+			 price = stuff[2];
+			 img = stuff[3];
+			 desp = stuff[4];
+			 gtype = stuff[5];
+			 duration = stuff[6];
+			 note = stuff[7];
+			 
+			 $('#quantity').val('0');
+			 $('#last_product').val(id);
+			 
+			 /*if(note!=''){
+				 $('#disclaimer').html(note);
+				 $('#noteconfirm').modal({ backdrop: 'static', keyboard: false });
+			 }
+			 else{*/
+				 $('.product-buttons .btn-group .btn:first').trigger('click');
+				 $('#addProductModal').modal({ backdrop: 'static', keyboard: false });
+			 //}
+			return false;
+			 
+		});
+		
+	
+	
+		$("form#addProduct").submit(function(e){
+			 e.preventDefault();	
+			 var processing = false;
+			 if(processing == false){
+			  in_house = 0;
+			  complain = 0;
+	 
+				 
+			if($('#in_house').prop('checked') === true){
+				in_house = 1;
+			}
+			else{
+				in_house = 0;
+			}
+				 
+			if($('#complain').prop('checked') === true){
+				complain = 1;
+			}
+			else{
+				complain = 0;
+			}
+
+
+			var lproid=$('#last_product').val();
+			 
+			 var stuff = $("#pro_"+lproid).attr('data-stuff').split('@');
+			 id = stuff[0];
+			 name = stuff[1];
+			 price = stuff[2];
+			 img = stuff[3];
+			 desp = stuff[4];
+			 gtype = stuff[5];
+			 duration = stuff[6];
+			 
+			 
+				processing = true;
+				 $.ajax({
+					type: "POST",
+					url: "[conf.site_url;noerr]/admin/smartlaundry/insert-cart",
+					data: {
+						pid: id,
+						name: name,
+						price: price,
+						qty: $('#quantity').val(),
+						img: img,
+						desp: desp,
+						gtype : gtype,
+						duration : duration,
+						complain: complain,
+						in_house: in_house,
+						spl_instruction : $('#spl_instruction').val(),
+						
+						
+					},
+				   beforeSend: function(){
+					   	 $('#addProductModal').modal('hide');
+						 $("#ajax-loader-"+gtype).show();
+						 $("."+gtype).hide();
+				   },
+				   complete: function(){
+						processing = false;
+						$("#ajax-loader-"+gtype).hide();
+						$("."+gtype).show();
+				   },
+				   dataType: "json",
+				   success: function (data) {
+					   // alert(data.order_list_rens);
+						//alert(data.order_list_vask);
+						
+						$(".rens").html(data.order_list_rens);
+						$(".vask").html(data.order_list_vask);
+						$('#quantity').val('0');
+						$('.product-buttons .btn-group .btn:first').trigger('click');
+						$('#in_house,#complain').prop('checked', false);	
+						$('#spl_instruction').val("");					
+						
+						//subtotal of a cart
+						$('#delsum').val(data.delsum);
+						$('.delsum').html('kr '+data.delsum_currency+'');
+						
+						//total of a cart
+						$('#total').val(data.delsum);
+						$('.total').html('kr '+data.delsum_currency+'');	
+						$('.mva').html('kr '+data.mva_currency+'');
+						
+						$('.cart_total').html(data.count);
+						
+						var $picker=$(".datepicker");
+						$picker.datepicker({autoclose:true,format: 'dd.mm.yyyy'});
+						var pickerObject = $picker.data('datepicker');
+						$picker.on('changeDate', function(ev){
+								$picker.datepicker('hide');
+						});
+						$(".datepicker").on('hide', function(ev){
+							   dpclosefire($(this))
+						});
+						
+						 
+						$('a.editprod').click(function(){  
+	
+							var title = $(this).data('title');
+							$("h4#edit-product-title").html(title);		
+						
+							var stuff = $(this).attr('data-stuff').split('@');
+								
+							 id = stuff[0];
+							 name = stuff[1];
+							 price = stuff[2];
+							 img = stuff[3];
+							 desp = stuff[4];
+							 rowid = stuff[5];
+							 qty = stuff[6];
+							 gtype = stuff[7];
+							 //duration = stuff[8];
+							 complain = stuff[8];
+							 in_house =  stuff[9];
+							 
+							$('#edit_spl_instruction').val(desp);
+							$('#edit_quantity').val(qty);
+							
+							if(stuff[0] == 143)
+							{
+								$('#edit-antall').html('Pris');
+								$('#edit_quantity').val(stuff[2]);
+							}
+							else
+							{
+								$('#edit-antall').html('Antall');
+							}
+							
+							if(in_house == 1){
+								//alert("inhouse" + in_house);
+								//$('input:checkbox[name=in_house]').attr('checked',true);
+								
+								$('#house_div').html('<input type="checkbox" checked="checked" value="" name="in_house" id="edit_in_house"> Renses på huset');
+							}
+							else{
+								$('#house_div').html('<input type="checkbox"  value="" name="in_house" id="edit_in_house"> Renses på huset');
+							}
+			
+							if(complain == 1){
+								$('#complain_div').html('<input type="checkbox" checked="checked" value="" name="complain" id="edit_complain">Reklamasjon');
+							}
+							else{
+								$('#complain_div').html('<input type="checkbox" value="" name="complain" id="edit_complain"> Reklamasjon');
+							}
+		
+						});
+						
+						
+				
+					$("form#editProduct").submit(function(){
+						 var processing = false;
+						 if(processing == false){
+							in_house = 0;
+							complain = 0;
+							 
+								 
+							if($('#edit_in_house').prop('checked') === true){
+								in_house = 1;
+							}
+							else{
+								in_house = 0;
+							}
+								 
+							if($('#edit_complain').prop('checked') === true){
+								complain = 1;
+							}
+							else{
+								complain = 0;
+							}
+
+							 
+							processing = true;
+							 $.ajax({
+								type: "POST",
+								url: "[conf.site_url;noerr]/admin/smartlaundry/update-cart",
+								data: {
+									pid: id,
+									name: name,
+									price: price,
+									qty: $('#edit_quantity').val(),
+									img: img,
+									desp: $('#edit_spl_instruction').val(),
+									rowid:rowid,
+									gtype : gtype,
+									complain : complain,
+									in_house : in_house
+									
+									
+								},
+							   beforeSend: function(){
+									 $('#editProductModal').modal('hide');
+									 $("#ajax-loader-"+gtype).show();
+									 $("."+gtype).hide();
+							   },
+							   complete: function(){
+									processing = false;
+									$("#ajax-loader-"+gtype).hide();
+									$("."+gtype).show();
+							   },
+							   dataType: "json",
+							   success: function (data) {
+									//alert(data.error);
+									//alert(data.order_list);
+									$(".rens").html(data.order_list_rens);
+									$(".vask").html(data.order_list_vask);
+									
+									
+									//subtotal of a cart
+									$('#delsum').val(data.delsum);
+									$('.delsum').html('kr '+data.delsum_currency+'');
+									
+									//total of a cart
+									$('#total').val(data.delsum);
+									$('.total').html('kr '+data.delsum_currency+'');
+									
+									$('.mva').html('kr '+data.mva_currency+'');
+									$('.cart_total').html(data.count);
+			
+			
+									$('a.editprod').click(function(){  
+	
+									var title = $(this).data('title');
+									$("h4#edit-product-title").html(title);		
+								
+									var stuff = $(this).attr('data-stuff').split('@');
+										
+									 id = stuff[0];
+									 name = stuff[1];
+									 price = stuff[2];
+									 img = stuff[3];
+									 desp = stuff[4];
+									 rowid = stuff[5];
+									 qty = stuff[6];
+									 gtype = stuff[7];
+									 //duration = stuff[8];
+									 complain = stuff[8];
+									 in_house =  stuff[9];
+					
+					
+							$('#edit_spl_instruction').val(desp);
+							$('#edit_quantity').val(qty);
+							
+									 
+							if(stuff[0] == 143)
+							{
+								$('#edit-antall').html('Pris');
+								$('#edit_quantity').val(stuff[2]);
+							}
+							else
+							{
+								$('#edit-antall').html('Antall');
+							}
+			 
+							
+							if(in_house == 1){
+								
+								$('#house_div').html('<input type="checkbox" checked="checked" value="" name="in_house" id="edit_in_house"> Renses på huset');
+							  
+							}
+							else{
+								$('#house_div').html('<input type="checkbox"  value="" name="in_house" id="edit_in_house"> Renses på huset');
+								
+							}
+			
+							if(complain == 1){
+								$('#complain_div').html('<input type="checkbox" checked="checked" value="" name="complain" id="edit_complain"> Reklamasjon');
+							}
+							else{
+								$('#complain_div').html('<input type="checkbox" value="" name="complain" id="edit_complain"> Reklamasjon');
+							}
+			
+			     });
+								   
+								   
+									var $picker=$(".datepicker");
+									$picker.datepicker({autoclose:true,format: 'dd.mm.yyyy'});
+									var pickerObject = $picker.data('datepicker');
+									$picker.on('changeDate', function(ev){
+											$picker.datepicker('hide');
+									});
+									$(".datepicker").on('hide', function(ev){
+										   dpclosefire($(this))
+									});
+								   
+								   
+			
+			
+								}
+							});
+						}
+						else {
+							alert('[lang.lang_process_goingon]');
+						}
+						return false;
+					});
+									
+					   
+					}
+				});
+			}
+			else {
+				alert('[lang.lang_process_goingon]');
+			}
+			return false;
+		});
+
+});
+	function triggerAddProduct(){
+		
+		$('.product-buttons .btn-group .btn:first').trigger('click');
+		$('#addProductModal').modal({ backdrop: 'static', keyboard: false });
+	}
+
+</script> 
+<!-- add product -->
+<div id="noteconfirm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog " style="max-width: 450px; margin-top:150px">
+<div class="modal-content widget ">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+<h3 class="modal-title text-center" id="product-title">Kunde Info</h3>
+</div>
+<div class="padd"><h4 class="text-center"><b id="disclaimer"></b>
+</h4></div>
+<div class="modal-footer">
+<button type="button" onclick="triggerAddProduct();"  data-dismiss="modal" class="btn red" >OK</button>
+</div>
+</div>
+</div>
+</div>

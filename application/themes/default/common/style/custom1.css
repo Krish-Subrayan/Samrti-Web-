@@ -1,0 +1,39 @@
+.branch p , #opening-hours p{
+	font-family: 'Harabara Mais LtIt';
+	font-size:20px;
+	line-height:1.1;
+}
+.branch p span{
+	font-size:28px;
+}
+#opening-hours p {
+	font-size:14px;
+}
+#opening-hours p span {
+	font-size:20px;
+}
+#timmer div {
+	font-size:17px;
+	margin-bottom:2px;
+}
+#timmer .btn-info {
+	font-size:21px !important;
+}
+ul.menu li a {
+  background: none;
+}
+ul.menu li a span {
+  background: none;
+}
+.orderline p span {
+  font-weight: normal;
+}
+.orderline .pull-left:first-child {
+	margin-top: 10px;
+}
+.orderline .pull-left .price {
+	margin-top: 20px;
+}
+.count {
+  line-height: 19px;
+}

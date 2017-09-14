@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+<link href="../common/style/bootstrap.css" rel="stylesheet">
+<link href="../common/style/style.css" rel="stylesheet">
+<!--[onshow;block=head;when [visible.foo] == bar;comm]-->
+<!--DEV-ONLY-NOT-LOADED-DURING-RUNTIME-->
+</head>
+<!--HEAD - ONLOAD-->
+<!--[onload;file=../common/common.head.html;getbody;comm]-->
+<!--HEAD - ONLOAD-->
+<body class="ModalPopUp" style="padding-top:5px;">
+<!--JS SECTION - ONLOAD-->
+<!--[onload;file=../common/common.javascript.html;getbody;comm]-->
+<!--JS SECTION - ONLOAD-->
+<!--DEBUG SECTION - ONLOAD-->
+<!--[onload;file=../common/include.debug.html;getbody;comm]-->
+<!--DEBUG SECTION - ONLOAD-->
+<div class="content task-details">
+  <!----------------------COMMON NOTICES--------------------------------->
+  <!--[onload;file=../common/common.notices.html;getbody;comm]-->
+  <!----------------------COMMON NOTICES--------------------------------->
+  <div class="tbs">
+    <!--[onshow;block=div;when [visible.show_bug] == 1;comm]-->
+    <!--/#HEADING-->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="bug-heading">
+          <ul class="x-meta">
+            <li><span class="text-dark">[lang.lang_status]:</span>
+              <!--[bug.bugs_status;onformat=runtime_status_colors;htmlconv=no;comm]-->
+            </li>
+            <li><span class="text-dark">[lang.lang_submitted_by]:</span> [bug.submitted_by_name] </li>
+            <li><span class="text-dark">[lang.lang_date_added]:</span> [bug.bugs_date;onformat=runtime_date]</li>
+          </ul>
+          <ul class="x-meta">
+            <li><span class="text-dark">[lang.lang_project]:</span> [bug.projects_title;ope=max:30]</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!--/#HEADING-->
+    <!--/#CONTENT-->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="bug-description">
+        <div class="x-title"><i class="icon-bug"></i> [lang.lang_details]</div>
+         [bug.bugs_description;htmlconv=no] </div>
+        <div class="bug-add-reply">
+          <button class="btn btn-mid btn-info divtoggle" data-toggle-div="toggleBugComments" href="#"><i class="icon-chevron-down"></i> [lang.lang_post_new_message]</button>
+          <span>
+                      <!--[onshow;block=span;when [bug.bugs_status] == 'resolved';comm]-->
+          <a class="btn btn-mid btn-danger"  href="[conf.site_url]/client/bug/[bug.bugs_project_id]/reopen-bug/[bug.bugs_id]"><i class="icon-location-arrow"></i> [lang.lang_reopen_bug]</a>
+          </span>
+        </div>
+      </div>
+    </div>
+    <!--/#CONTENT-->
+    <!--/#CONTENT-->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="box toggleBugStatus bug-status" style="display:none;">
+          <form class="form-horizontal" action="[conf.site_url]/client/bug/[bug.bugs_project_id]/update-status/[bug.bugs_id]" method="post" id="newReply">
+            <div class="form-group">
+              <!--select2.js pulldown-->
+              <select id="bugs_status" name="bugs_status" data-placeholder="Status" data-status-preselected="[bug.bugs_status]">
+                <option value="new-bug"> [lang.lang_new]</option>
+                <option value="in-progress"> [lang.lang_in_progress]</option>
+                <option value="resolved"> [lang.lang_resolved]</option>
+                <option value="not-a-bug"> [lang.lang_not_a_bug]</option>
+                <option value="recurring"> [lang.lang_recurring]</option>
+              </select>
+            </div>
+            <div class="form-group">
+                          <input type="hidden" name="bug_comments_bug_id" value="[bug.bugs_id;noerr]">
+              <input class="btn btn-primary btn-mid" type="submit" value="[lang.lang_update_bug_status]" id="" name="submit" style="margin-top:10px;">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!--/#CONTENT-->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="box toggleBugComments bug-comment" style="display:none;">
+          <form class="form-horizontal" action="[conf.site_url]/client/bug/[bug.bugs_project_id]/add-comment/[bug.bugs_id]" method="post" id="newReply" style="border-top: 1px solid #E7E7E7;">
+            <div class="box-content tickets-new">
+              <div>
+                <textarea name="bug_comments_text" id="bug_comments_text" cols="20" rows="5"></textarea>
+                <script>
+                     document.addEventListener('DOMContentLoaded', function(){
+                              CKEDITOR.replace( 'bug_comments_text', {
+                                       toolbar: 'Basic',
+                                       uiColor: '#ffffff',
+	                                   height: '190px'
+                                    });
+                            });
+                 </script>
+              </div>
+            </div>
+            <div class="pull-right" style="padding-top:10px;">
+              <input type="hidden" name="bug_comments_bug_id" value="[bug.bugs_id;noerr]">
+              <input type="hidden" name="bug_comments_project_id" value="[bug.bugs_project_id;noerr]">
+              <input class="btn btn-primary btn-mid" type="submit" value="[lang.lang_post_message]" id="" name="submit">
+            </div>
+            <div class="clearfix"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!--/#CONTENT-->
+    <!--/#COMMENTS-->
+    <div class="bug_coments_container">
+    [bug_comments;block=begin]
+    <div class="row" id="bug_comment_[bug_comments.bugs_id]">
+      <div class="col-lg-12">
+        <div class="bug-comments"> <img alt="" src="[conf.site_url;noerr]/files/avatars/[bug_comments.avatar_filename;onformat=runtime_check_avatar]" class="avatar-small image-boardered pull-left">
+          <div class="bug-comment-body">
+            <div class="x-meta">[bug_comments.comment_by;htmlconv=no]
+              <div class="pull-right">[bug_comments.bug_comments_date_added;onformat=runtime_time_ago]</div>
+            </div>
+            <div class="x-message">[bug_comments.bug_comments_text;htmlconv=no]</div>
+            <div class="x-control pull-right"> <span>
+              <!--[onshow;block=div;when [permission.delete_item_bugs] == 1;comm]-->
+              <button class="btn btn-xs btn-default ajax-delete-content"
+                                        data-popconfirm-yes="[lang.lang_yes;noerr]"
+			                            data-popconfirm-no="[lang.lang_no;noerr]"
+                                        data-popconfirm-title="[lang.lang_confirm_delete_item;noerr]"
+                                        data-popconfirm-placement="left"
+                                        data-parent-div-id="bug_comment_[bug_comments.bugs_id]"
+                                        data-mysql-record-id="[bug_comments.bug_comments_id]"
+                                        data-ajax-url="[conf.site_url]/admin/ajax/delete-bug-comment"> <i class="icon-remove"></i> </button>
+              </span> </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    [bug_comments;block=end]
+    </div>
+    <!--/#COMMENTS-->
+  </div>
+  <!--WI_NOTIFICATION-->
+  <div class="row">
+    <!--[onshow;block=div;when [visible.wi_notification] == 1;comm]-->
+    <div class="col-md-12">
+      <div class="widget">
+        <div class="widget-content widget-big-box"> [vars.notification;noerr]</div>
+      </div>
+    </div>
+  </div>
+  <!--WI_NOTIFICATION-->
+</div>
+<!--JS_PRESELECTED-->
+<script type="text/javascript">
+$(document).ready(function(){
+        //get the preselected values from data atrributes
+		var bugs_status = $("#bugs_status").attr("data-status-preselected");
+
+       //pre-select data in pull down lists
+       $("#bugs_status").select2().select2('val', bugs_status);
+
+});
+</script>
+<!--/#JS_PRESELECTED-->
+<!--------------------COMMON FOOTER JAVASCRIPT---------------------------->
+<!--[onload;file=../common/common.footer.javascript.html;getbody;comm]-->
+<!--------------------COMMON FOOTER JAVASCRIPT---------------------------->
+</body>
+</html>

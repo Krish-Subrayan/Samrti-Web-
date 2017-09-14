@@ -1,0 +1,895 @@
+<!-- 12 starts -->
+<div id="discount_modal12" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog saldo">
+    	<div class="modal-content">
+        	<div class="modal-header back-color">
+                <button type="button" class="close" id="saldo_close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h4 class="modal-title text-center">Legg til saldo</h4>
+             </div>
+             <div class="modal-body login">
+             	<div class="form-login-wrapper" id="discount_modal12">
+                	<form action="" id="discount_modal12">
+                    	<div class="saldo-buttons">
+                            <div class="clearfix">
+                                <div class="col-xs-4">
+                                  <a href="#" class="btn btn-default" data-kr="2600" style="background: #ff9933; color:#fff!important;border: 2px dashed #fff;">kr 2600</a>
+                              </div>
+                              <div class="col-xs-4">
+                                  <a href="#" class="btn btn-default" data-kr="200">kr 200</a>
+                              </div>
+                              <div class="col-xs-4">
+                                  <a href="#" class="btn btn-default" data-kr="500">kr 500</a>
+                              </div>
+                            </div>
+                            <div class="clearfix">
+                              <div class="col-xs-4">
+                                  <a href="#" class="btn btn-default" data-kr="1000">kr 1000</a>
+                              </div>
+                              <div class="col-xs-4">
+                                  <a href="#" class="btn btn-default" data-kr="2000">kr 2000</a>
+                              </div>
+                              <div class="col-xs-4">
+                                  <a href="#" class="btn btn-default" data-kr="5000">kr 5000</a>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="input-wrapper">
+                            <div class="row">
+                              <div class="col-xs-12">
+                                <input type="text" value="" name="discount_val12" placeholder="0" id="discount_val12" />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="numeric-wrapper">
+                            <div class="clearfix">
+                            <div class="col-xs-4">
+                                <div class="num">7</div></div>
+                              <div class="col-xs-4">
+                                <div class="num">8</div></div>
+                              <div class="col-xs-4">
+                                <div class="num">9</div></div>
+                          </div>
+                          <div class="clearfix">
+                            <div class="col-xs-4">
+                                <div class="num">4</div></div>
+                              <div class="col-xs-4">
+                                <div class="num">5</div></div>
+                              <div class="col-xs-4">
+                                <div class="num">6</div></div>
+                          </div>
+                          <div class="clearfix">
+                                <div class="col-xs-4">
+                                    <div class="num">1</div></div>
+                                <div class="col-xs-4">
+                                    <div class="num">2</div></div>
+                                <div class="col-xs-4">
+                                    <div class="num">3</div></div>
+                          </div>
+                            <div class="clearfix">
+                                <div class="col-xs-4">
+                                    <div class="dot">.</div></div>
+                                <div class="col-xs-4">
+                                    <div class="num">0</div></div>
+                                <div class="col-xs-4 blue">
+                                    <div class="clear red-clear"><input style="color: #ff0000;" type="reset" value="Fjern"></div></div>
+                            </div>
+                         </div>
+                         <div class="saldo-button group-pos">
+                              <div class="col-xs-12">
+                                <div class="btn-group">
+                                  <button type="button" onclick="saldotype('Faktura');" data-switch-set="#discount_type12" data-switch-value="Faktura" class="btn btn-default ">Faktura</button>
+                                  <button type="button" onclick="saldotype('Kort');"  data-switch-set="#discount_type12" data-switch-value="Kort " class="btn btn-default">Kort </button>
+                                  <button type="button" onclick="saldotype('Cash');"  data-switch-set="#discount_type12" data-switch-value="Kontant" class="btn btn-default">Kontant</button>
+								  <button type="button" onclick="saldotype('Gavekort');"  data-switch-set="#discount_type12" data-switch-value="Gavekort" class="btn btn-default">Gavekort</button>
+                                </div>
+                                <input type="hidden" name="discount_type12" id="discount_type12">
+                                <input type="hidden" name="saldo_status" id="saldo_status" value="[vars.saldo_status]">
+                                <input type="hidden" name="category" id="category" value="[vars.category]">
+                              </div>
+
+                         </div>
+						<div class="clearfix"></div>
+						<div id="giftcard_msg">
+						
+						</div>
+						<div class="saldo-sub">
+                         	<div class="col-xs-12">
+                            	<input  type="submit" class="pay_type" value="BETAL">
+								<input id="saldobetal" style="display:none;" type="submit" value="BETAL">
+                            </div>
+                         </div>
+                    </form>
+                </div>
+             </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div> 
+
+<!--[onshow;block=div;when [visible.saldo_status] == 1;comm]-->
+<script type="text/javascript">
+$(document).ready(function() {
+	//$('#saldoconfirm').modal({ backdrop: 'static', keyboard: false });
+	$('.customer-saldo').show();
+	$('#customer-saldo').show();
+	$('#salgpayment').hide();
+	
+	
+});
+</script>
+ </div>
+ 
+			
+
+
+<script type="text/javascript">
+function getLocation(href) {
+    var location = document.createElement("a");
+    location.href = href;
+    // IE doesn't populate all link properties when setting .href with a relative URL,
+    // however .href will return an absolute URL which then can be used on itself
+    // to populate these additional fields.
+    if (location.host == "") {
+      location.href = location.href;
+    }
+    return location.pathname;
+}
+
+
+$(document).ready(function() {
+	
+	
+	$('#saldolink').on('click',function(e){
+		
+		
+		$('#discount_val12').focus();
+		
+			setTimeout(function() { $('#discount_val12').focus() }, 600);
+			$('.saldo-buttons a').removeClass('highlight');
+			$('.saldo-button button').removeClass('highlight');
+		
+			$('#discount_val12').val('');
+			$('#discount_val12').focus();
+			
+			$('#discount_type12').val('');
+			
+			//$('.saldo-buttons').show();
+			$("#discount_val12").attr("placeholder","0")
+
+		
+		});
+	
+		$('.saldo-buttons a').on('click',function(e){
+		
+			$('.saldo-buttons a').removeClass('highlight');
+			$(this).addClass('highlight');	
+			$('#discount_val12').val($(this).data('kr'));
+			$('#discount_val12').focus();
+			e.preventDefault();
+		});
+		
+		$(".clear").click(function(){    
+			$('.saldo-buttons a').removeClass('highlight');
+			$('#discount_val12').val('');
+			$('#discount_val12').focus();
+		});
+		
+		$('#discount_modal12 .numeric-wrapper .num').on("click",function(){
+			new_val = $('#discount_val12').val();
+			$('#discount_val12').val(new_val + $(this).html());
+			$('#discount_val12').focus();
+		});
+		
+		$('#discount_modal12 .numeric-wrapper .dot').on("click",function(){
+			str = $('#discount_val12').val();
+			n = str.indexOf('.');
+			if(n == -1){
+				prefix = ($('#discount_val12').val() == '') ? '0' : $('#discount_val12').val();
+				$('#discount_val12').val(prefix + $(this).html());
+				$('#discount_val12').focus();
+			}
+		});
+		
+		$("form#discount_modal12").submit(function(){
+			$('input[name="discount_type_12"]').val($('#discount_type12').val());
+			$('input[name="discount_value_12"]').val($('#discount_val12').val());
+			
+			//alert($('input[name="discount_type_12"]').val());
+			//alert($('input[name="discount_value_12"]').val());
+		
+			var paytype=$('input[name="discount_type_12"]').val();
+			var discount_val=$('input[name="discount_value_12"]').val();
+			
+			
+			
+			if(discount_val == '')
+			{
+				noty({
+								text: 'Please add some amount',
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+							return false;
+			}
+			
+			if(paytype == '')
+			{
+				noty({
+								text: 'Please select payment type',
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+							return false;
+			}
+			else
+			{
+				if(paytype == 'Gavekort')
+				{
+					var gift_number=$('#gift_number').val();
+					if(gift_number == '')
+					{
+						noty({
+								text: 'Please enter the Gift Card Number',
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+							return false;
+					}
+					$('#gift_number').focus();
+					
+				}
+				
+			}
+			
+			//saldo_kr = parseFloat($('#saldo_kr').val());
+			discount_val = parseFloat(discount_val);
+			if(discount_val == '0')
+			{
+				noty({
+								text: 'Please add valid amount',
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+							return false;
+			}
+			//new_kr = ($.isNumeric(saldo_kr) == true) ? saldo_kr + discount_val : discount_val;
+			//$('#lbl_saldo_kr').html(new_kr);
+			//$('#saldo_kr').val(new_kr);
+			var gift_number=$('#gift_number').val();
+			
+			$.ajax({
+						type: "POST",
+						url: "[conf.site_url;noerr]/admin/customer/addsaldo",
+						data: {
+							amount: discount_val,
+							paytype: paytype,
+							gift:gift_number
+						},
+					   beforeSend: function(){
+							//$("#coupon_msg").hide();
+					   },
+					   complete: function(){
+						//	processing = false;
+							//$("#coupon_msg").show();
+					   },
+					   dataType: "json",
+					   success: function (data) {
+						
+						if(data.status == 'success')
+						{	
+							var saldo=data.amount;
+							$('#customer-saldo').show();
+							$('#lbl_saldo_kr').html(saldo);
+							$('#saldo_kr').val(saldo);
+							$('#discount_val12').val('');
+							noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'information',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+							
+							if(data.saldocolor != '')
+							{
+							
+								$('.saldo').css('color', 'red');
+								//saldo
+							}
+							else
+							{
+								$('.saldo').css('color', '');
+							}
+							
+							
+							$('.close').trigger('click');
+							
+							if(($('#saldo_status').val() == 0) && ($('#category').val() != '')){
+								var category = $('#category').val();
+								updateProductPrice(category);
+							}
+							
+							var pathname = getLocation(window.location);
+							var res = pathname.split("/");
+							if(res[res.length-1] == 'account'){
+								//
+								$.ajax({
+								type: "GET",
+								url: "[conf.site_url;noerr]/admin/customer/ajaxaccount",
+								beforeSend: function(){
+									$("#ajax-loader").show();
+									$("#accountlog").hide();
+								},
+							   complete: function(){
+									$("#ajax-loader").hide();
+									$("#accountlog").show();
+									
+								},
+								dataType: "json",
+								success: function (data) {
+									$("#accountlog").html(data.account_log);
+								}
+								});
+							
+							}
+							
+							preparebillprintFrame(data.saldoid);
+							
+							
+						/*	
+							var win = window.open('[conf.site_url;noerr]/admin/customer/saldoprint/'+data.saldoid+'', '_blank',"width=512,height=500");
+									//var win=window.open('','_blank','width=512,height=500');
+									
+									if (win) {
+										win.focus();                
+										setTimeout(function () {
+											//win.print();
+											win.close();
+										}, 90000); 
+										
+									} else {
+										//Browser has blocked it
+										noty({
+										text: 'Please allow popups for this website',
+										layout: 'bottomRight',
+										type: 'warning',
+										timeout: [settings_general.notifications_display_duration;noerr]
+										});
+									}*/
+							
+						}
+						else
+						{
+							/*noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});*/
+							
+							$('#registration_fail').show();
+							$('#registration_fail').html(data.message);
+							$('.close').trigger('click');
+							$('#customerinfobtn').trigger('click');
+							
+						}
+						
+						
+						
+						}
+					});
+			
+			
+			
+
+			return false;
+		});
+		
+		$('.saldo-button .btn:first').trigger('click');
+	  
+	});
+	
+	
+function preparebillprintFrame(saldoid) {
+
+		var ifrmm = document.createElement("iframe");
+        ifrmm.setAttribute("src", "[conf.site_url;noerr]/admin/printecspos/print-saldo/"+saldoid);
+        ifrmm.style.width = "640px";
+        ifrmm.style.height = "480px";
+		ifrmm.style.display = "none";
+        document.body.appendChild(ifrmm);
+		
+}
+
+	
+//update product price once user subscribed
+function updateProductPrice(category){
+	
+		 $.ajax({
+			type: "POST",
+			url: "[conf.site_url;noerr]/admin/products/update-product-price",
+			data: {
+				category: category
+			},
+		   beforeSend: function(){
+				 $("#ajax-loader-products").show();
+				 $(".prod-column").hide();
+		   },
+		   complete: function(){
+				processing = false;
+				$("#ajax-loader-products").hide();
+				$(".prod-column").show();
+		   },
+		   dataType: "json",
+		   success: function (data) {
+				$(".prod-column").html(data.prod_list);
+				$('#saldo_status').val('1');
+				
+				$('a.productimg').click(function(){  
+					var title = $(this).data('title');
+					$("h4#product-title").html(title);		
+				
+					var stuff = $(this).attr('data-stuff').split('@');
+					
+					 id = stuff[0];
+					 name = stuff[1];
+					 price = stuff[2];
+					 img = stuff[3];
+					 desp = stuff[4];
+					 gtype = stuff[5];
+					 duration = stuff[6];
+					 $('#quantity').val('1');
+					 
+					 
+				});
+					
+				
+			}
+		});
+
+}
+
+function skipSaldo()
+{
+	$.ajax({
+			type: "POST",
+			url: "[conf.site_url;noerr]/admin/products/skipsaldo",
+		    dataType: "json",
+		    success: function (data) {
+				console.log(data);
+			}
+		});
+}
+	
+</script>
+ 
+<script type='text/javascript'>//<![CDATA[
+$(window).load(function(){
+$('.pay_type').on('click', function(e){
+    
+			var paytype=$('#discount_type12').val();
+			var discount_val=$('#discount_val12').val();
+			if(discount_val == '')
+			{
+				if(paytype == 'Gavekort')
+				{
+					noty({
+								text: 'Please enter your gift card number',
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+								$('#discount_val12').focus();
+							return false;
+				}
+				else
+				{
+					noty({
+								text: 'Please add some amount',
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+								$('#discount_val12').focus();
+							return false;
+				}
+				
+			}
+			else if(paytype == '')
+			{
+				noty({
+								text: 'Please select payment type',
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+							return false;
+			}
+			else
+			{
+		
+		
+				if(paytype == 'Gavekort')
+				{
+					
+					$.ajax({
+						type: "POST",
+						url: "[conf.site_url;noerr]/admin/customer/validateGiftcard",
+						data: {
+							gift:discount_val
+						},
+					   dataType: "json",
+					   success: function (data) {
+						
+						if(data.status == 'success')
+						{	
+							$('#gift_amount').html(data.amount);
+							e.preventDefault();
+							$('#giftconfirm').modal({ backdrop: 'static', keyboard: false });
+							
+						}
+						else
+						{
+							noty({
+								text: data.message,
+								layout: 'bottomRight',
+								type: 'warning',
+								timeout: [settings_general.notifications_display_duration;noerr]
+							});
+							return false;
+							
+						}
+						
+						
+						
+						}
+					});
+					
+					return false;
+					
+				}
+				else
+				{
+					e.preventDefault();
+					$('#confirm').modal({ backdrop: 'static', keyboard: false });
+					$('#new_pay_type').html($('#discount_type12').val());
+				}
+				
+			}
+			
+			
+  
+	
+	
+	
+	
+});
+});//]]> 
+
+function boxfocus()
+{
+	setTimeout(function() { $('#discount_val12').focus() }, 600);
+}
+
+function triggerSaldo()
+{
+	$('#saldolink').trigger('click');
+}
+
+
+function triggerBetal()
+{	
+	$('#saldobetal').trigger('click');
+}
+
+function saldotype(satype)
+{
+  
+	if(satype == 'Gavekort')
+	{
+		$('#gave_kort').show();
+		//$('.saldo-buttons').hide();
+		$("#discount_val12").attr("placeholder", "Gavekort nummer").val("").focus();
+		
+		
+	}
+	else
+	{	
+		$('#gave_kort').hide();
+		$('#discount_val12').focus();
+		$('.saldo-buttons').show();
+		$("#discount_val12").attr("placeholder","0")
+	}
+	
+}
+</script>
+
+
+<div id="confirm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog " style="margin-top: 348px;max-width: 450px;">
+<div class="modal-content widget ">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+</div>
+<div class="padd"><h4 class="text-center"> Ønsker du betale med <b id="new_pay_type"></b> ?</h4></div>
+<div class="modal-footer">
+<button type="button" onclick="triggerBetal();" data-dismiss="modal" class="btn green" >[lang.lang_yes]</button>
+<button type="button" onclick="boxfocus();" data-dismiss="modal" class="btn red">[lang.lang_no]</button>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="giftconfirm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog " style="margin-top: 348px;max-width: 450px;">
+<div class="modal-content widget ">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+</div>
+<div class="padd"><h4 class="text-center"> Your gift card have kr <b id="gift_amount"></b> ?</h4></div>
+<div class="modal-footer">
+<button type="button" onclick="triggerBetal();" data-dismiss="modal" class="btn green" >[lang.lang_yes]</button>
+<button type="button" onclick="boxfocus();" data-dismiss="modal" class="btn red">[lang.lang_no]</button>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="saldoconfirm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog " style="max-width: 450px; margin-top:150px">
+<div class="modal-content widget ">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+</div>
+<div class="padd"><h4 class="text-center">Vil du opprette abonnement konto?</h4></div>
+<div class="modal-footer">
+<button type="button" onclick="triggerSaldo();" data-dismiss="modal" class="btn green" >[lang.lang_yes]</button>
+<button type="button" onclick="skipSaldo();" data-dismiss="modal" class="btn red">[lang.lang_no]</button>
+</div>
+</div>
+</div>
+</div>
+
+
+<button class="btn-xlg btn-info full-width"  style="display:none;" id="customerinfobtn" data-toggle="modal" href="#customerinfo">Click</button>
+
+<div class="row">
+  <div id="customerinfo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="max-width:40%;">
+
+        <div class="modal-content">
+          <div class="modal-header back-color">
+            <button type="button" id="staff_close" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+           
+            <h4 class="modal-title login-title">Customer Profile Details</h4>
+          </div>
+          <div class="modal-body login">
+        <div class="form-login-wrapper">		
+            <div class="pw-wrapper" style="background:none;">
+                
+				 <div class="row">
+              <div class="col-md-12">
+			  
+			  <div id="registration_fail" class="response_error alert alert-danger" style="display: none;">Registrering mislyktes, vennligst prøv igjen.</div>
+              
+			  <div id="registration_success" class="response_success  alert alert-success" style="display: none;"></div>
+					  
+                <form class="form-horizontal" method="post" action=""  id="customerFrm">
+                  <div class="widget wtabs">
+                    <div class="col-md-12">
+                  
+                      <table class="table table-forms">
+                        <tbody>
+                          <tr>
+                            <td class="col-md-3 border-none">[lang.lang_fname]</td>
+                            <td class="border-none"><div class="col-sm-12 no-padding-both">
+                                <input type="text"  value="[sessiondata.customer.firstname]"   maxlength="100" class="form-control" name="firstname" id="firstname" >
+                              </div></td>
+                          </tr>
+                          <tr>
+                            <td>[lang.lang_lname]</td>
+                            <td><div class="col-sm-12  no-padding-both">
+                                <input type="text"  value="[sessiondata.customer.lastname]"   maxlength="100" class="form-control" name="lastname" id="lastname" >
+                              </div></td>
+                          </tr>
+						  
+                          <tr>
+                            <td>[lang.lang_email]</td>
+                            <td><div class="col-sm-12  no-padding-both">
+                                <input type="text"  value="[sessiondata.customer.email]"   maxlength="100" class="form-control"  name="email" id="email" >
+                              </div></td>
+                          </tr>
+						  
+						   <tr>
+                            <td>Bekreft E-post</td>
+                            <td><div class="col-sm-12  no-padding-both">
+                                <input type="text"  value="" maxlength="100" class="form-control"  name="confirm_email" id="confirm_email" >
+                              </div></td>
+                          </tr>
+						  
+						  <tr>
+                            <td>[lang.lang_mobile]</td>
+                            <td><div class="col-sm-12 no-padding-both">
+                                <input type="text" readonly value="[sessiondata.customer.mobile]"  maxlength="100" class="form-control" name="mobile" id="mobile" required>
+                              </div></td>
+                          </tr>
+                          <tr>
+                            <td>[lang.lang_street_line_1]</td>
+                            <td><div class="col-sm-12 no-padding-both">
+                                <input type="text"  value="[sessiondata.customer.street_line_1]"   maxlength="100" class="form-control" name="street_line_1" id="street_line_1" >
+                              </div></td>
+                          </tr>
+                          <tr>
+                            <td>[lang.lang_street_line_2]</td>
+                            <td><div class="col-sm-12 no-padding-both">
+                                <input type="text"  value="[sessiondata.customer.street_line_2]"   maxlength="100" class="form-control" name="street_line_2" id="street_line_2" >
+                              </div></td>
+                          </tr>
+                          <tr>
+                            <td>[lang.lang_floor]</td>
+                            <td><div class="col-sm-12 no-padding-both">
+                                <input type="text"  value="[sessiondata.customer.floor]"   maxlength="100" class="form-control" name="floor" id="floor" >
+                              </div></td>
+                          </tr>
+                          <tr>
+                            <td>[lang.lang_calling_bell]</td>
+                            <td><div class="col-sm-12 no-padding-both">
+                                <input type="text"  value="[sessiondata.customer.calling_bell]"   maxlength="100" class="form-control" name="calling_bell" id="calling_bell" >
+                              </div></td>
+                          </tr>
+						  
+						  
+                          <tr>
+                            <td>[lang.lang_zip]</td>
+                            <td><div class="col-sm-12 no-padding-both">
+                                <input type="text"  value="[sessiondata.customer.zip]"   maxlength="100" class="form-control" name="zip" id="zip" required>
+                              </div></td>
+                          </tr>
+						 
+						  
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="modal-footer mb-lg">
+                     <button type="button"  onclick="updateProfile();" id="register_btn" class="btn green " data-loading-text="Registrerer ...."> [lang.lang_submit] </button>
+						 <button type="button" data-dismiss="modal" aria-hidden="true"  class="btn red" >Cancel</button>
+                   		
+                                        </div>    
+                  </div>
+                </form>
+              </div>
+            </div>
+				
+				
+				
+				
+            </div>
+            
+            
+         		   </div>
+             </div>
+             
+                      
+             </div>
+          
+        </div>
+      </div>
+</div>
+
+<script>
+
+function updateProfile()
+{
+	var firstname=$('#firstname').val();
+	var lastname=$('#lastname').val();
+	var email=$('#email').val();
+	var confirmemail=$('#confirm_email').val();
+	var mobile=$('#mobile').val();
+	var street_line_1=$('#street_line_1').val();
+	var street_line_2=$('#street_line_2').val();
+	var floornr=$('#floor').val();
+	var calling_bell=$('#calling_bell').val();
+	var zip=$('#zip').val();
+	var subscribe = $("input[name='subscribe']:checked").val();
+	
+	
+			
+	
+	if(mobile == '')
+	{	
+		$('#registration_fail').show();
+		$('#registration_fail').html('<i class="fa fa-warning"></i> Tast inn ditt mobilnummer');
+		$('#mobile').focus();
+		return false;
+	}
+	
+	if(email != '')
+	{	
+		if(email != confirmemail)
+		{
+			$('#registration_fail').show();
+			$('#registration_fail').html('<i class="fa fa-warning"></i> Samsvarer ikke over e-postadresse');
+			$('#confirm_email').focus();
+			return false;
+		}
+		
+		
+	}
+	
+	if(zip == '')
+	{	
+		$('#registration_fail').show();
+		$('#registration_fail').html('<i class="fa fa-warning"></i> Skriv inn postnummer');
+		$('#zip').focus();
+		return false;
+	}
+	/*$('#register_btn').html('Registrerer ....');*/
+	
+			var base = '<!--[conf.site_url;comm;]-->'; 
+			var url = base + '/admin/customer/updateprofile';
+			//$.getJSON( url, function( data ) {
+			//alert(data);
+			//});
+			 var sendInfo = {
+			 firstname: firstname,
+			 lastname: lastname,
+			 email: email,
+			  mobile: mobile,
+			 street_line_1: street_line_1,
+			 street_line_2: street_line_2,
+			  floornr: floornr,
+			   calling_bell: calling_bell,
+			    zip: zip,
+				subscribe: subscribe
+				};
+			$.ajax({
+			type: 'POST',
+			url: url,
+			data: sendInfo,
+			dataType: 'json'
+		}).done(function(data) {
+			$('#registration_fail').show();
+			$('#register_btn').html('Register');
+			//return false;
+			
+			if(data.response == 'success')
+			{
+				$('#registration_success').show();
+				$('#registration_success').html('<i class="fa fa-success"></i> '+data.message);
+				
+				$('#staff_close').trigger('click');
+				
+				var opay_type=$('#opay_type').val();
+				
+				if(opay_type == 'invoice'){
+					$('#editproductbtn').trigger('click');
+				}
+				else{
+					$('#saldolink').trigger('click');
+				}
+				
+				
+				
+			}
+			else
+			{
+				$('#registration_success').hide();
+				$('#registration_fail').html('<i class="fa fa-warning"></i> '+data.message);
+			}
+		
+		});
+				
+										
+		}
+	
+	function isEmpty(value){
+    return (typeof value === "undefined" || value === null);
+}	
+</script>

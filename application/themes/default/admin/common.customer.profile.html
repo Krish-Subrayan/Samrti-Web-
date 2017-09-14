@@ -1,0 +1,29 @@
+<div class="block">
+               <div class="pull-left col-md-3 text-center">
+               <a href="[conf.site_url]/admin/customer/account" class="btn  orange saldo-btn add-saldo-btn" data-toggle="modal">Saldo
+<br />forbruk</a>
+
+[sessiondata.customer.autofil_invoice;noerr;if [val]!='';then '<a href="#discount_modal12" id="saldolink" class="mt-sm btn bg-purple  saldo-btn add-saldo-btn" data-toggle="modal">Aufofill<br />konto </a>';else '<a href="#discount_modal12" id="saldolink" class="mt-sm btn  green saldo-btn add-saldo-btn" data-toggle="modal">Legg til <br />Saldo </a>';]
+
+             
+
+               </div>
+               <div  class="pull-left col-md-7 no-padd customer-info"> 
+                 <div id="customer-pro">
+                    <p><span>[sessiondata.customer.firstname] [sessiondata.customer.lastname] ([sessiondata.customer.partner_branch_name_short])</span>
+					[sessiondata.customer.companyname;noerr;if [val]!='';then '[val]<br>';]
+				    (+47) [sessiondata.customer.mobile] <br>
+                        <a href="mailto:[sessiondata.customer.email]">[sessiondata.customer.email]</a>  </p>
+                   </div>      
+                  <p id="customer-saldo" class="saldo customer-saldo" <!--[lists.saldocolor;noerr;htmlconv=no;protect=no;comm]-->>Saldo kr <input type="hidden" name="saldo_kr" id="saldo_kr" value="<!--[lists.saldo;noerr;htmlconv=no;protect=no;comm]-->"><span id="lbl_saldo_kr" style="display:inline-block; color:inherit; font-size:inherit;"><!--[lists.saldo;noerr;htmlconv=no;protect=no;comm]--></span></p>
+               </div>
+               
+               <div class="pull-left col-md-2 text-center">
+                  <a href="[conf.site_url]/admin/customer/profile" class="btn-icon" data-toggle="modal"><i class="icon-pencil"></i></a><br> 
+                   <input type="hidden" name="discount_type_12">
+               	   <input type="hidden" name="discount_value_12"> 
+                  
+                  </div>
+               
+               <div class="clearfix"></div>
+             </div>    

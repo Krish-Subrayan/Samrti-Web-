@@ -1,0 +1,72 @@
+<div class="row">
+  <div id="hentinginfo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="max-width:40%;">
+      <form name="radioForm" id="radioForm">
+        <div class="modal-content">
+          <div class="modal-header back-color">
+            <button type="button" id="staff_close" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+            <h4 class="modal-title login-title">Henting/levering</h4>
+          </div>
+          <div class="modal-body login">
+            <div class="form-login-wrapper">
+              <div class="pw-wrapper" style="background:none;">
+                <div class="row">
+                  <div id="mobile_fail" class="response_error alert alert-danger" style="display:none;"></div>
+                  <table class="table table-forms">
+                    <tbody>
+                      <tr>
+                        <td class="col-md-3 border-none">Henting</td>
+                        <td class="border-none">
+                            <div class="row">
+                                <div class="col-md-6 no-padd">
+                                <input type="text" class="form-control datepicker" name="henting" id="henting" value=""/>
+                                </div>
+                                <div class="col-md-6">
+                                <select id="henting_time" name="collection_time">
+                                 <option value=""> -- Velg -- </option>
+                                </select>
+								<div id="ajax-loader-henting" style="display:none;"><img src="img/ajax-loader.gif"></div>
+								
+                                </div>
+                            </div>     
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Levering</td>
+                        <td>
+                            <div class="row">
+                                <div class="col-md-6  no-padd">
+                                <input type="text" class="form-control datepicker" name="levering" id="levering" value=""/>
+                                </div>
+                                <div class="col-md-6">
+								<div id="ajax-loader-levering" style="display:none;"><img src="img/ajax-loader.gif"></div>
+                                <select id="levering_time" name="delivery_time">
+                                 <option value=""> -- Velg -- </option>
+                                </select>
+                                </div>
+                            </div>     
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Payment Type</td>
+                        <td><div class="col-sm-12 no-padding-both">
+                            <input type="radio" value="izettle" class="" name="payment_type">
+                            izettle&nbsp;&nbsp;
+                            <input type="radio" value="invoice" checked="checked" class="" name="payment_type">
+                            Faktura </div></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" data-dismiss="modal" aria-hidden="true" onclick="confirmOrder();" id="register_btn" class="btn green " data-loading-text=""> OK </button>
+            <button type="button" data-dismiss="modal" aria-hidden="true"  class="btn red" >Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
